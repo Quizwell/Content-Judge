@@ -1,0 +1,554 @@
+.searchModeSelectionScreen .searchBarContainer {
+    
+    background: var(--content-background-color);
+    width: calc(100% - 40px);
+    padding: 15px;
+    border-radius: 15px;
+    
+    transition: all 0.4s ease-in-out;
+    
+}
+
+.searchModeSelectionScreen.searchBarActive .searchBarContainer {
+
+    top: 59px;
+    
+}
+
+.searchModeSelectionScreen .searchBarContainer .label {
+    
+    font-size: 22px;
+    font-weight: bold;
+    
+}
+
+.searchModeSelectionScreen .searchBarContainer .searchBar {
+    
+    border: none;
+    background: var(--page-background-color);
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(100% - 30px);
+    height: 100%;
+    font-family: inherit;
+    font-size: 18px;
+    
+}
+
+.searchModeSelectionScreen .searchBarContainer .searchBar:focus {
+
+    outline: none;
+    
+}
+
+.searchModeSelectionScreen .bookSelectionContainer {
+    
+    background: var(--content-background-color);
+    
+    position: absolute;
+    top: 167px;
+    
+    width: calc(100% - 80px);
+    height: calc(100% - 237px);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+    
+    transition: all 0.5s ease;
+    
+}
+
+.searchModeSelectionScreen.searchBarActive .bookSelectionContainer {
+    
+    opacity: 0;
+    transform: translate(calc(-100% - 20px), 0) scale(0.75);
+    
+}
+
+.searchModeSelectionScreen .bookSelectionContainer .label {
+    
+    font-weight: bold;
+    font-size: 22px;
+    
+}
+
+.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement {
+    
+    background: var(--page-background-color);
+    width: calc(50% - 7.5px);
+    margin-right: 15px;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-block;
+    
+    transition: opacity 0.1s ease;
+    
+}
+
+.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement:nth-child(odd) {
+    
+    margin-right: 0;
+    
+}
+
+.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement:active {
+
+     opacity: 0.5;
+    
+}
+
+.searchModeSelectionScreen .searchResultsContainer {
+    
+    background: var(--content-background-color);
+    
+    position: absolute;
+    top: 167px;
+    
+    width: calc(100% - 80px);
+    height: calc(100% - 237px);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
+    
+    opacity: 0;
+    transform: translate(calc(100% + 20px), 0) scale(0.75);
+    transition: all 0.5s ease;
+    
+}
+
+.searchModeSelectionScreen.searchBarActive .searchResultsContainer {
+    
+    opacity: 100%;
+    transform: none;
+    
+}
+
+.chapterSelectionScreen .chapterNumberElementsContainer {
+    
+    margin: auto;
+    width: 385px;
+    
+}
+
+.chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement {
+    
+    background: var(--content-background-color);
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    
+    transition: opacity 0.1s ease;
+    
+}
+
+.chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement:nth-of-type(5n+5) {
+
+    margin-right: 0;
+    
+}
+
+.chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement:active {
+    
+    opacity: 0.5;
+    
+}
+
+.verseSelectionScreen .verseNumberElementsContainer {
+    
+    margin: auto;
+    width: 385px;
+    
+}
+
+.verseSelectionScreen .verseNumberElementsContainer .verseNumberElement {
+    
+    background: var(--content-background-color);
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    
+    transition: opacity 0.1s ease;
+    
+}
+
+.verseSelectionScreen .verseNumberElementsContainer .verseNumberElement:nth-of-type(5n+5) {
+
+    margin-right: 0;
+    
+}
+
+.verseSelectionScreen .verseNumberElementsContainer .verseNumberElement:active {
+    
+    opacity: 0.5;
+    
+}
+
+.verseDisplayScreen .headerContainer {
+    
+    background: var(--content-background-color);
+    border-radius: 20px;
+    padding: 15px;
+    
+}
+
+.verseDisplayScreen .headerContainer .closeButton {
+    
+    display: inline-block;
+    background: var(--app-accent-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 2px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    color: var(--accent-color-text-color);
+    cursor: pointer;
+    
+    /* Fix for inline-block repositioning */
+    vertical-align: top;
+    
+}
+
+.verseDisplayScreen .headerContainer .titleContainer {
+    
+    display: inline-block;
+    margin-left: 15px;
+    
+}
+
+.verseDisplayScreen .headerContainer .titleContainer .subtitle {
+    
+    color: var(--secondary-text-color);
+    margin-bottom: 0;
+    
+}
+
+.verseDisplayScreen .headerContainer .titleContainer .subtitle .tag {
+
+    color: var(--memory-element-color);
+    border: 3px solid var(--memory-element-color);
+    padding: 2px 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 90%;
+    
+}
+
+.verseDisplay {
+    
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    
+    transition: all 0.3s ease;
+    
+}
+
+.verseDisplay .textContainer {
+    
+    width: 100%;
+    
+}
+
+.verseDisplay .textContainer p {
+    
+    font-size: 22px;
+    padding: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    
+    transition: all 0.2s ease;
+
+}
+
+.verseDisplay .textContainer p.notSelectable {
+
+    cursor: default;
+    
+}
+
+.verseDisplay .textContainer p:not(.notSelectable):not(.selected):hover {
+
+    background: var(--secondary-content-background-color);
+    color: var(--ternary-text-color);
+    
+}
+
+.verseDisplay .textContainer p.selected {
+
+    background: var(--app-accent-color);
+    color: var(--inverted-text-color);
+    
+    /* Override potential prejump styling */
+    border-radius: 5px !important;
+    border: 3px solid transparent !important;
+    
+}
+
+.verseDisplay .textContainer p.outlined {
+
+    border: 3px solid var(--app-accent-color) !important;
+    box-sizing: border-box;
+    
+    /* Override potential prejump styling */
+    border-radius: 5px !important;
+    
+}
+
+.verseDisplay.highlightPrejump .textContainer p.prejump {
+
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid var(--primary-text-color);
+    border-radius: 5px 5px 0 0;
+    
+}
+
+.verseDisplay.highlightRareWords .textContainer p.uniqueWord:not(.selected) {
+
+/*
+    background-image: var(--orange-gradient);
+    background-size: 100%;
+    background-clip: text;
+    color: transparent;
+*/
+    color: var(--orange-color);
+    
+}
+
+.verseDisplay.highlightRareWords .textContainer p.doubleWord:not(.selected) {
+
+/*
+    background-image: var(--blue-gradient);
+    background-size: 100%;
+    background-clip: text;
+    color: transparent;
+*/
+    color: var(--blue-color);
+    
+}
+
+.verseDisplay.highlightRareWords .textContainer p.tripleWord:not(.selected) {
+
+/*
+    background-image: var(--purple-gradient);
+    background-size: 100%;
+    background-clip: text;
+    color: transparent;
+*/
+    color: var(--purple-color);
+    
+}
+
+.verseDisplayScreen .toolbarContainer {
+    
+    position: fixed;
+    bottom: 20px;
+    bottom: calc(env(safe-area-inset-bottom) + 20px);
+    left: 20px;
+    left: calc(env(safe-area-inset-left) + 20px);
+    width: calc(100% - 40px);
+    width: calc(100% - 40px - env(safe-area-inset-left) - env(safe-area-inset-right));
+    z-index: 2;
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar {
+    
+    position: absolute;
+    bottom: 0;
+    background: var(--content-background-color);
+    border-radius: 15px;
+    height: 90px;
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar.left {
+    left: 0;
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar.right {
+    right: 0;
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem {
+    
+    display: inline-block;
+    margin: 5px;
+    width: 100px;
+    height: 80px;
+    vertical-align: top;
+    border-radius: 10px;
+    cursor: pointer;
+    
+    transition: background 0.1s ease;
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem:hover {
+
+    background: var(--page-background-color);
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem picture,
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem > img {
+
+    display: block;
+    width: 45px;
+    margin: auto;
+    margin-top: 5px;
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem > img {
+
+    display: none;
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem .label {
+
+    font-weight: bold;
+    margin: 5px 0 0 0;
+    text-align: center;
+    line-height: 15px;
+    
+}
+
+/* Multiline items need adjusted spacing */
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.multiLine picture,
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.multiLine > img {
+
+    margin-top: auto;
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.multiLine .label {
+
+    margin-top: -2px;
+    
+}
+
+/* Adjust styles for active buttons */
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active {
+    
+    background: var(--app-accent-color);
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active picture {
+    
+    display: none;
+    
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active > img {
+    
+    display: block;
+
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active .label {
+    
+    color: var(--accent-color-text-color);
+    
+}
+
+.verseDisplay.up {
+    
+    top: 112px;
+    transform: none;
+    
+}
+
+.slidePanel {
+    
+    position: absolute;
+    bottom: 120px;
+    bottom: calc(120px + env(safe-area-inset-bottom));
+    left: 20px;
+    left: calc(20px + env(safe-area-inset-left));
+    right: 20px;
+    right: calc(20px + env(safe-area-inset-right));
+    background: var(--secondary-content-background-color);
+    border-radius: 30px 30px 15px 15px;
+    z-index: 1;
+    
+    transition: transform 0.3s ease;
+    
+}
+
+.slidePanel.hidden {
+
+    display: block;
+    transform: translate(0, calc(100% + 120px));
+    
+}
+
+.slidePanel .slidePanelScreen {
+    
+    padding: 20px;
+    
+}
+
+.slidePanel .singleWordInformation .title {
+
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+.slidePanel .singleWordInformation .pronounClarification {
+    
+    display: inline-block;
+    margin-top: 1px;
+    
+}
+
+.slidePanel .singleWordInformation .pronounClarification.hidden {
+    display: none;
+}
+
+.slidePanel .singleWordInformation .pronounClarification .arrow {
+
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    opacity: 0.6;
+    
+}
+
+.slidePanel .singleWordInformation .pronounClarification .antecedent {
+
+    display: inline-block;
+    line-height: 34px;
+    margin-left: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--secondary-text-color);
+    
+}
