@@ -1,6 +1,6 @@
 var scriptureEngine = {
     
-    currentYearObject: RomansJames,
+    currentYearObject: Matthew,
     
     getIndividualReferencesFromRangeReference: function (rangeReference) {
         
