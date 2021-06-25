@@ -1,6 +1,6 @@
 var scriptureEngine = {
     
-    currentYearObject: Matthew,
+    currentYearObject: RomansJames,
     
     getIndividualReferencesFromRangeReference: function (rangeReference) {
         
@@ -324,6 +324,30 @@ var scriptureEngine = {
         } else {
             return regExMatches[0].toLowerCase();
         }
+        
+    },
+    
+    unabbreviateBookNamesInString(string) {
+        
+        //Compile all book abbreviations and their respective names
+        var abbreviations = [];
+        var bookNames = [];
+        
+        var keys = Object.keys(scriptureEngine.currentYearObject.books);
+        
+        for (var i = 0; i < keys.length; i++) {
+            
+            abbreviations.push(scriptureEngine.currentYearObject.books[keys[i]].abbreviation);
+            bookNames.push(keys[i]);
+            
+        }
+        
+        //Loop through every abbreviation, and replace it with the correct book name in the string
+        for (var a = 0; a < abbreviations.length; a++) {
+            string = string.replaceAll(abbreviations[a], bookNames[a]);
+        }
+        
+        return string;
         
     }
     

@@ -454,6 +454,493 @@ const Matthew = {
                         e: "Or _single cubit to your height_",
                         
                     }
+                },
+                {
+                    sections: [
+                        
+                        {
+                            title: "Judging Others",
+                            verses: [
+                                
+                                "“Do not judge, or you too will be judged. ",
+                                "For in the same way you judge others, you will be judged, and with the measure you use, it will be measured to you. ",
+                                "“Why do you look at the speck of sawdust in your brother’s eye and pay no attention to the plank in your own eye? ",
+                                "How can you say to your brother, ‘Let me take the speck out of your eye,’ when all the time there is a plank in your own eye? ",
+                                "You hypocrite, first take the plank out of your own eye, and then you will see clearly to remove the speck from your brother’s eye. ",
+                                "“Do not give dogs what is sacred; do not throw your pearls to pigs. If you do, they may trample them under their feet, and turn and tear you to pieces. "
+                                
+                            ]
+                        },
+                        {
+                            title: "Ask, Seek, Knock",
+                            verses: [
+                                
+                                "“Ask and it will be given to you; seek and you will find; knock and the door will be opened to you. ",
+                                "For everyone who asks receives; the one who seeks finds; and to the one who knocks, the door will be opened. ",
+                                "“Which of you, if your son asks for bread, will give him a stone? ",
+                                "Or if he asks for a fish, will give him a snake? ",
+                                "If you, then, though you are evil, know how to give good gifts to your children, how much more will your Father in heaven give good gifts to those who ask him! ",
+                                "So in everything, do to others what you would have them do to you, for this sums up the Law and the Prophets. "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Narrow and Wide Gates",
+                            verses: [
+                                
+                                "“Enter through the narrow gate. For wide is the gate and broad is the road that leads to destruction, and many enter through it. ",
+                                "But small is the gate and narrow the road that leads to life, and only a few find it. "
+                                
+                            ]
+                        },
+                        {
+                            title: "True and False Prophets",
+                            verses: [
+                                
+                                "“Watch out for false prophets. They come to you in sheep’s clothing, but inwardly they are ferocious wolves. ",
+                                "By their fruit you will recognize them. Do people pick grapes from thornbushes, or figs from thistles? ",
+                                "Likewise, every good tree bears good fruit, but a bad tree bears bad fruit. ",
+                                "A good tree cannot bear bad fruit, and a bad tree cannot bear good fruit. ",
+                                "Every tree that does not bear good fruit is cut down and thrown into the fire. ",
+                                "Thus, by their fruit you will recognize them. "
+                                
+                            ]
+                        },
+                        {
+                            title: "True and False Disciples",
+                            verses: [
+                                
+                                "“Not everyone who says to me, ‘Lord, Lord,’ will enter the kingdom of heaven, but only the one who does the will of my Father who is in heaven. ",
+                                "Many will say to me on that day, ‘Lord, Lord, did we not prophesy in your name and in your name drive out demons and in your name perform many miracles?’ ",
+                                "Then I will tell them plainly, ‘I never knew you. Away from me, you evildoers!’ "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Wise and Foolish Builders",
+                            verses: [
+                                
+                                "“Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock. ",
+                                "The rain came down, the streams rose, and the winds blew and beat against that house; yet it did not fall, because it had its foundation on the rock. ",
+                                "But everyone who hears these words of mine and does not put them into practice is like a foolish man who built his house on sand. ",
+                                "The rain came down, the streams rose, and the winds blew and beat against that house, and it fell with a great crash.” ",
+                                "When Jesus had finished saying these things, the crowds were amazed at his teaching, ",
+                                "because he taught as one who had authority, and not as their teachers of the law. "
+                                
+                            ]
+                        }
+                        
+                    ],
+                    footnotes: {
+                        
+                        //No footnotes for this chapter
+                        
+                    }
+                },
+                {
+                    sections: [
+                        
+                        {
+                            title: "Jesus Heals a Man With Leprosy",
+                            verses: [
+                                
+                                "When Jesus came down from the mountainside, large crowds followed him. ",
+                                "A man with leprosy[a] came and knelt before him and said, “Lord, if you are willing, you can make me clean.” ",
+                                "Jesus reached out his hand and touched the man. “I am willing,” he said. “Be clean!” Immediately he was cleansed of his leprosy. ",
+                                "Then Jesus said to him, “See that you don’t tell anyone. But go, show yourself to the priest and offer the gift Moses commanded, as a testimony to them.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Faith of the Centurion",
+                            verses: [
+                                
+                                "When Jesus had entered Capernaum, a centurion came to him, asking for help. ",
+                                "“Lord,” he said, “my servant lies at home paralyzed, suffering terribly.” ",
+                                "Jesus said to him, “Shall I come and heal him?” ",
+                                "The centurion replied, “Lord, I do not deserve to have you come under my roof. But just say the word, and my servant will be healed. ",
+                                "For I myself am a man under authority, with soldiers under me. I tell this one, ‘Go,’ and he goes; and that one, ‘Come,’ and he comes. I say to my servant, ‘Do this,’ and he does it.” ",
+                                "When Jesus heard this, he was amazed and said to those following him, “Truly I tell you, I have not found anyone in Israel with such great faith. ",
+                                "I say to you that many will come from the east and the west, and will take their places at the feast with Abraham, Isaac and Jacob in the kingdom of heaven. ",
+                                "But the subjects of the kingdom will be thrown outside, into the darkness, where there will be weeping and gnashing of teeth.” ",
+                                "Then Jesus said to the centurion, “Go! Let it be done just as you believed it would.” And his servant was healed at that moment. "
+                                
+                            ]
+                        },
+                        {
+                            title: "Jesus Heals Many",
+                            verses: [
+                                
+                                "When Jesus came into Peter’s house, he saw Peter’s mother-in-law lying in bed with a fever. ",
+                                "He touched her hand and the fever left her, and she got up and began to wait on him. ",
+                                "When evening came, many who were demon-possessed were brought to him, and he drove out the spirits with a word and healed all the sick. ",
+                                "This was to fulfill what was spoken through the prophet Isaiah: “He took up our infirmities and bore our diseases.”[b] "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Cost of Following Jesus",
+                            verses: [
+                                
+                                "When Jesus saw the crowd around him, he gave orders to cross to the other side of the lake. ",
+                                "Then a teacher of the law came to him and said, “Teacher, I will follow you wherever you go.” ",
+                                "Jesus replied, “Foxes have dens and birds have nests, but the Son of Man has no place to lay his head.” ",
+                                "Another disciple said to him, “Lord, first let me go and bury my father.” ",
+                                "But Jesus told him, “Follow me, and let the dead bury their own dead.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "Jesus Calms the Storm",
+                            verses: [
+                                
+                                "Then he got into the boat and his disciples followed him. ",
+                                "Suddenly a furious storm came up on the lake, so that the waves swept over the boat. But Jesus was sleeping. ",
+                                "The disciples went and woke him, saying, “Lord, save us! We’re going to drown!” ",
+                                "He replied, “You of little faith, why are you so afraid?” Then he got up and rebuked the winds and the waves, and it was completely calm. ",
+                                "The men were amazed and asked, “What kind of man is this? Even the winds and the waves obey him!” "
+                                
+                            ]
+                        },
+                        {
+                            title: "Jesus Restores Two Demon-Possessed Men",
+                            verses: [
+                                
+                                "When he arrived at the other side in the region of the Gadarenes,[c] two demon-possessed men coming from the tombs met him. They were so violent that no one could pass that way. ",
+                                "“What do you want with us, Son of God?” they shouted. “Have you come here to torture us before the appointed time?” ",
+                                "Some distance from them a large herd of pigs was feeding. ",
+                                "The demons begged Jesus, “If you drive us out, send us into the herd of pigs.” ",
+                                "He said to them, “Go!” So they came out and went into the pigs, and the whole herd rushed down the steep bank into the lake and died in the water. ",
+                                "Those tending the pigs ran off, went into the town and reported all this, including what had happened to the demon-possessed men. ",
+                                "Then the whole town went out to meet Jesus. And when they saw him, they pleaded with him to leave their region. "
+                                
+                            ]
+                        }
+                        
+                    ],
+                    footnotes: {
+                        
+                        a: "The Greek word traditionally translated _leprosy_ was used for various diseases affecting the skin.",
+                        b: "Isaiah 53:4 (see Septuagint)",
+                        c: "Some manuscripts _Gergesenes;_ other manuscripts _Gerasenes_"
+                        
+                    }
+                },
+                {
+                    sections: [
+                        
+                        {
+                            title: "Jesus Forgives and Heals a Paralyzed Man",
+                            verses: [
+                                
+                                "Jesus stepped into a boat, crossed over and came to his own town. ",
+                                "Some men brought to him a paralyzed man, lying on a mat. When Jesus saw their faith, he said to the man, “Take heart, son; your sins are forgiven.” ",
+                                "At this, some of the teachers of the law said to themselves, “This fellow is blaspheming!” ",
+                                "Knowing their thoughts, Jesus said, “Why do you entertain evil thoughts in your hearts? ",
+                                "Which is easier: to say, ‘Your sins are forgiven,’ or to say, ‘Get up and walk’? ",
+                                "But I want you to know that the Son of Man has authority on earth to forgive sins.” So he said to the paralyzed man, “Get up, take your mat and go home.” ",
+                                "Then the man got up and went home. ",
+                                "When the crowd saw this, they were filled with awe; and they praised God, who had given such authority to man. "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Calling of Matthew",
+                            verses: [
+                                
+                                "As Jesus went on from there, he saw a man named Matthew sitting at the tax collector’s booth. “Follow me,” he told him, and Matthew got up and followed him. ",
+                                "While Jesus was having dinner at Matthew’s house, many tax collectors and sinners came and ate with him and his disciples. ",
+                                "When the Pharisees saw this, they asked his disciples, “Why does your teacher eat with tax collectors and sinners?” ",
+                                "On hearing this, Jesus said, “It is not the healthy who need a doctor, but the sick. ",
+                                "But go and learn what this means: ‘I desire mercy, not sacrifice.’[a] For I have not come to call the righteous, but sinners.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Calling of Matthew",
+                            verses: [
+                                
+                                "Then John’s disciples came and asked him, “How is it that we and the Pharisees fast often, but your disciples do not fast?” ",
+                                "Jesus answered, “How can the guests of the bridegroom mourn while he is with them? The time will come when the bridegroom will be taken from them; then they will fast. ",
+                                "“No one sews a patch of unshrunk cloth on an old garment, for the patch will pull away from the garment, making the tear worse. ",
+                                "Neither do people pour new wine into old wineskins. If they do, the skins will burst; the wine will run out and the wineskins will be ruined. No, they pour new wine into new wineskins, and both are preserved.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "Jesus Raises a Dead Girl and Heals a Sick Woman",
+                            verses: [
+                                
+                                "While he was saying this, a synagogue leader came and knelt before him and said, “My daughter has just died. But come and put your hand on her, and she will live.” ",
+                                "Jesus got up and went with him, and so did his disciples. ",
+                                "Just then a woman who had been subject to bleeding for twelve years came up behind him and touched the edge of his cloak. ",
+                                "She said to herself, “If I only touch his cloak, I will be healed.” ",
+                                "Jesus turned and saw her. “Take heart, daughter,” he said, “your faith has healed you.” And the woman was healed at that moment. ",
+                                "When Jesus entered the synagogue leader’s house and saw the noisy crowd and people playing pipes, ",
+                                "he said, “Go away. The girl is not dead but asleep.” But they laughed at him. ",
+                                "After the crowd had been put outside, he went in and took the girl by the hand, and she got up. ",
+                                "News of this spread through all that region. "
+                                
+                            ]
+                        },
+                        {
+                            title: "Jesus Heals the Blind and the Mute",
+                            verses: [
+                                
+                                "As Jesus went on from there, two blind men followed him, calling out, “Have mercy on us, Son of David!” ",
+                                "When he had gone indoors, the blind men came to him, and he asked them, “Do you believe that I am able to do this?” “Yes, Lord,” they replied. ",
+                                "Then he touched their eyes and said, “According to your faith let it be done to you”; ",
+                                "and their sight was restored. Jesus warned them sternly, “See that no one knows about this.” ",
+                                "But they went out and spread the news about him all over that region. ",
+                                "While they were going out, a man who was demon-possessed and could not talk was brought to Jesus. ",
+                                "And when the demon was driven out, the man who had been mute spoke. The crowd was amazed and said, “Nothing like this has ever been seen in Israel.” ",
+                                "But the Pharisees said, “It is by the prince of demons that he drives out demons.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Workers Are Few",
+                            verses: [
+                                
+                                "Jesus went through all the towns and villages, teaching in their synagogues, proclaiming the good news of the kingdom and healing every disease and sickness. ",
+                                "When he saw the crowds, he had compassion on them, because they were harassed and helpless, like sheep without a shepherd. ",
+                                "Then he said to his disciples, “The harvest is plentiful but the workers are few. ",
+                                "Ask the Lord of the harvest, therefore, to send out workers into his harvest field.” "
+                                
+                            ]
+                        }
+                        
+                    ],
+                    footnotes: {
+                        
+                        a: "Hosea 6:6"
+                        
+                    }
+                },
+                {
+                    sections: [
+                        
+                        {
+                            title: "Jesus Sends Out the Twelve",
+                            verses: [
+                                
+                                "Jesus called his twelve disciples to him and gave them authority to drive out impure spirits and to heal every disease and sickness. ",
+                                "These are the names of the twelve apostles: first, Simon (who is called Peter) and his brother Andrew; James son of Zebedee, and his brother John; ",
+                                "Philip and Bartholomew; Thomas and Matthew the tax collector; James son of Alphaeus, and Thaddaeus; ",
+                                "Simon the Zealot and Judas Iscariot, who betrayed him. ",
+                                "These twelve Jesus sent out with the following instructions: “Do not go among the Gentiles or enter any town of the Samaritans. ",
+                                "Go rather to the lost sheep of Israel. ",
+                                "As you go, proclaim this message: ‘The kingdom of heaven has come near.’ ",
+                                "Heal the sick, raise the dead, cleanse those who have leprosy,[a] drive out demons. Freely you have received; freely give. ",
+                                "“Do not get any gold or silver or copper to take with you in your belts - ",
+                                "no bag for the journey or extra shirt or sandals or a staff, for the worker is worth his keep. ",
+                                "Whatever town or village you enter, search there for some worthy person and stay at their house until you leave. ",
+                                "As you enter the home, give it your greeting. ",
+                                "If the home is deserving, let your peace rest on it; if it is not, let your peace return to you. ",
+                                "If anyone will not welcome you or listen to your words, leave that home or town and shake the dust off your feet. ",
+                                "Truly I tell you, it will be more bearable for Sodom and Gomorrah on the day of judgment than for that town. ",
+                                "“I am sending you out like sheep among wolves. Therefore be as shrewd as snakes and as innocent as doves. ",
+                                "Be on your guard; you will be handed over to the local councils and be flogged in the synagogues. ",
+                                "On my account you will be brought before governors and kings as witnesses to them and to the Gentiles. ",
+                                "But when they arrest you, do not worry about what to say or how to say it. At that time you will be given what to say, ",
+                                "for it will not be you speaking, but the Spirit of your Father speaking through you. ",
+                                "“Brother will betray brother to death, and a father his child; children will rebel against their parents and have them put to death. ",
+                                "You will be hated by everyone because of me, but the one who stands firm to the end will be saved. ",
+                                "When you are persecuted in one place, flee to another. Truly I tell you, you will not finish going through the towns of Israel before the Son of Man comes. ",
+                                "“The student is not above the teacher, nor a servant above his master. ",
+                                "It is enough for students to be like their teachers, and servants like their masters. If the head of the house has been called Beelzebul, how much more the members of his household! ",
+                                "“So do not be afraid of them, for there is nothing concealed that will not be disclosed, or hidden that will not be made known. ",
+                                "What I tell you in the dark, speak in the daylight; what is whispered in your ear, proclaim from the roofs. ",
+                                "Do not be afraid of those who kill the body but cannot kill the soul. Rather, be afraid of the One who can destroy both soul and body in hell. ",
+                                "Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father’s care.[b] ",
+                                "And even the very hairs of your head are all numbered. ",
+                                "So don’t be afraid; you are worth more than many sparrows. ",
+                                "“Whoever acknowledges me before others, I will also acknowledge before my Father in heaven. ",
+                                "But whoever disowns me before others, I will disown before my Father in heaven. ",
+                                "“Do not suppose that I have come to bring peace to the earth. I did not come to bring peace, but a sword. ",
+                                "For I have come to turn “‘a man against his father, a daughter against her mother, a daughter-in-law against her mother-in-law - ",
+                                "a man’s enemies will be the members of his own household.’[c] ",
+                                "“Anyone who loves their father or mother more than me is not worthy of me; anyone who loves their son or daughter more than me is not worthy of me. ",
+                                "Whoever does not take up their cross and follow me is not worthy of me. ",
+                                "Whoever finds their life will lose it, and whoever loses their life for my sake will find it. ",
+                                "“Anyone who welcomes you welcomes me, and anyone who welcomes me welcomes the one who sent me. ",
+                                "Whoever welcomes a prophet as a prophet will receive a prophet’s reward, and whoever welcomes a righteous person as a righteous person will receive a righteous person’s reward. ",
+                                "And if anyone gives even a cup of cold water to one of these little ones who is my disciple, truly I tell you, that person will certainly not lose their reward.” "
+                                
+                            ]
+                        }
+                        
+                    ],
+                    footnotes: {
+                        
+                        a: "The Greek word traditionally translated _leprosy_ was used for various diseases affecting the skin.",
+                        b: "Or _will;_ or _knowledge_",
+                        c: "Micah 7:6"
+                        
+                    }
+                },
+                {
+                    sections: [
+                        
+                        {
+                            title: "Jesus and John the Baptist",
+                            verses: [
+                                
+                                "After Jesus had finished instructing his twelve disciples, he went on from there to teach and preach in the towns of Galilee.[a]",
+                                "When John, who was in prison, heard about the deeds of the Messiah, he sent his disciples ",
+                                "to ask him, “Are you the one who is to come, or should we expect someone else?” ",
+                                "Jesus replied, “Go back and report to John what you hear and see: ",
+                                "The blind receive sight, the lame walk, those who have leprosy[b] are cleansed, the deaf hear, the dead are raised, and the good news is proclaimed to the poor. ",
+                                "Blessed is anyone who does not stumble on account of me.” ",
+                                "As John’s disciples were leaving, Jesus began to speak to the crowd about John: “What did you go out into the wilderness to see? A reed swayed by the wind? ",
+                                "If not, what did you go out to see? A man dressed in fine clothes? No, those who wear fine clothes are in kings’ palaces. ",
+                                "Then what did you go out to see? A prophet? Yes, I tell you, and more than a prophet. ",
+                                "This is the one about whom it is written: “‘I will send my messenger ahead of you, who will prepare your way before you.’[c] ",
+                                "Truly I tell you, among those born of women there has not risen anyone greater than John the Baptist; yet whoever is least in the kingdom of heaven is greater than he. ",
+                                "From the days of John the Baptist until now, the kingdom of heaven has been subjected to violence,[d] and violent people have been raiding it. ",
+                                "For all the Prophets and the Law prophesied until John. ",
+                                "And if you are willing to accept it, he is the Elijah who was to come. ",
+                                "Whoever has ears, let them hear. ",
+                                "“To what can I compare this generation? They are like children sitting in the marketplaces and calling out to others: ",
+                                "“‘We played the pipe for you, and you did not dance; we sang a dirge, and you did not mourn.’ ",
+                                "For John came neither eating nor drinking, and they say, ‘He has a demon.’ ",
+                                "The Son of Man came eating and drinking, and they say, ‘Here is a glutton and a drunkard, a friend of tax collectors and sinners.’ But wisdom is proved right by her deeds.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "Woe on Unrepentant Towns",
+                            verses: [
+                                
+                                "Then Jesus began to denounce the towns in which most of his miracles had been performed, because they did not repent. ",
+                                "“Woe to you, Chorazin! Woe to you, Bethsaida! For if the miracles that were performed in you had been performed in Tyre and Sidon, they would have repented long ago in sackcloth and ashes. ",
+                                "But I tell you, it will be more bearable for Tyre and Sidon on the day of judgment than for you. ",
+                                "And you, Capernaum, will you be lifted to the heavens? No, you will go down to Hades.[e] For if the miracles that were performed in you had been performed in Sodom, it would have remained to this day. ",
+                                "But I tell you that it will be more bearable for Sodom on the day of judgment than for you.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Father Revealed in the Son",
+                            verses: [
+                                
+                                "At that time Jesus said, “I praise you, Father, Lord of heaven and earth, because you have hidden these things from the wise and learned, and revealed them to little children. ",
+                                "Yes, Father, for this is what you were pleased to do. ",
+                                "“All things have been committed to me by my Father. No one knows the Son except the Father, and no one knows the Father except the Son and those to whom the Son chooses to reveal him.",
+                                "“Come to me, all you who are weary and burdened, and I will give you rest. ",
+                                "Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls. ",
+                                "For my yoke is easy and my burden is light.” "
+                                
+                            ]
+                        }
+                        
+                    ],
+                    footnotes: {
+                        
+                        a: "Greek _in their towns_",
+                        b: "The Greek word traditionally translated _leprosy_ was used for various diseases affecting the skin.",
+                        c: "Mal. 3:1",
+                        d: "Or _been forcefully advancing_",
+                        e: "That is, the realm of the dead"
+                        
+                    }
+                },
+                {
+                    sections: [
+                        
+                        {
+                            title: "Jesus Is Lord of the Sabbath",
+                            verses: [
+                                
+                                "At that time Jesus went through the grainfields on the Sabbath. His disciples were hungry and began to pick some heads of grain and eat them. ",
+                                "When the Pharisees saw this, they said to him, “Look! Your disciples are doing what is unlawful on the Sabbath.” ",
+                                "He answered, “Haven’t you read what David did when he and his companions were hungry? ",
+                                "He entered the house of God, and he and his companions ate the consecrated bread—which was not lawful for them to do, but only for the priests. ",
+                                "Or haven’t you read in the Law that the priests on Sabbath duty in the temple desecrate the Sabbath and yet are innocent? ",
+                                "I tell you that something greater than the temple is here. ",
+                                "If you had known what these words mean, ‘I desire mercy, not sacrifice,’[a] you would not have condemned the innocent. ",
+                                "For the Son of Man is Lord of the Sabbath.” ",
+                                "Going on from that place, he went into their synagogue, ",
+                                "and a man with a shriveled hand was there. Looking for a reason to bring charges against Jesus, they asked him, “Is it lawful to heal on the Sabbath?” ",
+                                "He said to them, “If any of you has a sheep and it falls into a pit on the Sabbath, will you not take hold of it and lift it out? ",
+                                "How much more valuable is a person than a sheep! Therefore it is lawful to do good on the Sabbath.” ",
+                                "Then he said to the man, “Stretch out your hand.” So he stretched it out and it was completely restored, just as sound as the other. ",
+                                "But the Pharisees went out and plotted how they might kill Jesus. "
+                                
+                            ]
+                        },
+                        {
+                            title: "God's Chosen Servant",
+                            verses: [
+                                
+                                "Aware of this, Jesus withdrew from that place. A large crowd followed him, and he healed all who were ill. ",
+                                "He warned them not to tell others about him. ",
+                                "This was to fulfill what was spoken through the prophet Isaiah: ",
+                                "“Here is my servant whom I have chosen, the one I love, in whom I delight; I will put my Spirit on him, and he will proclaim justice to the nations. ",
+                                "He will not quarrel or cry out; no one will hear his voice in the streets. ",
+                                "A bruised reed he will not break, and a smoldering wick he will not snuff out, till he has brought justice through to victory. ",
+                                "In his name the nations will put their hope.”[b] "
+                                
+                            ]
+                        },
+                        {
+                            title: "Jesus and Beelzebul",
+                            verses: [
+                                
+                                "Then they brought him a demon-possessed man who was blind and mute, and Jesus healed him, so that he could both talk and see. ",
+                                "All the people were astonished and said, “Could this be the Son of David?” ",
+                                "But when the Pharisees heard this, they said, “It is only by Beelzebul, the prince of demons, that this fellow drives out demons.” ",
+                                "Jesus knew their thoughts and said to them, “Every kingdom divided against itself will be ruined, and every city or household divided against itself will not stand. ",
+                                "If Satan drives out Satan, he is divided against himself. How then can his kingdom stand? ",
+                                "And if I drive out demons by Beelzebul, by whom do your people drive them out? So then, they will be your judges. ",
+                                "But if it is by the Spirit of God that I drive out demons, then the kingdom of God has come upon you. ",
+                                "“Or again, how can anyone enter a strong man’s house and carry off his possessions unless he first ties up the strong man? Then he can plunder his house. ",
+                                "“Whoever is not with me is against me, and whoever does not gather with me scatters. ",
+                                "And so I tell you, every kind of sin and slander can be forgiven, but blasphemy against the Spirit will not be forgiven. ",
+                                "Anyone who speaks a word against the Son of Man will be forgiven, but anyone who speaks against the Holy Spirit will not be forgiven, either in this age or in the age to come. ",
+                                "“Make a tree good and its fruit will be good, or make a tree bad and its fruit will be bad, for a tree is recognized by its fruit. ",
+                                "You brood of vipers, how can you who are evil say anything good? For the mouth speaks what the heart is full of. ",
+                                "A good man brings good things out of the good stored up in him, and an evil man brings evil things out of the evil stored up in him. ",
+                                "But I tell you that everyone will have to give account on the day of judgment for every empty word they have spoken. ",
+                                "For by your words you will be acquitted, and by your words you will be condemned.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "The Sign of Jonah",
+                            verses: [
+                                
+                                "Then some of the Pharisees and teachers of the law said to him, “Teacher, we want to see a sign from you.” ",
+                                "He answered, “A wicked and adulterous generation asks for a sign! But none will be given it except the sign of the prophet Jonah. ",
+                                "For as Jonah was three days and three nights in the belly of a huge fish, so the Son of Man will be three days and three nights in the heart of the earth. ",
+                                "The men of Nineveh will stand up at the judgment with this generation and condemn it; for they repented at the preaching of Jonah, and now something greater than Jonah is here. ",
+                                "The Queen of the South will rise at the judgment with this generation and condemn it; for she came from the ends of the earth to listen to Solomon’s wisdom, and now something greater than Solomon is here. ",
+                                "“When an impure spirit comes out of a person, it goes through arid places seeking rest and does not find it. ",
+                                "Then it says, ‘I will return to the house I left.’ When it arrives, it finds the house unoccupied, swept clean and put in order. ",
+                                "Then it goes and takes with it seven other spirits more wicked than itself, and they go in and live there. And the final condition of that person is worse than the first. That is how it will be with this wicked generation.” "
+                                
+                            ]
+                        },
+                        {
+                            title: "Jesus' Mother and Brothers",
+                            verses: [
+                                
+                                "While Jesus was still talking to the crowd, his mother and brothers stood outside, wanting to speak to him. ",
+                                "Someone told him, “Your mother and brothers are standing outside, wanting to speak to you.” ",
+                                "He replied to him, “Who is my mother, and who are my brothers?” ",
+                                "Pointing to his disciples, he said, “Here are my mother and my brothers. ",
+                                "For whoever does the will of my Father in heaven is my brother and sister and mother.” "
+                                
+                            ]
+                        }
+                        
+                    ],
+                    footnotes: {
+                        
+                        a: "Hosea 6:6",
+                        b: "Isaiah 42:1-4"
+                        
+                    }
                 }
                 
             ]

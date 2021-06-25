@@ -146,6 +146,12 @@ const UIManager = {
             setTimeout(UIManager.verseDisplayScreen.hideSlidePanel, 200);
 
         },
+        
+        flyswatterButton: function () {
+            
+            window.location.href = "mailto:wf426bxd5d@privaterelay.appleid.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
+            
+        },
 
         highlightPrejumpButton: function () {
 
@@ -412,7 +418,7 @@ const UIManager = {
             }
 
             //Show the reference of the verse
-            UIReferences.verseDisplayScreenTitle.textContent = referenceString;
+            UIReferences.verseDisplayScreenTitle.textContent = scriptureEngine.unabbreviateBookNamesInString(referenceString);
 
 
             //Populate the verse display
@@ -492,13 +498,68 @@ const UIManager = {
 
             }
             
-            //Populate the pronoun clarification slide panel screen
+            //Clear and repopulate the pronoun clarification slide panel screen
+            while (UIReferences.pronounClarificationContent.firstChild) {
+                UIReferences.pronounClarificationContent.removeChild(UIReferences.pronounClarificationContent.firstChild);
+            }
+            
             var pronounClarifications = scriptureEngine.getPronounClarificationsByReference(referenceString);
             if (pronounClarifications) {
                 
                 for (var i = 0; i < pronounClarifications.length; i++) {
                     
                     var currentClarification = pronounClarifications[i];
+                    
+                    //Create the elements
+                    
+                    var element = document.createElement("div");
+                    element.classList.add("listItem");
+                    
+                    var headerContainter = document.createElement("div");
+                    headerContainter.classList.add("headerContainer");
+                    
+                    var pronounElement = document.createElement("h1");
+                    pronounElement.classList.add("pronoun");
+                    pronounElement.textContent = currentClarification.pronoun;
+                    
+                    var arrow = document.createElement("picture");
+                    arrow.classList.add("arrow");
+                    arrow.classList.add("right");
+                    
+                    var arrowSource = document.createElement("source");
+                    arrowSource.src = "images/icons/Arrow-White.svg";
+                    arrowSource.setAttribute("media", "(prefers-color-scheme: dark)");
+                    
+                    var arrowImage = document.createElement("img");
+                    arrowImage.src = "images/icons/Arrow.svg";
+                    arrowImage.setAttribute("height", "30px");
+                    arrowImage.setAttribute("width", "auto");
+                    
+                    var antecedentElement = document.createElement("h1");
+                    antecedentElement.classList.add("antecedent");
+                    antecedentElement.textContent = currentClarification.antecedent;
+                    
+                    if (currentClarification.reference) {
+                        var reference = document.createElement("p");
+                        reference.textContent = scriptureEngine.unabbreviateBookNamesInString(currentClarification.reference);
+                    }
+                    
+                    //Assemble the elements
+                    
+                    arrow.appendChild(arrowSource);
+                    arrow.appendChild(arrowImage);
+                    
+                    headerContainter.appendChild(pronounElement);
+                    headerContainter.appendChild(arrow);
+                    headerContainter.appendChild(antecedentElement);
+                    
+                    element.appendChild(headerContainter);
+                    
+                    if (currentClarification.reference) {
+                        element.appendChild(reference);
+                    }
+                    
+                    UIReferences.pronounClarificationContent.appendChild(element);
                     
                 }
                 
@@ -748,7 +809,7 @@ const UIManager = {
 
             //Get the distance from the top of the screen to the bottom of the verseDisplay
             var boundingBox = UIReferences.verseDisplay.getBoundingClientRect();
-            var distance = ((boundingBox.bottom - boundingBox.top) + 127);
+            var distance = ((boundingBox.bottom - boundingBox.top) + 130);
 
             //Set the top of the sliding panel
             UIReferences.slidePanel.style.top = (distance + "px");

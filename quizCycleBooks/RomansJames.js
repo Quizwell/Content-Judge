@@ -1318,7 +1318,7 @@ const RomansJames = {
             ],
                     footnotes: {
 
-                        //No footnotes for chapter 3
+                        //No footnotes for this chapter
 
                     }
         },

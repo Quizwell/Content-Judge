@@ -1,3 +1,70 @@
+.welcomeScreen {
+    
+    padding: 0;
+    
+}
+
+.welcomeScreen .headerBlock {
+    
+    width: 100%;
+    height: 40%;
+    filter: saturate(100%);
+    background: linear-gradient(70deg, #74BCBD 0%, #436F9E 20%, #836AC8 40%, #7D76D1 60%, #D88243 80%, #CF4F3D 100%);
+    background-size: 200% 100%;
+    animation: gradient 18s ease infinite;
+    
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+.welcomeScreen .headerBlock img {
+    
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--dark-shadow-color);
+    
+}
+
+.welcomeScreen .textBlock {
+
+    margin-top: 20px;
+    font-size: 30px;
+    text-align: center;
+    
+}
+
+.welcomeScreen .textBlock p {
+
+    display: inline-block;
+    font-size: 25px;
+    margin-right: 5px;
+    
+}
+
+.welcomeScreen .textBlock img {
+
+    display: inline-block;
+    vertical-align: middle;
+    
+}
+
+.welcomeScreen button {
+    
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    
+}
+
 .searchModeSelectionScreen .searchBarContainer {
     
     background: var(--content-background-color);
@@ -199,11 +266,12 @@
     
 }
 
-.verseDisplayScreen .headerContainer {
+.verseDisplayScreen > .headerContainer {
     
     background: var(--content-background-color);
     border-radius: 20px;
     padding: 15px;
+    height: 70px;
     
 }
 
@@ -214,7 +282,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-top: 2px;
+    margin-top: 20px;
     text-align: center;
     line-height: 30px;
     font-weight: bold;
@@ -248,6 +316,18 @@
     border-radius: 5px;
     margin-right: 5px;
     font-size: 90%;
+    
+}
+
+.verseDisplayScreen .headerContainer .flyswatter {
+    
+    float: right;
+    background: var(--page-background-color);
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    cursor: pointer;
     
 }
 
@@ -479,7 +559,7 @@
 
 .verseDisplay.up {
     
-    top: 112px;
+    top: 130px;
     transform: none;
     
 }
@@ -543,6 +623,42 @@
 }
 
 .slidePanel .singleWordInformation .pronounClarification .antecedent {
+
+    display: inline-block;
+    line-height: 34px;
+    margin-left: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--secondary-text-color);
+    
+}
+
+.slidePanel .pronounClarification .listItem {
+    
+    background: var(--page-background-color);
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+    
+}
+
+.slidePanel .pronounClarification .listItem .pronoun {
+
+    display: inline-block;
+    
+}
+
+.slidePanel .pronounClarification .listItem .arrow {
+
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    opacity: 0.6;
+    
+}
+
+.slidePanel .pronounClarification .listItem .antecedent {
 
     display: inline-block;
     line-height: 34px;

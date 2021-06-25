@@ -13,7 +13,7 @@
 <body>
 
     <div class="mainScreen">
-        
+
         <div class="bannerNotification hidden">
             <h1 class="title"></h1>
             <p class="subtitle"></p>
@@ -21,7 +21,19 @@
 
         <div class="welcomeScreen screen">
 
-            <h1>Content Judge</h1>
+            <div class="headerBlock">
+                <img src="images/logos/Logo.png" width="auto" height="100px">
+            </div>
+
+            <div class="textBlock">
+                <h1>Content Judge</h1>
+
+                <p>by</p>
+                <picture>
+                    <source srcset="images/logos/Quizwell-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/logos/Quizwell.svg" width="auto" height="40px">
+                </picture>
+            </div>
 
             <button onclick="UIManager.buttonHandlers.hideWelcomeScreen()">Get Started</button>
 
@@ -87,6 +99,11 @@
                         <span class="text"></span>
                     </h3>
                 </div>
+                
+                <picture>
+                    <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
+                    <img class="flyswatter" src="images/icons/Flyswatter.svg" width="auto" height="60px" onclick="UIManager.buttonHandlers.flyswatterButton()">
+                </picture>
             </div>
 
             <div class="verseDisplay">
@@ -112,7 +129,7 @@
                             <p class="occurrencesTitle">Occurrences:</p>
                             <p class="occurrencesList"></p>
                         </div>
-                        
+
                         <div class="regularWord">
                             <p class="verse"></p>
                             <p class="section"></p>
@@ -213,10 +230,10 @@
 
     <script src="storageManager.js"></script>
     <script src="concordanceGenerator.js"></script>
-    
+
     <script src="quizCycleBooks/Matthew.js"></script>
     <script src="quizCycleBooks/RomansJames.js"></script>
-    
+
     <script src="scriptureEngine.js"></script>
     <script src="UIManager.js"></script>
 
