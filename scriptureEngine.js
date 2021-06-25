@@ -213,6 +213,97 @@ var scriptureEngine = {
         
     },
     
+    getFootnotesByReference: function (reference) {
+        
+        var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+        
+        var book;
+    
+        //Loop through all the books in this year's object until a match is found for the abbreviation.
+        var bookAbbreviation = reference.split(" ")[0];
+        reference = reference.split(" ")[1].split(":");
+        for (var i = 0; i < currentYearBooksKeys.length; i++) {
+            
+            var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
+            if (currentBook.abbreviation == bookAbbreviation) {
+                
+                book = currentBook;
+                break;
+                
+            }
+            
+        }
+        
+        //Get the correct chapter (subtract 1 from the chapter number to find the index)
+        var chapter = book.chapters[reference[0] - 1];
+        
+        //If there are no footnotes for this chapter, return false
+        if (Object.keys(chapter.footnotes).length == 0) {
+            return false;
+        }
+        
+        var verseNumber = reference[1];
+        var cumulativeVerseCount = 0;
+        var verseCountsBySection = [];
+        
+        for (var i = 0; i < chapter.sections.length; i++) {
+            
+            var currentSection = chapter.sections[i];
+            cumulativeVerseCount += currentSection.verses.length;
+            
+            // If the cumulative verse count is greater than our verse number, the verse must be in this section.
+            if (verseNumber <= cumulativeVerseCount) {
+                
+                //The verse we need can be found by taking the verse number and subtracting the numbers of verses in the previous sections.
+                for (var ii = 0; ii < verseCountsBySection.length; ii++) {
+                    
+                    verseNumber -= verseCountsBySection[ii];
+                    
+                }
+                
+                //Subtract 1 from the verse number to get the index
+                var verse = currentSection.verses[verseNumber - 1];
+                
+                var footnotesInVerse = [];
+                
+                //Search the verse for footnote references
+                var startingIndex = 0;
+                while (startingIndex !== null) {
+                    
+                    var index = verse.indexOf("[", startingIndex);
+                    if (index != -1) {
+                        
+                        //Set the starting index to be after this footnote reference
+                        startingIndex = (index + 1);
+                        
+                        var footnoteLetter = verse[index + 1];
+                        var footnote = chapter.footnotes[footnoteLetter];
+                        
+                        footnotesInVerse.push({
+                            
+                            letter: footnoteLetter,
+                            footnote: footnote
+                            
+                        });
+                        
+                    } else {
+                        startingIndex = null;
+                    }
+                    
+                }
+                
+                return footnotesInVerse;
+                
+                break;
+                
+            }
+            
+            verseCountsBySection.push(currentSection.verses.length);
+            
+        }
+        
+    },
+    
     getBookByAbbreviation: function (abbreviation) {
         
         var keys = Object.keys(scriptureEngine.currentYearObject.books);

@@ -564,6 +564,42 @@ const UIManager = {
                 }
                 
             }
+            
+            //Clear and repopulate the footnotes slide panel screen
+            while (UIReferences.footnotesContent.firstChild) {
+                UIReferences.footnotesContent.removeChild(UIReferences.footnotesContent.firstChild);
+            }
+            
+            var footnotes = scriptureEngine.getFootnotesByReference(referenceString);
+            if (footnotes) {
+                
+                for (var i = 0; i < footnotes.length; i++) {
+                    
+                    var currentFootnote = footnotes[i];
+                    
+                    //Create the elements
+                    
+                    var element = document.createElement("div");
+                    element.classList.add("listItem");
+                    
+                    var letterElement = document.createElement("h1");
+                    letterElement.classList.add("letter");
+                    letterElement.textContent = currentFootnote.letter;
+                    
+                    var footnoteContent = document.createElement("p");
+                    footnoteContent.classList.add("content");
+                    footnoteContent.textContent = currentFootnote.footnote;
+                    
+                    //Assemble the elements
+                    
+                    element.appendChild(letterElement);
+                    element.appendChild(footnoteContent);
+                    
+                    UIReferences.footnotesContent.appendChild(element);
+                    
+                }
+                
+            }
 
             //Recall preferences for verse display
             if (storageManager.get("highlightPrejump")) {
@@ -753,7 +789,6 @@ const UIManager = {
                 }
 
             }
-
             UIManager.verseDisplayScreen.showSlidePanel("singleWordInformation");
 
         },

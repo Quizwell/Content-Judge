@@ -266,6 +266,14 @@
     
 }
 
+.verseDisplayScreen {
+    
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    
+}
+
 .verseDisplayScreen > .headerContainer {
     
     background: var(--content-background-color);
@@ -666,5 +674,20 @@
     font-size: 25px;
     font-weight: bold;
     color: var(--secondary-text-color);
+    
+}
+
+.slidePanel .footnotes .listItem {
+    
+    background: var(--page-background-color);
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+    
+}
+
+.slidePanel .footnotes .listItem .content {
+
+    margin-bottom: 2.5px;
     
 }
