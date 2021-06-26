@@ -8,7 +8,6 @@
     
     width: 100%;
     height: 40%;
-    filter: saturate(100%);
     background: linear-gradient(70deg, #74BCBD 0%, #436F9E 20%, #836AC8 40%, #7D76D1 60%, #D88243 80%, #CF4F3D 100%);
     background-size: 200% 100%;
     animation: gradient 18s ease infinite;
@@ -65,6 +64,34 @@
     
 }
 
+.searchModeSelectionScreen h1.label {
+    
+    display: inline-block;
+    
+}
+
+.searchModeSelectionScreen select {
+    
+    background: var(--content-background-color);
+    padding: 7px 7px 7px 14px;
+    vertical-align: top;
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 15px;
+    width: 250px;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+    
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    
+}
+
 .searchModeSelectionScreen .searchBarContainer {
     
     background: var(--content-background-color);
@@ -105,6 +132,28 @@
 .searchModeSelectionScreen .searchBarContainer .searchBar:focus {
 
     outline: none;
+    
+}
+
+.searchModeSelectionScreen .searchResultsContainer {
+    
+    overflow: scroll;
+    
+}
+
+.searchModeSelectionScreen .searchResultsContainer .listItem {
+
+    background: var(--page-background-color);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    
+}
+
+.searchModeSelectionScreen .searchResultsContainer .listItem .content {
+
+    margin-bottom: 0;
     
 }
 
@@ -292,7 +341,7 @@
     border-radius: 50%;
     margin-top: 20px;
     text-align: center;
-    line-height: 30px;
+    line-height: 35px;
     font-weight: bold;
     color: var(--accent-color-text-color);
     cursor: pointer;
@@ -689,5 +738,11 @@
 .slidePanel .footnotes .listItem .content {
 
     margin-bottom: 2.5px;
+    
+}
+
+.slidePanel .footnotes .listItem .content .emphasis {
+
+    font-style: italic;
     
 }

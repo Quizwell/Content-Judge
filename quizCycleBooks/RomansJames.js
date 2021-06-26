@@ -1,4 +1,4 @@
-const RomansJames = {
+var RomansJames = {
 
     books: {
         Romans: {

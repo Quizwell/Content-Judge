@@ -7,10 +7,13 @@ const UIReferences = {
 
     searchModeSelectionScreen: document.querySelector(".searchModeSelectionScreen"),
 
+    quizCycleYearSelector: document.querySelector(".searchModeSelectionScreen select"),
+
     bookSelectionContainer: document.querySelector(".bookSelectionContainer"),
 
     searchBarContainer: document.querySelector(".searchBarContainer"),
     searchBar: document.querySelector(".searchBar"),
+    searchResultsContainer: document.querySelector(".searchModeSelectionScreen .searchResultsContainer"),
 
     chapterSelectionScreen: document.querySelector(".chapterSelectionScreen"),
     chapterNumberElementsContainer: document.querySelector(".chapterNumberElementsContainer"),
@@ -146,11 +149,11 @@ const UIManager = {
             setTimeout(UIManager.verseDisplayScreen.hideSlidePanel, 200);
 
         },
-        
+
         flyswatterButton: function () {
-            
+
             window.location.href = "mailto:wf426bxd5d@privaterelay.appleid.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
-            
+
         },
 
         highlightPrejumpButton: function () {
@@ -178,9 +181,9 @@ const UIManager = {
 
             var button = UIReferences.possibleQuestionsButton;
             var wasActive = button.classList.contains("active");
-            
+
             UIManager.verseDisplayScreen.deselectAllWords();
-            
+
             UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
 
             if (wasActive) {
@@ -199,11 +202,11 @@ const UIManager = {
 
             var button = UIReferences.pronounClarificationButton;
             var wasActive = button.classList.contains("active");
-            
+
             UIManager.verseDisplayScreen.deselectAllWords();
 
             UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
-            
+
             if (wasActive) {
 
                 UIManager.verseDisplayScreen.hideSlidePanel();
@@ -220,11 +223,11 @@ const UIManager = {
 
             var button = UIReferences.footnotesButton;
             var wasActive = button.classList.contains("active");
-            
+
             UIManager.verseDisplayScreen.deselectAllWords();
 
             UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
-            
+
             if (wasActive) {
 
                 UIManager.verseDisplayScreen.hideSlidePanel();
@@ -250,9 +253,82 @@ const UIManager = {
 
         onblur: function () {
 
-            UIReferences.searchModeSelectionScreen.classList.remove("searchBarActive");
+            if (UIReferences.searchBar.value == "") {
+                UIReferences.searchModeSelectionScreen.classList.remove("searchBarActive");
+            }
+
+        },
+
+        oninput: function () {
+
+            var inputElement = UIReferences.searchBar;
+            var input = UIReferences.searchBar.value;
+
+            //Remove all current search results
+            while (UIReferences.searchResultsContainer.firstChild) {
+
+                UIReferences.searchResultsContainer.removeChild(UIReferences.searchResultsContainer.firstChild);
+
+            }
+
+            if (input == "") {
+                return;
+            }
+
+            var contentSearchResults = scriptureEngine.getVersesByContent(input);
+
+            //Loop through every search result and create an element for each
+            for (var i = 0; i < contentSearchResults.length; i++) {
+
+                var currentSearchResult = contentSearchResults[i];
+
+                var listItemElement = document.createElement("div");
+                listItemElement.classList.add("listItem");
+                (function (reference) {
+                    listItemElement.onclick = function () {
+                        
+                        UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+                        
+                    }
+                })(currentSearchResult.reference)
+
+                var referenceElement = document.createElement("h1");
+                referenceElement.classList.add("reference");
+                referenceElement.textContent = currentSearchResult.reference;
+
+                var contentElement = document.createElement("p");
+                contentElement.classList.add("content");
+                contentElement.textContent = scriptureEngine.getVerseByReference(currentSearchResult.reference);
+
+                listItemElement.appendChild(referenceElement);
+                listItemElement.appendChild(contentElement);
+
+                UIReferences.searchResultsContainer.appendChild(listItemElement);
+
+            }
 
         }
+
+    },
+
+    bookSelectorHandler: function () {
+
+        var selectElement = UIReferences.quizCycleYearSelector;
+        var value = selectElement.value;
+        
+        var selectedBook = scriptureEngine.getYearByAbbreviation(value);
+        
+        storageManager.set("quizCycleYear", selectedBook);
+        scriptureEngine.currentYearObject = window[selectedBook];
+        UIManager.searchByReference.populateSearchByReferenceContainer();
+
+    },
+    
+    setBookSelector: function (bookObjectName) {
+
+        var abbreviation = scriptureEngine.getYearAbbreviationByName(bookObjectName);
+        
+        UIReferences.quizCycleYearSelector.value = abbreviation;
 
     },
 
@@ -400,6 +476,49 @@ const UIManager = {
             //Show screen
             UIManager.show(UIReferences.verseSelectionScreen, 200);
 
+        },
+
+        populateSearchByReferenceContainer: function () {
+
+            //Clear
+            while (UIReferences.bookSelectionContainer.children[1]) {
+                UIReferences.bookSelectionContainer.removeChild(UIReferences.bookSelectionContainer.lastChild);
+            }
+
+            //Populate
+            var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+            for (var i = 0; i < currentYearBooksKeys.length; i++) {
+
+                var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
+                var currentBookName = currentYearBooksKeys[i];
+
+                var bookSelectionElement = document.createElement("div");
+                bookSelectionElement.classList.add("bookSelectionElement");
+                (function (bookAbbreviation) {
+                    bookSelectionElement.onclick = function () {
+
+                        UIManager.searchByReference.currentSearchObject.bookAbbreviation = bookAbbreviation;
+                        UIManager.searchByReference.populateAndShowChapterSelectionScreen();
+
+                    }
+                })(currentBook.abbreviation)
+
+                var bookSelectionElementIcon = document.createElement("h1");
+                bookSelectionElementIcon.classList.add("icon");
+                bookSelectionElementIcon.textContent = currentBook.abbreviation;
+
+                var bookSelectionElementLabel = document.createElement("p");
+                bookSelectionElementLabel.classList.add("label");
+                bookSelectionElementLabel.textContent = currentBookName;
+
+                bookSelectionElement.appendChild(bookSelectionElementIcon);
+                bookSelectionElement.appendChild(bookSelectionElementLabel);
+
+                UIReferences.bookSelectionContainer.appendChild(bookSelectionElement);
+
+            }
+
+
         }
 
     },
@@ -497,108 +616,127 @@ const UIManager = {
                 UIManager.hide(UIReferences.verseDisplayScreenSubtitle);
 
             }
-            
+
             //Clear and repopulate the pronoun clarification slide panel screen
             while (UIReferences.pronounClarificationContent.firstChild) {
                 UIReferences.pronounClarificationContent.removeChild(UIReferences.pronounClarificationContent.firstChild);
             }
-            
+
             var pronounClarifications = scriptureEngine.getPronounClarificationsByReference(referenceString);
             if (pronounClarifications) {
-                
+
                 for (var i = 0; i < pronounClarifications.length; i++) {
-                    
+
                     var currentClarification = pronounClarifications[i];
-                    
+
                     //Create the elements
-                    
+
                     var element = document.createElement("div");
                     element.classList.add("listItem");
-                    
+
                     var headerContainter = document.createElement("div");
                     headerContainter.classList.add("headerContainer");
-                    
+
                     var pronounElement = document.createElement("h1");
                     pronounElement.classList.add("pronoun");
                     pronounElement.textContent = currentClarification.pronoun;
-                    
+
                     var arrow = document.createElement("picture");
                     arrow.classList.add("arrow");
                     arrow.classList.add("right");
-                    
+
                     var arrowSource = document.createElement("source");
                     arrowSource.src = "images/icons/Arrow-White.svg";
                     arrowSource.setAttribute("media", "(prefers-color-scheme: dark)");
-                    
+
                     var arrowImage = document.createElement("img");
                     arrowImage.src = "images/icons/Arrow.svg";
                     arrowImage.setAttribute("height", "30px");
                     arrowImage.setAttribute("width", "auto");
-                    
+
                     var antecedentElement = document.createElement("h1");
                     antecedentElement.classList.add("antecedent");
                     antecedentElement.textContent = currentClarification.antecedent;
-                    
+
                     if (currentClarification.reference) {
                         var reference = document.createElement("p");
                         reference.textContent = scriptureEngine.unabbreviateBookNamesInString(currentClarification.reference);
                     }
-                    
+
                     //Assemble the elements
-                    
+
                     arrow.appendChild(arrowSource);
                     arrow.appendChild(arrowImage);
-                    
+
                     headerContainter.appendChild(pronounElement);
                     headerContainter.appendChild(arrow);
                     headerContainter.appendChild(antecedentElement);
-                    
+
                     element.appendChild(headerContainter);
-                    
+
                     if (currentClarification.reference) {
                         element.appendChild(reference);
                     }
-                    
+
                     UIReferences.pronounClarificationContent.appendChild(element);
-                    
+
                 }
-                
+
             }
-            
+
             //Clear and repopulate the footnotes slide panel screen
             while (UIReferences.footnotesContent.firstChild) {
                 UIReferences.footnotesContent.removeChild(UIReferences.footnotesContent.firstChild);
             }
-            
+
             var footnotes = scriptureEngine.getFootnotesByReference(referenceString);
             if (footnotes) {
-                
+
                 for (var i = 0; i < footnotes.length; i++) {
-                    
+
                     var currentFootnote = footnotes[i];
-                    
+
                     //Create the elements
-                    
+
                     var element = document.createElement("div");
                     element.classList.add("listItem");
-                    
+
                     var letterElement = document.createElement("h1");
                     letterElement.classList.add("letter");
                     letterElement.textContent = currentFootnote.letter;
-                    
+
                     var footnoteContent = document.createElement("p");
                     footnoteContent.classList.add("content");
-                    footnoteContent.textContent = currentFootnote.footnote;
-                    
+
+                    //Create spans for every section of the footnote between _s.
+                    var splitContent = currentFootnote.footnote.split("_");
+                    var emphasis = false;
+                    for (var a = 0; a < splitContent.length; a++) {
+
+                        var currentSegment = splitContent[a];
+
+                        var currentSegmentElement = document.createElement("span");
+
+                        if (emphasis) {
+                            currentSegmentElement.classList.add("emphasis");
+                        }
+
+                        currentSegmentElement.textContent = currentSegment;
+                        footnoteContent.appendChild(currentSegmentElement);
+
+                        emphasis = !emphasis;
+
+                    }
+
                     //Assemble the elements
-                    
+
                     element.appendChild(letterElement);
                     element.appendChild(footnoteContent);
-                    
+
                     UIReferences.footnotesContent.appendChild(element);
-                    
+
                 }
-                
+
             }
 
             //Recall preferences for verse display
@@ -874,11 +1012,11 @@ const UIManager = {
                 deselectAllToolbarItems: function () {
 
                     for (var i = 0; i < UIReferences.rightToolbar.children.length; i++) {
-                    
+
                         var currentItem = UIReferences.rightToolbar.children[i];
 
                         currentItem.classList.remove("active");
-                        
+
                     }
 
                 }
@@ -891,35 +1029,5 @@ const UIManager = {
 
 }
 
-//Fill the search by reference container.
-var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
-for (var i = 0; i < currentYearBooksKeys.length; i++) {
-
-    var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
-    var currentBookName = currentYearBooksKeys[i];
-
-    var bookSelectionElement = document.createElement("div");
-    bookSelectionElement.classList.add("bookSelectionElement");
-    (function (bookAbbreviation) {
-        bookSelectionElement.onclick = function () {
-
-            UIManager.searchByReference.currentSearchObject.bookAbbreviation = bookAbbreviation;
-            UIManager.searchByReference.populateAndShowChapterSelectionScreen();
-
-        }
-    })(currentBook.abbreviation)
-
-    var bookSelectionElementIcon = document.createElement("h1");
-    bookSelectionElementIcon.classList.add("icon");
-    bookSelectionElementIcon.textContent = currentBook.abbreviation;
-
-    var bookSelectionElementLabel = document.createElement("p");
-    bookSelectionElementLabel.classList.add("label");
-    bookSelectionElementLabel.textContent = currentBookName;
-
-    bookSelectionElement.appendChild(bookSelectionElementIcon);
-    bookSelectionElement.appendChild(bookSelectionElementLabel);
-
-    UIReferences.bookSelectionContainer.appendChild(bookSelectionElement);
-
-}
+UIManager.searchByReference.populateSearchByReferenceContainer();
+UIManager.setBookSelector(storageManager.get("quizCycleYear"));

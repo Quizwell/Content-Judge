@@ -1,6 +1,8 @@
+storageManager.setDefault("quizCycleYear", "RomansJames");
+
 var scriptureEngine = {
     
-    currentYearObject: Matthew,
+    currentYearObject: undefined,
     
     getIndividualReferencesFromRangeReference: function (rangeReference) {
         
@@ -138,8 +140,7 @@ var scriptureEngine = {
                 }
                 
                 //Subtract 1 from the verse number to get the index
-                var correctVerse = currentSection.verses[verseNumber - 1];
-                break;
+                return currentSection.verses[verseNumber - 1];
                 
             }
             
@@ -147,7 +148,68 @@ var scriptureEngine = {
             
         }
         
-        return correctVerse;
+    },
+    
+    getVersesByContent: function (content) {
+        
+        var results = [];
+        
+        //Loop through every book
+        var booksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+        for (var b = 0; b < booksKeys.length; b++) {
+            
+            var currentBook = scriptureEngine.currentYearObject.books[booksKeys[b]];
+            
+            //Loop through every chapter
+            for (var c = 0; c < currentBook.chapters.length; c++) {
+                
+                var currentChapter = currentBook.chapters[c];
+                
+                //Loop through every section
+                var verseCountsBySection = [];
+                
+                for (var s = 0; s < currentChapter.sections.length; s++) {
+                    
+                    var currentSection = currentChapter.sections[s];
+                    
+                    //Loop through every verse
+                    for (var v = 0; v < currentSection.verses.length; v++) {
+                        
+                        var currentVerse = currentSection.verses[v];
+                        
+                        var filteredCurrentVerse = scriptureEngine.filterVerse(currentVerse);
+                        var filteredContent = scriptureEngine.filterVerse(content);
+                        
+                        if (filteredCurrentVerse.indexOf(filteredContent) !== -1) {
+                            
+                            if (verseCountsBySection.length > 0) {
+                            
+                                var sumOfSectionVerseCounts = verseCountsBySection.reduce((a, b) => a+b);
+                                var currentVerseNumber = (sumOfSectionVerseCounts + v + 1);
+                                
+                            } else {
+                                
+                                var currentVerseNumber = (v + 1);
+                                
+                            }
+                            
+                            results.push({
+                                reference: (currentBook.abbreviation + " " + (c + 1) + ":" + currentVerseNumber)
+                            });
+                            
+                        }
+                        
+                    }
+                    
+                    verseCountsBySection.push(currentSection.verses.length);
+                    
+                }
+                
+            }
+            
+        }
+        
+        return results;
         
     },
     
@@ -318,6 +380,86 @@ var scriptureEngine = {
         
     },
     
+    getYearByAbbreviation: function (abbreviation) {
+        
+        var yearName;
+        
+        switch (abbreviation) {
+
+            case "M":
+                yearName = "Matthew";
+                break;
+
+            case "RJ":
+                yearName = "RomansJames";
+                break;
+
+            case "A":
+                yearName = "Acts";
+                break;
+
+            case "GEPCP":
+                yearName = "GEPCP";
+                break;
+
+            case "L":
+                yearName = "Luke";
+                break;
+
+            case "C":
+                yearName = "Corinthians";
+                break;
+
+            case "HP":
+                yearName = "HebrewsPeter";
+                break;
+
+        }
+        
+        return yearName;
+        
+    },
+    
+    getYearAbbreviationByName: function (name) {
+        
+        var abbreviation;
+        
+        switch (name) {
+
+            case "Matthew":
+                abbreviation = "M";
+                break;
+
+            case "RomansJames":
+                abbreviation = "RJ";
+                break;
+
+            case "Acts":
+                abbreviation = "A";
+                break;
+
+            case "GEPCP":
+                abbreviation = "GEPCP";
+                break;
+
+            case "Luke":
+                abbreviation = "L";
+                break;
+
+            case "Corinthians":
+                abbreviation = "C";
+                break;
+
+            case "HebrewsPeter":
+                abbreviation = "HP";
+                break;
+
+        }
+        
+        return abbreviation;
+        
+    },
+    
     getVerseCountFromChapter: function (chapterObject) {
         
         var verseCount = 0;
@@ -443,3 +585,7 @@ var scriptureEngine = {
     }
     
 }
+
+var quizCycleYear = storageManager.get("quizCycleYear");
+
+scriptureEngine.currentYearObject = window[quizCycleYear];

@@ -56,12 +56,22 @@
         <div class="searchModeSelectionScreen screen requireDisplayNone hidden">
 
             <h1 class="label">Find a Verse</h1>
+            
+            <select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
+                <option value="M">Matthew (Incomplete)</option>
+                <option value="RJ">Romans and James</option>
+                <option value="A" disabled>Acts</option>
+                <option value="L" disabled>Luke</option>
+                <option value="C" disabled>1st and 2nd Corinthians</option>
+                <option value="J" disabled>John</option>
+                <option value="HP" disabled>Hebrews and 1st &#38; 2nd Peter</option>
+            </select>
 
             <div class="searchBarContainer">
 
                 <p class="label">Search by Content</p>
 
-                <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" placeholder="Coming soon..." disabled>
+                <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" placeholder="Type part of a verse...">
             </div>
 
             <div class="bookSelectionContainer">
@@ -91,7 +101,9 @@
         <div class="verseDisplayScreen screen requireDisplayNone hidden">
 
             <div class="headerContainer">
-                <div class="closeButton" onclick="UIManager.buttonHandlers.closeVerseDisplayScreen()">X</div>
+                <div class="closeButton" onclick="UIManager.buttonHandlers.closeVerseDisplayScreen()">
+                    <img src="images/icons/Close-White.svg" width="15px" height="auto">
+                </div>
                 <div class="titleContainer">
                     <h1 class="title"></h1>
                     <h3 class="subtitle">
