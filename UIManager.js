@@ -667,7 +667,7 @@ const UIManager = {
                                 UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
                                 
                                 //If the slide panel is showing, reset the height
-                                if (!closeSlidePanel) {
+                                if (!closeSlidePanel && !UIReferences.slidePanel.classList.contains("hidden")) {
                                     UIManager.verseDisplayScreen.setSlidePanelHeight();
                                 }
                                 
