@@ -160,8 +160,6 @@
             <div class="verseNumberElementsContainer"></div>
 
         </div>
-        
-        <div class="verseDisplayScreenBackgroundOverlay hidden"></div>
 
         <div class="verseDisplayScreen screen requireDisplayNone hidden">
 
@@ -175,20 +173,12 @@
                     <p class="label">Close</p>
                 </div>
                 
-                <div class="button backButton hidden" onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
+                <div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
                     <picture class="arrow left">
                         <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
                         <img src="images/icons/Arrow.svg" width="auto" height="40px">
                     </picture>
                     <p class="label">Back</p>
-                </div>
-
-                <div class="button verseButton previousVerseButton" onclick="UIManager.buttonHandlers.previousVerseButton()">
-                    <picture>
-                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/BackArrow.svg" width="auto" height="40px">
-                    </picture>
-                    <p class="label">Previous</p>
                 </div>
 
                 <div class="verseTitleContainer">
@@ -198,8 +188,16 @@
                         <span class="text"></span>
                     </h3>
                 </div>
+                
+                <div class="button verseButton previousVerseButton">
+                    <picture>
+                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/BackArrow.svg" width="auto" height="40px">
+                    </picture>
+                    <p class="label">Previous</p>
+                </div>
 
-                <div class="button verseButton nextVerseButton" onclick="UIManager.buttonHandlers.nextVerseButton()">
+                <div class="button verseButton nextVerseButton">
                     <picture>
                         <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
                         <img src="images/icons/BackArrow.svg" width="auto" height="40px">

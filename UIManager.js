@@ -120,7 +120,9 @@ const UIManager = {
 
         flyswatterButton: function () {
 
-            window.location.href = "mailto:wf426bxd5d@privaterelay.appleid.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
+            var mailtoURL = "mailto:quizwell@icloud.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
+            
+            window.open(mailtoURL, "_blank") || window.location.replace(mailtoURL);
 
         },
 
@@ -171,18 +173,9 @@ const UIManager = {
         },
         verseDisplayScreenBackButton: function () {
 
-            UIManager.verseDisplayScreen.navigation.toPreviousState();
-
-        },
-
-        previousVerseButton: function () {
-
-
-
-        },
-        nextVerseButton: function () {
-
-
+            if (!UIReferences.verseDisplayScreenBackButton.getAttribute("disabled")) {
+                UIManager.verseDisplayScreen.navigation.toPreviousState();
+            }
 
         },
 
@@ -581,88 +574,137 @@ const UIManager = {
                 if (!preserveStack) {
                     UIManager.verseDisplayScreen.navigation.navigationStack.push(reference);
                 }
+                
+                //If the animation mode is set to automatic, determine the correct direction now
+                if (backwards === "automatic") {
+                    
+                    var previousReference = UIManager.verseDisplayScreen.currentVerseReference;
+                    var earliestReference = scriptureEngine.returnEarliestReference(reference, previousReference);
+                    if (reference == earliestReference) {
+                        backwards = true;
+                    } else {
+                        backwards = false;
+                    }
+                    
+                }
+                
+                var transformProperties = {
+                    
+                    normalLeft: "translate(-100px, -50%)",
+                    normalRight: "translate(100px, -50%)",
+                    upLeft: "translate(-100px, 0)",
+                    upRight: "translate(100px, 0)",
+                    
+                }
+                var verseDisplayIsUp = UIReferences.verseDisplay.classList.contains("up");
+                
+                var closeSlidePanel = !UIReferences.slidePanelSingleWordInformation.classList.contains("hidden");
 
-                //Show the background overlay and remove the shadow from the screen.
-                UIManager.show(UIReferences.verseDisplayScreenBackgroundOverlay);
-
-                //Disable transitions on the screen
-                UIReferences.verseDisplayScreen.style.transition = "none";
+                //Disable transitions on the verse display
+                UIReferences.verseDisplay.style.transition = "none";
 
                 requestAnimationFrame(function () {
 
-                    UIReferences.verseDisplayScreen.style.boxShadow = "none";
+                    UIReferences.verseDisplay.style.removeProperty("transition");
 
-                    requestAnimationFrame(function () {
+                    //Fade out the verse display, slide panel screens, and verse information.
+                    UIReferences.verseDisplay.style.opacity = 0;
+                    UIReferences.slidePanelPossibleQuestions.style.opacity = 0;
+                    UIReferences.slidePanelPronounClarification.style.opacity = 0;
+                    UIReferences.slidePanelFootnotes.style.opacity = 0;
+                    UIReferences.verseDisplayScreenTitle.style.opacity = 0;
+                    UIReferences.verseDisplayScreenSubtitle.style.opacity = 0;
+                    
+                    if (backwards && verseDisplayIsUp) {
+                        UIReferences.verseDisplay.style.transform = transformProperties.upRight;
+                    } else if (backwards && !verseDisplayIsUp) {
+                        UIReferences.verseDisplay.style.transform = transformProperties.normalRight;
+                    } else if (!backwards && verseDisplayIsUp) {
+                        UIReferences.verseDisplay.style.transform = transformProperties.upLeft;
+                    } else if (!backwards && !verseDisplayIsUp) {
+                        UIReferences.verseDisplay.style.transform = transformProperties.normalLeft;
+                    }
+                    
+                    //Refresh the back button
+                    UIManager.verseDisplayScreen.updateBackButtonState();
 
-                        UIReferences.verseDisplayScreen.style.removeProperty("transition");
-
-                        //Fade out the display screen, and then fade it back in.
-                        UIReferences.verseDisplayScreen.style.opacity = 0;
-                        if (backwards) {
-                            UIReferences.verseDisplayScreen.style.transform = "translate(100px, 0)";
-                        } else {
-                            UIReferences.verseDisplayScreen.style.transform = "translate(-100px, 0)";
-                        }
-
-                        // 1/3 Remove the transition from the slide panel and verseDisplay
-                        UIReferences.slidePanel.style.transition = "none";
+                    setTimeout(function () {
+                        
+                        // 1/4 Remove the transition from the verseDisplay
                         UIReferences.verseDisplay.style.transition = "none";
+                        
+                        requestAnimationFrame(function () {
 
-                        setTimeout(function () {
-
-                            // 2/3 If the single word information panel is showing, close the slide panel with no transitions.
-                            if (!UIReferences.slidePanelSingleWordInformation.classList.contains("hidden")) {
-                                UIReferences.slidePanel.classList.add("hidden");
+                            // 2/4 If the single word information panel is showing, close the slide panel with an opacity transition.
+                            if (closeSlidePanel) {
+                                UIReferences.slidePanel.style.opacity = 0;
                                 UIReferences.verseDisplay.classList.remove("up");
+                                setTimeout(function () {
+
+                                    //Remove the transition
+                                    UIReferences.slidePanel.style.transition = "none";
+                                    
+                                    requestAnimationFrame(function () {
+                                        UIReferences.slidePanel.classList.add("hidden");
+                                        UIReferences.slidePanel.style.removeProperty("opacity");
+                                        
+                                        requestAnimationFrame(function () {
+                                            UIReferences.slidePanel.style.removeProperty("transition");
+                                        });
+                                    });
+
+                                }, 300);
                             }
-
-                            //Disable transitions on the screen
-                            UIReferences.verseDisplayScreen.style.transition = "none";
-
+                            
                             requestAnimationFrame(function () {
 
-                                // 3/3 Restore the transitions for the slide panel and verse display
-                                UIReferences.slidePanel.removeAttribute("style");
-                                UIReferences.verseDisplay.removeAttribute("style");
-
-                                //If there is a state to navigate back to, change the close button to a back button
-                                UIManager.verseDisplayScreen.updateBackButtonState();
+                                // 4/4 Restore the transition for the slide panel if it wasn't closed.
+                                if (!closeSlidePanel) {
+                                    UIReferences.slidePanel.style.removeProperty("transition");
+                                }
 
                                 //Populate the screen
                                 UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
-
+                                
                                 //If the slide panel is showing, reset the height
-                                if (!UIReferences.slidePanel.classList.contains("hidden")) {
+                                if (!closeSlidePanel) {
                                     UIManager.verseDisplayScreen.setSlidePanelHeight();
                                 }
+                                
+                                //Move the verse display to the opposite side
+                                verseDisplayIsUp = UIReferences.verseDisplay.classList.contains("up");
 
-                                if (backwards) {
-                                    UIReferences.verseDisplayScreen.style.transform = "translate(-100px, 0)";
-                                } else {
-                                    UIReferences.verseDisplayScreen.style.transform = "translate(100px, 0)";
+                                if (backwards && verseDisplayIsUp) {
+                                    UIReferences.verseDisplay.style.transform = transformProperties.upLeft;
+                                } else if (backwards && !verseDisplayIsUp) {
+                                    UIReferences.verseDisplay.style.transform = transformProperties.normalLeft;
+                                } else if (!backwards && verseDisplayIsUp) {
+                                    UIReferences.verseDisplay.style.transform = transformProperties.upRight;
+                                } else if (!backwards && !verseDisplayIsUp) {
+                                    UIReferences.verseDisplay.style.transform = transformProperties.normalRight;
                                 }
+                                
+                                setTimeout(function () {
+                                    
+                                    //Animate the slide panel screens and verse information back in
+                                    UIReferences.verseDisplayScreenTitle.removeAttribute("style");
+                                    UIReferences.verseDisplayScreenSubtitle.removeAttribute("style");
+                                    UIReferences.slidePanelPossibleQuestions.removeAttribute("style");
+                                    UIReferences.slidePanelPronounClarification.removeAttribute("style");
+                                    UIReferences.slidePanelFootnotes.removeAttribute("style");
 
-                                requestAnimationFrame(function () {
+                                    //Animate the verse display back into place
+                                    UIReferences.verseDisplay.style.removeProperty("transition");
+                                    UIReferences.verseDisplay.style.removeProperty("opacity");
+                                    UIReferences.verseDisplay.style.removeProperty("transform");
 
-                                    //Animate the screen back into place
-                                    UIReferences.verseDisplayScreen.style.removeProperty("transition");
-                                    UIReferences.verseDisplayScreen.style.removeProperty("opacity");
-                                    UIReferences.verseDisplayScreen.style.removeProperty("transform");
-
-                                    //Hide the background overlay and restore the screen shadow
-                                    setTimeout(function () {
-                                        UIManager.hide(UIReferences.verseDisplayScreenBackgroundOverlay);
-                                        UIReferences.verseDisplayScreen.removeAttribute("style");
-
-                                    }, 200)
-
-                                })
+                                }, 200);
 
                             });
+                            
+                        });
 
-                        }, 200);
-
-                    });
+                    }, 300);
 
                 });
 
@@ -673,19 +715,11 @@ const UIManager = {
                 //Remove the last item in the navigation stack.
                 UIManager.verseDisplayScreen.navigation.navigationStack.pop();
                 
-                
                 var navigationStackLength = UIManager.verseDisplayScreen.navigation.navigationStack.length;
-                var currentReference = UIManager.verseDisplayScreen.currentVerseReference;
                 var previousReference = UIManager.verseDisplayScreen.navigation.navigationStack[navigationStackLength - 1];
                 
-                var earliestReference = scriptureEngine.returnEarliestReference(currentReference, previousReference);
-                var useBackwardsAnimation = true;
-                if (currentReference < previousReference) {
-                    useBackwardsAnimation = false;
-                }
-                
                 //Navigate to the previous verse.
-                UIManager.verseDisplayScreen.navigation.navigateToVerse(previousReference, useBackwardsAnimation, true);
+                UIManager.verseDisplayScreen.navigation.navigateToVerse(previousReference, "automatic", true);
                 
             }
             
@@ -693,16 +727,14 @@ const UIManager = {
         
         updateBackButtonState: function () {
             
-            //If there are multiple states in the navigation stack, show a back button. Otherwise show the close button instead
+            //If there are multiple states in the navigation stack, enable the back button. Otherwise. disable it.
             if (UIManager.verseDisplayScreen.navigation.navigationStack.length > 1) {
                 
-                UIManager.hide(UIReferences.verseDisplayScreenCloseButton);
-                UIManager.show(UIReferences.verseDisplayScreenBackButton);
+                UIReferences.verseDisplayScreenBackButton.removeAttribute("disabled");
                 
             } else {
                 
-                UIManager.hide(UIReferences.verseDisplayScreenBackButton);
-                UIManager.show(UIReferences.verseDisplayScreenCloseButton);
+                UIReferences.verseDisplayScreenBackButton.setAttribute("disabled", "disabled");
                 
             }
             
@@ -738,6 +770,9 @@ const UIManager = {
             }
 
             UIManager.verseDisplayScreen.currentVerseReference = referenceString;
+            
+            //Update the back button
+            UIManager.verseDisplayScreen.updateBackButtonState();
 
             //Clear the verse display
             while (UIReferences.verseDisplayTextContainer.firstChild) {
@@ -749,8 +784,10 @@ const UIManager = {
 
             //Disable both neighboring verse buttons
             UIReferences.verseDisplayScreenPreviousVerseButton.setAttribute("disabled", "disabled");
-
             UIReferences.verseDisplayScreenNextVerseButton.setAttribute("disabled", "disabled");
+            
+            UIReferences.verseDisplayScreenPreviousVerseButton.onclick = null;
+            UIReferences.verseDisplayScreenNextVerseButton.onclick = null;
 
             //Get the neighboring verses. Selectively enable the buttons.
             var previousVerse = scriptureEngine.getNeighboringVerse(referenceString, "previous");
@@ -758,13 +795,17 @@ const UIManager = {
 
             if (previousVerse) {
                 UIReferences.verseDisplayScreenPreviousVerseButton.onclick = function () {
+                    
                     UIManager.verseDisplayScreen.navigation.navigateToVerse(previousVerse, true)
+                    
                 };
                 UIReferences.verseDisplayScreenPreviousVerseButton.removeAttribute("disabled");
             }
             if (nextVerse) {
                 UIReferences.verseDisplayScreenNextVerseButton.onclick = function () {
+                    
                     UIManager.verseDisplayScreen.navigation.navigateToVerse(nextVerse);
+                    
                 };
                 UIReferences.verseDisplayScreenNextVerseButton.removeAttribute("disabled");
             }
@@ -862,6 +903,11 @@ const UIManager = {
 
                     var element = document.createElement("div");
                     element.classList.add("listItem");
+                    (function (reference) {
+                        element.onclick = function () {
+                            UIManager.verseDisplayScreen.navigation.navigateToVerse(reference, "automatic");
+                        }
+                    })(currentClarification.reference)
 
                     var headerContainter = document.createElement("div");
                     headerContainter.classList.add("headerContainer");

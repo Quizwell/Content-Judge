@@ -525,17 +525,6 @@
     
 }
 
-.verseDisplayScreenBackgroundOverlay {
-    
-    width: 100%;
-    height: 100%;
-    background: var(--page-background-color);
-    position: absolute;
-    top: 0;
-    left: 0;
-    
-}
-
 .verseDisplayScreen {
     
     width: 100%;
@@ -572,6 +561,8 @@
     justify-content: center;
     align-items: center;
     
+    transition: opacity 0.2s ease;
+    
 }
 
 .verseDisplayScreen .headerContainer .button.hidden {
@@ -594,11 +585,6 @@
     margin: 0;
     font-weight: bold;
     
-}
-
-/* Center the items */
-.verseDisplayScreen .headerContainer .button:last-child {
-    margin-right: 100px;
 }
 
 .verseDisplayScreen .headerContainer .previousVerseButton img {
@@ -634,12 +620,16 @@
     margin: 0;
     width: 100%;
     
+    transition: all 0.2s ease;
+    
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle {
     
     color: var(--secondary-text-color);
     margin: 10px 0 0 0;
+    
+    transition: all 0.2s ease;
     
 }
 
@@ -663,6 +653,14 @@
     transition: all 0.3s ease;
     
 }
+
+.verseDisplay.up {
+    
+    top: 130px;
+    transform: none;
+    
+}
+
 
 .verseDisplay .textContainer {
     
@@ -880,13 +878,6 @@
     
 }
 
-.verseDisplay.up {
-    
-    top: 130px;
-    transform: none;
-    
-}
-
 .slidePanel {
     
     position: absolute;
@@ -900,7 +891,7 @@
     border-radius: 30px 30px 15px 15px;
     z-index: 1;
     
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     
 }
 
@@ -914,6 +905,8 @@
 .slidePanel .slidePanelScreen {
     
     padding: 20px;
+    
+    transition: opacity 0.2s ease;
     
 }
 
