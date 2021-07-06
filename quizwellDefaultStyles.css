@@ -159,6 +159,15 @@ button {
     
 }
 
+button.bottom {
+    
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    
+}
+
 .requireDisplayBlock {
     
     display: block !important;
@@ -243,7 +252,6 @@ button {
 .screen.hidden {
     
     transform: translate(100px);
-    border-radius: 100px;
     opacity: 0;
     display: block;
     overflow: hidden;

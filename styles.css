@@ -55,18 +55,152 @@
     
 }
 
-.welcomeScreen button {
+.welcomeScreen .buttonContainer {
     
     position: absolute;
     bottom: 20px;
-    left: 20px;
-    right: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: calc(100% - 40px);
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     
 }
 
-.searchModeSelectionScreen h1.label {
+.welcomeScreen .buttonContainer button.start {
+
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.welcomeScreen .buttonContainer button:not(.start) {
+
+    background: var(--content-background-color);
+    color: var(--primary-text-color);
+    width: calc(50% - 10px);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    
+}
+
+.welcomeScreen .buttonContainer button:not(.start) img {
+
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    
+}
+
+.welcomeScreen .buttonContainer button:not(.start) p.label {
+
+    display: inline-block;
+    font-size: 16px;
+    margin: 0;
+    
+}
+
+.addWebClipScreen {
+    
+    padding: 0;
+    
+}
+
+.addWebClipScreen div.header {
+
+    width: 100vw;
+    height: 40%;
+    background-color: var(--content-background-color);
+
+}
+
+.addWebClipScreen div.header img {
+
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75px;
+    height: 75px;
+    border-radius: 15px;
+
+}
+
+.addWebClipScreen div.header p {
+
+    position: absolute;
+    top: calc(20% + 42px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 15px;
+    font-family: system-ui;
+    font-weight: normal;
+
+}
+
+.addWebClipScreen h1 {
+    
+    margin: 20px 15px 5px 15px;
+    
+}
+
+.addWebClipScreen > p {
+    
+    line-height: 150%;
+    margin: 0 15px 0 15px;
+    
+}
+
+.addWebClipScreen p img {
+    
+    background: var(--content-background-color);
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    vertical-align: middle;
+    
+}
+
+.addWebClipScreen p span {
+    
+    background: var(--content-background-color);
+    font-family: system-ui;
+    padding: 2.5px;
+    border-radius: 5px;
+    
+}
+
+.searchModeSelectionScreen {
+    
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    
+}
+
+.searchModeSelectionScreen .titleContainer {
     
     display: inline-block;
+    cursor: pointer;
+
+}
+
+.searchModeSelectionScreen .titleContainer img {
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 10px 0;
+    
+}
+
+.searchModeSelectionScreen .titleContainer h1.label {
+    
+    display: inline-block;
+    margin-left: 5px;
     
 }
 
@@ -103,12 +237,6 @@
     
 }
 
-.searchModeSelectionScreen.searchBarActive .searchBarContainer {
-
-    top: 59px;
-    
-}
-
 .searchModeSelectionScreen .searchBarContainer .label {
     
     font-size: 22px;
@@ -116,7 +244,13 @@
     
 }
 
-.searchModeSelectionScreen .searchBarContainer .searchBar {
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper {
+    
+    position: relative;
+    
+}
+
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .searchBar {
     
     border: none;
     background: var(--page-background-color);
@@ -129,9 +263,43 @@
     
 }
 
-.searchModeSelectionScreen .searchBarContainer .searchBar:focus {
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .searchBar:focus {
 
     outline: none;
+    
+}
+
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .clearButton {
+    
+    background: var(--content-background-color);
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    padding-top: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    transition: opacity 0.2s ease;
+    
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0, -50%);
+    
+}
+
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .clearButton img {
+
+    width: 20px;
+    
+}
+
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .clearButton.hidden {
+
+    display: block;
+    opacity: 0;
     
 }
 
@@ -241,6 +409,27 @@
     
 }
 
+.chapterSelectionScreen .titleContainer {
+    
+    cursor: pointer;
+
+}
+
+.chapterSelectionScreen .titleContainer img {
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 10px 0;
+    
+}
+
+.chapterSelectionScreen .titleContainer h1.title {
+    
+    display: inline-block;
+    margin-left: 5px;
+    
+}
+
 .chapterSelectionScreen .chapterNumberElementsContainer {
     
     margin: auto;
@@ -275,6 +464,27 @@
 .chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement:active {
     
     opacity: 0.5;
+    
+}
+
+.verseSelectionScreen .titleContainer {
+    
+    cursor: pointer;
+
+}
+
+.verseSelectionScreen .titleContainer img {
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 10px 0;
+    
+}
+
+.verseSelectionScreen .titleContainer h1.title {
+    
+    display: inline-block;
+    margin-left: 5px;
     
 }
 
@@ -315,6 +525,17 @@
     
 }
 
+.verseDisplayScreenBackgroundOverlay {
+    
+    width: 100%;
+    height: 100%;
+    background: var(--page-background-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
 .verseDisplayScreen {
     
     width: 100%;
@@ -325,47 +546,104 @@
 
 .verseDisplayScreen > .headerContainer {
     
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.verseDisplayScreen .headerContainer .button {
+
+    background: var(--content-background-color);
+    border-radius: 20px;
+    padding: 10px;
+    height: 100px;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 90px;
+    margin: 0 10px;
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.verseDisplayScreen .headerContainer .button.hidden {
+
+    display: none;
+    
+}
+
+.verseDisplayScreen .headerContainer .button[disabled] {
+
+    opacity: 0.5;
+    cursor: default;
+    
+}
+
+.verseDisplayScreen .headerContainer .button p.label {
+
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
+    
+}
+
+/* Center the items */
+.verseDisplayScreen .headerContainer .button:last-child {
+    margin-right: 100px;
+}
+
+.verseDisplayScreen .headerContainer .previousVerseButton img {
+    margin-right: 5px;
+}
+
+.verseDisplayScreen .headerContainer .nextVerseButton img {
+    transform: rotate(180deg);
+    margin-left: 5px;
+}
+
+.verseDisplayScreen .headerContainer .verseTitleContainer {
+
     background: var(--content-background-color);
     border-radius: 20px;
     padding: 15px;
-    height: 70px;
+    height: 100px;
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    max-width: 300px;
+    margin: 0 10px;
     
-}
-
-.verseDisplayScreen .headerContainer .closeButton {
-    
-    display: inline-block;
-    background: var(--app-accent-color);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    line-height: 35px;
-    font-weight: bold;
-    color: var(--accent-color-text-color);
-    cursor: pointer;
-    
-    /* Fix for inline-block repositioning */
-    vertical-align: top;
     
 }
 
-.verseDisplayScreen .headerContainer .titleContainer {
-    
-    display: inline-block;
-    margin-left: 15px;
+.verseDisplayScreen .headerContainer .verseTitleContainer .title {
+
+    margin: 0;
+    width: 100%;
     
 }
 
-.verseDisplayScreen .headerContainer .titleContainer .subtitle {
+.verseDisplayScreen .headerContainer .verseTitleContainer .subtitle {
     
     color: var(--secondary-text-color);
-    margin-bottom: 0;
+    margin: 10px 0 0 0;
     
 }
 
-.verseDisplayScreen .headerContainer .titleContainer .subtitle .tag {
+.verseDisplayScreen .headerContainer .verseTitleContainer .subtitle .tag {
 
     color: var(--memory-element-color);
     border: 3px solid var(--memory-element-color);
@@ -373,18 +651,6 @@
     border-radius: 5px;
     margin-right: 5px;
     font-size: 90%;
-    
-}
-
-.verseDisplayScreen .headerContainer .flyswatter {
-    
-    float: right;
-    background: var(--page-background-color);
-    padding: 5px;
-    margin: 5px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    cursor: pointer;
     
 }
 
@@ -438,8 +704,8 @@
     color: var(--inverted-text-color);
     
     /* Override potential prejump styling */
-    border-radius: 5px !important;
-    border: 3px solid transparent !important;
+    border: none;
+    border-bottom: 2px solid transparent !important;
     
 }
 

@@ -35,28 +35,64 @@
                 </picture>
             </div>
 
-            <button onclick="UIManager.buttonHandlers.hideWelcomeScreen()">Get Started</button>
+            <div class="buttonContainer">
+                <button class="start" onclick="UIManager.buttonHandlers.hideWelcomeScreen()">Get Started</button>
+                <button class="flyswatter" onclick="UIManager.buttonHandlers.flyswatterButton()">
+                    <picture>
+                        <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/Flyswatter.svg" width="auto" height="40px">
+                    </picture>
+                    <p class="label">Report a Bug</p>
+                </button>
+                <button class="settings" disabled style="opacity: 0.5; cursor: not-allowed">
+                    <picture>
+                        <source srcset="images/icons/Settings-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/Settings.svg" width="auto" height="40px">
+                    </picture>
+                    <p class="label">Settings</p>
+                </button>
+            </div>
 
         </div>
 
         <div class="addWebClipScreen screen requireDisplayNone hidden">
 
+            <div class="header">
+
+                <img src="images/logos/Logo.png">
+                <p>Content Judge</p>
+
+            </div>
+
             <h1>Add Content Judge to your Home Screen</h1>
-            <p>You can add Content Judge as an app on your Home Screen. Tap
+            <p class="regularText">You can add Content Judge as an app on your Home Screen. Tap
                 <picture>
                     <source srcset="images/icons/ShareIcon-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/ShareIcon.svg">
+                    <img src="images/icons/ShareIcon.svg" height="25px" width="auto">
                 </picture>, then tap <span>Add to Home Screen</span>.
             </p>
 
-            <button onclick="UIManager.buttonHandlers.hideAddWebClipScreen()">Get Started</button>
+            <p class="iOS15Text">You can add Content Judge as an app on your Home Screen. Tap
+                <picture>
+                    <source srcset="images/icons/MoreIconiOS-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/icons/MoreIconiOS.svg" height="25px" width="auto">
+                </picture>, then tap <span>Add to Home Screen</span>.
+            </p>
+
+            <button class="bottom" onclick="UIManager.buttonHandlers.hideAddWebClipScreen()">Get Started</button>
 
         </div>
 
         <div class="searchModeSelectionScreen screen requireDisplayNone hidden">
 
-            <h1 class="label">Find a Verse</h1>
-            
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSearchModeSelectionScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="label">Find a Verse</h1>
+            </div>
+
             <select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
                 <option value="M">Matthew (Incomplete)</option>
                 <option value="RJ">Romans and James</option>
@@ -72,7 +108,21 @@
 
                 <p class="label">Search by Content</p>
 
-                <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" placeholder="Type part of a verse...">
+                <div class="searchBarWrapper">
+
+                    <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" placeholder="Type part of a verse...">
+
+                    <div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">
+
+                        <picture>
+                            <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                            <img src="images/icons/Close.svg" width="auto" height="15px">
+                        </picture>
+
+                    </div>
+
+                </div>
+
             </div>
 
             <div class="bookSelectionContainer">
@@ -87,36 +137,76 @@
 
         <div class="chapterSelectionScreen screen requireDisplayNone hidden">
 
-            <h1 class="title">Select a Chapter</h1>
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterSelectionScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title">Select a Chapter</h1>
+            </div>
             <div class="chapterNumberElementsContainer"></div>
 
         </div>
 
         <div class="verseSelectionScreen screen requireDisplayNone hidden">
 
-            <h1 class="title">Select a Verse</h1>
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeVerseSelectionScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title">Select a Verse</h1>
+            </div>
             <div class="verseNumberElementsContainer"></div>
 
         </div>
+        
+        <div class="verseDisplayScreenBackgroundOverlay hidden"></div>
 
         <div class="verseDisplayScreen screen requireDisplayNone hidden">
 
             <div class="headerContainer">
-                <div class="closeButton" onclick="UIManager.buttonHandlers.closeVerseDisplayScreen()">
-                    <img src="images/icons/Close-White.svg" width="15px" height="auto">
+                
+                <div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
+                    <picture>
+                        <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/Close.svg" width="auto" height="40px">
+                    </picture>
+                    <p class="label">Close</p>
                 </div>
-                <div class="titleContainer">
+                
+                <div class="button backButton hidden" onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
+                    <picture class="arrow left">
+                        <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/Arrow.svg" width="auto" height="40px">
+                    </picture>
+                    <p class="label">Back</p>
+                </div>
+
+                <div class="button verseButton previousVerseButton" onclick="UIManager.buttonHandlers.previousVerseButton()">
+                    <picture>
+                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/BackArrow.svg" width="auto" height="40px">
+                    </picture>
+                    <p class="label">Previous</p>
+                </div>
+
+                <div class="verseTitleContainer">
                     <h1 class="title"></h1>
                     <h3 class="subtitle">
                         <span class="tag">Memory</span>
                         <span class="text"></span>
                     </h3>
                 </div>
-                
-                <picture>
-                    <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
-                    <img class="flyswatter" src="images/icons/Flyswatter.svg" width="auto" height="60px" onclick="UIManager.buttonHandlers.flyswatterButton()">
-                </picture>
+
+                <div class="button verseButton nextVerseButton" onclick="UIManager.buttonHandlers.nextVerseButton()">
+                    <picture>
+                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/BackArrow.svg" width="auto" height="40px">
+                    </picture>
+                    <p class="label">Next</p>
+                </div>
+
             </div>
 
             <div class="verseDisplay">

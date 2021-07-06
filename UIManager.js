@@ -13,6 +13,7 @@ const UIReferences = {
 
     searchBarContainer: document.querySelector(".searchBarContainer"),
     searchBar: document.querySelector(".searchBar"),
+    searchBarClearButton: document.querySelector(".searchBarWrapper .clearButton"),
     searchResultsContainer: document.querySelector(".searchModeSelectionScreen .searchResultsContainer"),
 
     chapterSelectionScreen: document.querySelector(".chapterSelectionScreen"),
@@ -22,10 +23,18 @@ const UIReferences = {
     verseNumberElementsContainer: document.querySelector(".verseNumberElementsContainer"),
 
     verseDisplayScreen: document.querySelector(".verseDisplayScreen"),
+    verseDisplayScreenBackgroundOverlay: document.querySelector(".verseDisplayScreenBackgroundOverlay"),
+    
+    verseDisplayScreenCloseButton: document.querySelector(".verseDisplayScreen .closeButton"),
+    verseDisplayScreenBackButton: document.querySelector(".verseDisplayScreen .backButton"),
+    
     verseDisplayScreenTitle: document.querySelector(".verseDisplayScreen .title"),
     verseDisplayScreenSubtitle: document.querySelector(".verseDisplayScreen .subtitle"),
     verseDisplayScreenSubtitleTag: document.querySelector(".verseDisplayScreen .subtitle .tag"),
     verseDisplayScreenSubtitleText: document.querySelector(".verseDisplayScreen .subtitle .text"),
+
+    verseDisplayScreenPreviousVerseButton: document.querySelector(".verseDisplayScreen .previousVerseButton"),
+    verseDisplayScreenNextVerseButton: document.querySelector(".verseDisplayScreen .nextVerseButton"),
 
     verseDisplay: document.querySelector(".verseDisplay"),
     verseDisplayTextContainer: document.querySelector(".verseDisplay .textContainer"),
@@ -109,6 +118,12 @@ const UIManager = {
 
     buttonHandlers: {
 
+        flyswatterButton: function () {
+
+            window.location.href = "mailto:wf426bxd5d@privaterelay.appleid.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
+
+        },
+
         hideWelcomeScreen: function () {
 
             //If the browser is running on iPhone or iPad and is not mobile Chrome, and if the page is not running as a Web Clip already, show the Web Clip prompt screen to encourage the user to add it to his home screen.
@@ -131,28 +146,43 @@ const UIManager = {
 
         },
 
-        closeVerseDisplayScreen: function (preserveScreenHeirarchy) {
+        closeSearchModeSelectionScreen: function () {
 
-            if (preserveScreenHeirarchy) {
-
-                UIManager.hide(UIReferences.verseDisplayScreen, 200);
-
-            } else {
-
-                UIManager.hide(UIReferences.chapterSelectionScreen, 200);
-                UIManager.hide(UIReferences.verseSelectionScreen, 200);
-                UIManager.hide(UIReferences.verseDisplayScreen, 200);
-
-            }
-
-            //Hide the slide panel
-            setTimeout(UIManager.verseDisplayScreen.hideSlidePanel, 200);
+            UIManager.hide(UIReferences.addWebClipScreen, 200);
+            UIManager.hide(UIReferences.searchModeSelectionScreen, 200);
 
         },
 
-        flyswatterButton: function () {
+        closeChapterSelectionScreen: function () {
 
-            window.location.href = "mailto:wf426bxd5d@privaterelay.appleid.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
+            UIManager.hide(UIReferences.chapterSelectionScreen, 200);
+
+        },
+        closeVerseSelectionScreen: function () {
+
+            UIManager.hide(UIReferences.verseSelectionScreen, 200);
+
+        },
+
+        verseDisplayScreenCloseButton: function () {
+
+            UIManager.verseDisplayScreen.closeVerseDisplayScreen();
+
+        },
+        verseDisplayScreenBackButton: function () {
+
+            UIManager.verseDisplayScreen.navigation.toPreviousState();
+
+        },
+
+        previousVerseButton: function () {
+
+
+
+        },
+        nextVerseButton: function () {
+
+
 
         },
 
@@ -247,6 +277,7 @@ const UIManager = {
 
         onfocus: function () {
 
+            UIManager.show(UIReferences.searchBarClearButton, 200);
             UIReferences.searchModeSelectionScreen.classList.add("searchBarActive");
 
         },
@@ -254,6 +285,8 @@ const UIManager = {
         onblur: function () {
 
             if (UIReferences.searchBar.value == "") {
+
+                UIManager.hide(UIReferences.searchBarClearButton, 200);
                 UIReferences.searchModeSelectionScreen.classList.remove("searchBarActive");
             }
 
@@ -286,9 +319,9 @@ const UIManager = {
                 listItemElement.classList.add("listItem");
                 (function (reference) {
                     listItemElement.onclick = function () {
-                        
+
                         UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
-                        
+
                     }
                 })(currentSearchResult.reference)
 
@@ -307,6 +340,15 @@ const UIManager = {
 
             }
 
+        },
+
+        clearSearchBar: function () {
+
+            UIReferences.searchBar.value = "";
+            UIReferences.searchBar.blur();
+            UIManager.searchBarHandlers.oninput();
+            UIManager.searchBarHandlers.onblur();
+
         }
 
     },
@@ -315,19 +357,21 @@ const UIManager = {
 
         var selectElement = UIReferences.quizCycleYearSelector;
         var value = selectElement.value;
-        
+
         var selectedBook = scriptureEngine.getYearByAbbreviation(value);
-        
+
         storageManager.set("quizCycleYear", selectedBook);
         scriptureEngine.currentYearObject = window[selectedBook];
         UIManager.searchByReference.populateSearchByReferenceContainer();
 
+        UIManager.searchBarHandlers.clearSearchBar();
+
     },
-    
+
     setBookSelector: function (bookObjectName) {
 
         var abbreviation = scriptureEngine.getYearAbbreviationByName(bookObjectName);
-        
+
         UIReferences.quizCycleYearSelector.value = abbreviation;
 
     },
@@ -524,10 +568,174 @@ const UIManager = {
     },
 
     verseDisplayScreen: {
+        
+        currentVerseReference: null,
 
-        currentVerseReference: undefined,
+        navigation: {
+            
+            navigationStack: [],
+
+            navigateToVerse: function (reference, backwards, preserveStack) {
+
+                //Add the reference to the navigation stack, unless preserveStack is true
+                if (!preserveStack) {
+                    UIManager.verseDisplayScreen.navigation.navigationStack.push(reference);
+                }
+
+                //Show the background overlay and remove the shadow from the screen.
+                UIManager.show(UIReferences.verseDisplayScreenBackgroundOverlay);
+
+                //Disable transitions on the screen
+                UIReferences.verseDisplayScreen.style.transition = "none";
+
+                requestAnimationFrame(function () {
+
+                    UIReferences.verseDisplayScreen.style.boxShadow = "none";
+
+                    requestAnimationFrame(function () {
+
+                        UIReferences.verseDisplayScreen.style.removeProperty("transition");
+
+                        //Fade out the display screen, and then fade it back in.
+                        UIReferences.verseDisplayScreen.style.opacity = 0;
+                        if (backwards) {
+                            UIReferences.verseDisplayScreen.style.transform = "translate(100px, 0)";
+                        } else {
+                            UIReferences.verseDisplayScreen.style.transform = "translate(-100px, 0)";
+                        }
+
+                        // 1/3 Remove the transition from the slide panel and verseDisplay
+                        UIReferences.slidePanel.style.transition = "none";
+                        UIReferences.verseDisplay.style.transition = "none";
+
+                        setTimeout(function () {
+
+                            // 2/3 If the single word information panel is showing, close the slide panel with no transitions.
+                            if (!UIReferences.slidePanelSingleWordInformation.classList.contains("hidden")) {
+                                UIReferences.slidePanel.classList.add("hidden");
+                                UIReferences.verseDisplay.classList.remove("up");
+                            }
+
+                            //Disable transitions on the screen
+                            UIReferences.verseDisplayScreen.style.transition = "none";
+
+                            requestAnimationFrame(function () {
+
+                                // 3/3 Restore the transitions for the slide panel and verse display
+                                UIReferences.slidePanel.removeAttribute("style");
+                                UIReferences.verseDisplay.removeAttribute("style");
+
+                                //If there is a state to navigate back to, change the close button to a back button
+                                UIManager.verseDisplayScreen.updateBackButtonState();
+
+                                //Populate the screen
+                                UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+
+                                //If the slide panel is showing, reset the height
+                                if (!UIReferences.slidePanel.classList.contains("hidden")) {
+                                    UIManager.verseDisplayScreen.setSlidePanelHeight();
+                                }
+
+                                if (backwards) {
+                                    UIReferences.verseDisplayScreen.style.transform = "translate(-100px, 0)";
+                                } else {
+                                    UIReferences.verseDisplayScreen.style.transform = "translate(100px, 0)";
+                                }
+
+                                requestAnimationFrame(function () {
+
+                                    //Animate the screen back into place
+                                    UIReferences.verseDisplayScreen.style.removeProperty("transition");
+                                    UIReferences.verseDisplayScreen.style.removeProperty("opacity");
+                                    UIReferences.verseDisplayScreen.style.removeProperty("transform");
+
+                                    //Hide the background overlay and restore the screen shadow
+                                    setTimeout(function () {
+                                        UIManager.hide(UIReferences.verseDisplayScreenBackgroundOverlay);
+                                        UIReferences.verseDisplayScreen.removeAttribute("style");
+
+                                    }, 200)
+
+                                })
+
+                            });
+
+                        }, 200);
+
+                    });
+
+                });
+
+            },
+            
+            toPreviousState: function () {
+                
+                //Remove the last item in the navigation stack.
+                UIManager.verseDisplayScreen.navigation.navigationStack.pop();
+                
+                
+                var navigationStackLength = UIManager.verseDisplayScreen.navigation.navigationStack.length;
+                var currentReference = UIManager.verseDisplayScreen.currentVerseReference;
+                var previousReference = UIManager.verseDisplayScreen.navigation.navigationStack[navigationStackLength - 1];
+                
+                var earliestReference = scriptureEngine.returnEarliestReference(currentReference, previousReference);
+                var useBackwardsAnimation = true;
+                if (currentReference < previousReference) {
+                    useBackwardsAnimation = false;
+                }
+                
+                //Navigate to the previous verse.
+                UIManager.verseDisplayScreen.navigation.navigateToVerse(previousReference, useBackwardsAnimation, true);
+                
+            }
+            
+        },
+        
+        updateBackButtonState: function () {
+            
+            //If there are multiple states in the navigation stack, show a back button. Otherwise show the close button instead
+            if (UIManager.verseDisplayScreen.navigation.navigationStack.length > 1) {
+                
+                UIManager.hide(UIReferences.verseDisplayScreenCloseButton);
+                UIManager.show(UIReferences.verseDisplayScreenBackButton);
+                
+            } else {
+                
+                UIManager.hide(UIReferences.verseDisplayScreenBackButton);
+                UIManager.show(UIReferences.verseDisplayScreenCloseButton);
+                
+            }
+            
+        },
+        
+        closeVerseDisplayScreen: function (preserveScreenHeirarchy) {
+            
+            UIManager.verseDisplayScreen.currentVerseReference = null;
+            UIManager.verseDisplayScreen.navigation.navigationStack = [];
+
+            if (preserveScreenHeirarchy) {
+
+                UIManager.hide(UIReferences.verseDisplayScreen, 200);
+
+            } else {
+
+                UIManager.hide(UIReferences.chapterSelectionScreen, 200);
+                UIManager.hide(UIReferences.verseSelectionScreen, 200);
+                UIManager.hide(UIReferences.verseDisplayScreen, 200);
+
+            }
+
+            //Hide the slide panel
+            setTimeout(UIManager.verseDisplayScreen.hideSlidePanel, 200);
+
+        },
 
         populateAndShowVerseDisplayScreen: function (referenceString) {
+            
+            //If the user is opening the verse display screen, add this first verse as the base item on the navigation stack
+            if (UIManager.verseDisplayScreen.currentVerseReference === null) {
+                UIManager.verseDisplayScreen.navigation.navigationStack.push(referenceString);
+            }
 
             UIManager.verseDisplayScreen.currentVerseReference = referenceString;
 
@@ -539,6 +747,27 @@ const UIManager = {
             //Show the reference of the verse
             UIReferences.verseDisplayScreenTitle.textContent = scriptureEngine.unabbreviateBookNamesInString(referenceString);
 
+            //Disable both neighboring verse buttons
+            UIReferences.verseDisplayScreenPreviousVerseButton.setAttribute("disabled", "disabled");
+
+            UIReferences.verseDisplayScreenNextVerseButton.setAttribute("disabled", "disabled");
+
+            //Get the neighboring verses. Selectively enable the buttons.
+            var previousVerse = scriptureEngine.getNeighboringVerse(referenceString, "previous");
+            var nextVerse = scriptureEngine.getNeighboringVerse(referenceString, "next");
+
+            if (previousVerse) {
+                UIReferences.verseDisplayScreenPreviousVerseButton.onclick = function () {
+                    UIManager.verseDisplayScreen.navigation.navigateToVerse(previousVerse, true)
+                };
+                UIReferences.verseDisplayScreenPreviousVerseButton.removeAttribute("disabled");
+            }
+            if (nextVerse) {
+                UIReferences.verseDisplayScreenNextVerseButton.onclick = function () {
+                    UIManager.verseDisplayScreen.navigation.navigateToVerse(nextVerse);
+                };
+                UIReferences.verseDisplayScreenNextVerseButton.removeAttribute("disabled");
+            }
 
             //Populate the verse display
             var verse = scriptureEngine.getVerseByReference(referenceString);
@@ -646,7 +875,7 @@ const UIManager = {
                     arrow.classList.add("right");
 
                     var arrowSource = document.createElement("source");
-                    arrowSource.src = "images/icons/Arrow-White.svg";
+                    arrowSource.srcset = "images/icons/Arrow-White.svg";
                     arrowSource.setAttribute("media", "(prefers-color-scheme: dark)");
 
                     var arrowImage = document.createElement("img");
@@ -754,6 +983,9 @@ const UIManager = {
         },
 
         displayIndividualWordInformation(wordElement) {
+            
+            //Deselect all toolbar items
+            UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
 
             //If the word is already selected, we should deselect it.
             if (wordElement.classList.contains("selected")) {
@@ -980,6 +1212,12 @@ const UIManager = {
             //Apply the up class to the verseDisplay
             UIReferences.verseDisplay.classList.add("up");
 
+            UIManager.verseDisplayScreen.setSlidePanelHeight();
+
+        },
+        
+        setSlidePanelHeight: function () {
+            
             //Get the distance from the top of the screen to the bottom of the verseDisplay
             var boundingBox = UIReferences.verseDisplay.getBoundingClientRect();
             var distance = ((boundingBox.bottom - boundingBox.top) + 130);
@@ -987,7 +1225,7 @@ const UIManager = {
             //Set the top of the sliding panel
             UIReferences.slidePanel.style.top = (distance + "px");
             UIManager.show(UIReferences.slidePanel);
-
+            
         },
 
         hideSlidePanel: function () {

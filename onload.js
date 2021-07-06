@@ -1,3 +1,14 @@
+//REGULAR ONLOAD CODE
+
+//If the user is running iOS 15, show the alternate web clip text
+if (navigator.userAgent.indexOf("iPhone OS 15_0") != -1) {
+    UIManager.hide(document.querySelector(".addWebClipScreen p.regularText"));
+} else {
+    UIManager.hide(document.querySelector(".addWebClipScreen p.iOS15Text"));
+}
+
+//VERSION AND UPDATE HANDLING
+
 if (
     storageManager.get("lastUsedVersion") &&
     (storageManager.get("lastUsedVersion") != CONTENT_JUDGE_VERSION)

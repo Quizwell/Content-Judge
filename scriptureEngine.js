@@ -177,8 +177,8 @@ var scriptureEngine = {
                         
                         var currentVerse = currentSection.verses[v];
                         
-                        var filteredCurrentVerse = scriptureEngine.filterVerse(currentVerse);
-                        var filteredContent = scriptureEngine.filterVerse(content);
+                        var filteredCurrentVerse = scriptureEngine.filterVerse(currentVerse, true);
+                        var filteredContent = scriptureEngine.filterVerse(content, true);
                         
                         if (filteredCurrentVerse.indexOf(filteredContent) !== -1) {
                             
@@ -210,6 +210,153 @@ var scriptureEngine = {
         }
         
         return results;
+        
+    },
+    
+    getNeighboringVerse: function (reference, type) {
+        
+        var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+        
+        var book;
+    
+        //Loop through all the books in this year's object until a match is found for the abbreviation.
+        var bookAbbreviation = reference.split(" ")[0];
+        for (var i = 0; i < currentYearBooksKeys.length; i++) {
+            
+            var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
+            if (currentBook.abbreviation == bookAbbreviation) {
+                
+                book = currentBook;
+                break;
+                
+            }
+            
+        }
+        
+        //Get the correct chapter (subtract 1 from the chapter number to find the index)
+        var chapter = book.chapters[reference.split(" ")[1].split(":")[0] - 1];
+        
+        var chapterVerseCount = scriptureEngine.getVerseCountFromChapter(chapter);
+        var verseNumber = Number(reference.split(":")[1]);
+        
+        
+        switch (type) {
+                
+            case "previous":
+                
+                if (verseNumber <= 1) {
+                    return false;
+                } else {
+                    return (reference.split(":")[0] + ":" + (verseNumber - 1));
+                }
+                
+                break;
+            case "next":
+                
+                if (verseNumber >= chapterVerseCount) {
+                    return false;
+                } else {
+                    return (reference.split(":")[0] + ":" + (verseNumber + 1));
+                }
+                
+                break;
+                
+        }
+        
+    },
+    
+    returnEarliestReference: function (reference1, reference2) {
+        
+        reference1 = {
+            referenceString: reference1,
+            bookAbbreviation: reference1.split(" ")[0],
+            chapterNumber: Number(reference1.split(" ")[1].split(":")[0]),
+            verseNumber: Number(reference1.split(":")[1])
+        };
+        
+        reference2 = {
+            referenceString: reference2,
+            bookAbbreviation: reference2.split(" ")[0],
+            chapterNumber: Number(reference2.split(" ")[1].split(":")[0]),
+            verseNumber: Number(reference2.split(":")[1])
+        };
+        
+        //Check books
+        if (reference1.bookAbbreviation == reference2.bookAbbreviation) {
+            
+            //The books are the same
+            //Check chapters
+            if (reference1.chapterNumber == reference2.chapterNumber) {
+                
+                //The chapters are the same
+                //Check verses
+                if (reference1.verseNumber == reference2.verseNumber) {
+
+                    //The verses are the same
+                    //PANIC
+                    
+                    //As they're both the same, simply default to returning the first reference
+                    return reference1.referenceString;
+
+                } else {
+
+                    //The verses are different
+                    if (reference1.verseNumber < reference2.verseNumber) {
+                        return reference1.referenceString;
+                    } else {
+                        return reference2.referenceString;
+                    }
+
+                }
+                
+            } else {
+                
+                //The chapters are different
+                
+                if (reference1.chapterNumber < reference2.chapterNumber) {
+                    return reference1.referenceString;
+                } else {
+                    return reference2.referenceString;
+                }
+                
+            }
+            
+        } else {
+            
+            //The books are different
+            
+            //Compile a list of all book abbreviations
+            var bookAbbreviations = [];
+            var currentYearBooks = scriptureEngine.currentYearObject.books;
+            var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+
+            for (var i = 0; i < currentYearBooksKeys.length; i++) {
+                bookAbbreviations[i] = currentYearBooks[currentYearBooksKeys[i]].abbreviation;
+            }
+            
+            //Loop through every book abbreviation
+            for (var i = 0; i < bookAbbreviations.length; i++) {
+                
+                var currentAbreviation = bookAbbreviations[i];
+                
+                //If a reference's abbreviation is the same as the current abbreviation, store the current index as a property on that reference's object
+                if (reference1.bookAbbreviation == currentAbreviation) {
+                    reference1.bookIndex = i;
+                }
+                
+                if (reference2.bookAbbreviation == currentAbreviation) {
+                    reference2.bookIndex = i;
+                }
+                
+            }
+            
+            if (reference1.bookIndex < reference2.bookIndex) {
+                return reference1.referenceString;
+            } else {
+                return reference2.referenceString;
+            }
+            
+        }
         
     },
     
