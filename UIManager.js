@@ -744,7 +744,7 @@ const UIManager = {
             
             UIManager.verseDisplayScreen.currentVerseReference = null;
             UIManager.verseDisplayScreen.navigation.navigationStack = [];
-
+            
             if (preserveScreenHeirarchy) {
 
                 UIManager.hide(UIReferences.verseDisplayScreen, 200);
@@ -758,7 +758,10 @@ const UIManager = {
             }
 
             //Hide the slide panel
-            setTimeout(UIManager.verseDisplayScreen.hideSlidePanel, 200);
+            setTimeout(function () {
+                UIManager.verseDisplayScreen.hideSlidePanel();
+                UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
+            }, 200);
 
         },
 
@@ -818,7 +821,7 @@ const UIManager = {
             for (var i = 0; i < wordsInVerse.length; i++) {
 
                 var currentWordElement = document.createElement("p");
-                currentWordElement.textContent = wordsInVerse[i]
+                currentWordElement.textContent = wordsInVerse[i].replaceAll(/(\[[a-z]\])/g, "");
 
                 //If the current word is just a punctuation mark (a hyphen, for example), don't allow the user to select it, and don't apply the hover styling to imply such.
                 if (!scriptureEngine.filterWord(currentWordElement.textContent, true)) {
@@ -855,7 +858,37 @@ const UIManager = {
                     })(currentWordElement)
 
                 }
+                
+                //See if there's a footnote reference in the word. If so, create a seperate element for the footnote
+                var matchesForFootnoteRegex = wordsInVerse[i].match(/(\[[a-z]\])/g);
+                var footnoteReferenceElements = [];
+                if (matchesForFootnoteRegex) {
+                    
+                    //There are footnote references in the word
+                    
+                    currentWordElement.classList.add("containsFootnoteReference");
+                    
+                    for (var f = 0; f < matchesForFootnoteRegex.length; f++) {
+                        
+                        var currentWordFootnoteReferenceElement = document.createElement("p");
+                        currentWordFootnoteReferenceElement.classList.add("footnoteReference");
+                        currentWordFootnoteReferenceElement.textContent = matchesForFootnoteRegex[f];
+                        currentWordFootnoteReferenceElement.onclick = function () {
+                            UIManager.buttonHandlers.footnotesButton();
+                        }
+                        
+                        footnoteReferenceElements.push(currentWordFootnoteReferenceElement);
+                        
+                    }
+                    
+                }
+                
                 UIReferences.verseDisplayTextContainer.appendChild(currentWordElement);
+                for (var f = 0; f < footnoteReferenceElements.length; f++) {
+
+                    UIReferences.verseDisplayTextContainer.appendChild(footnoteReferenceElements[f]);
+
+                }
 
             }
 
@@ -903,11 +936,14 @@ const UIManager = {
 
                     var element = document.createElement("div");
                     element.classList.add("listItem");
-                    (function (reference) {
-                        element.onclick = function () {
-                            UIManager.verseDisplayScreen.navigation.navigateToVerse(reference, "automatic");
-                        }
-                    })(currentClarification.reference)
+                    if (currentClarification.reference) {
+                        (function (reference) {
+                            element.onclick = function () {
+                                UIManager.verseDisplayScreen.navigation.navigateToVerse(reference, "automatic");
+                            }
+                        })(currentClarification.reference)
+                        element.classList.add("hasReference");
+                    }
 
                     var headerContainter = document.createElement("div");
                     headerContainter.classList.add("headerContainer");
@@ -933,9 +969,12 @@ const UIManager = {
                     antecedentElement.classList.add("antecedent");
                     antecedentElement.textContent = currentClarification.antecedent;
 
+                    var reference = document.createElement("p");
+                    reference.classList.add("reference");
                     if (currentClarification.reference) {
-                        var reference = document.createElement("p");
                         reference.textContent = scriptureEngine.unabbreviateBookNamesInString(currentClarification.reference);
+                    } else {
+                        reference.textContent = "This Verse";
                     }
 
                     //Assemble the elements
@@ -949,14 +988,21 @@ const UIManager = {
 
                     element.appendChild(headerContainter);
 
-                    if (currentClarification.reference) {
-                        element.appendChild(reference);
-                    }
+                    element.appendChild(reference);
 
                     UIReferences.pronounClarificationContent.appendChild(element);
 
                 }
 
+            } else {
+                
+                //There are no pronoun clarifications for this verse, so show a message indicating so.
+                var noPronounClarificationsMessageElement = document.createElement("p");
+                noPronounClarificationsMessageElement.classList.add("message");
+                noPronounClarificationsMessageElement.textContent = "There are no Pronoun Clarifications for this verse.";
+                
+                UIReferences.pronounClarificationContent.appendChild(noPronounClarificationsMessageElement);
+                
             }
 
             //Clear and repopulate the footnotes slide panel screen
@@ -965,7 +1011,7 @@ const UIManager = {
             }
 
             var footnotes = scriptureEngine.getFootnotesByReference(referenceString);
-            if (footnotes) {
+            if (footnotes.length > 0) {
 
                 for (var i = 0; i < footnotes.length; i++) {
 
@@ -1012,6 +1058,15 @@ const UIManager = {
 
                 }
 
+            } else {
+                
+                //There are no footnotes for this verse, so show a message indicating so.
+                var noFootnotesMessageElement = document.createElement("p");
+                noFootnotesMessageElement.classList.add("message");
+                noFootnotesMessageElement.textContent = "There are no footnotes for this verse.";
+                
+                UIReferences.footnotesContent.appendChild(noFootnotesMessageElement);
+                
             }
 
             //Recall preferences for verse display

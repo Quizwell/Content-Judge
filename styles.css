@@ -683,6 +683,19 @@
 
 }
 
+.verseDisplay .textContainer p.containsFootnoteReference {
+
+    padding-right: 0;
+    
+}
+
+.verseDisplay .textContainer p.footnoteReference {
+
+    padding-left: 0;
+    margin-left: -2px;
+    
+}
+
 .verseDisplay .textContainer p.notSelectable {
 
     cursor: default;
@@ -949,26 +962,50 @@
     
 }
 
+.slidePanel .pronounClarification .message, 
+.slidePanel .footnotes .message {
+    
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
 .slidePanel .pronounClarification .listItem {
     
-    background: var(--page-background-color);
+    background: var(--secondary-page-background-color);
     border-radius: 15px;
-    padding: 10px;
+    padding: 10px 20px;
     margin-bottom: 15px;
+    position: relative;
+    cursor: default;
+    
+}
+
+.slidePanel .pronounClarification .listItem.hasReference {
+
+    cursor: pointer;
+    
+}
+
+.slidePanel .pronounClarification .listItem .headerContainer {
+
+    margin-bottom: -5px;
     
 }
 
 .slidePanel .pronounClarification .listItem .pronoun {
 
     display: inline-block;
+    margin-bottom: 0;
     
 }
 
 .slidePanel .pronounClarification .listItem .arrow {
 
     display: inline-block;
-    margin-left: 10px;
-    margin-bottom: 5px;
+    margin: 0 0 5px 10px;
     vertical-align: middle;
     opacity: 0.6;
     
@@ -979,24 +1016,47 @@
     display: inline-block;
     line-height: 34px;
     margin-left: 5px;
+    margin-bottom: 0;
     font-size: 25px;
     font-weight: bold;
     color: var(--secondary-text-color);
     
 }
 
+.slidePanel .pronounClarification .listItem p.reference {
+
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0, -50%);
+    
+}
+
 .slidePanel .footnotes .listItem {
     
-    background: var(--page-background-color);
+    background: var(--secondary-page-background-color);
     border-radius: 15px;
-    padding: 10px;
+    padding: 10px 20px;
     margin-bottom: 15px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.slidePanel .footnotes .listItem .letter {
+    
+    margin: 0 15px 0 0;
     
 }
 
 .slidePanel .footnotes .listItem .content {
 
-    margin-bottom: 2.5px;
+    margin: 0;
     
 }
 
