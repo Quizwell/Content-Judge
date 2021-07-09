@@ -30,10 +30,15 @@ const UIReferences = {
     verseDisplayScreenCloseButton: document.querySelector(".verseDisplayScreen .closeButton"),
     verseDisplayScreenBackButton: document.querySelector(".verseDisplayScreen .backButton"),
     
-    verseDisplayScreenTitle: document.querySelector(".verseDisplayScreen .title"),
-    verseDisplayScreenSubtitle: document.querySelector(".verseDisplayScreen .subtitle"),
-    verseDisplayScreenSubtitleTag: document.querySelector(".verseDisplayScreen .subtitle .tag"),
-    verseDisplayScreenSubtitleText: document.querySelector(".verseDisplayScreen .subtitle .text"),
+    verseDisplayScreenMiniTitle: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .title"),
+    verseDisplayScreenMiniSubtitle: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .subtitle"),
+    verseDisplayScreenMiniSubtitleTag: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .subtitle .tag"),
+    verseDisplayScreenMiniSubtitleText: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .subtitle .text"),
+    
+    verseDisplayScreenTitle: document.querySelector(".verseDisplayScreen .verseTitleContainer .title"),
+    verseDisplayScreenSubtitle: document.querySelector(".verseDisplayScreen .verseTitleContainer .subtitle"),
+    verseDisplayScreenSubtitleTag: document.querySelector(".verseDisplayScreen .verseTitleContainer .subtitle .tag"),
+    verseDisplayScreenSubtitleText: document.querySelector(".verseDisplayScreen .verseTitleContainer .subtitle .text"),
 
     verseDisplayScreenPreviousVerseButton: document.querySelector(".verseDisplayScreen .previousVerseButton"),
     verseDisplayScreenNextVerseButton: document.querySelector(".verseDisplayScreen .nextVerseButton"),
@@ -918,6 +923,7 @@ const UIManager = {
 
             //Show the reference of the verse
             UIReferences.verseDisplayScreenTitle.textContent = scriptureEngine.unabbreviateBookNamesInString(referenceString);
+            UIReferences.verseDisplayScreenMiniTitle.textContent = referenceString;
 
             //Disable both neighboring verse buttons
             UIReferences.verseDisplayScreenPreviousVerseButton.setAttribute("disabled", "disabled");
@@ -1032,9 +1038,9 @@ const UIManager = {
 
                 //Show memory indicator
                 UIReferences.verseDisplayScreenSubtitleText.textContent = memoryVerseStatus.reference;
+                UIReferences.verseDisplayScreenMiniSubtitleText.textContent = memoryVerseStatus.reference;
                 UIManager.show(UIReferences.verseDisplayScreenSubtitle);
-
-                //Highlight prejump
+                UIManager.show(UIReferences.verseDisplayScreenMiniSubtitle);
 
                 //Get the prejump
                 var verseType = (memoryVerseStatus.type == "single") ? "singles" : "multiples";
@@ -1051,6 +1057,7 @@ const UIManager = {
             } else {
 
                 UIManager.hide(UIReferences.verseDisplayScreenSubtitle);
+                UIManager.hide(UIReferences.verseDisplayScreenMiniSubtitle);
 
             }
 

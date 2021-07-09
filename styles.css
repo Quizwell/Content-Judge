@@ -193,9 +193,9 @@
 .settingsScreen .toggle .checkbox .check {
 
     opacity: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
     background: var(--accent-color-text-color);
     
     transition: opacity 0.1s ease;
@@ -204,7 +204,7 @@
 
 .settingsScreen .toggle .checkbox.checked .check {
 
-    opacity: 1;
+    opacity: 0.9;
     
 }
 
@@ -359,6 +359,12 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
+    
+}
+
+.searchModeSelectionScreen select:focus {
+
+    outline: none;
     
 }
 
@@ -686,6 +692,12 @@
     
 }
 
+.verseDisplayScreen .headerContainer .miniVerseTitleContainer {
+    
+    display: none;
+    
+}
+
 .verseDisplayScreen .headerContainer .button {
 
     background: var(--content-background-color);
@@ -694,6 +706,7 @@
     height: 100px;
     box-sizing: border-box;
     cursor: pointer;
+    min-width: 80px;
     width: 90px;
     margin: 0 10px;
     
@@ -992,6 +1005,19 @@
 
 .verseDisplayScreen .toolbarContainer .toolbar.left {
     left: 0;
+    left: 0;
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar.left .divider {
+    
+    display: none;
+    width: 4px;
+    height: 70px;
+    border-radius: 2px;
+    margin: 10px 5px;
+    box-sizing: border-box;
+    background: var(--primary-text-color);
+    
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar.right {
@@ -1095,6 +1121,7 @@
     background: var(--secondary-content-background-color);
     border-radius: 30px 30px 15px 15px;
     z-index: 1;
+    overflow: scroll;
     
     transition: all 0.3s ease;
     
@@ -1110,6 +1137,7 @@
 .slidePanel .slidePanelScreen {
     
     padding: 20px;
+    overflow: scroll;
     
     transition: opacity 0.2s ease;
     
@@ -1170,8 +1198,11 @@
     border-radius: 15px;
     padding: 10px 20px;
     margin-bottom: 15px;
-    position: relative;
     cursor: default;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     
 }
 
@@ -1220,10 +1251,6 @@
     margin: 0;
     font-size: 18px;
     font-weight: bold;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translate(0, -50%);
     
 }
 

@@ -1,0 +1,207 @@
+/* verseDisplaySreen key */
+@media only screen and (max-width: 730px) {
+    
+    .verseDisplayScreen .key {
+        
+        width: 350px;
+        height: 50px;
+        bottom: 120px;
+        
+    }
+    
+}
+
+/* verseDisplayScreen header */
+@media only screen and (max-width: 695px) {
+    
+    .verseDisplayScreen > .headerContainer {
+        
+        height: 100px;
+        width: calc(100% - 20px);
+        left: 0;
+        padding-left: 20px;
+        overflow-y: scroll;
+        justify-content: flex-start;
+        
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .verseDisplayScreen .headerContainer .miniVerseTitleContainer {
+        
+        display: block;
+        background: var(--content-background-color);
+        border-radius: 20px;
+        padding: 15px;
+        height: 100px;
+        min-width: 180px;
+        box-sizing: border-box;
+        margin: 0 10px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .title {
+    
+        width: 100%;
+        margin-bottom: 5px;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle {
+    
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle .tag {
+
+        color: var(--memory-element-color);
+        border: 3px solid var(--memory-element-color);
+        padding: 2px 5px;
+        border-radius: 5px;
+        margin-right: 5px;
+        font-size: 90%;
+
+    }
+    
+    .verseDisplayScreen .headerContainer .verseTitleContainer {
+    
+        display: none;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .verseTitleContainer,
+    .verseDisplayScreen .headerContainer .button {
+        margin: 0 5px;
+    }
+    
+    .verseDisplayScreen .verseDisplay .textContainer p {
+        margin-bottom: 0;
+    }
+    
+}
+
+/* verseDisplayScreen toolbars and slide panel */
+@media only screen and (max-width: 495px) {
+    
+    .verseDisplayScreen .key {
+        
+        width: calc(100% - 40px);
+        height: 50px;
+        bottom: 120px;
+        
+    }
+    
+    .verseDisplayScreen .toolbarContainer {
+    
+        overflow-y: scroll;
+        height: 90px;
+        width: 100%;
+        left: 0;
+        display: flex;
+        
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        
+    }
+    
+    .verseDisplayScreen .toolbarContainer::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Fix for missing whitespace */
+    .verseDisplayScreen .toolbarContainer::after {
+    
+        content: " ";
+        flex: 0 0 20px;
+        
+    }
+    
+    .verseDisplayScreen .toolbarContainer .toolbar {
+        
+        position: static;
+        display: inline-flex;
+        
+    }
+    
+    .verseDisplayScreen .toolbarContainer .toolbar.left {
+        
+        border-radius: 15px 0 0 15px;
+        padding-right: 0;
+        margin-left: 20px;
+        
+    }
+    
+    .verseDisplayScreen .toolbarContainer .toolbar.left .divider {
+    
+        display: block;
+        
+    }
+    
+    .verseDisplayScreen .toolbarContainer .toolbar.right {
+        
+        border-radius: 0 15px 15px 0;
+        
+    }
+    
+    .slidePanel .pronounClarification .listItem {
+        
+        flex-wrap: wrap;
+        justify-content: center;
+        
+    }
+    
+    .slidePanel .pronounClarification .listItem .reference {
+    
+        width: 100%;
+        text-align: center;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 450px) {
+    
+    .searchModeSelectionScreen select {
+        width: 125px;
+    }
+    
+}
+
+/* General mobile styles */
+@media only screen and (max-width: 415px) {
+    
+    .welcomeScreen .textBlock h1 {
+        
+        font-size: 50px;
+        
+    }
+    
+    .chapterSelectionScreen .chapterNumberElementsContainer,
+    .verseSelectionScreen .verseNumberElementsContainer {
+        
+        width: 350px;
+        
+    }
+    
+    .chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement,
+    .verseSelectionScreen .verseNumberElementsContainer .verseNumberElement {
+    
+        margin: 10px;
+
+    }
+    
+}
