@@ -59,6 +59,7 @@
     
     position: absolute;
     bottom: 20px;
+    bottom: calc(env(safe-area-inset-bottom) + 20px);
     left: 50%;
     transform: translate(-50%, 0);
     width: calc(100% - 40px);
@@ -344,6 +345,7 @@
 .searchModeSelectionScreen select {
     
     background: var(--content-background-color);
+    color: black;
     padding: 7px 7px 7px 14px;
     vertical-align: top;
     box-shadow: none;
@@ -918,6 +920,7 @@
     position: absolute;
     left: 50%;
     bottom: 20px;
+    bottom: calc(env(safe-area-inset-bottom) + 20px);
     background: var(--content-background-color);
     padding: 5px;
     border-radius: 15px;
@@ -1131,6 +1134,7 @@
 
     display: block;
     transform: translate(0, calc(100% + 120px));
+    transform: translate(0, calc(100% + 120px + env(safe-area-inset-bottom)));
     
 }
 
