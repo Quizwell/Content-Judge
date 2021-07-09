@@ -44,7 +44,7 @@
                     </picture>
                     <p class="label">Report a Bug</p>
                 </button>
-                <button class="settings" disabled style="opacity: 0.5; cursor: not-allowed">
+                <button class="settings" onclick="UIManager.buttonHandlers.showSettingsScreen()">
                     <picture>
                         <source srcset="images/icons/Settings-White.svg" media="(prefers-color-scheme: dark)">
                         <img src="images/icons/Settings.svg" width="auto" height="40px">
@@ -53,6 +53,49 @@
                 </button>
             </div>
 
+        </div>
+        
+        <div class="settingsScreen screen requireDisplayNone hidden">
+            
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="label">Settings</h1>
+            </div>
+            
+            <div class="content">
+                
+                <div class="section search">
+                    <p class="title">Search</p>
+                    <div class="toggle">
+                        <div class="checkbox checked" data-setting-name="useInstantSearch">
+                            <div class="check"></div>
+                        </div>
+                        <p class="label">Instant Search</p>
+                    </div>
+                    <p class="label">Instant Search updates search results as you type. Enabling Instant Search may result in impacted performance on slower devices.</p>
+                </div>
+                
+                <div class="section uniqueWordHighlighting">
+                    <p class="title">Unique Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
+                    <div class="colorSelector">
+                        <input type="color" value="#CF503D" class="picker" data-setting-name="uniqueWordHighlightColor">
+                        <p class="label">Unique Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#5185A6" class="picker" data-setting-name="doubleWordHighlightColor">
+                        <p class="label">Double Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E73CE" class="picker" data-setting-name="tripleWordHighlightColor">
+                        <p class="label">Triple Words</p>
+                    </div>
+                </div>
+                
+            </div>
+            
         </div>
 
         <div class="addWebClipScreen screen requireDisplayNone hidden">
@@ -110,7 +153,7 @@
 
                 <div class="searchBarWrapper">
 
-                    <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" placeholder="Type part of a verse...">
+                    <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" onchange="UIManager.searchBarHandlers.onchange()" placeholder="Type part of a verse...">
 
                     <div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">
 
@@ -209,6 +252,13 @@
 
             <div class="verseDisplay">
                 <div class="textContainer"></div>
+            </div>
+            
+            <div class="key">
+                <p class="keyItem prejump">Prejump</p>
+                <p class="keyItem rareWord unique">Unique</p>
+                <p class="keyItem rareWord double">Double</p>
+                <p class="keyItem rareWord triple">Triple</p>
             </div>
 
             <div class="slidePanel hidden">

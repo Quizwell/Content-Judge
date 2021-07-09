@@ -1,5 +1,5 @@
 const CONTENT_JUDGE_VERSION = "0.0.1";
-const CONTENT_JUDGE_BUILD = "CJ-A0006";
+const CONTENT_JUDGE_BUILD = "CJ-A0007";
 
 var storageManager = {
     
@@ -37,10 +37,31 @@ var storageManager = {
     
 }
 
-//Set defaults for preferences
+//Set defaults for settings
 with (storageManager) {
     
     setDefault("highlightPrejump", true);
     setDefault("highlightRareWords", true);
+    
+}
+
+//Set defaults for settings screen settings
+var settingsScreenToggles = document.querySelectorAll(".settingsScreen .checkbox");
+for (var i = 0; i < settingsScreenToggles.length; i++) {
+    
+    var currentToggle = settingsScreenToggles[i];
+    var currentToggleSettingName = currentToggle.dataset.settingName;
+    
+    storageManager.setDefault(currentToggleSettingName, currentToggle.classList.contains("checked"));
+    
+}
+
+var settingsScreenColorPickers = document.querySelectorAll(".settingsScreen .colorSelector .picker");
+for (var i = 0; i < settingsScreenColorPickers.length; i++) {
+    
+    var currentColorPicker = settingsScreenColorPickers[i];
+    var currentColorPickerSettingName = currentColorPicker.dataset.settingName;
+    
+    storageManager.setDefault(currentColorPickerSettingName, currentColorPicker.value);
     
 }

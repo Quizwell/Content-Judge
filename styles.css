@@ -104,6 +104,143 @@
     
 }
 
+.settingsScreen .titleContainer {
+    
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+.settingsScreen .titleContainer img {
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 10px 0;
+    
+}
+
+.settingsScreen .titleContainer h1.label {
+    
+    display: inline-block;
+    margin-left: 5px;
+    
+}
+
+.settingsScreen .section {
+    
+    background: var(--content-background-color);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    
+}
+
+.settingsScreen .section .title {
+    
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+.settingsScreen .section .title .reset {
+
+    color: var(--secondary-text-color);
+    font-size: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+    
+    transition: opacity 0.1s ease;
+    
+}
+
+.settingsScreen .section .title .reset:active {
+
+    opacity: 0.5;
+    
+}
+
+.settingsScreen .toggle {
+    
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.settingsScreen .toggle .checkbox {
+    
+    width: 25px;
+    height: 25px;
+    border-radius: 8px;
+    margin-right: 10px;
+    background: var(--page-background-color);
+    cursor: pointer;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    transition: background 0.1s ease;
+    
+}
+
+.settingsScreen .toggle .checkbox.checked {
+
+    background: var(--app-accent-color);
+    
+}
+
+.settingsScreen .toggle .checkbox .check {
+
+    opacity: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    background: var(--accent-color-text-color);
+    
+    transition: opacity 0.1s ease;
+    
+}
+
+.settingsScreen .toggle .checkbox.checked .check {
+
+    opacity: 1;
+    
+}
+
+.settingsScreen .toggle .label {
+    
+    margin: 0;
+    font-weight: bold;
+    
+}
+
+.settingsScreen .colorSelector .picker {
+
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    
+}
+
+.settingsScreen .colorSelector .picker {
+    
+    display: inline-block;
+    
+}
+
+.settingsScreen .colorSelector .label {
+
+    display: inline-block;
+    
+}
+
+.settingsScreen .content > .label {
+    
+    width: 500px;
+    
+}
+
 .addWebClipScreen {
     
     padding: 0;
@@ -217,7 +354,6 @@
     font-size: 15px;
     width: 250px;
     float: right;
-    margin-right: 10px;
     cursor: pointer;
     
     -moz-appearance: none;
@@ -229,7 +365,7 @@
 .searchModeSelectionScreen .searchBarContainer {
     
     background: var(--content-background-color);
-    width: calc(100% - 40px);
+    width: calc(100% - 30px);
     padding: 15px;
     border-radius: 15px;
     
@@ -256,9 +392,10 @@
     background: var(--page-background-color);
     border-radius: 5px;
     padding: 10px;
-    width: calc(100% - 30px);
+    width: calc(100% - 20px);
     height: 100%;
     font-family: inherit;
+    letter-spacing: 0.5px;
     font-size: 18px;
     
 }
@@ -304,8 +441,31 @@
 }
 
 .searchModeSelectionScreen .searchResultsContainer {
+        
+    background: var(--content-background-color);
     
+    position: absolute;
+    top: 167px;
+    
+    width: calc(100% - 70px);
+    height: calc(100% - 237px);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 20px;
     overflow: scroll;
+    
+    opacity: 0;
+    transform: translate(calc(100% + 20px), 0) scale(0.75);
+    transition: all 0.5s ease;
+    
+}
+
+.searchModeSelectionScreen .searchResultsContainer .message {
+
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
     
 }
 
@@ -332,7 +492,7 @@
     position: absolute;
     top: 167px;
     
-    width: calc(100% - 80px);
+    width: calc(100% - 70px);
     height: calc(100% - 237px);
     padding: 15px;
     border-radius: 15px;
@@ -380,25 +540,6 @@
 .searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement:active {
 
      opacity: 0.5;
-    
-}
-
-.searchModeSelectionScreen .searchResultsContainer {
-    
-    background: var(--content-background-color);
-    
-    position: absolute;
-    top: 167px;
-    
-    width: calc(100% - 80px);
-    height: calc(100% - 237px);
-    padding: 15px;
-    border-radius: 15px;
-    margin-top: 20px;
-    
-    opacity: 0;
-    transform: translate(calc(100% + 20px), 0) scale(0.75);
-    transition: all 0.5s ease;
     
 }
 
@@ -679,7 +820,9 @@
     border: 3px solid transparent;
     cursor: pointer;
     
-    transition: all 0.2s ease;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 
 }
 
@@ -741,37 +884,86 @@
 
 .verseDisplay.highlightRareWords .textContainer p.uniqueWord:not(.selected) {
 
-/*
-    background-image: var(--orange-gradient);
-    background-size: 100%;
-    background-clip: text;
-    color: transparent;
-*/
-    color: var(--orange-color);
+    color: var(--unique-word-highlight-color);
     
 }
 
 .verseDisplay.highlightRareWords .textContainer p.doubleWord:not(.selected) {
 
-/*
-    background-image: var(--blue-gradient);
-    background-size: 100%;
-    background-clip: text;
-    color: transparent;
-*/
-    color: var(--blue-color);
+    color: var(--double-word-highlight-color);
     
 }
 
 .verseDisplay.highlightRareWords .textContainer p.tripleWord:not(.selected) {
 
-/*
-    background-image: var(--purple-gradient);
-    background-size: 100%;
-    background-clip: text;
-    color: transparent;
-*/
-    color: var(--purple-color);
+    color: var(--triple-word-highlight-color);
+    
+}
+
+.verseDisplayScreen .key {
+
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    background: var(--content-background-color);
+    padding: 5px;
+    border-radius: 15px;
+    width: 223px;
+    box-sizing: border-box;
+    transform: translate(-50%, 0);
+    height: 90px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    
+}
+
+.verseDisplay.highlightPrejump:not(.up) ~ .key,
+.verseDisplay.highlightRareWords:not(.up) ~ .key {
+    
+    opacity: 1;
+    
+}
+
+.verseDisplayScreen .key .keyItem {
+
+    margin: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    box-sizing: border-box;
+    opacity: 0.25;
+    transition: opacity 0.1s ease;
+    
+}
+
+.verseDisplayScreen .key .keyItem.prejump {
+    border-bottom: 2px solid var(--primary-text-color);
+}
+.verseDisplayScreen .key .keyItem.unique {
+    color: var(--unique-word-highlight-color);
+}
+.verseDisplayScreen .key .keyItem.double {
+    color: var(--double-word-highlight-color);
+}
+.verseDisplayScreen .key .keyItem:last-child {
+    color: var(--triple-word-highlight-color);
+}
+
+.verseDisplay.highlightPrejump ~ .key .keyItem.prejump {
+
+    opacity: 1;
+    
+}
+
+.verseDisplay.highlightRareWords ~ .key .keyItem.rareWord {
+
+    opacity: 1;
     
 }
 

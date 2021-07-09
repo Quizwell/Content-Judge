@@ -4,6 +4,8 @@ const UIReferences = {
 
     welcomeScreen: document.querySelector(".welcomeScreen"),
     addWebClipScreen: document.querySelector(".addWebClipScreen"),
+    
+    settingsScreen: document.querySelector(".settingsScreen"),
 
     searchModeSelectionScreen: document.querySelector(".searchModeSelectionScreen"),
 
@@ -147,6 +149,17 @@ const UIManager = {
             UIManager.show(UIReferences.searchModeSelectionScreen, 200);
 
         },
+        
+        showSettingsScreen: function () {
+            
+            UIManager.settingsScreen.populateAndShowSettingsScreen();
+            
+        },
+        closeSettingsScreen: function () {
+            
+            UIManager.settingsScreen.closeSettingsScreen();
+            
+        },
 
         closeSearchModeSelectionScreen: function () {
 
@@ -284,8 +297,16 @@ const UIManager = {
             }
 
         },
-
+        
         oninput: function () {
+            
+            if (storageManager.get("useInstantSearch")) {
+                UIManager.searchBarHandlers.onchange();
+            }
+            
+        },
+
+        onchange: function () {
 
             var inputElement = UIReferences.searchBar;
             var input = UIReferences.searchBar.value;
@@ -301,36 +322,48 @@ const UIManager = {
                 return;
             }
 
-            var contentSearchResults = scriptureEngine.getVersesByContent(input);
+            var contentSearchResults = scriptureEngine.getVersesByContent(input, true);
 
-            //Loop through every search result and create an element for each
-            for (var i = 0; i < contentSearchResults.length; i++) {
+            if (contentSearchResults.length > 0) {
+            
+                //Loop through every search result and create an element for each
+                for (var i = 0; i < contentSearchResults.length; i++) {
 
-                var currentSearchResult = contentSearchResults[i];
+                    var currentSearchResult = contentSearchResults[i];
 
-                var listItemElement = document.createElement("div");
-                listItemElement.classList.add("listItem");
-                (function (reference) {
-                    listItemElement.onclick = function () {
+                    var listItemElement = document.createElement("div");
+                    listItemElement.classList.add("listItem");
+                    (function (reference) {
+                        listItemElement.onclick = function () {
 
-                        UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+                            UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
 
-                    }
-                })(currentSearchResult.reference)
+                        }
+                    })(currentSearchResult.reference)
 
-                var referenceElement = document.createElement("h1");
-                referenceElement.classList.add("reference");
-                referenceElement.textContent = currentSearchResult.reference;
+                    var referenceElement = document.createElement("h1");
+                    referenceElement.classList.add("reference");
+                    referenceElement.textContent = currentSearchResult.reference;
 
-                var contentElement = document.createElement("p");
-                contentElement.classList.add("content");
-                contentElement.textContent = scriptureEngine.getVerseByReference(currentSearchResult.reference);
+                    var contentElement = document.createElement("p");
+                    contentElement.classList.add("content");
+                    contentElement.textContent = scriptureEngine.getVerseByReference(currentSearchResult.reference);
 
-                listItemElement.appendChild(referenceElement);
-                listItemElement.appendChild(contentElement);
+                    listItemElement.appendChild(referenceElement);
+                    listItemElement.appendChild(contentElement);
 
-                UIReferences.searchResultsContainer.appendChild(listItemElement);
+                    UIReferences.searchResultsContainer.appendChild(listItemElement);
 
+                }
+                
+            } else {
+                
+                //There are no search results, so show a message indicating so.
+                var messageElement = document.createElement("p");
+                messageElement.classList.add("message");
+                messageElement.textContent = "There are no matches for your search.";
+                UIReferences.searchResultsContainer.appendChild(messageElement);
+                
             }
 
         },
@@ -344,6 +377,107 @@ const UIManager = {
 
         }
 
+    },
+    
+    settingsScreen: {
+        
+        populateAndShowSettingsScreen: function () {
+            
+            //Update all checkboxes
+            var settingsScreenToggles = document.querySelectorAll(".settingsScreen .checkbox");
+            for (var i = 0; i < settingsScreenToggles.length; i++) {
+
+                var currentToggle = settingsScreenToggles[i];
+                var currentToggleSettingName = currentToggle.dataset.settingName;
+
+                if (storageManager.get(currentToggleSettingName)) {
+                    currentToggle.classList.add("checked");
+                } else {
+                    currentToggle.classList.remove("checked");
+                }
+
+            }
+            
+            //Update all color pickers
+            var settingsScreenColorPickers = document.querySelectorAll(".settingsScreen .colorSelector .picker");
+            for (var i = 0; i < settingsScreenColorPickers.length; i++) {
+
+                var currentColorPicker = settingsScreenColorPickers[i];
+                var currentColorPickerSettingName = currentColorPicker.dataset.settingName;
+
+                currentColorPicker.value = storageManager.get(currentColorPickerSettingName);
+
+            }
+            
+            //Show the screen
+            UIManager.show(UIReferences.settingsScreen, 200);
+            
+        },
+        
+        closeSettingsScreen: function () {
+            
+            //Update all settings values
+            var settingsScreenToggles = document.querySelectorAll(".settingsScreen .checkbox");
+            for (var i = 0; i < settingsScreenToggles.length; i++) {
+
+                var currentToggle = settingsScreenToggles[i];
+                var currentToggleSettingName = currentToggle.dataset.settingName;
+
+                storageManager.set(currentToggleSettingName, currentToggle.classList.contains("checked"));
+
+            }
+            
+            //Update all color picker values
+            var settingsScreenColorPickers = document.querySelectorAll(".settingsScreen .colorSelector .picker");
+            for (var i = 0; i < settingsScreenColorPickers.length; i++) {
+
+                var currentColorPicker = settingsScreenColorPickers[i];
+                var currentColorPickerSettingName = currentColorPicker.dataset.settingName;
+
+                storageManager.set(currentColorPickerSettingName, currentColorPicker.value);
+
+            }
+            
+            //Run all settings update handlers
+            var settingsUpdateHandlersKeys = Object.keys(UIManager.settingsScreen.settingUpdateHandlers);
+            for (var i = 0; i < settingsUpdateHandlersKeys.length; i++) {
+                UIManager.settingsScreen.settingUpdateHandlers[settingsUpdateHandlersKeys]()
+            }
+            
+            //Hide the screen
+            UIManager.hide(UIReferences.settingsScreen, 200);
+            
+        },
+        
+        settingUpdateHandlers: {
+            
+            updateRareWordHighlightColors: function () {
+                
+                document.documentElement.style.setProperty("--unique-word-highlight-color", storageManager.get("uniqueWordHighlightColor"));
+                document.documentElement.style.setProperty("--double-word-highlight-color", storageManager.get("doubleWordHighlightColor"));
+                document.documentElement.style.setProperty("--triple-word-highlight-color", storageManager.get("tripleWordHighlightColor"));
+                
+            }
+            
+        },
+        
+        resetButtonHandlers: {
+            
+            resetRareWordHighlightColors: function () {
+                
+                var computedStyle = getComputedStyle(document.body);
+                
+                storageManager.set("uniqueWordHighlightColor", computedStyle.getPropertyValue("--orange-color").trim());
+                storageManager.set("doubleWordHighlightColor", computedStyle.getPropertyValue("--blue-color").trim());
+                storageManager.set("tripleWordHighlightColor", computedStyle.getPropertyValue("--purple-color").trim());
+                
+                UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
+                UIManager.settingsScreen.populateAndShowSettingsScreen();
+                
+            }
+            
+        }
+        
     },
 
     bookSelectorHandler: function () {
@@ -1367,6 +1501,23 @@ const UIManager = {
     }
 
 }
+
+//Set up events for all checkboxes
+var checkboxes = document.querySelectorAll(".checkbox");
+for (var i = 0; i < checkboxes.length; i++) {
+    
+    var currentCheckbox = checkboxes[i];
+    
+    (function (checkbox) {
+        checkbox.addEventListener("click", function () {
+            checkbox.classList.toggle("checked");
+        });
+    })(currentCheckbox)
+    
+}
+
+//Update rare word colors
+UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
 
 UIManager.searchByReference.populateSearchByReferenceContainer();
 UIManager.setBookSelector(storageManager.get("quizCycleYear"));

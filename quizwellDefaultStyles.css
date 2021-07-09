@@ -32,7 +32,10 @@
     --blue-color: #5185A6;
     --purple-color: #7E73CE;
     --orange-color: #CF503D;
-
+    
+    --unique-word-highlight-color: var(--orange-color);
+    --double-word-highlight-color: var(--blue-color);
+    --triple-word-highlight-color: var(--purple-color);
 
 }
 
