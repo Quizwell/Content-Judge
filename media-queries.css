@@ -1,5 +1,10 @@
-/* verseDisplaySreen key */
 @media only screen and (max-width: 730px) {
+    
+    .verseDisplay .textContainer p {
+        
+        font-size: 18px;
+        
+    }
     
     .verseDisplayScreen .key {
         
@@ -12,25 +17,47 @@
     
 }
 
-/* verseDisplayScreen header */
 @media only screen and (max-width: 695px) {
     
-    .verseDisplayScreen > .headerContainer {
+    .verseDisplay.up {
         
-        height: 100px;
-        width: calc(100% - 20px);
-        left: 0;
-        padding-left: 20px;
-        overflow-y: scroll;
-        justify-content: flex-start;
-        
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+        top: 180px;
         
     }
     
-    .verseDisplayScreen .headerContainer::-webkit-scrollbar {
-        display: none;
+    .verseDisplayScreen > .headerContainer {
+        
+        height: 165px;
+        width: calc(100% - 40px);
+        overflow-y: scroll;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .verseButton {
+        
+        width: calc(50% - 10px);
+        height: 40px;
+        
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .verseButton:last-child {
+    
+        flex-direction: row-reverse;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .verseButton img {
+    
+        margin: 2px 0 0 0 !important;
+        height: 30px;
+        
     }
     
     .verseDisplayScreen .headerContainer .miniVerseTitleContainer {
@@ -40,7 +67,7 @@
         border-radius: 20px;
         padding: 15px;
         height: 100px;
-        min-width: 180px;
+        width: calc(100% - 220px);
         box-sizing: border-box;
         margin: 0 10px;
 
@@ -56,6 +83,8 @@
         width: 100%;
         margin-bottom: 5px;
         
+        transition: all 0.2s ease;
+        
     }
     
     .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle {
@@ -64,6 +93,8 @@
         justify-content: flex-start;
         align-items: center;
         margin: 0;
+        
+        transition: all 0.2s ease;
         
     }
     
@@ -93,9 +124,21 @@
         margin-bottom: 0;
     }
     
+    .slidePanel {
+        
+        bottom: 20px;
+        bottom: calc(env(safe-area-inset-bottom) + 20px);
+        
+    }
+    
+    .slidePanel:not(.hidden) ~ .toolbarContainer {
+    
+        display: none;
+        
+    }
+    
 }
 
-/* verseDisplayScreen toolbars and slide panel */
 @media only screen and (max-width: 495px) {
     
     .verseDisplayScreen .key {
@@ -183,7 +226,6 @@
     
 }
 
-/* General mobile styles */
 @media only screen and (max-width: 415px) {
     
     .welcomeScreen .textBlock h1 {
@@ -192,15 +234,13 @@
         
     }
     
-    .chapterSelectionScreen .chapterNumberElementsContainer,
-    .verseSelectionScreen .verseNumberElementsContainer {
+    .selectionScreen .numberElementsContainer {
         
         width: 350px;
         
     }
     
-    .chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement,
-    .verseSelectionScreen .verseNumberElementsContainer .verseNumberElement {
+    .selectionScreen .numberElementsContainer .numberElement {
     
         margin: 10px;
 

@@ -24,7 +24,7 @@ var RomansJames = {
                             ],
                             pronounClarification: [
                                 
-                                false,
+                                [],
                                 [
                                     {
                                         pronoun: "he",
@@ -69,7 +69,7 @@ var RomansJames = {
                                         reference: "R 1:4"
                                     }
                                 ],
-                                false,
+                                [],
                                 [
                                     {
                                         pronoun: "his",
@@ -97,21 +97,21 @@ var RomansJames = {
                             ],
                             pronounClarification: [
                                 
-                                false,
+                                [],
                                 [
                                     {
                                         pronoun: "his",
                                         antecedent: "God"
                                     }
                                 ],
-                                false,
-                                false,
-                                false,
-                                false,
-                                false,
-                                false,
-                                false,
-                                false
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                []
                                 
                             ]
                         },
@@ -189,7 +189,7 @@ var RomansJames = {
                                         reference: "R 1:20"
                                     }
                                 ],
-                                false,
+                                [],
                                 [
                                     {
                                         pronoun: "them",
@@ -202,7 +202,7 @@ var RomansJames = {
                                         reference: "R 1:20"
                                     },
                                 ],
-                                false,
+                                [],
                                 [
                                     {
                                         pronoun: "They",

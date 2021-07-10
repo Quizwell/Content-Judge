@@ -1,4 +1,6 @@
 :root {
+    
+    color-scheme: light dark;
 
     /* Light mode variable definitions */
     --app-accent-color: #52A7FA;
@@ -47,6 +49,7 @@
         --accent-color-text-color: #ffffff;
         
         --page-background-color: #000000;
+        --secondary-page-background-color: #0f0f0f;
         --content-background-color: #222222;
         --secondary-content-background-color: #333333;
         
@@ -259,6 +262,27 @@ button.bottom {
     opacity: 0;
     display: block;
     overflow: hidden;
+    
+}
+
+.screen .titleContainer {
+    
+    cursor: pointer;
+
+}
+
+.screen .titleContainer img {
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 10px 0;
+    
+}
+
+.screen .titleContainer h1.title {
+    
+    display: inline-block;
+    margin-left: 5px;
     
 }
 

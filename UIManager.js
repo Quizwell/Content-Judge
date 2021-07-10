@@ -23,6 +23,10 @@ const UIReferences = {
 
     verseSelectionScreen: document.querySelector(".verseSelectionScreen"),
     verseNumberElementsContainer: document.querySelector(".verseNumberElementsContainer"),
+    
+    chapterDisplayScreen: document.querySelector(".chapterDisplayScreen"),
+    chapterDisplayScreenTitle: document.querySelector(".chapterDisplayScreen .titleContainer .title"),
+    chapterDisplayScreenContent: document.querySelector(".chapterDisplayScreen .content"),
 
     verseDisplayScreen: document.querySelector(".verseDisplayScreen"),
     verseDisplayScreenBackgroundOverlay: document.querySelector(".verseDisplayScreenBackgroundOverlay"),
@@ -183,6 +187,18 @@ const UIManager = {
             UIManager.hide(UIReferences.verseSelectionScreen, 200);
 
         },
+        
+        viewChapterButton: function () {
+            
+            var referenceString = UIManager.searchByReference.currentSearchObject.bookAbbreviation + " " + UIManager.searchByReference.currentSearchObject.chapter;
+            UIManager.chapterDisplayScreen.populateAndShowChapterDisplayScreen(referenceString);
+            
+        },
+        closeChapterDisplayScreen: function () {
+            
+            UIManager.chapterDisplayScreen.closeChapterDisplayScreen();
+            
+        },
 
         verseDisplayScreenCloseButton: function () {
 
@@ -195,6 +211,14 @@ const UIManager = {
                 UIManager.verseDisplayScreen.navigation.toPreviousState();
             }
 
+        },
+        
+        closeSlidePanel: function () {
+            
+            UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
+            UIManager.verseDisplayScreen.deselectAllWords();
+            UIManager.verseDisplayScreen.hideSlidePanel();
+            
         },
 
         highlightPrejumpButton: function () {
@@ -591,6 +615,7 @@ const UIManager = {
 
                 var chapterNumberElement = document.createElement("div");
                 chapterNumberElement.classList.add("chapterNumberElement");
+                chapterNumberElement.classList.add("numberElement");
                 chapterNumberElement.textContent = (i + 1);
                 (function (chapterNumber) {
 
@@ -627,6 +652,7 @@ const UIManager = {
 
                 var verseNumberElement = document.createElement("div");
                 verseNumberElement.classList.add("verseNumberElement");
+                verseNumberElement.classList.add("numberElement");
                 verseNumberElement.textContent = (i + 1);
                 (function (verseNumber) {
 
@@ -698,6 +724,141 @@ const UIManager = {
         }
 
     },
+    
+    chapterDisplayScreen: {
+        
+        populateAndShowChapterDisplayScreen: function (reference) {
+            
+            //Clear current content of the screen
+            while (UIReferences.chapterDisplayScreenContent.firstChild) {
+                UIReferences.chapterDisplayScreenContent.removeChild(UIReferences.chapterDisplayScreenContent.firstChild);
+            }
+            
+            UIReferences.chapterDisplayScreenTitle.textContent = scriptureEngine.unabbreviateBookNamesInString(reference);
+            
+            var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+        
+            var book;
+
+            //Loop through all the books in this year's object until a match is found for the abbreviation.
+            var bookAbbreviation = reference.split(" ")[0];
+
+            splitReference = reference.split(" ")[1].split(":");
+
+            for (var i = 0; i < currentYearBooksKeys.length; i++) {
+
+                var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
+                if (currentBook.abbreviation == bookAbbreviation) {
+
+                    book = currentBook;
+                    break;
+
+                }
+
+            }
+
+            //Get the correct chapter (subtract 1 from the chapter number to find the index)
+            var chapter = book.chapters[splitReference[0] - 1];
+
+            var verses = [];
+            var verseCount = 0;
+
+            for (var s = 0; s < chapter.sections.length; s++) {
+
+                var currentSection = chapter.sections[s];
+                
+                //Create a section container element
+                var sectionContainerElement = document.createElement("div");
+                sectionContainerElement.classList.add("sectionContainer");
+                
+                //Create a section title element
+                var sectionTitleElement = document.createElement("h2");
+                sectionTitleElement.classList.add("title");
+                sectionTitleElement.textContent = currentSection.title;
+                
+                //Create a verse container element
+                var sectionVersesContainerElement = document.createElement("ol");
+                sectionVersesContainerElement.classList.add("sectionVersesContainer");
+                sectionVersesContainerElement.start = verseCount + 1;
+                
+                sectionContainerElement.appendChild(sectionTitleElement);
+                sectionContainerElement.appendChild(sectionVersesContainerElement);
+
+                //Loop through each verse
+                for (var v = 0; v < currentSection.verses.length; v++) {
+                    
+                    verseCount++;
+                    
+                    var currentVerse = currentSection.verses[v];
+                    var currentVerseReference = reference + ":" + verseCount;
+                    
+                    var currentVerseElement = document.createElement("li");
+                    currentVerseElement.classList.add("verse");
+                    currentVerseElement.textContent = currentVerse;
+                    
+                    var memoryVerseStatus = scriptureEngine.getMemoryVerseStatusByReference(currentVerseReference);
+                    if (memoryVerseStatus.match) {
+                        
+                        currentVerseElement.classList.add("memory");
+                        
+                        if (memoryVerseStatus.startVerse === currentVerseReference) {
+                            
+                            //Get the prejump
+                            var verseType = (memoryVerseStatus.type == "single") ? "singles" : "multiples";
+                            var prejump = scriptureEngine.currentYearObject.prejumps[verseType][memoryVerseStatus.memoryIndex];
+
+                            //Create a new element for the prejump
+                            var prejumpElement = document.createElement("span");
+                            prejumpElement.classList.add("prejump");
+                            prejumpElement.textContent = prejump;
+                            
+                            var textNode = document.createTextNode(currentVerse.slice(prejump.length));
+                            
+                            currentVerseElement.textContent = "";
+                            currentVerseElement.appendChild(prejumpElement);
+                            currentVerseElement.appendChild(textNode);
+                            
+                        }
+                        
+                    }
+                    
+                    (function (referenceString) {
+                        
+                        currentVerseElement.onclick = function () {
+                            UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(referenceString);
+                        }
+                        
+                    })(currentVerseReference)
+                    
+                    sectionVersesContainerElement.appendChild(currentVerseElement);
+                    
+                }
+                
+                UIReferences.chapterDisplayScreenContent.appendChild(sectionContainerElement);
+
+            }
+            
+            UIManager.show(UIReferences.chapterDisplayScreen, 200);
+            
+        },
+        
+        closeChapterDisplayScreen: function (preserveScreenHeirarchy) {
+            
+            if (preserveScreenHeirarchy) {
+
+                UIManager.hide(UIReferences.chapterDisplayScreen, 200);
+
+            } else {
+
+                UIManager.hide(UIReferences.chapterSelectionScreen, 200);
+                UIManager.hide(UIReferences.verseSelectionScreen, 200);
+                UIManager.hide(UIReferences.chapterDisplayScreen, 200);
+
+            }
+            
+        }
+        
+    },
 
     verseDisplayScreen: {
         
@@ -753,6 +914,8 @@ const UIManager = {
                     UIReferences.slidePanelFootnotes.style.opacity = 0;
                     UIReferences.verseDisplayScreenTitle.style.opacity = 0;
                     UIReferences.verseDisplayScreenSubtitle.style.opacity = 0;
+                    UIReferences.verseDisplayScreenMiniTitle.style.opacity = 0;
+                    UIReferences.verseDisplayScreenMiniSubtitle.style.opacity = 0;
                     
                     if (backwards && verseDisplayIsUp) {
                         UIReferences.verseDisplay.style.transform = transformProperties.upRight;
@@ -828,6 +991,8 @@ const UIManager = {
                                     //Animate the slide panel screens and verse information back in
                                     UIReferences.verseDisplayScreenTitle.removeAttribute("style");
                                     UIReferences.verseDisplayScreenSubtitle.removeAttribute("style");
+                                    UIReferences.verseDisplayScreenMiniTitle.removeAttribute("style");
+                                    UIReferences.verseDisplayScreenMiniSubtitle.removeAttribute("style");
                                     UIReferences.slidePanelPossibleQuestions.removeAttribute("style");
                                     UIReferences.slidePanelPronounClarification.removeAttribute("style");
                                     UIReferences.slidePanelFootnotes.removeAttribute("style");
@@ -1462,7 +1627,12 @@ const UIManager = {
             
             //Get the distance from the top of the screen to the bottom of the verseDisplay
             var boundingBox = UIReferences.verseDisplay.getBoundingClientRect();
-            var distance = ((boundingBox.bottom - boundingBox.top) + 130);
+            
+            if (window.matchMedia("only screen and (max-width: 695px)").matches) {
+                var distance = ((boundingBox.bottom - boundingBox.top) + 190);
+            } else {
+                var distance = ((boundingBox.bottom - boundingBox.top) + 140);
+            }
 
             //Set the top of the sliding panel
             UIReferences.slidePanel.style.top = (distance + "px");

@@ -105,28 +105,6 @@
     
 }
 
-.settingsScreen .titleContainer {
-    
-    display: inline-block;
-    cursor: pointer;
-
-}
-
-.settingsScreen .titleContainer img {
-
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0 10px 0;
-    
-}
-
-.settingsScreen .titleContainer h1.label {
-    
-    display: inline-block;
-    margin-left: 5px;
-    
-}
-
 .settingsScreen .section {
     
     background: var(--content-background-color);
@@ -321,31 +299,15 @@
 }
 
 .searchModeSelectionScreen .titleContainer {
-    
-    display: inline-block;
-    cursor: pointer;
-
-}
-
-.searchModeSelectionScreen .titleContainer img {
 
     display: inline-block;
-    vertical-align: middle;
-    margin: 0 0 10px 0;
-    
-}
-
-.searchModeSelectionScreen .titleContainer h1.label {
-    
-    display: inline-block;
-    margin-left: 5px;
     
 }
 
 .searchModeSelectionScreen select {
     
     background: var(--content-background-color);
-    color: black;
+    color: var(--primary-text-color);
     padding: 7px 7px 7px 14px;
     vertical-align: top;
     box-shadow: none;
@@ -558,35 +520,18 @@
     
 }
 
-.chapterSelectionScreen .titleContainer {
-    
-    cursor: pointer;
-
-}
-
-.chapterSelectionScreen .titleContainer img {
-
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0 10px 0;
-    
-}
-
-.chapterSelectionScreen .titleContainer h1.title {
-    
-    display: inline-block;
-    margin-left: 5px;
-    
-}
-
-.chapterSelectionScreen .chapterNumberElementsContainer {
+.selectionScreen .numberElementsContainer {
     
     margin: auto;
-    width: 385px;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
     
 }
 
-.chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement {
+.selectionScreen .numberElementsContainer .numberElement {
     
     background: var(--content-background-color);
     width: 50px;
@@ -598,79 +543,86 @@
     font-weight: bold;
     font-size: 20px;
     cursor: pointer;
-    display: inline-block;
     
     transition: opacity 0.1s ease;
     
 }
 
-.chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement:nth-of-type(5n+5) {
-
-    margin-right: 0;
-    
-}
-
-.chapterSelectionScreen .chapterNumberElementsContainer .chapterNumberElement:active {
+.selectionScreen .numberElementsContainer .numberElement:active {
     
     opacity: 0.5;
     
 }
 
-.verseSelectionScreen .titleContainer {
+.verseSelectionScreen .viewChapterButton {
     
-    cursor: pointer;
-
-}
-
-.verseSelectionScreen .titleContainer img {
-
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0 10px 0;
-    
-}
-
-.verseSelectionScreen .titleContainer h1.title {
-    
-    display: inline-block;
-    margin-left: 5px;
-    
-}
-
-.verseSelectionScreen .verseNumberElementsContainer {
-    
-    margin: auto;
-    width: 385px;
-    
-}
-
-.verseSelectionScreen .verseNumberElementsContainer .verseNumberElement {
-    
-    background: var(--content-background-color);
-    width: 50px;
+    width: 370px;
     height: 50px;
-    margin: 15px;
     border-radius: 15px;
+    margin: auto;
     text-align: center;
     line-height: 50px;
+    margin-bottom: 15px;
     font-weight: bold;
-    font-size: 20px;
+    background: var(--content-background-color);
     cursor: pointer;
-    display: inline-block;
     
     transition: opacity 0.1s ease;
     
 }
 
-.verseSelectionScreen .verseNumberElementsContainer .verseNumberElement:nth-of-type(5n+5) {
+.verseSelectionScreen .viewChapterButton:active {
 
-    margin-right: 0;
+    opacity: 0.5;
     
 }
 
-.verseSelectionScreen .verseNumberElementsContainer .verseNumberElement:active {
+.chapterDisplayScreen .content {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     
-    opacity: 0.5;
+}
+
+.chapterDisplayScreen .content .sectionContainer {
+    
+    margin-bottom: 20px;
+    max-width: 500px;
+    word-spacing: 1px;
+    
+}
+
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer {
+
+    list-style-position: outside;
+    
+}
+
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse {
+
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 5px;
+    line-height: 22px;
+    
+}
+
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse .prejump {
+
+    border-bottom: 2px solid var(--memory-element-color);
+    
+}
+
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse::marker {
+
+    font-weight: bold;
+    
+}
+
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse.memory::marker {
+    
+    color: var(--memory-element-color);
     
 }
 
@@ -1138,12 +1090,37 @@
     
 }
 
+.slidePanel .closeButton {
+    
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--secondary-page-background-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 6px;
+    box-sizing: border-box;
+    
+}
+
 .slidePanel .slidePanelScreen {
     
     padding: 20px;
     overflow: scroll;
     
     transition: opacity 0.2s ease;
+    
+}
+
+.slidePanel .slidePanelScreen .title {
+
+    width: calc(100% - 50px);
     
 }
 

@@ -80,7 +80,7 @@
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
                     <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
-                <h1 class="label">Settings</h1>
+                <h1 class="title">Settings</h1>
             </div>
             
             <div class="content">
@@ -96,8 +96,8 @@
                     <p class="label">Instant Search updates search results as you type. Enabling Instant Search may result in impacted performance on slower devices.</p>
                 </div>
                 
-                <div class="section uniqueWordHighlighting">
-                    <p class="title">Unique Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
+                <div class="section rareWordHighlighting">
+                    <p class="title">Rare Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
                     <div class="colorSelector">
                         <input type="color" value="#CF503D" class="picker" data-setting-name="uniqueWordHighlightColor">
                         <p class="label">Unique Words</p>
@@ -151,7 +151,7 @@
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
                     <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
-                <h1 class="label">Find a Verse</h1>
+                <h1 class="title">Find a Verse</h1>
             </div>
 
             <select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
@@ -196,7 +196,7 @@
 
         </div>
 
-        <div class="chapterSelectionScreen screen requireDisplayNone hidden">
+        <div class="chapterSelectionScreen selectionScreen screen requireDisplayNone hidden">
 
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterSelectionScreen()">
                 <picture class="arrow left">
@@ -205,11 +205,11 @@
                 </picture>
                 <h1 class="title">Select a Chapter</h1>
             </div>
-            <div class="chapterNumberElementsContainer"></div>
+            <div class="chapterNumberElementsContainer numberElementsContainer"></div>
 
         </div>
 
-        <div class="verseSelectionScreen screen requireDisplayNone hidden">
+        <div class="verseSelectionScreen selectionScreen screen requireDisplayNone hidden">
 
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeVerseSelectionScreen()">
                 <picture class="arrow left">
@@ -218,8 +218,22 @@
                 </picture>
                 <h1 class="title">Select a Verse</h1>
             </div>
-            <div class="verseNumberElementsContainer"></div>
+            <div class="viewChapterButton" onclick="UIManager.buttonHandlers.viewChapterButton()">View Entire Chapter</div>
+            <div class="verseNumberElementsContainer numberElementsContainer"></div>
 
+        </div>
+        
+        <div class="chapterDisplayScreen screen requireDisplayNone hidden">
+            
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterDisplayScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title"></h1>
+            </div>
+            <div class="content"></div>
+            
         </div>
 
         <div class="verseDisplayScreen screen requireDisplayNone hidden">
@@ -234,14 +248,6 @@
                     <p class="label">Close</p>
                 </div>
                 
-                <div class="miniVerseTitleContainer">
-                   <h1 class="title"></h1>
-                    <h3 class="subtitle">
-                        <span class="tag">Mem.</span>
-                        <span class="text"></span>
-                    </h3>
-               </div>
-                
                 <div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
                     <picture class="arrow left">
                         <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
@@ -249,6 +255,14 @@
                     </picture>
                     <p class="label">Back</p>
                 </div>
+                
+                <div class="miniVerseTitleContainer">
+                   <h1 class="title"></h1>
+                    <h3 class="subtitle">
+                        <span class="tag">Mem.</span>
+                        <span class="text"></span>
+                    </h3>
+               </div>
 
                 <div class="verseTitleContainer">
                     <h1 class="title"></h1>
@@ -288,6 +302,15 @@
             </div>
 
             <div class="slidePanel hidden">
+                
+                <div class="closeButton" onclick="UIManager.buttonHandlers.closeSlidePanel()">
+                    
+                    <picture class="arrow left">
+                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                        <img src="images/icons/BackArrow.svg" width="auto" height="30px">
+                    </picture>
+                    
+                </div>
 
                 <div class="singleWordInformation slidePanelScreen hidden">
 
