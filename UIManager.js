@@ -1093,7 +1093,6 @@ const UIManager = {
             //Disable both neighboring verse buttons
             UIReferences.verseDisplayScreenPreviousVerseButton.setAttribute("disabled", "disabled");
             UIReferences.verseDisplayScreenNextVerseButton.setAttribute("disabled", "disabled");
-            
             UIReferences.verseDisplayScreenPreviousVerseButton.onclick = null;
             UIReferences.verseDisplayScreenNextVerseButton.onclick = null;
 
@@ -1696,5 +1695,19 @@ for (var i = 0; i < checkboxes.length; i++) {
 //Update rare word colors
 UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
 
+//Add event listener to change Web Clip status bar color in Dark Mode
+window.matchMedia("(prefers-color-scheme: dark)").addListener(function (e) {
+    
+    var metaElement = document.querySelector("meta[name=\"apple-mobile-web-app-status-bar-style\"");
+    
+    if (e.matches) {
+        metaElement.setAttribute("content", "black");
+    } else {
+        metaElement.setAttribute("content", "default");
+    }
+    
+});
+
+//Perform UI setup
 UIManager.searchByReference.populateSearchByReferenceContainer();
 UIManager.setBookSelector(storageManager.get("quizCycleYear"));

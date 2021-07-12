@@ -93,8 +93,15 @@
         justify-content: flex-start;
         align-items: center;
         margin: 0;
+        font-size: 18px;
         
         transition: all 0.2s ease;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle.hidden {
+    
+        display: none;
         
     }
     
@@ -102,9 +109,9 @@
 
         color: var(--memory-element-color);
         border: 3px solid var(--memory-element-color);
-        padding: 2px 5px;
+        padding: 1px 3px;
         border-radius: 5px;
-        margin-right: 5px;
+        margin-right: 3px;
         font-size: 90%;
 
     }
