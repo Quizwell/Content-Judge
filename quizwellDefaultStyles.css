@@ -35,9 +35,17 @@
     --purple-color: #7E73CE;
     --orange-color: #CF503D;
     
+    --blue-color-dark: #74BBBD;
+    --purple-color-dark: #7E74CF;
+    --orange-color-dark: #D88041;
+    
     --unique-word-highlight-color: var(--orange-color);
     --double-word-highlight-color: var(--blue-color);
     --triple-word-highlight-color: var(--purple-color);
+    
+    --unique-word-highlight-color-dark: #D88041;
+    --double-word-highlight-color-dark: #74BBBD;
+    --triple-word-highlight-color-dark: #7E74CF;
 
 }
 
@@ -69,20 +77,10 @@
         /* Content Judge only */
         --memory-element-color: #509F4C;
         
-        --blue-color: #74BBBD;
-        --purple-color: #7E74CF;
-        --orange-color: #D88041;
+        --unique-word-highlight-color: var(--unique-word-highlight-color-dark) !important;
+        --double-word-highlight-color: var(--double-word-highlight-color-dark) !important;
+        --triple-word-highlight-color: var(--triple-word-highlight-color-dark) !important;
         
-    }
-}
-
-/*
-// Prevent animations from occuring when the user has Reduce Motion enabled
-*/
-@media (prefers-reduced-motion) {
-    * {
-        animation: none !important;
-        transition: none !important;
     }
 }
 
@@ -136,6 +134,8 @@ body {
     
     -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
     
 }
 

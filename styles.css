@@ -8,10 +8,10 @@
     
     width: 100%;
     height: 40%;
+    position: relative;
     background: linear-gradient(70deg, #74BCBD 0%, #436F9E 20%, #836AC8 40%, #7D76D1 60%, #D88243 80%, #CF4F3D 100%);
     background-size: 200% 100%;
-    animation: gradient 18s ease infinite;
-    
+    animation: gradient 18s ease infinite;    
 }
 
 @keyframes gradient {
@@ -24,12 +24,56 @@
     
     position: absolute;
     left: 50%;
-    top: 20%;
+    top: 50%;
     transform: translate(-50%, -50%);
+    transition: opacity 1.5s ease;
     
     border-radius: 20px;
     box-shadow: 0 0 10px var(--dark-shadow-color);
     
+}
+
+.welcomeScreen .headerBlock .easterEggText {
+    
+    position: absolute;
+    top: 50%;
+    width: 200px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--accent-color-text-color);
+    opacity: 0;
+        
+}
+
+.welcomeScreen .headerBlock.easterEgg .easterEggText {
+
+    animation: floatAcross 10s linear;
+    
+}
+
+.welcomeScreen .headerBlock.easterEgg img {
+
+    opacity: 0;
+    
+}
+
+@keyframes floatAcross {
+    0% {
+        left: 120%;
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        left: -20%;
+        opacity: 0;
+    }
 }
 
 .welcomeScreen .textBlock {
@@ -138,6 +182,13 @@
     
 }
 
+.settingsScreen .section > .label {
+    
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    
+}
+
 .settingsScreen .toggle {
     
     margin-bottom: 10px;
@@ -211,12 +262,19 @@
 .settingsScreen .colorSelector .label {
 
     display: inline-block;
+    margin-bottom: 3px;
     
 }
 
 .settingsScreen .content > .label {
     
     width: 500px;
+    
+}
+
+.settingsScreen .section > p:last-child {
+    
+    margin-bottom: 0;
     
 }
 

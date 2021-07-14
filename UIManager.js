@@ -3,7 +3,11 @@ const UIReferences = {
     mainScreen: document.querySelector(".mainScreen"),
 
     welcomeScreen: document.querySelector(".welcomeScreen"),
+    welcomeScreenHeader: document.querySelector(".welcomeScreen .headerBlock"),
+    
     addWebClipScreen: document.querySelector(".addWebClipScreen"),
+    
+    flyswatterScreen: document.querySelector(".flyswatterScreen"),
     
     settingsScreen: document.querySelector(".settingsScreen"),
 
@@ -129,11 +133,16 @@ const UIManager = {
 
     buttonHandlers: {
 
-        flyswatterButton: function () {
+        welcomeScreenEasterEgg: function() {
 
-            var mailtoURL = "mailto:quizwell@icloud.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
-            
-            window.open(mailtoURL, "_blank") || window.location.replace(mailtoURL);
+            easterEggClickCount++;
+
+            if (easterEggClickCount === 10) {
+
+                alert("*goat noise*");
+                easterEggClickCount = 0;
+
+            }
 
         },
 
@@ -156,6 +165,17 @@ const UIManager = {
         hideAddWebClipScreen: function () {
 
             UIManager.show(UIReferences.searchModeSelectionScreen, 200);
+
+        },
+        
+        showFlyswatterScreen: function () {
+            
+            UIManager.show(UIReferences.flyswatterScreen, 200);
+
+        },
+        closeFlyswatterScreen: function () {
+            
+            UIManager.hide(UIReferences.flyswatterScreen, 200);
 
         },
         
@@ -408,6 +428,28 @@ const UIManager = {
 
     },
     
+    welcomeScreen: {
+        
+        easterEgg: function () {
+            
+            easterEggClickCount++;
+            
+            if (easterEggClickCount === 10) {
+                
+                easterEggClickCount = 0;
+            
+                UIReferences.welcomeScreenHeader.classList.add("easterEgg");
+
+                setTimeout(function () {
+                    UIReferences.welcomeScreenHeader.classList.remove("easterEgg");
+                }, 10000)
+                
+            }
+            
+        }
+        
+    },
+    
     settingsScreen: {
         
         populateAndShowSettingsScreen: function () {
@@ -486,6 +528,10 @@ const UIManager = {
                 document.documentElement.style.setProperty("--double-word-highlight-color", storageManager.get("doubleWordHighlightColor"));
                 document.documentElement.style.setProperty("--triple-word-highlight-color", storageManager.get("tripleWordHighlightColor"));
                 
+                document.documentElement.style.setProperty("--unique-word-highlight-color-dark", storageManager.get("uniqueWordHighlightColorDark"));
+                document.documentElement.style.setProperty("--double-word-highlight-color-dark", storageManager.get("doubleWordHighlightColorDark"));
+                document.documentElement.style.setProperty("--triple-word-highlight-color-dark", storageManager.get("tripleWordHighlightColorDark"));
+                
             }
             
         },
@@ -499,6 +545,10 @@ const UIManager = {
                 storageManager.set("uniqueWordHighlightColor", computedStyle.getPropertyValue("--orange-color").trim());
                 storageManager.set("doubleWordHighlightColor", computedStyle.getPropertyValue("--blue-color").trim());
                 storageManager.set("tripleWordHighlightColor", computedStyle.getPropertyValue("--purple-color").trim());
+                
+                storageManager.set("uniqueWordHighlightColorDark", computedStyle.getPropertyValue("--orange-color-dark").trim());
+                storageManager.set("doubleWordHighlightColorDark", computedStyle.getPropertyValue("--blue-color-dark").trim());
+                storageManager.set("tripleWordHighlightColorDark", computedStyle.getPropertyValue("--purple-color-dark").trim());
                 
                 UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
                 UIManager.settingsScreen.populateAndShowSettingsScreen();
@@ -1199,6 +1249,8 @@ const UIManager = {
             //If the verse is a memory verse, indicate so and hightlight the prejump. Otherwise hide the memory verse indicator.
             var memoryVerseStatus = scriptureEngine.getMemoryVerseStatusByReference(referenceString);
             if (memoryVerseStatus.match) {
+                
+                //The verse is part of a memory verse
 
                 //Show memory indicator
                 UIReferences.verseDisplayScreenSubtitleText.textContent = memoryVerseStatus.reference;
@@ -1206,16 +1258,21 @@ const UIManager = {
                 UIManager.show(UIReferences.verseDisplayScreenSubtitle);
                 UIManager.show(UIReferences.verseDisplayScreenMiniSubtitle);
 
-                //Get the prejump
-                var verseType = (memoryVerseStatus.type == "single") ? "singles" : "multiples";
-                var prejump = scriptureEngine.currentYearObject.prejumps[verseType][memoryVerseStatus.memoryIndex];
+                //Show the prejump only if this is the first verse of the memory verse
+                if (memoryVerseStatus.startVerse == referenceString) {
+                    
+                    //Get the prejump
+                    var verseType = (memoryVerseStatus.type == "single") ? "singles" : "multiples";
+                    var prejump = scriptureEngine.currentYearObject.prejumps[verseType][memoryVerseStatus.memoryIndex];
 
-                //Split prejump into words
-                prejump = prejump.split(" ");
-                for (var i = 0; i < prejump.length; i++) {
+                    //Split prejump into words
+                    prejump = prejump.split(" ");
+                    for (var i = 0; i < prejump.length; i++) {
 
-                    UIReferences.verseDisplayTextContainer.children[i].classList.add("prejump");
+                        UIReferences.verseDisplayTextContainer.children[i].classList.add("prejump");
 
+                    }
+                    
                 }
 
             } else {
@@ -1678,6 +1735,8 @@ const UIManager = {
 
 }
 
+var easterEggClickCount = 0;
+
 //Set up events for all checkboxes
 var checkboxes = document.querySelectorAll(".checkbox");
 for (var i = 0; i < checkboxes.length; i++) {
@@ -1695,19 +1754,9 @@ for (var i = 0; i < checkboxes.length; i++) {
 //Update rare word colors
 UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
 
-//Add event listener to change Web Clip status bar color in Dark Mode
-window.matchMedia("(prefers-color-scheme: dark)").addListener(function (e) {
-    
-    var metaElement = document.querySelector("meta[name=\"apple-mobile-web-app-status-bar-style\"");
-    
-    if (e.matches) {
-        metaElement.setAttribute("content", "black");
-    } else {
-        metaElement.setAttribute("content", "default");
-    }
-    
-});
-
 //Perform UI setup
+document.querySelector(".settingsScreen .about .version").textContent = "Version " + CONTENT_JUDGE_VERSION;
+document.querySelector(".settingsScreen .about .build").textContent = "Build " + CONTENT_JUDGE_BUILD;
+
 UIManager.searchByReference.populateSearchByReferenceContainer();
 UIManager.setBookSelector(storageManager.get("quizCycleYear"));

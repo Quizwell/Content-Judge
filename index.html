@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body ontouchstart="">
 
     <div class="mainScreen">
 
@@ -41,7 +41,9 @@
         <div class="welcomeScreen screen">
 
             <div class="headerBlock">
-                <img src="images/logos/Logo.png" width="auto" height="100px">
+                <img src="images/logos/Logo.png" width="auto" height="100px" onclick="UIManager.welcomeScreen.easterEgg()">
+                
+                <p class="easterEggText">#RegionalsNotFieldFinals</p>
             </div>
 
             <div class="textBlock">
@@ -56,7 +58,7 @@
 
             <div class="buttonContainer">
                 <button class="start" onclick="UIManager.buttonHandlers.hideWelcomeScreen()">Get Started</button>
-                <button class="flyswatter" onclick="UIManager.buttonHandlers.flyswatterButton()">
+                <button class="flyswatter" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
                     <picture>
                         <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
                         <img src="images/icons/Flyswatter.svg" width="auto" height="40px">
@@ -74,6 +76,25 @@
 
         </div>
         
+        <div class="flyswatterScreen screen requireDisplayNone hidden">
+            
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeFlyswatterScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title">Flyswatter</h1>
+            </div>
+            
+            <div class="question">
+                <h2 class="questionText">What type of problem are you experiencing?</h2>
+                <div class="option">Unexpected Behavior</div>
+                <div class="option">Content Error</div>
+                <div class="option">Feature Suggestion</div>
+            </div>
+            
+        </div>
+        
         <div class="settingsScreen screen requireDisplayNone hidden">
             
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
@@ -85,8 +106,17 @@
             </div>
             
             <div class="content">
+               
+               <div class="section about">
+                   
+                    <p class="title">About</p>
+                    <p class="version"></p>
+                    <p class="build"></p>
+                    
+                </div>
                 
                 <div class="section search">
+                   
                     <p class="title">Search</p>
                     <div class="toggle">
                         <div class="checkbox checked" data-setting-name="useInstantSearch">
@@ -95,10 +125,14 @@
                         <p class="label">Instant Search</p>
                     </div>
                     <p class="label">Instant Search updates search results as you type. Enabling Instant Search may result in impacted performance on slower devices.</p>
+                    
                 </div>
                 
                 <div class="section rareWordHighlighting">
+                   
                     <p class="title">Rare Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
+                    
+                    <p class="label">Light Mode</p>
                     <div class="colorSelector">
                         <input type="color" value="#CF503D" class="picker" data-setting-name="uniqueWordHighlightColor">
                         <p class="label">Unique Words</p>
@@ -111,6 +145,21 @@
                         <input type="color" value="#7E73CE" class="picker" data-setting-name="tripleWordHighlightColor">
                         <p class="label">Triple Words</p>
                     </div>
+                    
+                    <p class="label">Dark Mode</p>
+                    <div class="colorSelector">
+                        <input type="color" value="#D88041" class="picker" data-setting-name="uniqueWordHighlightColorDark">
+                        <p class="label">Unique Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#74BBBD" class="picker" data-setting-name="doubleWordHighlightColorDark">
+                        <p class="label">Double Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E74CF" class="picker" data-setting-name="tripleWordHighlightColorDark">
+                        <p class="label">Triple Words</p>
+                    </div>
+                    
                 </div>
                 
             </div>
@@ -439,6 +488,8 @@
 
     <script src="scriptureEngine.js"></script>
     <script src="UIManager.js"></script>
+    
+    <script src="flyswatter.js"></script>
 
     <script src="onload.js"></script>
 
