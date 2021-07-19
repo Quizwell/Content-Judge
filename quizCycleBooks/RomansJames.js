@@ -1180,26 +1180,26 @@ var RomansJames = {
                             title: "Trials and Temptations",
                             verses: [
 
-                        "Consider it pure joy, my brothers and sisters,[a] whenever you face trials of many kinds, ",
-                        "because you know that the testing of your faith produces perseverance. ",
-                        "Let perseverance finish its work so that you may be mature and complete, not lacking anything. ",
-                        "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. ",
-                        "But when you ask, you must believe and not doubt, because the one who doubts is like a wave of the sea, blown and tossed by the wind. ",
-                        "That person should not expect to receive anything from the Lord. ",
-                        "Such a person is double-minded and unstable in all they do. ",
-                        "Believers in humble circumstances ought to take pride in their high position. ",
-                        "But the rich should take pride in their humiliation-since they will pass away like a wild flower. ",
-                        "For the sun rises with scorching heat and withers the plant; its blossom falls and its beauty is destroyed. In the same way, the rich will fade away even while they go about their business. ",
-                        "Blessed is the one who perseveres under trial because, having stood the test, that person will receive the crown of life that the Lord has promised to those who love him. ",
-                        "When tempted, no one should say, “God is tempting me.” For God cannot be tempted by evil, nor does he tempt anyone; ",
-                        "but each person is tempted when they are dragged away by their own evil desire and enticed. ",
-                        "Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death. ",
-                        "Don’t be deceived, my dear brothers and sisters. ",
-                        "Every good and perfect gift is from above, coming down from the Father of the heavenly lights, who does not change like shifting shadows. ",
-                        "He chose to give us birth through the word of truth, that we might be a kind of firstfruits of all he created. "
+                                "Consider it pure joy, my brothers and sisters,[a] whenever you face trials of many kinds, ",
+                                "because you know that the testing of your faith produces perseverance. ",
+                                "Let perseverance finish its work so that you may be mature and complete, not lacking anything. ",
+                                "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. ",
+                                "But when you ask, you must believe and not doubt, because the one who doubts is like a wave of the sea, blown and tossed by the wind. ",
+                                "That person should not expect to receive anything from the Lord. ",
+                                "Such a person is double-minded and unstable in all they do. ",
+                                "Believers in humble circumstances ought to take pride in their high position. ",
+                                "But the rich should take pride in their humiliation-since they will pass away like a wild flower. ",
+                                "For the sun rises with scorching heat and withers the plant; its blossom falls and its beauty is destroyed. In the same way, the rich will fade away even while they go about their business. ",
+                                "Blessed is the one who perseveres under trial because, having stood the test, that person will receive the crown of life that the Lord has promised to those who love him. ",
+                                "When tempted, no one should say, “God is tempting me.” For God cannot be tempted by evil, nor does he tempt anyone; ",
+                                "but each person is tempted when they are dragged away by their own evil desire and enticed. ",
+                                "Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death. ",
+                                "Don’t be deceived, my dear brothers and sisters. ",
+                                "Every good and perfect gift is from above, coming down from the Father of the heavenly lights, who does not change like shifting shadows. ",
+                                "He chose to give us birth through the word of truth, that we might be a kind of firstfruits of all he created. "
 
-                    ]
-                },
+                            ]
+                        },
                         {
                             title: "Listening and Doing",
                             verses: [

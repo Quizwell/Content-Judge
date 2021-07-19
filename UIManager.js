@@ -104,6 +104,23 @@ const UIManager = {
                 element.classList.add("requireDisplayNone");
             }, transitionTime);
 
+        } else if (transitionTime === null) {
+            
+            element.style.transition = "none";
+            
+            requestAnimationFrame(function () {
+                
+                element.classList.add("requireDisplayNone");
+                element.classList.add("hidden");
+                
+                requestAnimationFrame(function () {
+                    
+                    element.style.removeProperty("transition");
+                    
+                });
+                
+            });
+            
         } else {
 
             element.classList.add("hidden");
@@ -123,6 +140,23 @@ const UIManager = {
                 element.classList.remove("hidden");
             });
 
+        } else if (transitionTime === null) {
+            
+            element.style.transition = "none";
+            
+            requestAnimationFrame(function () {
+                
+                element.classList.add("requireDisplayNone");
+                element.classList.add("hidden");
+                
+                requestAnimationFrame(function () {
+                    
+                    element.style.removeProperty("transition");
+                    
+                });
+                
+            });
+            
         } else {
 
             element.classList.remove("hidden");
@@ -170,12 +204,12 @@ const UIManager = {
         
         showFlyswatterScreen: function () {
             
-            UIManager.show(UIReferences.flyswatterScreen, 200);
+            UIManager.flyswatterScreen.showFlyswatterScreen();
 
         },
         closeFlyswatterScreen: function () {
             
-            UIManager.hide(UIReferences.flyswatterScreen, 200);
+            UIManager.flyswatterScreen.hideFlyswatterScreen();
 
         },
         
@@ -368,10 +402,12 @@ const UIManager = {
             }
 
             if (input == "") {
+                
                 return;
+                
             }
 
-            var contentSearchResults = scriptureEngine.getVersesByContent(input, true);
+            var contentSearchResults = scriptureEngine.getVersesByContent(input, storageManager.get("useAdvancedSearch"));
 
             if (contentSearchResults.length > 0) {
             
@@ -445,6 +481,29 @@ const UIManager = {
                 }, 10000)
                 
             }
+            
+        }
+        
+    },
+    
+    flyswatterScreen: {
+        
+        showFlyswatterScreen: function () {
+            
+            UIManager.show(UIReferences.flyswatterScreen, 200);
+            
+        },
+        
+        closeFlyswatterScreen: function () {
+            
+            UIManager.hide(UIReferences.flyswatterScreen, 200);
+            
+        },
+        
+        selectedOption: function (option) {
+            
+            UIManager.flyswatterScreen.closeFlyswatterScreen();
+            flyswatter.sendBugReport(option);
             
         }
         
@@ -900,8 +959,8 @@ const UIManager = {
 
             } else {
 
-                UIManager.hide(UIReferences.chapterSelectionScreen, 200);
-                UIManager.hide(UIReferences.verseSelectionScreen, 200);
+                UIManager.hide(UIReferences.chapterSelectionScreen, null);
+                UIManager.hide(UIReferences.verseSelectionScreen, null);
                 UIManager.hide(UIReferences.chapterDisplayScreen, 200);
 
             }
@@ -1105,8 +1164,8 @@ const UIManager = {
 
             } else {
 
-                UIManager.hide(UIReferences.chapterSelectionScreen, 200);
-                UIManager.hide(UIReferences.verseSelectionScreen, 200);
+                UIManager.hide(UIReferences.chapterSelectionScreen, null);
+                UIManager.hide(UIReferences.verseSelectionScreen, null);
                 UIManager.hide(UIReferences.verseDisplayScreen, 200);
 
             }
@@ -1755,6 +1814,7 @@ for (var i = 0; i < checkboxes.length; i++) {
 UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
 
 //Perform UI setup
+
 document.querySelector(".settingsScreen .about .version").textContent = "Version " + CONTENT_JUDGE_VERSION;
 document.querySelector(".settingsScreen .about .build").textContent = "Build " + CONTENT_JUDGE_BUILD;
 

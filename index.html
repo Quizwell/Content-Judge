@@ -61,14 +61,14 @@
                 <button class="flyswatter" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
                     <picture>
                         <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/Flyswatter.svg" width="auto" height="40px">
+                        <img src="images/icons/Flyswatter.svg" width="auto" height="35px">
                     </picture>
                     <p class="label">Report a Bug</p>
                 </button>
                 <button class="settings" onclick="UIManager.buttonHandlers.showSettingsScreen()">
                     <picture>
                         <source srcset="images/icons/Settings-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/Settings.svg" width="auto" height="40px">
+                        <img src="images/icons/Settings.svg" width="auto" height="35px">
                     </picture>
                     <p class="label">Settings</p>
                 </button>
@@ -88,9 +88,9 @@
             
             <div class="question">
                 <h2 class="questionText">What type of problem are you experiencing?</h2>
-                <div class="option">Unexpected Behavior</div>
-                <div class="option">Content Error</div>
-                <div class="option">Feature Suggestion</div>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('unexpectedBehavior')">Unexpected Behavior</div>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('contentError')">Content Error</div>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('featureSuggestion')">Feature Suggestion</div>
             </div>
             
         </div>
@@ -125,6 +125,13 @@
                         <p class="label">Instant Search</p>
                     </div>
                     <p class="label">Instant Search updates search results as you type. Enabling Instant Search may result in impacted performance on slower devices.</p>
+                    <div class="toggle">
+                        <div class="checkbox" data-setting-name="useAdvancedSearch">
+                            <div class="check"></div>
+                        </div>
+                        <p class="label">Advanced Search</p>
+                    </div>
+                    <p class="label">Advanced Search allows you to use specially formatted search queries to filter results in multiple ways.</p>
                     
                 </div>
                 
@@ -132,7 +139,7 @@
                    
                     <p class="title">Rare Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
                     
-                    <p class="label">Light Mode</p>
+                    <p class="subsectionTitle">Light Mode</p>
                     <div class="colorSelector">
                         <input type="color" value="#CF503D" class="picker" data-setting-name="uniqueWordHighlightColor">
                         <p class="label">Unique Words</p>
@@ -146,7 +153,7 @@
                         <p class="label">Triple Words</p>
                     </div>
                     
-                    <p class="label">Dark Mode</p>
+                    <p class="subsectionTitle">Dark Mode</p>
                     <div class="colorSelector">
                         <input type="color" value="#D88041" class="picker" data-setting-name="uniqueWordHighlightColorDark">
                         <p class="label">Unique Words</p>
@@ -215,34 +222,38 @@
                 <option value="HP" disabled>Hebrews and 1st &#38; 2nd Peter</option>
             </select>
 
-            <div class="searchBarContainer">
+           <div class="gridContainer">
+           
+                <div class="searchBarContainer">
 
-                <p class="label">Search by Content</p>
+                    <p class="label">Search by Content</p>
 
-                <div class="searchBarWrapper">
+                    <div class="searchBarWrapper">
 
-                    <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" onchange="UIManager.searchBarHandlers.onchange()" placeholder="Type part of a verse...">
+                        <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" onchange="UIManager.searchBarHandlers.onchange()" placeholder="Type part of a verse...">
 
-                    <div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">
+                        <div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">
 
-                        <picture>
-                            <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
-                            <img src="images/icons/Close.svg" width="auto" height="15px">
-                        </picture>
+                            <picture>
+                                <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                                <img src="images/icons/Close.svg" width="auto" height="15px">
+                            </picture>
+
+                        </div>
 
                     </div>
 
                 </div>
 
+                <div class="bookSelectionContainer">
+
+                    <p class="label">Search by Reference</p>
+
+                </div>
+
+                <div class="searchResultsContainer"></div>
+            
             </div>
-
-            <div class="bookSelectionContainer">
-
-                <p class="label">Search by Reference</p>
-
-            </div>
-
-            <div class="searchResultsContainer"></div>
 
         </div>
 

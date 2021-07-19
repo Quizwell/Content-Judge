@@ -258,7 +258,7 @@ button.bottom {
 
 .screen.hidden {
     
-    transform: translate(100px);
+    transform: translate(100px, 0);
     opacity: 0;
     display: block;
     overflow: hidden;

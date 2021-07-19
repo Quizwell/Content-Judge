@@ -12,7 +12,7 @@ var scriptureEngine = {
         var initialVerseReference = splitRangeReference[0];
         var finalVerseReference = baseReference + splitRangeReference[splitRangeReference.length - 1];
         
-        var numberOfVerses = Number(finalVerseReference.split(":")[1]) -Number(initialVerseReference.split(":")[1]) + 1;
+        var numberOfVerses = Number(finalVerseReference.split(":")[1]) - Number(initialVerseReference.split(":")[1]) + 1;
         
         var individualReferences = [];
         for (var i = 0; i < numberOfVerses; i++) {
@@ -152,16 +152,76 @@ var scriptureEngine = {
     
     getVersesByContent: function (query, useAdvancedSearch) {
         
-        var results = [];
-        
-        //Parse advanced search query, if necessary
-        if (useAdvancedSearch) {
+        //Define advanced search functions now for possible use later
+        function parse(input) {
+            var andMatches = input.match(/ &+ /g);
+            var orMatches = input.match(/ \?+ /g);
             
-            var advancedSearchQuery = {}
+            var andLongestLength = 0;
+            var orLongestLength = 0;
+            var andSearchRegex;
+            var orSearchRegex;
             
+            if (andMatches) {
+                andMatches.forEach((item, index) => {
+                    if (item.length > andLongestLength) {andLongestLength = item.length}
+                });
+                andSearchRegex = new RegExp(" " + "&".repeat(andLongestLength - 2) + " ", "g");
+            }
             
+            if (orMatches) {
+                orMatches.forEach((item, index) => {
+                    if (item.length > orLongestLength) {orLongestLength = item.length}
+                });
+                orSearchRegex = new RegExp(" " + "\\?".repeat(orLongestLength - 2) + " ", "g");
+            }
             
+            if (andMatches || orMatches) {
+                if (andLongestLength >= orLongestLength) {
+                    return and(...input.split(andSearchRegex));
+                } else {
+                    return or(...input.split(orSearchRegex));
+                }
+            }
+            
+            return input;
         }
+
+        function and() {
+            for (var i = 0; i < arguments.length; i++) {
+                var currentArgument = parse(arguments[i]);
+                if (typeof currentArgument === "string") {
+                    if (filteredCurrentVerse.indexOf(arguments[i]) === -1) {
+                        return false;
+                    }
+                } else {
+                    if (!currentArgument) {
+                        return false;
+                    }
+                }
+                
+            }
+            return true;
+        }
+
+        function or() {
+            for (var i = 0; i < arguments.length; i++) {
+                var currentArgument = parse(arguments[i]);
+                if (typeof currentArgument === "string") {
+                    if (filteredCurrentVerse.indexOf(arguments[i]) !== -1) {
+                        return true;
+                    }
+                } else {
+                    if (currentArgument) {
+                        return true;
+                    }
+                }
+                
+            }
+            return false;
+        }
+        
+        var results = [];
         
         //If the query contains any references, return those verse as the first results
         var referencesInQuery = scriptureEngine.findReferencesInString(query);
@@ -177,7 +237,7 @@ var scriptureEngine = {
         query = query.replaceAll(/\w+ \d+:\d+(-\d+)?/gi, "");
         
         //If the result of removing all references is an empty string, return the results as they are
-        if (query.trim().length === 0) {
+        if (scriptureEngine.filterVerse(query).length === 0) {
             
             return results;
             
@@ -207,14 +267,36 @@ var scriptureEngine = {
                         var currentVerse = currentSection.verses[v];
                         
                         var filteredCurrentVerse = scriptureEngine.filterVerse(currentVerse, true);
-                        var filteredQuery = scriptureEngine.filterVerse(query, true);
+                        var filteredQuery = scriptureEngine.filterVerse(query, true, true);
                         
                         //Determine whether to use the advanced search algorithm or not
-                        if (!useAdvancedSearch) {
+                        if (
+                            useAdvancedSearch &&
+                            filteredQuery.match(/ [?&]+ /g)
+                        ) {
                             
-                            
+                            if (parse(filteredQuery)) {
+                                
+                                if (verseCountsBySection.length > 0) {
+
+                                    var sumOfSectionVerseCounts = verseCountsBySection.reduce((a, b) => a+b);
+                                    var currentVerseNumber = (sumOfSectionVerseCounts + v + 1);
+
+                                } else {
+
+                                    var currentVerseNumber = (v + 1);
+
+                                }
+                                
+                                results.push({
+                                    reference: (currentBook.abbreviation + " " + (c + 1) + ":" + currentVerseNumber)
+                                });
+                                
+                            }
                             
                         } else {
+                            
+                            filteredQuery = scriptureEngine.filterVerse(filteredQuery, true);
                         
                             //Simply check if the verse contains the search query.
                             if (filteredCurrentVerse.indexOf(filteredQuery) !== -1) {
@@ -280,31 +362,25 @@ var scriptureEngine = {
 
                         //The book name in the reference matches the full book name, so we need to use the abbreviation instead and add it to the Array of results
                         var compositeReference = currentBook.abbreviation + " " + splitReference[1];
-                        
-                        //If there's a hyphen in the reference, split it into individual references
-                        if (compositeReference.indexOf("-") !== -1) {
-                            compositeReference = scriptureEngine.getIndividualReferencesFromRangeReference(compositeReference);
-                            referencesInString = referencesInString.concat(compositeReference);
-                        } else {
-                            referencesInString.push(compositeReference);
-                        }
-                        break;
 
                     } else if (currentReferenceBook.toUpperCase() === currentBook.abbreviation) {
 
                         //The book name in the reference matches the book abbreviation, so we'll add it to the Array of results
                         var compositeReference = currentReferenceBook + " " + splitReference[1];
-                        
-                        //If there's a hyphen in the reference, split it into individual references
-                        if (compositeReference.indexOf("-") !== -1) {
-                            compositeReference = scriptureEngine.getIndividualReferencesFromRangeReference(compositeReference);
-                            referencesInString = referencesInString.concat(compositeReference);
-                        } else {
-                            referencesInString.push(compositeReference);
-                        }
-                        break;
 
                     }
+                    
+                    //If there's a hyphen in the reference, split it into individual references
+                    if (
+                        (compositeReference.indexOf("-") !== -1) &&
+                        (compositeReference.indexOf("-") !== (compositeReference.length - 1))
+                    ) {
+                        compositeReference = scriptureEngine.getIndividualReferencesFromRangeReference(compositeReference);
+                        referencesInString = referencesInString.concat(compositeReference);
+                    } else {
+                        referencesInString.push(compositeReference);
+                    }
+                    break;
 
                 }
 
@@ -770,7 +846,7 @@ var scriptureEngine = {
         
     },
     
-    filterVerse: function (verseText, removeFootnotes) {
+    filterVerse: function (verseText, removeFootnotes, preserveAdvancedSearchCharacters) {
         
         //This function filters all punctuation and extra spacing out of a verse and converts it to lowercase
         
@@ -780,7 +856,11 @@ var scriptureEngine = {
             
         }
         
-        verseText = verseText.replaceAll(/[^\w]/g, "");
+        if (preserveAdvancedSearchCharacters) {
+            verseText = verseText.replaceAll(/[^\w?&! ]/g, "");
+        } else {
+            verseText = verseText.replaceAll(/[^\w ]/g, "");
+        }
         verseText = verseText.replace(/\s\s+/g, ' ');
         verseText = verseText.trim();
         verseText = verseText.toLowerCase();

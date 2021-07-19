@@ -1,8 +1,30 @@
 var flyswatter = {
     
-    sendBugReport: function () {
+    sendBugReport: function (type) {
         
-        var mailtoURL = "mailto:quizwell@icloud.com?subject=Content%20Judge%3A%20Bug%20Report&body=Please%20mention%20as%20much%20as%20possible%20about%20the%20bug%20or%20content%20error%20you%20are%20experiencing%2E";
+        var subject,
+            body;
+        
+        switch (type) {
+                
+            case "unexpectedBehavior":
+                subject = "Flyswatter: Bug Report";
+                body = `Content Judge Version ${CONTENT_JUDGE_VERSION} Build ${CONTENT_JUDGE_BUILD}%0D%0APlease mention as much as possible about the bug you are experiencing below this line.`;
+                break;
+                
+            case "contentError":
+                subject = "Flyswatter: Bug Report";
+                body = `Content Judge Version ${CONTENT_JUDGE_VERSION} Build ${CONTENT_JUDGE_BUILD}%0D%0APlease mention as much as possible about the content error you are experiencing below this line.`;
+                break;
+                
+            case "featureSuggestion":
+                subject = "Flyswatter: Bug Report";
+                body = `Content Judge Version ${CONTENT_JUDGE_VERSION} Build ${CONTENT_JUDGE_BUILD}%0D%0APlease explain what feature you would like added below this line.`;
+                break;
+                
+        }
+        
+        var mailtoURL = "mailto:quizwell@icloud.com?subject=" + subject + "&body=" + body;
 
         window.open(mailtoURL, "_blank") || window.location.replace(mailtoURL);
         
