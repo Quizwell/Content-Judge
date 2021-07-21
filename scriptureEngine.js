@@ -224,17 +224,19 @@ var scriptureEngine = {
         var results = [];
         
         //If the query contains any references, return those verse as the first results
-        var referencesInQuery = scriptureEngine.findReferencesInString(query);
-        for (var r = 0; r < referencesInQuery.length; r++) {
+        if (storageManager.get("useSmartSearch")) {
+            var referencesInQuery = scriptureEngine.findReferencesInString(query);
+            for (var r = 0; r < referencesInQuery.length; r++) {
 
-            results.push({
-                reference: referencesInQuery[r]
-            });
+                results.push({
+                    reference: referencesInQuery[r]
+                });
 
+            }
+            
+            //Remove all references from the string
+            query = query.replaceAll(/\w+ \d+:\d+(-\d+)?/gi, "");
         }
-        
-        //Remove all references from the string
-        query = query.replaceAll(/\w+ \d+:\d+(-\d+)?/gi, "");
         
         //If the result of removing all references is an empty string, return the results as they are
         if (scriptureEngine.filterVerse(query).length === 0) {

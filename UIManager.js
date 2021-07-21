@@ -226,8 +226,14 @@ const UIManager = {
 
         closeSearchModeSelectionScreen: function () {
 
-            UIManager.hide(UIReferences.addWebClipScreen, 200);
+            UIManager.hide(UIReferences.addWebClipScreen, null);
             UIManager.hide(UIReferences.searchModeSelectionScreen, 200);
+            
+            setTimeout(function () {
+                
+                UIManager.searchBarHandlers.clearSearchBar();
+                
+            }, 200);
 
         },
 
@@ -363,6 +369,8 @@ const UIManager = {
     },
 
     searchBarHandlers: {
+        
+        resultsTimer: null,
 
         onfocus: function () {
 
@@ -384,7 +392,21 @@ const UIManager = {
         oninput: function () {
             
             if (storageManager.get("useInstantSearch")) {
+                
                 UIManager.searchBarHandlers.onchange();
+                
+            } else {
+                
+                //After each keystroke, restart the timer.
+                if (UIManager.searchBarHandlers.resultsTimer) {
+                    window.clearTimeout(UIManager.searchBarHandlers.resultsTimer);
+                }
+                
+                UIManager.searchBarHandlers.resultsTimer = window.setTimeout(function () {
+                    UIManager.searchBarHandlers.resultsTimer = null;
+                    UIManager.searchBarHandlers.onchange();
+                }, 500)
+                
             }
             
         },

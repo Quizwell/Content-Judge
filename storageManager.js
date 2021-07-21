@@ -1,5 +1,5 @@
 const CONTENT_JUDGE_VERSION = "0.0.1";
-const CONTENT_JUDGE_BUILD = "CJ-A0015";
+const CONTENT_JUDGE_BUILD = "CJ-B0001";
 
 var storageManager = {
     

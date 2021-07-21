@@ -798,13 +798,6 @@
     
 }
 
-.verseDisplayScreen .headerContainer .button[disabled] {
-
-    opacity: 0.5;
-    cursor: default;
-    
-}
-
 .verseDisplayScreen .headerContainer .button p.label {
 
     width: 100%;

@@ -286,6 +286,13 @@ button.bottom {
     
 }
 
+*[disabled] {
+
+    opacity: 0.5;
+    cursor: default !important;
+    
+}
+
 /* Rotate arrow elements to point in the correct direction */
 .arrow.right img {
     transform: rotate(90deg);

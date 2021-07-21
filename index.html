@@ -41,7 +41,7 @@
         <div class="welcomeScreen screen">
 
             <div class="headerBlock">
-                <img src="images/logos/Logo.png" width="auto" height="100px" onclick="UIManager.welcomeScreen.easterEgg()">
+                <img alt="Content Judge Logo" src="images/logos/Logo.png" width="auto" height="100px" onclick="UIManager.welcomeScreen.easterEgg()">
                 
                 <p class="easterEggText">#RegionalsNotFieldFinals</p>
             </div>
@@ -52,7 +52,7 @@
                 <p>by</p>
                 <picture>
                     <source srcset="images/logos/Quizwell-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/logos/Quizwell.svg" width="auto" height="40px">
+                    <img alt="Quizwell Logo" src="images/logos/Quizwell.svg" width="auto" height="40px">
                 </picture>
             </div>
 
@@ -61,14 +61,14 @@
                 <button class="flyswatter" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
                     <picture>
                         <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/Flyswatter.svg" width="auto" height="35px">
+                        <img alt="" src="images/icons/Flyswatter.svg" width="auto" height="35px">
                     </picture>
                     <p class="label">Report a Bug</p>
                 </button>
                 <button class="settings" onclick="UIManager.buttonHandlers.showSettingsScreen()">
                     <picture>
                         <source srcset="images/icons/Settings-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/Settings.svg" width="auto" height="35px">
+                        <img alt="" src="images/icons/Settings.svg" width="auto" height="35px">
                     </picture>
                     <p class="label">Settings</p>
                 </button>
@@ -81,7 +81,7 @@
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeFlyswatterScreen()">
                 <picture class="arrow left">
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
                 <h1 class="title">Flyswatter</h1>
             </div>
@@ -100,7 +100,7 @@
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
                 <picture class="arrow left">
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
                 <h1 class="title">Settings</h1>
             </div>
@@ -117,14 +117,15 @@
                 
                 <div class="section search">
                    
-                    <p class="title">Search</p>
+                    <p class="title">Search by Content</p>
                     <div class="toggle">
                         <div class="checkbox checked" data-setting-name="useInstantSearch">
                             <div class="check"></div>
                         </div>
-                        <p class="label">Instant Search</p>
+                        <p class="label">Instant Results</p>
                     </div>
-                    <p class="label">Instant Search updates search results as you type. Enabling Instant Search may result in impacted performance on slower devices.</p>
+                    <p class="label">Instant Results updates search results instantly as you type. Enabling Instant Results may result in impacted performance on slower devices.</p>
+                    
                     <div class="toggle">
                         <div class="checkbox" data-setting-name="useAdvancedSearch">
                             <div class="check"></div>
@@ -132,6 +133,14 @@
                         <p class="label">Advanced Search</p>
                     </div>
                     <p class="label">Advanced Search allows you to use specially formatted search queries to filter results in multiple ways.</p>
+                    
+                    <div class="toggle">
+                        <div class="checkbox checked" data-setting-name="useSmartSearch">
+                            <div class="check"></div>
+                        </div>
+                        <p class="label">Smart Search</p>
+                    </div>
+                    <p class="label">Smart Search allows you to find verses by searching for references.</p>
                     
                 </div>
                 
@@ -177,7 +186,7 @@
 
             <div class="header">
 
-                <img src="images/logos/Logo.png">
+                <img alt="Content Judge app icon" src="images/logos/Logo.png">
                 <p>Content Judge</p>
 
             </div>
@@ -186,14 +195,14 @@
             <p class="regularText">You can add Content Judge as an app on your Home Screen. Tap
                 <picture>
                     <source srcset="images/icons/ShareIcon-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/ShareIcon.svg" height="25px" width="auto">
+                    <img alt="Sharrow" src="images/icons/ShareIcon.svg" height="25px" width="auto">
                 </picture>, then tap <span>Add to Home Screen</span>.
             </p>
 
             <p class="iOS15Text">You can add Content Judge as an app on your Home Screen. Tap
                 <picture>
                     <source srcset="images/icons/MoreIconiOS-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/MoreIconiOS.svg" height="25px" width="auto">
+                    <img alt="More" src="images/icons/MoreIconiOS.svg" height="25px" width="auto">
                 </picture>, then tap <span>Add to Home Screen</span>.
             </p>
 
@@ -206,7 +215,7 @@
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSearchModeSelectionScreen()">
                 <picture class="arrow left">
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
                 <h1 class="title">Find a Verse</h1>
             </div>
@@ -236,7 +245,7 @@
 
                             <picture>
                                 <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
-                                <img src="images/icons/Close.svg" width="auto" height="15px">
+                                <img alt="Exit Search" src="images/icons/Close.svg" width="auto" height="15px">
                             </picture>
 
                         </div>
@@ -262,7 +271,7 @@
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterSelectionScreen()">
                 <picture class="arrow left">
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
                 <h1 class="title">Select a Chapter</h1>
             </div>
@@ -275,7 +284,7 @@
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeVerseSelectionScreen()">
                 <picture class="arrow left">
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
                 <h1 class="title">Select a Verse</h1>
             </div>
@@ -289,7 +298,7 @@
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterDisplayScreen()">
                 <picture class="arrow left">
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                    <img src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
                 </picture>
                 <h1 class="title"></h1>
             </div>
@@ -304,7 +313,7 @@
                 <div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
                     <picture>
                         <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/Close.svg" width="auto" height="40px">
+                        <img alt="" src="images/icons/Close.svg" width="auto" height="40px">
                     </picture>
                     <p class="label">Close</p>
                 </div>
@@ -312,7 +321,7 @@
                 <div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
                     <picture class="arrow left">
                         <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/Arrow.svg" width="auto" height="40px">
+                        <img alt="" src="images/icons/Arrow.svg" width="auto" height="40px">
                     </picture>
                     <p class="label">Back</p>
                 </div>
@@ -336,7 +345,7 @@
                 <div class="button verseButton previousVerseButton">
                     <picture>
                         <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/BackArrow.svg" width="auto" height="40px">
+                        <img alt="" src="images/icons/BackArrow.svg" width="auto" height="40px">
                     </picture>
                     <p class="label">Previous</p>
                 </div>
@@ -344,7 +353,7 @@
                 <div class="button verseButton nextVerseButton">
                     <picture>
                         <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/BackArrow.svg" width="auto" height="40px">
+                        <img alt="" src="images/icons/BackArrow.svg" width="auto" height="40px">
                     </picture>
                     <p class="label">Next</p>
                 </div>
@@ -368,7 +377,7 @@
                     
                     <picture class="arrow left">
                         <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img src="images/icons/BackArrow.svg" width="auto" height="30px">
+                        <img alt="Close panel" src="images/icons/BackArrow.svg" width="auto" height="30px">
                     </picture>
                     
                 </div>
@@ -379,7 +388,7 @@
                     <div class="pronounClarification">
                         <picture class="arrow right">
                             <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                            <img src="images/icons/Arrow.svg" width="auto" height="30px">
+                            <img alt="Antecedent is:" src="images/icons/Arrow.svg" width="auto" height="30px">
                         </picture>
                         <p class="antecedent"></p>
                     </div>
@@ -435,18 +444,18 @@
                     <div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
                         <picture>
                             <source srcset="images/icons/MemoryStar-White.svg" media="(prefers-color-scheme: dark)">
-                            <img src="images/icons/MemoryStar.svg" width="auto" height="45px">
+                            <img alt="" src="images/icons/MemoryStar.svg" width="auto" height="45px">
                         </picture>
-                        <img src="images/icons/MemoryStar-White.svg" width="auto" height="45px">
+                        <img alt="" src="images/icons/MemoryStar-White.svg" width="auto" height="45px">
                         <p class="label">Prejump</p>
                     </div>
 
                     <div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
                         <picture>
                             <source srcset="images/icons/RareWords-White.svg" media="(prefers-color-scheme: dark)">
-                            <img src="images/icons/RareWords.svg" width="auto" height="45px">
+                            <img alt="" src="images/icons/RareWords.svg" width="auto" height="45px">
                         </picture>
-                        <img src="images/icons/RareWords-White.svg" width="auto" height="45px">
+                        <img alt="" src="images/icons/RareWords-White.svg" width="auto" height="45px">
                         <p class="label">Rare Words</p>
                     </div>
                     
@@ -459,27 +468,27 @@
                     <div class="toolbarItem possibleQuestionsButton multiLine" onclick="UIManager.buttonHandlers.possibleQuestionsButton()" style="display: none">
                         <picture>
                             <source srcset="images/icons/QuestionMark-White.svg" media="(prefers-color-scheme: dark)">
-                            <img src="images/icons/QuestionMark.svg" width="auto" height="45px">
+                            <img alt="" src="images/icons/QuestionMark.svg" width="auto" height="45px">
                         </picture>
-                        <img src="images/icons/QuestionMark-White.svg" width="auto" height="45px">
+                        <img alt="" src="images/icons/QuestionMark-White.svg" width="auto" height="45px">
                         <p class="label">Possible Questions</p>
                     </div>
 
                     <div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
                         <picture>
                             <source srcset="images/icons/PronounClarification-White.svg" media="(prefers-color-scheme: dark)">
-                            <img src="images/icons/PronounClarification.svg" width="auto" height="45px">
+                            <img alt="" src="images/icons/PronounClarification.svg" width="auto" height="45px">
                         </picture>
-                        <img src="images/icons/PronounClarification-White.svg" width="auto" height="45px">
+                        <img alt="" src="images/icons/PronounClarification-White.svg" width="auto" height="45px">
                         <p class="label">Pronoun Clarification</p>
                     </div>
 
                     <div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
                         <picture>
                             <source srcset="images/icons/Footnotes-White.svg" media="(prefers-color-scheme: dark)">
-                            <img src="images/icons/Footnotes.svg" width="auto" height="45px">
+                            <img alt="" src="images/icons/Footnotes.svg" width="auto" height="45px">
                         </picture>
-                        <img src="images/icons/Footnotes-White.svg" width="auto" height="45px">
+                        <img alt="" src="images/icons/Footnotes-White.svg" width="auto" height="45px">
                         <p class="label">Footnotes</p>
                     </div>
 
