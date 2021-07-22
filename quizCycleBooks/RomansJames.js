@@ -701,43 +701,58 @@ var RomansJames = {
                             title: "Paul's Anguish Over Israel",
                             verses: [
 
-                        "I speak the truth in Christ - I am not lying, my conscience confirms it through the Holy Spirit - ",
-                        "I have great sorrow and unceasing anguish in my heart. ",
-                        "For I could wish that I myself were cursed and cut off from Christ for the sake of my people, those of my own race, ",
-                        "the people of Israel. Theirs is the adoption to sonship; theirs the divine glory, the covenants, the receiving of the law, the temple worship and the promises. ",
-                        "Theirs are the patriarchs, and from them is traced the human ancestry of the Messiah, who is God over all, forever praised![a] Amen."
+                                "I speak the truth in Christ - I am not lying, my conscience confirms it through the Holy Spirit - ",
+                                "I have great sorrow and unceasing anguish in my heart. ",
+                                "For I could wish that I myself were cursed and cut off from Christ for the sake of my people, those of my own race, ",
+                                "the people of Israel. Theirs is the adoption to sonship; theirs the divine glory, the covenants, the receiving of the law, the temple worship and the promises. ",
+                                "Theirs are the patriarchs, and from them is traced the human ancestry of the Messiah, who is God over all, forever praised![a] Amen."
 
-                    ]
-                },
+                            ]
+                        },
                         {
                             title: "God's Sovereign Choice",
                             verses: [
 
-                        "It is not as though God’s word had failed. For not all who are descended from Israel are Israel. ",
-                        "Nor because they are his descendants are they all Abraham’s children. On the contrary, “It is through Isaac that your offspring will be reckoned.”[b] ",
-                        "In other words, it is not the children by physical descent who are God’s children, but it is the children of the promise who are regarded as Abraham’s offspring. ",
-                        "For this was how the promise was stated: “At the appointed time I will return, and Sarah will have a son.”[c]",
-                        "Not only that, but Rebekah’s children were conceived at the same time by our father Isaac. ",
-                        "Yet, before the twins were born or had done anything good or bad - in order that God’s purpose in election might stand: ",
-                        "not by works but by him who calls - she was told, “The older will serve the younger.”[d] ",
-                        "Just as it is written: “Jacob I loved, but Esau I hated.”[e]",
-                        "What then shall we say? Is God unjust? Not at all! ",
-                        "For he says to Moses, “I will have mercy on whom I have mercy, and I will have compassion on whom I have compassion.”[f] ",
-                        "It does not, therefore, depend on human desire or effort, but on God’s mercy. ",
-                        "For Scripture says to Pharaoh: “I raised you up for this very purpose, that I might display my power in you and that my name might be proclaimed in all the earth.”[g] ",
-                        "Therefore God has mercy on whom he wants to have mercy, and he hardens whom he wants to harden. ",
-                        "One of you will say to me: “Then why does God still blame us? For who is able to resist his will?” ",
-                        "But who are you, a human being, to talk back to God? “Shall what is formed say to the one who formed it, ‘Why did you make me like this?’”[h] ",
-                        "Does not the potter have the right to make out of the same lump of clay some pottery for special purposes and some for common use? ",
-                        "What if God, although choosing to show his wrath and make his power known, bore with great patience the objects of his wrath-prepared for destruction? ",
-                        "What if he did this to make the riches of his glory known to the objects of his mercy, whom he prepared in advance for glory - ",
-                        "even us, whom he also called, not only from the Jews but also from the Gentiles? ",
-                        "As he says in Hosea: “I will call them ‘my people’ who are not my people; and I will call her ‘my loved one’ who is not my loved one,”[i]"
+                                "It is not as though God’s word had failed. For not all who are descended from Israel are Israel. ",
+                                "Nor because they are his descendants are they all Abraham’s children. On the contrary, “It is through Isaac that your offspring will be reckoned.”[b] ",
+                                "In other words, it is not the children by physical descent who are God’s children, but it is the children of the promise who are regarded as Abraham’s offspring. ",
+                                "For this was how the promise was stated: “At the appointed time I will return, and Sarah will have a son.”[c]",
+                                "Not only that, but Rebekah’s children were conceived at the same time by our father Isaac. ",
+                                "Yet, before the twins were born or had done anything good or bad - in order that God’s purpose in election might stand: ",
+                                "not by works but by him who calls - she was told, “The older will serve the younger.”[d] ",
+                                "Just as it is written: “Jacob I loved, but Esau I hated.”[e]",
+                                "What then shall we say? Is God unjust? Not at all! ",
+                                "For he says to Moses, “I will have mercy on whom I have mercy, and I will have compassion on whom I have compassion.”[f] ",
+                                "It does not, therefore, depend on human desire or effort, but on God’s mercy. ",
+                                "For Scripture says to Pharaoh: “I raised you up for this very purpose, that I might display my power in you and that my name might be proclaimed in all the earth.”[g] ",
+                                "Therefore God has mercy on whom he wants to have mercy, and he hardens whom he wants to harden. ",
+                                "One of you will say to me: “Then why does God still blame us? For who is able to resist his will?” ",
+                                "But who are you, a human being, to talk back to God? “Shall what is formed say to the one who formed it, ‘Why did you make me like this?’”[h] ",
+                                "Does not the potter have the right to make out of the same lump of clay some pottery for special purposes and some for common use? ",
+                                "What if God, although choosing to show his wrath and make his power known, bore with great patience the objects of his wrath-prepared for destruction? ",
+                                "What if he did this to make the riches of his glory known to the objects of his mercy, whom he prepared in advance for glory - ",
+                                "even us, whom he also called, not only from the Jews but also from the Gentiles? ",
+                                "As he says in Hosea: “I will call them ‘my people’ who are not my people; and I will call her ‘my loved one’ who is not my loved one,”[i] ",
+                                "and, “In the very place where it was said to them, ‘You are not my people,’ there they will be called ‘children of the living God.’”[j] ",
+                                "Isaiah cries out concerning Israel: “Though the number of the Israelites be like the sand by the sea, only the remnant will be saved. ",
+                                "For the Lord will carry out his sentence on earth with speed and finality.”[k] ",
+                                "It is just as Isaiah said previously: “Unless the Lord Almighty had left us descendants, we would have become like Sodom, we would have been like Gomorrah.”[l] ",
 
-                    ]
-                }
+                            ]
+                        },
+                        {
+                            title: "Israel's Unbelief",
+                            verses: [
+                                
+                                "What then shall we say? That the Gentiles, who did not pursue righteousness, have obtained it, a righteousness that is by faith; ",
+                                "but the people of Israel, who pursued the law as the way of righteousness, have not attained their goal. ",
+                                "Why not? Because they pursued it not by faith but as if it were by works. They stumbled over the stumbling stone. ",
+                                "As it is written: “See, I lay in Zion a stone that causes people to stumble and a rock that makes them fall, and the one who believes in him will never be put to shame.”[m] ",
+                                
+                            ]
+                        }
 
-            ],
+                    ],
                     footnotes: {
 
                         a: "Or _Messiah, who is over all. God be forever praised!_ Or _Messiah. God who is over all be forever praised!_",
@@ -749,6 +764,10 @@ var RomansJames = {
                         g: "Exodus 9:16",
                         h: "Isaiah 29:16; 45:9",
                         i: "Hosea 2:23",
+                        j: "Hosea 1:10",
+                        k: "Isaiah 10:22,23",
+                        l: "Isaiah 1:9",
+                        m: "Isaiah 8:14; 28:16",
 
                     },
                 },
@@ -759,32 +778,32 @@ var RomansJames = {
                             title: "God's Sovereign Choice (Continued)",
                             verses: [
 
-                        "Brothers and sisters, my heart’s desire and prayer to God for the Israelites is that they may be saved. ",
-                        "For I can testify about them that they are zealous for God, but their zeal is not based on knowledge. ",
-                        "Since they did not know the righteousness of God and sought to establish their own, they did not submit to God’s righteousness. ",
-                        "Christ is the culmination of the law so that there may be righteousness for everyone who believes. ",
-                        "Moses writes this about the righteousness that is by the law: “The person who does these things will live by them.”[a] ",
-                        "But the righteousness that is by faith says: “Do not say in your heart, ‘Who will ascend into heaven?’”[b] (that is, to bring Christ down) ",
-                        "“or ‘Who will descend into the deep?’”[c] (that is, to bring Christ up from the dead). ",
-                        "But what does it say? “The word is near you; it is in your mouth and in your heart,”[d] that is, the message concerning faith that we proclaim: ",
-                        "If you declare with your mouth, “Jesus is Lord,” and believe in your heart that God raised him from the dead, you will be saved. ",
-                        "For it is with your heart that you believe and are justified, and it is with your mouth that you profess your faith and are saved. ",
-                        "As Scripture says, “Anyone who believes in him will never be put to shame.”[e] ",
-                        "For there is no difference between Jew and Gentile - the same Lord is Lord of all and richly blesses all who call on him, ",
-                        "for, “Everyone who calls on the name of the Lord will be saved.”[f] ",
-                        "How, then, can they call on the one they have not believed in? And how can they believe in the one of whom they have not heard? And how can they hear without someone preaching to them? ",
-                        "And how can anyone preach unless they are sent? As it is written: “How beautiful are the feet of those who bring good news!”[g]",
-                        "But not all the Israelites accepted the good news. For Isaiah says, “Lord, who has believed our message?”[h] ",
-                        "Consequently, faith comes from hearing the message, and the message is heard through the word about Christ. ",
-                        "But I ask: Did they not hear? Of course they did: “Their voice has gone out into all the earth, their words to the ends of the world.”[i]",
-                        "Again I ask: Did Israel not understand? First, Moses says, “I will make you envious by those who are not a nation; I will make you angry by a nation that has no understanding.”[j]",
-                        "And Isaiah boldly says, “I was found by those who did not seek me; I revealed myself to those who did not ask for me.”[k]",
-                        "But concerning Israel he says, “All day long I have held out my hands to a disobedient and obstinate people.”[l]"
+                                "Brothers and sisters, my heart’s desire and prayer to God for the Israelites is that they may be saved. ",
+                                "For I can testify about them that they are zealous for God, but their zeal is not based on knowledge. ",
+                                "Since they did not know the righteousness of God and sought to establish their own, they did not submit to God’s righteousness. ",
+                                "Christ is the culmination of the law so that there may be righteousness for everyone who believes. ",
+                                "Moses writes this about the righteousness that is by the law: “The person who does these things will live by them.”[a] ",
+                                "But the righteousness that is by faith says: “Do not say in your heart, ‘Who will ascend into heaven?’”[b] (that is, to bring Christ down) ",
+                                "“or ‘Who will descend into the deep?’”[c] (that is, to bring Christ up from the dead). ",
+                                "But what does it say? “The word is near you; it is in your mouth and in your heart,”[d] that is, the message concerning faith that we proclaim: ",
+                                "If you declare with your mouth, “Jesus is Lord,” and believe in your heart that God raised him from the dead, you will be saved. ",
+                                "For it is with your heart that you believe and are justified, and it is with your mouth that you profess your faith and are saved. ",
+                                "As Scripture says, “Anyone who believes in him will never be put to shame.”[e] ",
+                                "For there is no difference between Jew and Gentile - the same Lord is Lord of all and richly blesses all who call on him, ",
+                                "for, “Everyone who calls on the name of the Lord will be saved.”[f] ",
+                                "How, then, can they call on the one they have not believed in? And how can they believe in the one of whom they have not heard? And how can they hear without someone preaching to them? ",
+                                "And how can anyone preach unless they are sent? As it is written: “How beautiful are the feet of those who bring good news!”[g]",
+                                "But not all the Israelites accepted the good news. For Isaiah says, “Lord, who has believed our message?”[h] ",
+                                "Consequently, faith comes from hearing the message, and the message is heard through the word about Christ. ",
+                                "But I ask: Did they not hear? Of course they did: “Their voice has gone out into all the earth, their words to the ends of the world.”[i]",
+                                "Again I ask: Did Israel not understand? First, Moses says, “I will make you envious by those who are not a nation; I will make you angry by a nation that has no understanding.”[j]",
+                                "And Isaiah boldly says, “I was found by those who did not seek me; I revealed myself to those who did not ask for me.”[k]",
+                                "But concerning Israel he says, “All day long I have held out my hands to a disobedient and obstinate people.”[l]"
 
-                    ]
-                }
+                            ]
+                        }
 
-            ],
+                    ],
                     footnotes: {
 
                         a: "Lev. 18:5",
