@@ -202,7 +202,6 @@ var RomansJames = {
                                         reference: "R 1:20"
                                     },
                                 ],
-                                [],
                                 [
                                     {
                                         pronoun: "They",
@@ -235,38 +234,45 @@ var RomansJames = {
                                 [
                                     {
                                         pronoun: "they",
-                                        antecedent: "men",
+                                        antecedent: "people",
                                         reference: "R 1:27"
                                     },
                                     {
                                         pronoun: "them",
-                                        antecedent: "men",
+                                        antecedent: "people",
                                         reference: "R 1:27"
                                     }
                                 ],
                                 [
                                     {
                                         pronoun: "They",
-                                        antecedent: "men",
-                                        reference: "R 1:27"
-                                    },
-                                    {
-                                        pronoun: "they",
-                                        antecedent: "men",
+                                        antecedent: "people",
                                         reference: "R 1:27"
                                     }
                                 ],
                                 [
                                     {
                                         pronoun: "they",
-                                        antecedent: "men",
+                                        antecedent: "people",
                                         reference: "R 1:27"
                                     },
+                                    {
+                                        pronoun: "their",
+                                        antecedent: "people",
+                                        reference: "R 1:27"
+                                    }
                                 ],
                                 [
                                     {
                                         pronoun: "they",
-                                        antecedent: "men",
+                                        antecedent: "people",
+                                        reference: "R 1:27"
+                                    }
+                                ],
+                                [
+                                    {
+                                        pronoun: "they",
+                                        antecedent: "people",
                                         reference: "R 1:27"
                                     },
                                     {

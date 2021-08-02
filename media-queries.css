@@ -184,7 +184,7 @@
     .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle .tag {
 
         color: var(--memory-element-color);
-        border: 3px solid var(--memory-element-color);
+        border: 2px solid var(--memory-element-color);
         padding: 1px 3px;
         border-radius: 5px;
         margin-right: 3px;
@@ -227,9 +227,15 @@
     .verseDisplayScreen .key {
         
         width: calc(100% - 40px);
-        height: 50px;
+        height: 42px;
         bottom: 120px;
         bottom: calc(env(safe-area-inset-bottom) + 120px);
+        
+    }
+    
+    .verseDisplay {
+    
+        top: calc(50vh + 8px);
         
     }
     
@@ -317,7 +323,7 @@
     
     .verseDisplay {
     
-        top: calc(50% - 5px);
+        top: 50vh;
         
     }
     
@@ -336,7 +342,26 @@
     
     .verseDisplayScreen .headerContainer .miniVerseTitleContainer {
     
-        padding: 10px 15px;
+        padding: 10px;
+        
+    }
+    
+}
+
+@media only screen and (max-width: 400px) {
+    
+    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle .tag {
+    
+        font-size: 70%;
+        padding: 1px 2px;
+        border-width: 2px;
+        
+    }
+    
+    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle .text {
+    
+        font-size: 80%;
+        margin-right: -5px;
         
     }
     

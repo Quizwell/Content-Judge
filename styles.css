@@ -867,7 +867,7 @@
 .verseDisplay {
     
     position: absolute;
-    top: 50%;
+    top: 50vh;
     left: 0;
     padding: 20px;
     box-sizing: border-box;
@@ -1273,6 +1273,13 @@
     font-size: 25px;
     font-weight: bold;
     color: var(--secondary-text-color);
+    
+}
+
+.slidePanel .singleWordInformation .content {
+    
+    font-weight: bold;
+    font-size: 18px;
     
 }
 

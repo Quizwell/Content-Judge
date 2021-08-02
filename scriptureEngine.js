@@ -24,7 +24,7 @@ var scriptureEngine = {
         
         return individualReferences;
         
-    },
+    }, //TODO
     
     getMemoryVerseStatusByReference: function (reference) {
         
@@ -443,7 +443,7 @@ var scriptureEngine = {
                 
         }
         
-    },
+    }, //TODO
     
     returnEarliestReference: function (reference1, reference2) {
         
@@ -538,7 +538,7 @@ var scriptureEngine = {
             
         }
         
-    },
+    }, //TODO
     
     getPronounClarificationsByReference: function (reference) {
         
@@ -600,7 +600,7 @@ var scriptureEngine = {
         
         return pronounClarificationsForVerse;
         
-    },
+    }, //TODO
     
     getFootnotesByReference: function (reference) {
         
@@ -705,7 +705,7 @@ var scriptureEngine = {
             
         }
         
-    },
+    }, //TODO
     
     getYearByAbbreviation: function (abbreviation) {
         
@@ -745,7 +745,7 @@ var scriptureEngine = {
         
         return yearName;
         
-    },
+    }, //TODO
     
     getYearAbbreviationByName: function (name) {
         
@@ -785,7 +785,7 @@ var scriptureEngine = {
         
         return abbreviation;
         
-    },
+    }, //TODO
     
     getVerseCountFromChapter: function (chapterObject) {
         
@@ -845,6 +845,56 @@ var scriptureEngine = {
             }
             
         }
+        
+    },
+    
+    filterReference: function (reference) {
+        
+        var referenceRegex = /\w+ \d+:\d+/gi;
+        var referenceMatches = reference.match(referenceRegex);
+        
+        if (referenceMatches) {
+            
+            var currentReference = referenceMatches[0];
+
+            var splitReference = currentReference.split(" ");
+            var currentReferenceBook = splitReference[0];
+
+            //Capitalize the first letter of the book
+            currentReferenceBook = currentReferenceBook[0].toUpperCase() + currentReferenceBook.slice(1);
+
+            //Loop through every book of the current quiz cycle year.
+            var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+            for (var b = 0; b < currentYearBooksKeys.length; b++) {
+
+                var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[b]];
+
+                if (currentReferenceBook === currentYearBooksKeys[b]) {
+
+                    //The book name in the reference matches the full book name, so we need to use the abbreviation instead and add it to the Array of results
+                    var compositeReference = currentBook.abbreviation + " " + splitReference[1];
+
+                } else if (currentReferenceBook.toUpperCase() === currentBook.abbreviation) {
+
+                    //The book name in the reference matches the book abbreviation, so we'll add it to the Array of results
+                    var compositeReference = currentReferenceBook + " " + splitReference[1];
+
+                }
+
+                if (compositeReference) {
+                    return compositeReference;
+                }
+                
+            }
+            
+        } else {
+            
+            //The string does not contain a reference, so return.
+            return false;
+            
+        }
+        
+        return referencesInString;
         
     },
     
@@ -914,6 +964,240 @@ var scriptureEngine = {
         return string;
         
     }
+    
+}
+
+function Verse(reference) {
+    
+    this.reference = scriptureEngine.filterReference(reference);
+    this.expandedReference = scriptureEngine.unabbreviateBookNamesInString(this.reference);
+    
+    var verseContent;
+    
+    var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+    var book;
+
+    //Loop through all the books in this year's object until a match is found for the abbreviation.
+    var bookAbbreviation = this.reference.split(" ")[0];
+    var splitReferenceNumbers = this.reference.split(" ")[1].split(":");
+    for (var b = 0; b < currentYearBooksKeys.length; b++) {
+
+        var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[b]];
+        if (currentBook.abbreviation == bookAbbreviation) {
+
+            book = currentBook;
+            break;
+
+        }
+
+    }
+
+    //Get the correct chapter (subtract 1 from the chapter number to find the index)
+    var chapterNumber = splitReferenceNumbers[0];
+    var chapter = book.chapters[chapterNumber - 1];
+
+    var verseNumber = splitReferenceNumbers[1];
+    var cumulativeVerseCount = 0;
+    var verseCountsBySection = [];
+    
+    var chapterTotalVerseCount = 0;
+    
+    for (var s = 0; s < chapter.sections.length; s++) {
+    
+        chapterTotalVerseCount += chapter.sections[s].verses.length;
+        
+    }
+
+    for (var s = 0; s < chapter.sections.length; s++) {
+
+        var currentSection = chapter.sections[s];
+        cumulativeVerseCount += currentSection.verses.length;
+        
+        // If the cumulative verse count is greater than our verse number, the verse must be in this section.
+        if (verseNumber <= cumulativeVerseCount) {
+
+            //The verse we need can be found by taking the verse number and subtracting the numbers of verses in the previous sections.
+            for (var ii = 0; ii < verseCountsBySection.length; ii++) {
+
+                verseNumber -= verseCountsBySection[ii];
+
+            }
+
+            //Subtract 1 from the verse number to get the index
+            verseContent = currentSection.verses[verseNumber - 1];
+            
+            var footnotesInVerse = [];
+                
+            //Search the verse for footnote references
+            var startingIndex = 0;
+            while (startingIndex !== null) {
+
+                var index = verseContent.indexOf("[", startingIndex);
+                if (index != -1) {
+
+                    //Set the starting index to be after this footnote reference
+                    startingIndex = (index + 1);
+
+                    var footnoteLetter = verseContent[index + 1];
+                    var footnote = chapter.footnotes[footnoteLetter];
+
+                    footnotesInVerse.push({
+
+                        letter: footnoteLetter,
+                        content: footnote
+
+                    });
+
+                } else {
+                    startingIndex = null;
+                }
+
+            }
+            
+            break;
+
+        }
+
+        verseCountsBySection.push(currentSection.verses.length);
+
+    }
+    
+    this.book = book;
+    this.chapter = chapter;
+    this.section = currentSection;
+    this.verseContent = verseContent;
+    this.footnotes = footnotesInVerse;
+    
+    this.bookLength = this.book.chapters.length;
+    this.chapterLength = chapterTotalVerseCount;
+    
+    this.bookAbbreviation = bookAbbreviation;
+    this.bookName = currentYearBooksKeys[b];
+    this.chapterNumber = chapterNumber;
+    this.sectionIndex = s;
+    this.verseNumber = Number(splitReferenceNumbers[1]);
+    this.sectionVerseIndex = verseNumber - 1;
+    
+    this.memoryVerseStatus = {
+        
+        isMemory: false
+        
+    };
+    
+    //Loop through all single verse memory verses to look for a match
+    for (var i = 0; i < scriptureEngine.currentYearObject.memoryVerses.singles.length; i++) {
+
+        var currentMemoryReference = scriptureEngine.currentYearObject.memoryVerses.singles[i];
+
+        if (this.reference == currentMemoryReference) {
+
+            this.memoryVerseStatus = {
+        
+                isMemory: true,
+                type: "single",
+                memoryReference: currentMemoryReference,
+                memoryIndex: i,
+                startVerse: currentMemoryReference,
+                endVerse: currentMemoryReference
+
+            };
+
+        }
+
+    }
+
+    //Loop through all multiple verse memory verses to look for a match
+    for (var i = 0; i < scriptureEngine.currentYearObject.memoryVerses.multiples.length; i++) {
+
+        var currentMemoryReference = scriptureEngine.currentYearObject.memoryVerses.multiples[i];
+
+        //Split the multiple reference into references for each individual verse in the multiple
+        var multipleVerseReferences = scriptureEngine.getIndividualReferencesFromRangeReference(currentMemoryReference);
+
+        //Loop through each individual verse reference to find a match
+        for (var ii = 0; ii < multipleVerseReferences.length; ii++) {
+
+            var currentIndividualVerseReference = multipleVerseReferences[ii];
+
+            if (this.reference == currentIndividualVerseReference) {
+
+                this.memoryVerseStatus = {
+        
+                    isMemory: true,
+                    type: "multiple",
+                    memoryReference: currentMemoryReference,
+                    memoryIndex: i,
+                    startVerse: multipleVerseReferences[0],
+                    endVerse: multipleVerseReferences[multipleVerseReferences.length + 1]
+
+                };
+
+            }
+
+        }
+
+    }
+    
+}
+
+//Set Verse object methods
+Verse.prototype.toString = function () {
+    return this.reference;
+}
+Verse.prototype.relative = function (relativeInteger) {
+    
+    //If this verse is the first verse of the first chapter or the last verse of the last chapter, stop now.
+    if (
+        ((this.chapterNumber == 1) && (this.verseNumber == 1) && (relativeInteger < 0)) ||
+        ((this.chapterNumber == this.bookLength) && (this.verseNumber == this.chapterLength) && (relativeInteger > 0))
+    ) {
+        
+        return false;
+        
+    }
+    
+    //See if the verse requested exists in the current chapter
+    var newChapterNumber = (this.chapterNumber);
+    var newVerseNumber = (this.verseNumber + relativeInteger);
+    
+    //If the requested verse lies outside of this chapter, move to the correct one
+    if (newVerseNumber <= 0) {
+        
+        var newChapter;
+        var newChapterLength;
+        
+        while (newVerseNumber <= 0) {
+        
+            newChapterNumber--;
+            newChapter = scriptureEngine.currentYearObject.books[this.bookName].chapters[newChapterNumber - 1].sections;
+            newChapterLength = newChapter.reduce(function (accumulator, currentItem) {
+                return accumulator + currentItem.verses.length;
+            }, 0);
+            newVerseNumber += (newChapterLength ?? this.chapterLength);
+        
+        }
+        
+    } else if (newVerseNumber > this.chapterLength) {
+        
+        var newChapter;
+        var newChapterLength;
+        
+        while (newVerseNumber > (newChapterLength ?? this.chapterLength)) {
+        
+            newVerseNumber -= (newChapterLength ?? this.chapterLength);
+            
+            newChapterNumber++;
+            newChapter = scriptureEngine.currentYearObject.books[this.bookName].chapters[newChapterNumber - 1].sections;
+            newChapterLength = newChapter.reduce(function (accumulator, currentItem) {
+                return accumulator + currentItem.verses.length;
+            }, 0);
+        
+        }
+        
+    }
+    
+    var referenceString = `${this.bookAbbreviation} ${newChapterNumber}:${newVerseNumber}`;
+    return new Verse(referenceString);
     
 }
 
