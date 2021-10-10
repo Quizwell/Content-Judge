@@ -9,18 +9,44 @@
     width: 100%;
     height: 40%;
     position: relative;
-    background: linear-gradient(70deg, #74BCBD 0%, #436F9E 20%, #836AC8 40%, #7D76D1 60%, #D88243 80%, #CF4F3D 100%);
-    background-size: 200% 100%;
-    animation: gradient 18s ease infinite;    
 }
 
-@keyframes gradient {
-    0% { background-position: 0% 50% }
-    50% { background-position: 100% 50% }
-    100% { background-position: 0% 50% }
+.welcomeScreen .headerBlock .background .gradient {
+    
+    width: 100%;
+    height: 100%;
+    
 }
 
-.welcomeScreen .headerBlock img {
+.welcomeScreen .headerBlock .background .gradient.layer1 {
+    
+    background: linear-gradient(110deg, #36b3ba, #8b6bcd);
+    position: absolute;
+    opacity: 0.6;
+    z-index: 1;
+    
+}
+
+.welcomeScreen .headerBlock .background .gradient.layer2 {
+    
+    background: linear-gradient(30deg, #ef6a39, #1d7ca5);
+    position: absolute;
+    mix-blend-mode: hard-light;
+    filter: saturate(1.2);
+    z-index: 2;
+    
+}
+
+.welcomeScreen .headerBlock .content {
+    
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 3;
+    
+}
+
+.welcomeScreen .headerBlock .content img {
     
     position: absolute;
     left: 50%;
@@ -33,27 +59,27 @@
     
 }
 
-.welcomeScreen .headerBlock .easterEggText {
+.welcomeScreen .headerBlock .content .easterEggText {
     
     position: absolute;
     top: 50%;
+    left: calc(-20% - 200px);
     width: 200px;
     text-align: center;
     transform: translate(-50%, -50%);
     font-size: 25px;
     font-weight: bold;
     color: var(--accent-color-text-color);
-    opacity: 0;
         
 }
 
-.welcomeScreen .headerBlock.easterEgg .easterEggText {
+.welcomeScreen .headerBlock.easterEgg .content .easterEggText {
 
     animation: floatAcross 10s linear;
     
 }
 
-.welcomeScreen .headerBlock.easterEgg img {
+.welcomeScreen .headerBlock.easterEgg .content img {
 
     opacity: 0;
     
@@ -61,18 +87,10 @@
 
 @keyframes floatAcross {
     0% {
-        left: 120%;
-        opacity: 0;
-    }
-    25% {
-        opacity: 1;
-    }
-    75% {
-        opacity: 1;
+        left: calc(120% + 200px);
     }
     100% {
-        left: -20%;
-        opacity: 0;
+        left: calc(-20% - 200px);
     }
 }
 
@@ -111,7 +129,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 52px 52px;
-    grid-gap: 15px;
+    gap: 15px;
     overflow: hidden;
     
 }
@@ -567,20 +585,12 @@
     
 }
 
-.searchModeSelectionScreen .bookSelectionContainer {
+.searchModeSelectionScreen .searchByReferenceContainer {
     
     background: var(--content-background-color);
-    
-    padding: 15px;
     border-radius: 15px;
     grid-area: books;
-    
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 15px;
-    grid-auto-rows: 95px;
-    grid-gap: 20px;
+    overflow: auto;
     
     transition:
         opacity 0.5s ease,
@@ -588,15 +598,75 @@
     
 }
 
-.searchModeSelectionScreen .bookSelectionContainer .label {
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer {
     
-    font-weight: bold;
-    font-size: 22px;
-    grid-column: 1 / 3;
+    position: absolute;
+    width: calc(50% - 60px);
+    height: calc(100% - 115px);
+    padding: 15px;
+    border-radius: 15px;
+    background: var(--content-background-color);
+    
+    transition: all 0.2s ease;
     
 }
 
-.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement {
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer.hidden {
+
+    opacity: 0;
+    display: block;
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer {
+
+    cursor: pointer;
+    display: inline;
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer img {
+
+    height: 20px;
+    width: auto;
+    transform: translate(0, 3px);
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer .label {
+
+    display: inline;
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .label {
+    
+    font-weight: bold;
+    font-size: 22px;
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .verseSelectionContainer .viewFullChapterButton {
+    
+    display: inline;
+    font-weight: bold;
+    margin-left: 10px;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .selectionElementContainer {
+    
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 95px;
+    gap: 20px;
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement {
     
     background: var(--page-background-color);
     box-sizing: border-box;
@@ -608,40 +678,47 @@
     transition: opacity 0.1s ease;
     
 }
-
-.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement:nth-child(odd) {
-    
-    margin-right: 0;
-    
-}
-
-.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement:active {
-
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement:active {
      opacity: 0.5;
-    
 }
-
-.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement .icon {
-
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement .icon {
     margin-bottom: 5px;
-    
 }
-
-.searchModeSelectionScreen .bookSelectionContainer .bookSelectionElement .label {
-
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement .label {
     margin-bottom: 0;
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer {
+    
+    margin-top: 20px;
+    padding: 0 10px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(5, 50px);
+    grid-auto-rows: 50px;
+    gap: 10px;
     
 }
 
-.selectionScreen .numberElementsContainer {
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement {
+
+    background: var(--page-background-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
     
-    margin: auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-auto-columns: 50px;
-    grid-gap: 15px;
-    justify-content: center;
+    transition: opacity 0.1s ease;
+    
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement:active {
+
+    opacity: 0.5;
     
 }
 
@@ -690,6 +767,7 @@
 
 .chapterDisplayScreen .content {
 
+    margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -718,6 +796,7 @@
     font-size: 18px;
     margin-bottom: 5px;
     line-height: 22px;
+    word-spacing: normal;
     
 }
 

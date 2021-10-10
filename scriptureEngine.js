@@ -186,12 +186,26 @@ var scriptureEngine = {
             
             return input;
         }
+        
+        function checkVerseFor(string) {
+            
+            if (filteredCurrentVerse.indexOf(string) === -1) {
+                
+                return false;
+                
+            } else {
+                
+                return true;
+                
+            }
+            
+        }
 
         function and() {
             for (var i = 0; i < arguments.length; i++) {
                 var currentArgument = parse(arguments[i]);
                 if (typeof currentArgument === "string") {
-                    if (filteredCurrentVerse.indexOf(arguments[i]) === -1) {
+                    if (!checkVerseFor(currentArgument)) {
                         return false;
                     }
                 } else {
@@ -208,7 +222,7 @@ var scriptureEngine = {
             for (var i = 0; i < arguments.length; i++) {
                 var currentArgument = parse(arguments[i]);
                 if (typeof currentArgument === "string") {
-                    if (filteredCurrentVerse.indexOf(arguments[i]) !== -1) {
+                    if (checkVerseFor(currentArgument)) {
                         return true;
                     }
                 } else {
@@ -238,7 +252,18 @@ var scriptureEngine = {
             query = query.replaceAll(/\w+ \d+:\d+(-\d+)?/gi, "");
         }
         
-        //If the result of removing all references is an empty string, return the results as they are
+        //Find all the global NOT flags in the query string. Save them, and then remove them.
+        var globalNotRegex = /(^|\s)!\w+/g;
+        var globalNotMatches = query.match(globalNotRegex);
+        if (globalNotMatches) {
+            query = query.replaceAll(globalNotRegex, "");
+            
+            globalNotMatches.forEach((item, index, array) => {
+                array[index] = item.substring(item.indexOf("!") + 1);
+            });
+        }
+        
+        //If the result of the previous filters is an empty string, return the results as they are
         if (scriptureEngine.filterVerse(query).length === 0) {
             
             return results;
@@ -264,7 +289,7 @@ var scriptureEngine = {
                     var currentSection = currentChapter.sections[s];
                     
                     //Loop through every verse
-                    for (var v = 0; v < currentSection.verses.length; v++) {
+                    verseLoop: for (var v = 0; v < currentSection.verses.length; v++) {
                         
                         var currentVerse = currentSection.verses[v];
                         
@@ -274,8 +299,17 @@ var scriptureEngine = {
                         //Determine whether to use the advanced search algorithm or not
                         if (
                             useAdvancedSearch &&
-                            filteredQuery.match(/ [?&]+ /g)
+                            filteredQuery.match(/( [?&]+ |!)/g)
                         ) {
+                            
+                            //Loop through each global NOT item. If there are any matches in this verse, move to the next one.
+                            if (globalNotMatches) {
+                                for (var n = 0; n < globalNotMatches.length; n++) {
+                                    if (filteredCurrentVerse.indexOf(globalNotMatches[n]) !== -1) {
+                                        continue verseLoop;
+                                    }
+                                }
+                            }
                             
                             if (parse(filteredQuery)) {
                                 

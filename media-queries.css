@@ -41,12 +41,12 @@
 
     }
     
-    .searchModeSelectionScreen .bookSelectionContainer {
+    .searchModeSelectionScreen .searchByReferenceContainer {
         
         position: absolute;
         top: 167px;
         left: 50%;
-        width: calc(100% - 70px);
+        width: calc(100% - 40px);
         max-width: 1000px;
         height: calc(100% - 237px);
         margin-top: 20px;
@@ -55,13 +55,19 @@
         
     }
     
-    .searchModeSelectionScreen.searchBarActive .bookSelectionContainer {
+    .searchModeSelectionScreen.searchBarActive .searchByReferenceContainer {
     
         opacity: 0;
         transform:
             translate(calc(-100% - 20px), 0)
             scale(0.75);
 
+    }
+    
+    .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer {
+    
+        width: calc(100% - 30px);
+        
     }
     
 }
@@ -367,26 +373,21 @@
     
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 375px) {
     
-    .selectionScreen .numberElementsContainer {
+    .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer {
     
-        grid-gap: 10px;
-        grid-template-columns: repeat(5, 45px);
-        grid-auto-columns: 45px;
-    
+        gap: 2px;
+        
     }
+
+    .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement {
     
-    .selectionScreen .numberElementsContainer .numberElement {
-    
+        width: 45px;
+        height: 45px;
         line-height: 45px;
-    
-    }
-    
-    .verseSelectionScreen .viewChapterButton {
-    
-        width: 265px;
-    
+        border-radius: 12px;
+        
     }
     
 }

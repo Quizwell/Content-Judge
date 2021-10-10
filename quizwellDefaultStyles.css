@@ -24,9 +24,6 @@
     
     --overlay-color: #000000;
     
-    /* Content Judge only */
-    --memory-element-color: #62C45E;
-    
     --blue-gradient: linear-gradient(90deg, #74BBBD, #5185A6);
     --purple-gradient: linear-gradient(90deg, #7E74CF, #7E73CE);
     --orange-gradient: linear-gradient(90deg, #D88041, #CF503D);
@@ -38,6 +35,9 @@
     --blue-color-dark: #74BBBD;
     --purple-color-dark: #7E74CF;
     --orange-color-dark: #D88041;
+    
+    /* Content Judge only */
+    --memory-element-color: #62C45E;
     
     --unique-word-highlight-color: var(--orange-color);
     --double-word-highlight-color: var(--blue-color);
@@ -108,7 +108,7 @@
 
 }
 
-/* Remove the 350ms touch delay no iOS */
+/* Remove the 350ms touch delay on iOS */
 html {
     
     touch-action: manipulation;
@@ -271,6 +271,79 @@ button.bottom {
     
 }
 
+@media only screen and (min-width: 700px) {
+
+    .screen.floating {
+
+        top: 50%;
+        left: 50%;
+        width: 75%;
+        height: 75%;
+        max-width: 1000px;
+        max-height: 1000px;
+        border-radius: 20px;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+
+        transition: all 0.5s ease;
+
+    }
+
+    .screen.floating.hidden {
+
+        transform: translate(-50%, 100vh);
+        opacity: 0.5;
+
+    }
+
+    .screen.sheet {
+
+        top: 12.5%;
+        left: 50%;
+        width: 75%;
+        height: 87.5%;
+        max-width: 1000px;
+        max-height: 1000px;
+        border-radius: 20px 20px 0 0;
+        z-index: 1;
+        transform: translate(-50%, 0);
+
+        transition: all 0.5s ease;
+
+    }
+
+    .screen.sheet.hidden {
+
+        transform: translate(-50%, 100vh);
+        opacity: 0.5;
+
+    }
+
+    .overlay {
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background: var(--overlay-color);
+        pointer-events: none;
+
+        transition: all 0.3s ease;
+
+    }
+
+    .screen.floating:not(.hidden) ~ .overlay, 
+    .screen.sheet:not(.hidden) ~ .overlay {
+
+        pointer-events: auto;
+        opacity: 0.2;
+
+    }
+    
+}
+
 .screen .titleContainer {
     
     cursor: pointer;
@@ -289,6 +362,13 @@ button.bottom {
     
     display: inline-block;
     margin-left: 5px;
+    
+}
+
+.screen .titleContainer h2.subtitle {
+    
+    margin: -12px 0 0 40px;
+    color: var(--secondary-text-color);
     
 }
 

@@ -320,6 +320,79 @@ var RomansJames = {
                                 "They show that the requirements of the law are written on their hearts, their consciences also bearing witness, and their thoughts sometimes accusing them and at other times even defending them.) ",
                                 "This will take place on the day when God judges people’s secrets through Jesus Christ, as my gospel declares. "
 
+                            ],
+                            pronounClarification: [
+                                
+                                [],
+                                [],
+                                [
+                                    {
+                                        pronoun: "them",
+                                        antecedent: "those who do such things",
+                                        reference: "R 2:2"
+                                    }
+                                ],
+                                [
+                                    {
+                                        pronoun: "his",
+                                        antecedent: "God",
+                                        reference: "R 2:3"
+                                    }
+                                ],
+                                [
+                                    {
+                                        pronoun: "his",
+                                        antecedent: "God"
+                                    }
+                                ],
+                                [
+                                    {
+                                        pronoun: "they",
+                                        antecedent: "each person"
+                                    }
+                                ],
+                                [
+                                    {
+                                        pronoun: "he",
+                                        antecedent: "God",
+                                        reference: "R 2:6"
+                                    }
+                                ],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [
+                                    {
+                                        pronoun: "they",
+                                        antecedent: "Gentiles"
+                                    },
+                                    {
+                                        pronoun: "themselves,",
+                                        antecedent: "Gentiles"
+                                    }
+                                ],
+                                [
+                                    {
+                                        pronoun: "They",
+                                        antecedent: "Gentiles",
+                                        reference: "R 2:14"
+                                    },
+                                    {
+                                        pronoun: "their",
+                                        antecedent: "Gentiles",
+                                        reference: "R 2:14"
+                                    },
+                                    {
+                                        pronoun: "them",
+                                        antecedent: "Gentiles",
+                                        reference: "R 2:14"
+                                    }
+                                ],
+                                []
+                                
                             ]
                         },
                         {
@@ -1628,7 +1701,7 @@ var RomansJames = {
             "For I am not",
             "As it",
             "for all",
-            "Blessed",
+            "\"Blessed",
             "Therefore, since",
             "Not",
             "You",

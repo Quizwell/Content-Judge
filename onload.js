@@ -7,6 +7,8 @@ if (navigator.userAgent.indexOf("iPhone OS 15_0") != -1) {
     UIManager.hide(document.querySelector(".addWebClipScreen p.iOS15Text"));
 }
 
+console.log("Begone, ugly performance-intensive animated gradient!");
+
 //VERSION AND UPDATE HANDLING
 
 if (

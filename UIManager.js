@@ -15,21 +15,22 @@ const UIReferences = {
 
     quizCycleYearSelector: document.querySelector(".searchModeSelectionScreen select"),
 
+    searchByReferenceContainer: document.querySelector(".searchByReferenceContainer"),
     bookSelectionContainer: document.querySelector(".bookSelectionContainer"),
+    bookSelectionElementContainer: document.querySelector(".bookSelectionContainer .selectionElementContainer"),
+    chapterSelectionContainer: document.querySelector(".chapterSelectionContainer"),
+    chapterSelectionElementContainer: document.querySelector(".chapterSelectionContainer .selectionElementContainer"),
+    verseSelectionContainer: document.querySelector(".verseSelectionContainer"),
+    verseSelectionElementContainer: document.querySelector(".verseSelectionContainer .selectionElementContainer"),
 
     searchBarContainer: document.querySelector(".searchBarContainer"),
     searchBar: document.querySelector(".searchBar"),
     searchBarClearButton: document.querySelector(".searchBarWrapper .clearButton"),
     searchResultsContainer: document.querySelector(".searchModeSelectionScreen .searchResultsContainer"),
 
-    chapterSelectionScreen: document.querySelector(".chapterSelectionScreen"),
-    chapterNumberElementsContainer: document.querySelector(".chapterNumberElementsContainer"),
-
-    verseSelectionScreen: document.querySelector(".verseSelectionScreen"),
-    verseNumberElementsContainer: document.querySelector(".verseNumberElementsContainer"),
-
     chapterDisplayScreen: document.querySelector(".chapterDisplayScreen"),
     chapterDisplayScreenTitle: document.querySelector(".chapterDisplayScreen .titleContainer .title"),
+    chapterDisplayScreenSubtitle: document.querySelector(".chapterDisplayScreen .titleContainer .subtitle"),
     chapterDisplayScreenContent: document.querySelector(".chapterDisplayScreen .content"),
 
     verseDisplayScreen: document.querySelector(".verseDisplayScreen"),
@@ -199,6 +200,7 @@ const UIManager = {
         hideAddWebClipScreen: function () {
 
             UIManager.show(UIReferences.searchModeSelectionScreen, 200);
+            UIManager.hide(UIReferences.addWebClipScreen, 200);
 
         },
 
@@ -225,26 +227,27 @@ const UIManager = {
         },
 
         closeSearchModeSelectionScreen: function () {
-
-            UIManager.hide(UIReferences.addWebClipScreen, null);
+            
             UIManager.hide(UIReferences.searchModeSelectionScreen, 200);
 
             setTimeout(function () {
 
                 UIManager.searchBarHandlers.clearSearchBar();
+                UIManager.buttonHandlers.closeVerseSelectionContainer();
+                UIManager.buttonHandlers.closeChapterSelectionContainer();
 
             }, 200);
 
         },
 
-        closeChapterSelectionScreen: function () {
+        closeChapterSelectionContainer: function () {
 
-            UIManager.hide(UIReferences.chapterSelectionScreen, 200);
+            UIManager.hide(UIReferences.chapterSelectionContainer, 200);
 
         },
-        closeVerseSelectionScreen: function () {
+        closeVerseSelectionContainer: function () {
 
-            UIManager.hide(UIReferences.verseSelectionScreen, 200);
+            UIManager.hide(UIReferences.verseSelectionContainer, 200);
 
         },
 
@@ -731,11 +734,11 @@ const UIManager = {
             verse: undefined
         },
 
-        populateAndShowChapterSelectionScreen: function () {
+        populateAndShowChapterSelectionContainer: function () {
 
-            //Clear the current items in the screen
-            while (UIReferences.chapterNumberElementsContainer.firstChild) {
-                UIReferences.chapterNumberElementsContainer.removeChild(UIReferences.chapterNumberElementsContainer.firstChild);
+            //Clear the current items in the container
+            while (UIReferences.chapterSelectionElementContainer.firstChild) {
+                UIReferences.chapterSelectionElementContainer.removeChild(UIReferences.chapterSelectionElementContainer.firstChild);
             }
 
             var bookAbbreviation = UIManager.searchByReference.currentSearchObject.bookAbbreviation;
@@ -744,35 +747,35 @@ const UIManager = {
             var numberOfChapters = selectedBookObject.chapters.length;
             for (var i = 0; i < numberOfChapters; i++) {
 
-                var chapterNumberElement = document.createElement("div");
-                chapterNumberElement.classList.add("chapterNumberElement");
-                chapterNumberElement.classList.add("numberElement");
-                chapterNumberElement.textContent = (i + 1);
+                var chapterSelectionElement = document.createElement("div");
+                chapterSelectionElement.classList.add("chapterSelectionElement");
+                chapterSelectionElement.classList.add("selectionElement");
+                chapterSelectionElement.textContent = (i + 1);
                 (function (chapterNumber) {
 
-                    chapterNumberElement.onclick = function () {
+                    chapterSelectionElement.onclick = function () {
 
                         UIManager.searchByReference.currentSearchObject.chapter = chapterNumber;
-                        UIManager.searchByReference.populateAndShowVerseSelectionScreen();
+                        UIManager.searchByReference.populateAndShowVerseSelectionContainer();
 
                     }
 
                 })(i + 1)
 
-                UIReferences.chapterNumberElementsContainer.appendChild(chapterNumberElement);
+                UIReferences.chapterSelectionElementContainer.appendChild(chapterSelectionElement);
 
             }
 
             //Show screen
-            UIManager.show(UIReferences.chapterSelectionScreen, 200);
+            UIManager.show(UIReferences.chapterSelectionContainer, 200);
 
         },
 
-        populateAndShowVerseSelectionScreen: function () {
+        populateAndShowVerseSelectionContainer: function () {
 
             //Clear the current items in the screen
-            while (UIReferences.verseNumberElementsContainer.firstChild) {
-                UIReferences.verseNumberElementsContainer.removeChild(UIReferences.verseNumberElementsContainer.firstChild);
+            while (UIReferences.verseSelectionElementContainer.firstChild) {
+                UIReferences.verseSelectionElementContainer.removeChild(UIReferences.verseSelectionElementContainer.firstChild);
             }
 
             var selectedBook = scriptureEngine.getBookByAbbreviation(UIManager.searchByReference.currentSearchObject.bookAbbreviation);
@@ -781,13 +784,13 @@ const UIManager = {
             var numberOfVerses = new Verse(UIManager.searchByReference.currentSearchObject.bookAbbreviation + " " + chapterNumber + ":1").chapterLength;
             for (var i = 0; i < numberOfVerses; i++) {
 
-                var verseNumberElement = document.createElement("div");
-                verseNumberElement.classList.add("verseNumberElement");
-                verseNumberElement.classList.add("numberElement");
-                verseNumberElement.textContent = (i + 1);
+                var verseSelectionElement = document.createElement("div");
+                verseSelectionElement.classList.add("verseSelectionElement");
+                verseSelectionElement.classList.add("selectionElement");
+                verseSelectionElement.textContent = (i + 1);
                 (function (verseNumber) {
 
-                    verseNumberElement.onclick = function () {
+                    verseSelectionElement.onclick = function () {
 
                         UIManager.searchByReference.currentSearchObject.verse = verseNumber;
 
@@ -802,20 +805,20 @@ const UIManager = {
 
                 })(i + 1)
 
-                UIReferences.verseNumberElementsContainer.appendChild(verseNumberElement);
+                UIReferences.verseSelectionElementContainer.appendChild(verseSelectionElement);
 
             }
 
             //Show screen
-            UIManager.show(UIReferences.verseSelectionScreen, 200);
+            UIManager.show(UIReferences.verseSelectionContainer, 200);
 
         },
 
         populateSearchByReferenceContainer: function () {
 
             //Clear
-            while (UIReferences.bookSelectionContainer.children[1]) {
-                UIReferences.bookSelectionContainer.removeChild(UIReferences.bookSelectionContainer.lastChild);
+            while (UIReferences.bookSelectionElementContainer.children[1]) {
+                UIReferences.bookSelectionElementContainer.removeChild(UIReferences.bookSelectionElementContainer.lastChild);
             }
 
             //Populate
@@ -831,7 +834,7 @@ const UIManager = {
                     bookSelectionElement.onclick = function () {
 
                         UIManager.searchByReference.currentSearchObject.bookAbbreviation = bookAbbreviation;
-                        UIManager.searchByReference.populateAndShowChapterSelectionScreen();
+                        UIManager.searchByReference.populateAndShowChapterSelectionContainer();
 
                     }
                 })(currentBook.abbreviation)
@@ -847,7 +850,7 @@ const UIManager = {
                 bookSelectionElement.appendChild(bookSelectionElementIcon);
                 bookSelectionElement.appendChild(bookSelectionElementLabel);
 
-                UIReferences.bookSelectionContainer.appendChild(bookSelectionElement);
+                UIReferences.bookSelectionElementContainer.appendChild(bookSelectionElement);
 
             }
 
@@ -866,6 +869,7 @@ const UIManager = {
             }
 
             UIReferences.chapterDisplayScreenTitle.textContent = scriptureEngine.unabbreviateBookNamesInString(reference);
+            UIReferences.chapterDisplayScreenSubtitle.textContent = new Verse(reference + ":1").chapterLength + " verses";
 
             var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
 
@@ -981,8 +985,8 @@ const UIManager = {
 
             } else {
 
-                UIManager.hide(UIReferences.chapterSelectionScreen, null);
-                UIManager.hide(UIReferences.verseSelectionScreen, null);
+                UIManager.hide(UIReferences.chapterSelectionContainer, null);
+                UIManager.hide(UIReferences.verseSelectionContainer, null);
                 UIManager.hide(UIReferences.chapterDisplayScreen, 200);
 
             }
@@ -1186,8 +1190,8 @@ const UIManager = {
 
             } else {
 
-                UIManager.hide(UIReferences.chapterSelectionScreen, null);
-                UIManager.hide(UIReferences.verseSelectionScreen, null);
+                UIManager.hide(UIReferences.chapterSelectionContainer, null);
+                UIManager.hide(UIReferences.verseSelectionContainer, null);
                 UIManager.hide(UIReferences.verseDisplayScreen, 200);
 
             }
@@ -1330,7 +1334,7 @@ const UIManager = {
 
             //If the verse is a memory verse, indicate so and hightlight the prejump. Otherwise hide the memory verse indicator.
             var memoryVerseStatus = verse.memoryVerseStatus;
-            if (memoryVerseStatus.match) {
+            if (memoryVerseStatus.isMemory) {
 
                 //The verse is part of a memory verse
 
