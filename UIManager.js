@@ -63,8 +63,6 @@ const UIReferences = {
     singleWordInformationAntecedent: document.querySelector(".slidePanel .singleWordInformation .pronounClarification .antecedent"),
     singleWordInformationSubtitle: document.querySelector(".slidePanel .singleWordInformation .subtitle"),
     singleWordInformationContent: document.querySelector(".slidePanel .singleWordInformation .content"),
-    singleWordInformationRareWord: document.querySelector(".slidePanel .singleWordInformation .content .rareWord"),
-    singleWordInformationRegularWord: document.querySelector(".slidePanel .singleWordInformation .content .regularWord"),
 
     slidePanelPossibleQuestions: document.querySelector(".slidePanel .possibleQuestions"),
     possibleQuestionsTitle: document.querySelector(".slidePanel .possibleQuestions .title"),
@@ -227,7 +225,7 @@ const UIManager = {
         },
 
         closeSearchModeSelectionScreen: function () {
-            
+
             UIManager.hide(UIReferences.searchModeSelectionScreen, 200);
 
             setTimeout(function () {
@@ -817,8 +815,8 @@ const UIManager = {
         populateSearchByReferenceContainer: function () {
 
             //Clear
-            while (UIReferences.bookSelectionElementContainer.children[1]) {
-                UIReferences.bookSelectionElementContainer.removeChild(UIReferences.bookSelectionElementContainer.lastChild);
+            while (UIReferences.bookSelectionElementContainer.firstChild) {
+                UIReferences.bookSelectionElementContainer.removeChild(UIReferences.bookSelectionElementContainer.firstChild);
             }
 
             //Populate
@@ -1205,7 +1203,7 @@ const UIManager = {
         },
 
         populateAndShowVerseDisplayScreen: function (referenceString) {
-            
+
             var verse = new Verse(referenceString);
 
             //If the user is opening the verse display screen, add this first verse as the base item on the navigation stack
@@ -1623,50 +1621,132 @@ const UIManager = {
             //Capitalize the first letter of the word
             var capitalizedWord = (filteredWord.slice(0, 1).toUpperCase() + filteredWord.slice(1));
 
-            //Give each UI element its proper value
-            UIManager.show(UIReferences.singleWordInformationRareWord);
-            UIManager.show(UIReferences.singleWordInformationRegularWord);
-
             UIReferences.singleWordInformationTitle.textContent = capitalizedWord;
 
-            switch (totalOccurrences) {
+            while (UIReferences.singleWordInformationContent.firstChild) {
+                UIReferences.singleWordInformationContent.removeChild(UIReferences.singleWordInformationContent.firstChild);
+            }
+            
+            var concordanceInformationContainer = document.createElement("div");
+            concordanceInformationContainer.classList.add("concordanceInformationContainer");
+            var referencesContainer = document.createElement("div");
+            referencesContainer.classList.add("referencesContainer");
+            
+            if (totalOccurrences == 1) {
 
-                case 1:
-                    UIReferences.singleWordInformationSubtitle.textContent = "Unique word";
-                    UIManager.hide(UIReferences.singleWordInformationRareWord);
-                    UIManager.hide(UIReferences.singleWordInformationRegularWord);
-                    break;
+                UIReferences.singleWordInformationSubtitle.textContent = "Unique word";
 
-                case 2:
+                var description = document.createElement("p");
+                description.classList.add("description");
+                description.textContent = "This word occurs only in this verse.";
+
+                UIReferences.singleWordInformationContent.appendChild(description);
+
+            } else {
+
+                if (totalOccurrences == 2) {
                     UIReferences.singleWordInformationSubtitle.textContent = "Double word";
-                    UIManager.hide(UIReferences.singleWordInformationRegularWord);
-
-                    UIReferences.singleWordInformationRareWord.children[1].textContent = concordanceReferences.join(", ");
-                    break;
-
-                case 3:
+                } else if (totalOccurrences == 3) {
                     UIReferences.singleWordInformationSubtitle.textContent = "Triple word";
-                    UIManager.hide(UIReferences.singleWordInformationRegularWord);
-
-                    UIReferences.singleWordInformationRareWord.children[1].textContent = concordanceReferences.join(", ");
-                    break;
-
-                default:
+                } else {
                     UIReferences.singleWordInformationSubtitle.textContent = "Used " + totalOccurrences + " times";
-                    UIManager.hide(UIReferences.singleWordInformationRareWord);
+                    
+                    var concordanceStrings = [
+                        ["This verse", (occurrencesInVerse + ((occurrencesInVerse > 1) ? " times" : " time"))],
+                        ["This section", (occurrencesInSection + ((occurrencesInSection > 1) ? " times" : " time"))],
+                        ["This chapter", (occurrencesInChapter + ((occurrencesInChapter > 1) ? " times" : " time"))],
+                        ["This book", (occurrencesInBook + ((occurrencesInBook > 1) ? " times" : " time"))]
+                    ]
+                    
+                    for (var i = 0; i < concordanceStrings.length; i++) {
+                        
+                        var containerElement = document.createElement("div");
+                        containerElement.classList.add("concordanceInformationItem");
+                        
+                        switch (i) {
+                            case 0:
+                                containerElement.classList.add("thisVerse");
+                                break;
+                            case 1:
+                                containerElement.classList.add("thisSection");
+                                containerElement.onclick = function () {
+                                    UIReferences.singleWordInformationContent.classList.toggle("thisSection");
+                                    UIReferences.singleWordInformationContent.classList.remove("thisChapter");
+                                    UIReferences.singleWordInformationContent.classList.remove("thisBook");
+                                }
+                                break;
+                            case 2:
+                                containerElement.classList.add("thisChapter");
+                                containerElement.onclick = function () {
+                                    UIReferences.singleWordInformationContent.classList.toggle("thisChapter");
+                                    UIReferences.singleWordInformationContent.classList.remove("thisSection");
+                                    UIReferences.singleWordInformationContent.classList.remove("thisBook");
+                                }
+                                break;
+                            case 3:
+                                containerElement.classList.add("thisBook");
+                                containerElement.onclick = function () {
+                                    UIReferences.singleWordInformationContent.classList.toggle("thisBook");
+                                    UIReferences.singleWordInformationContent.classList.remove("thisSection");
+                                    UIReferences.singleWordInformationContent.classList.remove("thisChapter");
+                                }
+                                break;
+                        }
+                        
+                        var descriptionElement = document.createElement("p");
+                        descriptionElement.classList.add("description");
+                        descriptionElement.textContent = concordanceStrings[i][0];
+                        
+                        var numberElement = document.createElement("h1");
+                        numberElement.classList.add("number");
+                        numberElement.textContent = concordanceStrings[i][1];
+                        
+                        containerElement.appendChild(descriptionElement);
+                        containerElement.appendChild(numberElement);
+                        
+                        concordanceInformationContainer.appendChild(containerElement);
+                        
+                    }
+                    
+                }
 
-                    UIReferences.singleWordInformationRegularWord.children[0].textContent = "In this verse: " + occurrencesInVerse + ((occurrencesInVerse > 1) ? " times" : " time");
-                    UIReferences.singleWordInformationRegularWord.children[1].textContent = "In this section: " + occurrencesInSection + ((occurrencesInSection > 1) ? " times" : " time");
-                    UIReferences.singleWordInformationRegularWord.children[2].textContent = "In this chapter: " + occurrencesInChapter + ((occurrencesInChapter > 1) ? " times" : " time");
-                    UIReferences.singleWordInformationRegularWord.children[3].textContent = "In this book: " + occurrencesInBook + ((occurrencesInBook > 1) ? " times" : " time");
-                    break;
+                var currentVerseDisplayScreenVerse = new Verse(UIManager.verseDisplayScreen.currentVerseReference);
+                for (var i = 0; i < totalOccurrences; i++) {
+
+                    var currentReference = concordanceReferences[i];
+                    var currentReferenceVerse = new Verse(currentReference);
+                    
+                    var occurenceElement = document.createElement("div");
+                    occurenceElement.textContent = currentReference;
+                    occurenceElement.classList.add("reference");
+                    
+                    if (currentReferenceVerse.bookName === currentVerseDisplayScreenVerse.bookName) {
+                        occurenceElement.classList.add("thisBook");
+                        if (currentReferenceVerse.chapterNumber === currentVerseDisplayScreenVerse.chapterNumber) {
+                            occurenceElement.classList.add("thisChapter");
+                            if (currentReferenceVerse.sectionIndex === currentVerseDisplayScreenVerse.sectionIndex) {
+                                occurenceElement.classList.add("thisSection");
+                            }
+                        }
+                    }
+                    
+                    (function (reference) {
+                        occurenceElement.onclick = function () {
+                            UIManager.verseDisplayScreen.navigation.navigateToVerse(reference, "automatic");
+                        }
+                    })(currentReference)
+                    referencesContainer.appendChild(occurenceElement);
+
+                }
 
             }
+            
+            UIReferences.singleWordInformationContent.appendChild(concordanceInformationContainer);
+            UIReferences.singleWordInformationContent.appendChild(referencesContainer);
 
             //Pronoun Clarification
             var pronounClarifications = scriptureEngine.getPronounClarificationsByReference(selectedVerseReference);
             UIManager.hide(UIReferences.singleWordInformationPronounClarification);
-
             if (pronounClarifications) {
 
                 //Loop through every pronoun clarifiation for the current verse
@@ -1694,6 +1774,17 @@ const UIManager = {
 
                                         //...then the selected word is the correct occurrence! Party time!
                                         UIManager.show(UIReferences.singleWordInformationPronounClarification);
+                                        if (currentPronounClarification.reference) {
+                                            (function (reference) {
+                                                UIReferences.singleWordInformationPronounClarification.onclick = function () {
+                                                    UIManager.verseDisplayScreen.navigation.navigateToVerse(reference, "automatic");
+                                                }
+                                            })(currentPronounClarification.reference)
+                                            UIReferences.singleWordInformationPronounClarification.classList.add("link");
+                                        } else {
+                                            UIReferences.singleWordInformationPronounClarification.onclick = null;
+                                            UIReferences.singleWordInformationPronounClarification.classList.remove("link");
+                                        }
                                         UIReferences.singleWordInformationAntecedent.textContent = currentPronounClarification.antecedent;
 
                                     }
@@ -1705,6 +1796,17 @@ const UIManager = {
 
                             //This is the correct clarification for our word
                             UIManager.show(UIReferences.singleWordInformationPronounClarification);
+                            if (currentPronounClarification.reference) {
+                                (function (reference) {
+                                    UIReferences.singleWordInformationPronounClarification.onclick = function () {
+                                        UIManager.verseDisplayScreen.navigation.navigateToVerse(reference, "automatic");
+                                    }
+                                })(currentPronounClarification.reference)
+                                UIReferences.singleWordInformationPronounClarification.classList.add("link");
+                            } else {
+                                UIReferences.singleWordInformationPronounClarification.onclick = null;
+                                UIReferences.singleWordInformationPronounClarification.classList.remove("link");
+                            }
                             UIReferences.singleWordInformationAntecedent.textContent = currentPronounClarification.antecedent;
 
                         }
@@ -1714,6 +1816,7 @@ const UIManager = {
                 }
 
             }
+
             UIManager.verseDisplayScreen.showSlidePanel("singleWordInformation");
 
         },
