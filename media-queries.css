@@ -72,194 +72,189 @@
     
 }
 
-@media only screen and (max-width: 730px) {
-    
-    .verseDisplay .textContainer p {
-        
-        font-size: 18px;
-        
-    }
-    
-    .verseDisplayScreen .key {
-        
-        width: 350px;
-        height: 50px;
-        bottom: 120px;
-        bottom: calc(env(safe-area-inset-bottom) + 120px);
-        opacity: 0;
-        
-    }
-    
-    .verseDisplay.highlightPrejump:not(.up) ~ .key,
-    .verseDisplay.highlightRareWords:not(.up) ~ .key {
-
-        opacity: 1;
-
-    }
+@media only screen and (max-width: 925px) {
     
     .singleWordInformation .content .concordanceInformationItem h1 {
         font-size: 20px;
     }
     
-}
-
-@media only screen and (max-width: 695px) {
-    
-    .verseDisplay.up {
-        
-        top: 180px;
-        
-    }
-    
-    .verseDisplayScreen > .headerContainer {
-        
-        height: 165px;
+    .verseDisplay {
+        top: 50vh;
+        left: 0;
+        margin-left: 20px;
         width: calc(100% - 40px);
-        overflow-y: scroll;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        
+        transform: translate(0, -50%);
     }
-    
-    .verseDisplayScreen .headerContainer .verseButton {
-        
-        width: calc(50% - 10px);
-        height: 40px;
-        
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-        
-    }
-    
-    .verseDisplayScreen .headerContainer .verseButton:last-child {
-    
-        flex-direction: row-reverse;
-        
-    }
-    
-    .verseDisplayScreen .headerContainer .verseButton img {
-    
-        margin: 2px 0 0 0 !important;
-        height: 30px;
-        
-    }
-    
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer {
-        
-        display: block;
-        background: var(--content-background-color);
-        border-radius: 20px;
-        padding: 15px;
-        height: 100px;
-        width: calc(100% - 220px);
-        box-sizing: border-box;
-        margin: 0 10px;
 
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: center;
-        
+    .verseDisplay.verseDisplay.highlightPrejump,
+    .verseDisplay.verseDisplay.verseDisplay.highlightRareWords {
+        top: calc(50vh - 27.5px);
+    }
+
+    .verseDisplay.up {
+        top: 110px !important;
+        transform: none;
+    }
+
+    .verseDisplay .textContainer p {
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+
+    .verseDisplayScreen {
+        display: block;
     }
     
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .title {
-    
+    .verseDisplayScreen .sidebarContainer > .headerContainer {
+        height: 80px;
         width: 100%;
-        margin-bottom: 5px;
-        
-        transition: all 0.2s ease;
-        
+        overflow-y: scroll;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle {
+    .verseDisplayScreen .headerContainer .verseTitleContainer {
+        display: block;
+        width: 100%;
+        background: var(--content-background-color);
+        padding: 0 10px;
+        box-sizing: border-box;
+        display: flex;
+    }
+
+    .verseDisplayScreen .headerContainer .verseTitleContainer .infoContainer {
+        margin: 0 2px;
+    }
     
+    .verseDisplayScreen .headerContainer .verseTitleContainer .title {
+        font-size: 20px;
+        margin-bottom: 5px;
+        transition: all 0.2s ease;
+    }
+    
+    .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         margin: 0;
-        font-size: 18px;
-        
+        font-size: 14px;
         transition: all 0.2s ease;
-        
     }
     
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle.hidden {
-    
+    .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle.hidden {
         display: none;
-        
     }
     
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle .tag {
-
+    .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle .tag {
         color: var(--memory-element-color);
         border: 2px solid var(--memory-element-color);
         padding: 1px 3px;
         border-radius: 5px;
         margin-right: 3px;
         font-size: 90%;
-
     }
-    
-    .verseDisplayScreen .headerContainer .verseTitleContainer {
-    
-        display: none;
-        
+
+    .verseDisplayScreen .headerContainer .verseTitleContainer .verseButton {
+        width: 25px;
+        height: 25px;
+        margin: 0;
+    }
+
+    .verseDisplayScreen .headerContainer .verseTitleContainer .verseButton picture {
+        transform: scale(0.75);
+    }
+
+    .verseDisplayScreen .headerContainer .button {
+        width: 60px;
+        margin: 0 10px 0 0;
+    }
+
+    .verseDisplayScreen .headerContainer .button picture {
+        transform: scale(0.75);
     }
     
     .verseDisplayScreen .headerContainer .verseTitleContainer,
     .verseDisplayScreen .headerContainer .button {
-        margin: 0 5px;
+        height: 80px;
+    }
+
+    .verseDisplayScreen .key {
+        position: absolute;
+        height: 40px;
+        bottom: 115px;
+        bottom: calc(115px + env(safe-area-inset-bottom));
+        left: 20px;
+        left: calc(20px + env(safe-area-inset-left));
+        right: 20px;
+        right: calc(20px + env(safe-area-inset-right));
+        margin-top: 0;
+        opacity: 0;
     }
     
-    .verseDisplayScreen .verseDisplay .textContainer p {
-        margin-bottom: 0;
+    .verseDisplay.highlightPrejump:not(.up) ~ .key,
+    .verseDisplay.highlightRareWords:not(.up) ~ .key {
+        opacity: 1;
     }
     
     .slidePanel {
-        
+        position: absolute;
+        height: auto;
+        width: calc(100% - 40px);
+        width: calc(100% - 40px - env(safe-area-inset-left) - env(safe-area-inset-right));
+        left: 20px;
+        left: calc(20px + env(safe-area-inset-left));
         bottom: 20px;
         bottom: calc(env(safe-area-inset-bottom) + 20px);
-        
+        z-index: 5;
     }
-    
-    .slidePanel:not(.hidden) ~ .toolbarContainer {
-    
-        display: none;
-        
+
+    .slidePanel.hidden {
+        display: block;
+        transform: translateY(calc(100% + 20px));
+        transform: translateY(calc(100% + 20px + env(safe-area-inset-bottom)));
+    }
+
+    .verseDisplayScreen .toolbarContainer {
+        position: absolute;
+        height: 80px;
+        width: calc(100% - 40px);
+        width: calc(100% - 40px - env(safe-area-inset-left) - env(safe-area-inset-right));
+        left: 20px;
+        left: calc(20px + env(safe-area-inset-left));
+        bottom: 20px;
+        bottom: calc(env(safe-area-inset-bottom) + 20px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: 0.3s opacity ease;
+    }
+
+    .verseDisplay.up ~ .toolbarContainer {
+        opacity: 0;
+    }
+
+    .verseDisplayScreen .toolbarContainer .toolbar {
+        height: 80px;
+    }
+
+    .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem {
+        height: 70px;
     }
     
 }
 
 @media only screen and (max-width: 495px) {
     
-    .verseDisplayScreen .key {
-        
-        width: calc(100% - 40px);
-        height: 42px;
-        bottom: 120px;
-        bottom: calc(env(safe-area-inset-bottom) + 120px);
-        
-    }
-    
-    .verseDisplay {
-    
-        top: calc(50vh + 8px);
-        
-    }
-    
     .verseDisplayScreen .toolbarContainer {
-    
         overflow-y: scroll;
-        height: 90px;
-        width: 100%;
+        width: calc(100%);
+        width: calc(100% - safe-area-inset-left);
         left: 0;
+        left: env(safe-area-inset-left);
         display: flex;
-        
         -ms-overflow-style: none;
         scrollbar-width: none;
-        
     }
     
     .verseDisplayScreen .toolbarContainer::-webkit-scrollbar {
@@ -268,55 +263,42 @@
     
     /* Fix for missing whitespace */
     .verseDisplayScreen .toolbarContainer::after {
-    
         content: " ";
         flex: 0 0 20px;
-        
     }
     
     .verseDisplayScreen .toolbarContainer .toolbar {
-        
         position: static;
         display: inline-flex;
-        
     }
     
     .verseDisplayScreen .toolbarContainer .toolbar.left {
-        
         border-radius: 15px 0 0 15px;
         padding-right: 0;
         margin-left: 20px;
-        
     }
     
     .verseDisplayScreen .toolbarContainer .toolbar.left .divider {
-    
         display: block;
-        
     }
     
     .verseDisplayScreen .toolbarContainer .toolbar.right {
-        
         border-radius: 0 15px 15px 0;
-        
     }
     
     .slidePanel .pronounClarification .listItem {
-        
         flex-wrap: wrap;
         justify-content: center;
-        
     }
     
     .slidePanel .pronounClarification .listItem .reference {
-    
         width: 100%;
         text-align: center;
-        
     }
     
     .slidePanel .singleWordInformation .content .referencesContainer {
         grid-template-columns: repeat(3, 1fr);
+    }
     }
     
     .slidePanel .singleWordInformation .content .concordanceInformationContainer {
@@ -328,59 +310,7 @@
 @media only screen and (max-width: 415px) {
     
     .welcomeScreen .textBlock h1 {
-        
         font-size: 50px;
-        
-    }
-    
-    .verseDisplayScreen > .headerContainer {
-        
-        height: 150px;
-        
-    }
-    
-    .verseDisplay {
-    
-        top: 50vh;
-        
-    }
-    
-    .verseDisplay.up {
-    
-        top: 170px;
-        
-    }
-    
-    .verseDisplayScreen .headerContainer .button:not(.verseButton),
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer {
-        
-        height: 85px;
-        
-    }
-    
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer {
-    
-        padding: 10px;
-        
-    }
-    
-}
-
-@media only screen and (max-width: 400px) {
-    
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle .tag {
-    
-        font-size: 70%;
-        padding: 1px 2px;
-        border-width: 2px;
-        
-    }
-    
-    .verseDisplayScreen .headerContainer .miniVerseTitleContainer .subtitle .text {
-    
-        font-size: 80%;
-        margin-right: -5px;
-        
     }
     
 }
@@ -388,18 +318,14 @@
 @media only screen and (max-width: 375px) {
     
     .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer {
-    
         gap: 2px;
-        
     }
 
     .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement {
-    
         width: 45px;
         height: 45px;
         line-height: 45px;
         border-radius: 12px;
-        
     }
     
 }

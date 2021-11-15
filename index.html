@@ -318,178 +318,180 @@
 
         <div class="verseDisplayScreen screen requireDisplayNone hidden">
 
-            <div class="headerContainer">
+            <div class="sidebarContainer">
 
-                <div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
-                    <picture>
-                        <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
-                        <img alt="" src="images/icons/Close.svg" width="auto" height="40px">
-                    </picture>
-                    <p class="label">Close</p>
-                </div>
+                <div class="headerContainer">
 
-                <div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
-                    <picture class="arrow left">
-                        <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img alt="" src="images/icons/Arrow.svg" width="auto" height="40px">
-                    </picture>
-                    <p class="label">Back</p>
-                </div>
+                    <div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
+                        <picture>
+                            <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                            <img alt="" src="images/icons/Close.svg" width="auto" height="40px">
+                        </picture>
+                        <p class="label">Close</p>
+                    </div>
 
-                <div class="miniVerseTitleContainer">
-                    <h1 class="title"></h1>
-                    <h3 class="subtitle">
-                        <span class="tag">Mem.</span>
-                        <span class="text"></span>
-                    </h3>
-                </div>
-
-                <div class="verseTitleContainer">
-                    <h1 class="title"></h1>
-                    <h3 class="subtitle">
-                        <span class="tag">Memory</span>
-                        <span class="text"></span>
-                    </h3>
-                </div>
-
-                <div class="button verseButton previousVerseButton">
-                    <picture>
-                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img alt="" src="images/icons/BackArrow.svg" width="auto" height="40px">
-                    </picture>
-                    <p class="label">Previous</p>
-                </div>
-
-                <div class="button verseButton nextVerseButton">
-                    <picture>
-                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img alt="" src="images/icons/BackArrow.svg" width="auto" height="40px">
-                    </picture>
-                    <p class="label">Next</p>
-                </div>
-
-            </div>
-
-            <div class="verseDisplay">
-                <div class="textContainer"></div>
-            </div>
-
-            <div class="key">
-                <p class="keyItem prejump">Prejump</p>
-                <p class="keyItem rareWord unique">Unique</p>
-                <p class="keyItem rareWord double">Double</p>
-                <p class="keyItem rareWord triple">Triple</p>
-            </div>
-
-            <div class="slidePanel hidden">
-
-                <div class="closeButton" onclick="UIManager.buttonHandlers.closeSlidePanel()">
-
-                    <picture class="arrow left">
-                        <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
-                        <img alt="Close panel" src="images/icons/BackArrow.svg" width="auto" height="30px">
-                    </picture>
-
-                </div>
-
-                <div class="singleWordInformation slidePanelScreen hidden">
-
-                    <h1 class="title"></h1>
-                    <div class="pronounClarification">
-                        <picture class="arrow right">
+                    <div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
+                        <picture class="arrow left">
                             <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
-                            <img alt="Antecedent is:" src="images/icons/Arrow.svg" width="auto" height="30px">
+                            <img alt="" src="images/icons/Arrow.svg" width="auto" height="40px">
                         </picture>
-                        <p class="antecedent"></p>
+                        <p class="label">Back</p>
                     </div>
-                    <h2 class="subtitle"></h2>
 
-                    <div class="content"></div>
+                    <div class="verseTitleContainer">
+                    
+                        <div class="verseButton previousVerseButton">
+                            <picture>
+                                <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="Show Previous Verse" src="images/icons/BackArrow.svg" width="auto" height="25px">
+                            </picture>
+                        </div>
+                        
+                        <div class="infoContainer">
+                            <h1 class="title"></h1>
+                            <h3 class="subtitle">
+                                <span class="tag">Mem.</span>
+                                <span class="text"></span>
+                            </h3>
+                        </div>
+                        
+                        <div class="verseButton nextVerseButton">
+                            <picture>
+                                <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="Show Next Verse" src="images/icons/BackArrow.svg" width="auto" height="25px">
+                            </picture>
+                        </div>
+                        
+                    </div>
 
                 </div>
 
-                <div class="possibleQuestions slidePanelScreen hidden">
+                <div class="verseDisplay">
+                    <div class="textContainer"></div>
+                </div>
 
-                    <h1 class="title">Possible Questions</h1>
-                    <h2 class="subtitle"></h2>
+                <div class="key">
+                    <p class="keyItem prejump">Prejump</p>
+                    <p class="keyItem rareWord unique">Unique</p>
+                    <p class="keyItem rareWord double">Double</p>
+                    <p class="keyItem rareWord triple">Triple</p>
+                </div>
 
-                    <div class="content"></div>
+                <div class="toolbarContainer">
+
+                    <div class="toolbar left">
+
+                        <div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
+                            <picture>
+                                <source srcset="images/icons/MemoryStar-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="" src="images/icons/MemoryStar.svg" width="auto" height="40px">
+                            </picture>
+                            <img alt="" src="images/icons/MemoryStar-White.svg" width="auto" height="40px">
+                            <p class="label">Prejump</p>
+                        </div>
+
+                        <div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
+                            <picture>
+                                <source srcset="images/icons/RareWords-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="" src="images/icons/RareWords.svg" width="auto" height="40px">
+                            </picture>
+                            <img alt="" src="images/icons/RareWords-White.svg" width="auto" height="40px">
+                            <p class="label">Rare Words</p>
+                        </div>
+
+                        <div class="divider"></div>
+
+                    </div>
+
+                    <div class="toolbar right">
+
+                        <div class="toolbarItem possibleQuestionsButton multiLine" onclick="UIManager.buttonHandlers.possibleQuestionsButton()" style="display: none">
+                            <picture>
+                                <source srcset="images/icons/QuestionMark-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="" src="images/icons/QuestionMark.svg" width="auto" height="40px">
+                            </picture>
+                            <img alt="" src="images/icons/QuestionMark-White.svg" width="auto" height="40px">
+                            <p class="label">Possible Questions</p>
+                        </div>
+
+                        <div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
+                            <picture>
+                                <source srcset="images/icons/PronounClarification-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="" src="images/icons/PronounClarification.svg" width="auto" height="40px">
+                            </picture>
+                            <img alt="" src="images/icons/PronounClarification-White.svg" width="auto" height="40px">
+                            <p class="label">Pronoun Clarification</p>
+                        </div>
+
+                        <div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
+                            <picture>
+                                <source srcset="images/icons/Footnotes-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="" src="images/icons/Footnotes.svg" width="auto" height="40px">
+                            </picture>
+                            <img alt="" src="images/icons/Footnotes-White.svg" width="auto" height="40px">
+                            <p class="label">Footnotes</p>
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div class="pronounClarification slidePanelScreen hidden">
-
-                    <h1 class="title">Pronoun Clarification</h1>
-
-                    <div class="content"></div>
-
-                </div>
-
-                <div class="footnotes slidePanelScreen hidden">
-
-                    <h1 class="title">Footnotes</h1>
-
-                    <div class="content"></div>
-
-                </div>
-
-            </div>
-
-            <div class="toolbarContainer">
-
-                <div class="toolbar left">
-
-                    <div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
-                        <picture>
-                            <source srcset="images/icons/MemoryStar-White.svg" media="(prefers-color-scheme: dark)">
-                            <img alt="" src="images/icons/MemoryStar.svg" width="auto" height="45px">
-                        </picture>
-                        <img alt="" src="images/icons/MemoryStar-White.svg" width="auto" height="45px">
-                        <p class="label">Prejump</p>
+                <div class="slidePanel hidden">
+                
+                    <div class="singleWordInformation slidePanelScreen hidden">
+                
+                        <h1 class="title"></h1>
+                        <div class="pronounClarification">
+                            <picture class="arrow right">
+                                <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="Antecedent is:" src="images/icons/Arrow.svg" width="auto" height="30px">
+                            </picture>
+                            <p class="antecedent"></p>
+                        </div>
+                        <h2 class="subtitle"></h2>
+                
+                        <div class="content"></div>
+                
+                    </div>
+                
+                    <div class="possibleQuestions slidePanelScreen hidden">
+                
+                        <h1 class="title">Possible Questions</h1>
+                        <h2 class="subtitle"></h2>
+                
+                        <div class="content"></div>
+                
+                    </div>
+                
+                    <div class="pronounClarification slidePanelScreen hidden">
+                
+                        <h1 class="title">Pronoun Clarification</h1>
+                
+                        <div class="content"></div>
+                
+                    </div>
+                
+                    <div class="footnotes slidePanelScreen hidden">
+                
+                        <h1 class="title">Footnotes</h1>
+                
+                        <div class="content"></div>
+                
                     </div>
 
-                    <div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
-                        <picture>
-                            <source srcset="images/icons/RareWords-White.svg" media="(prefers-color-scheme: dark)">
-                            <img alt="" src="images/icons/RareWords.svg" width="auto" height="45px">
+                    <div class="closeButton" onclick="UIManager.buttonHandlers.closeSlidePanel()">
+                    
+                        <picture class="arrow left">
+                            <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                            <img alt="Close panel" src="images/icons/BackArrow.svg" width="auto" height="30px">
                         </picture>
-                        <img alt="" src="images/icons/RareWords-White.svg" width="auto" height="45px">
-                        <p class="label">Rare Words</p>
-                    </div>
-
-                    <div class="divider"></div>
-
-                </div>
-
-                <div class="toolbar right">
-
-                    <div class="toolbarItem possibleQuestionsButton multiLine" onclick="UIManager.buttonHandlers.possibleQuestionsButton()" style="display: none">
                         <picture>
-                            <source srcset="images/icons/QuestionMark-White.svg" media="(prefers-color-scheme: dark)">
-                            <img alt="" src="images/icons/QuestionMark.svg" width="auto" height="45px">
+                            <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                            <img alt="Close panel" src="images/icons/Close.svg" width="auto" height="22px">
                         </picture>
-                        <img alt="" src="images/icons/QuestionMark-White.svg" width="auto" height="45px">
-                        <p class="label">Possible Questions</p>
-                    </div>
 
-                    <div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
-                        <picture>
-                            <source srcset="images/icons/PronounClarification-White.svg" media="(prefers-color-scheme: dark)">
-                            <img alt="" src="images/icons/PronounClarification.svg" width="auto" height="45px">
-                        </picture>
-                        <img alt="" src="images/icons/PronounClarification-White.svg" width="auto" height="45px">
-                        <p class="label">Pronoun Clarification</p>
                     </div>
-
-                    <div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
-                        <picture>
-                            <source srcset="images/icons/Footnotes-White.svg" media="(prefers-color-scheme: dark)">
-                            <img alt="" src="images/icons/Footnotes.svg" width="auto" height="45px">
-                        </picture>
-                        <img alt="" src="images/icons/Footnotes-White.svg" width="auto" height="45px">
-                        <p class="label">Footnotes</p>
-                    </div>
-
+                
                 </div>
 
             </div>
@@ -506,7 +508,7 @@
     <script src="https://quizwell.github.io/Scripture-Engine/database/Matthew.js"></script>
     <script src="https://quizwell.github.io/Scripture-Engine/database/RomansJames.js"></script>
     <script src="https://quizwell.github.io/Scripture-Engine/scriptureEngine.js"></script>
-    
+
     <script src="UIManager.js"></script>
 
     <script src="flyswatter.js"></script>

@@ -39,11 +39,6 @@ const UIReferences = {
     verseDisplayScreenCloseButton: document.querySelector(".verseDisplayScreen .closeButton"),
     verseDisplayScreenBackButton: document.querySelector(".verseDisplayScreen .backButton"),
 
-    verseDisplayScreenMiniTitle: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .title"),
-    verseDisplayScreenMiniSubtitle: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .subtitle"),
-    verseDisplayScreenMiniSubtitleTag: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .subtitle .tag"),
-    verseDisplayScreenMiniSubtitleText: document.querySelector(".verseDisplayScreen .miniVerseTitleContainer .subtitle .text"),
-
     verseDisplayScreenTitle: document.querySelector(".verseDisplayScreen .verseTitleContainer .title"),
     verseDisplayScreenSubtitle: document.querySelector(".verseDisplayScreen .verseTitleContainer .subtitle"),
     verseDisplayScreenSubtitleTag: document.querySelector(".verseDisplayScreen .verseTitleContainer .subtitle .tag"),
@@ -1022,23 +1017,34 @@ const UIManager = {
                 }
 
                 var transformProperties = {
-
-                    normalLeft: "translate(-100px, -50%)",
-                    normalRight: "translate(100px, -50%)",
-                    upLeft: "translate(-100px, 0)",
-                    upRight: "translate(100px, 0)",
-
+                    normal: {
+                        mobile: {
+                            left: "translate(100px, -50%)",
+                            right: "translate(-100px, -50%)",
+                        },
+                        desktop: {
+                            left: "translate(calc(-50% + 100px), -50%)",
+                            right: "translate(calc(-50% - 100px), -50%)",
+                        }
+                    },
+                    up: {
+                        mobile: {
+                            left: "translate(100px, 0)",
+                            right: "translate(-100px, 0)",
+                        },
+                        desktop: {
+                            left: "translate(calc(-50% + 100px), -50%)",
+                            right: "translate(calc(-50% - 100px), -50%)",
+                        }
+                    }
                 }
                 var verseDisplayIsUp = UIReferences.verseDisplay.classList.contains("up");
 
                 var closeSlidePanel = !UIReferences.slidePanelSingleWordInformation.classList.contains("hidden");
 
-                //Disable transitions on the verse display
-                UIReferences.verseDisplay.style.transition = "none";
+                UIReferences.verseDisplay.style.removeProperty("transition");
 
                 requestAnimationFrame(function () {
-
-                    UIReferences.verseDisplay.style.removeProperty("transition");
 
                     //Fade out the verse display, slide panel screens, and verse information.
                     UIReferences.verseDisplay.style.opacity = 0;
@@ -1047,18 +1053,11 @@ const UIManager = {
                     UIReferences.slidePanelFootnotes.style.opacity = 0;
                     UIReferences.verseDisplayScreenTitle.style.opacity = 0;
                     UIReferences.verseDisplayScreenSubtitle.style.opacity = 0;
-                    UIReferences.verseDisplayScreenMiniTitle.style.opacity = 0;
-                    UIReferences.verseDisplayScreenMiniSubtitle.style.opacity = 0;
 
-                    if (backwards && verseDisplayIsUp) {
-                        UIReferences.verseDisplay.style.transform = transformProperties.upRight;
-                    } else if (backwards && !verseDisplayIsUp) {
-                        UIReferences.verseDisplay.style.transform = transformProperties.normalRight;
-                    } else if (!backwards && verseDisplayIsUp) {
-                        UIReferences.verseDisplay.style.transform = transformProperties.upLeft;
-                    } else if (!backwards && !verseDisplayIsUp) {
-                        UIReferences.verseDisplay.style.transform = transformProperties.normalLeft;
-                    }
+                    var isDesktop = !window.matchMedia("only screen and (max-width: 925px)").matches;
+
+                    UIReferences.verseDisplay.style.transform = transformProperties[(verseDisplayIsUp ? "up" : "normal")][(isDesktop ? "desktop" : "mobile")][(backwards ? "left" : "right")];
+
 
                     //Refresh the back button
                     UIManager.verseDisplayScreen.updateBackButtonState();
@@ -1070,9 +1069,13 @@ const UIManager = {
 
                         requestAnimationFrame(function () {
 
-                            // 2/4 If the single word information panel is showing, close the slide panel with an opacity transition.
+                            // 2/4 If the single word information panel is showing, close the slide panel.
                             if (closeSlidePanel) {
-                                UIReferences.slidePanel.style.opacity = 0;
+                                if (!isDesktop) {
+                                    UIReferences.slidePanel.style.opacity = 0;
+                                } else {
+                                    UIManager.verseDisplayScreen.hideSlidePanel();
+                                }
                                 UIReferences.verseDisplay.classList.remove("up");
                                 setTimeout(function () {
 
@@ -1080,8 +1083,10 @@ const UIManager = {
                                     UIReferences.slidePanel.style.transition = "none";
 
                                     requestAnimationFrame(function () {
-                                        UIReferences.slidePanel.classList.add("hidden");
-                                        UIReferences.slidePanel.style.removeProperty("opacity");
+                                        if (!isDesktop) {
+                                            UIReferences.slidePanel.classList.add("hidden");
+                                            UIReferences.slidePanel.style.removeProperty("opacity");
+                                        }
 
                                         requestAnimationFrame(function () {
                                             UIReferences.slidePanel.style.removeProperty("transition");
@@ -1109,23 +1114,13 @@ const UIManager = {
                                 //Move the verse display to the opposite side
                                 verseDisplayIsUp = UIReferences.verseDisplay.classList.contains("up");
 
-                                if (backwards && verseDisplayIsUp) {
-                                    UIReferences.verseDisplay.style.transform = transformProperties.upLeft;
-                                } else if (backwards && !verseDisplayIsUp) {
-                                    UIReferences.verseDisplay.style.transform = transformProperties.normalLeft;
-                                } else if (!backwards && verseDisplayIsUp) {
-                                    UIReferences.verseDisplay.style.transform = transformProperties.upRight;
-                                } else if (!backwards && !verseDisplayIsUp) {
-                                    UIReferences.verseDisplay.style.transform = transformProperties.normalRight;
-                                }
+                                UIReferences.verseDisplay.style.transform = transformProperties[(verseDisplayIsUp ? "up" : "normal")][(isDesktop ? "desktop" : "mobile")][(backwards ? "right" : "left")];
 
                                 setTimeout(function () {
 
                                     //Animate the slide panel screens and verse information back in
                                     UIReferences.verseDisplayScreenTitle.removeAttribute("style");
                                     UIReferences.verseDisplayScreenSubtitle.removeAttribute("style");
-                                    UIReferences.verseDisplayScreenMiniTitle.removeAttribute("style");
-                                    UIReferences.verseDisplayScreenMiniSubtitle.removeAttribute("style");
                                     UIReferences.slidePanelPossibleQuestions.removeAttribute("style");
                                     UIReferences.slidePanelPronounClarification.removeAttribute("style");
                                     UIReferences.slidePanelFootnotes.removeAttribute("style");
@@ -1223,7 +1218,6 @@ const UIManager = {
 
             //Show the reference of the verse
             UIReferences.verseDisplayScreenTitle.textContent = verse.expandedReference;
-            UIReferences.verseDisplayScreenMiniTitle.textContent = verse.reference;
 
             //Disable both neighboring verse buttons
             UIReferences.verseDisplayScreenPreviousVerseButton.setAttribute("disabled", "disabled");
@@ -1338,9 +1332,7 @@ const UIManager = {
 
                 //Show memory indicator
                 UIReferences.verseDisplayScreenSubtitleText.textContent = memoryVerseStatus.memoryReference;
-                UIReferences.verseDisplayScreenMiniSubtitleText.textContent = memoryVerseStatus.memoryReference;
                 UIManager.show(UIReferences.verseDisplayScreenSubtitle);
-                UIManager.show(UIReferences.verseDisplayScreenMiniSubtitle);
 
                 //Show the prejump only if this is the first verse of the memory verse
                 if (memoryVerseStatus.startVerse == referenceString) {
@@ -1362,7 +1354,6 @@ const UIManager = {
             } else {
 
                 UIManager.hide(UIReferences.verseDisplayScreenSubtitle);
-                UIManager.hide(UIReferences.verseDisplayScreenMiniSubtitle);
 
             }
 
@@ -1839,13 +1830,6 @@ const UIManager = {
 
         showSlidePanel: function (slidePanelScreen) {
 
-            //Hide all slide panel screens
-            for (var i = 0; i < UIReferences.slidePanel.children.length; i++) {
-
-                UIManager.hide(UIReferences.slidePanel.children[i]);
-
-            }
-
             //Show the requested slide panel screen
             switch (slidePanelScreen) {
 
@@ -1870,24 +1854,26 @@ const UIManager = {
             //Apply the up class to the verseDisplay
             UIReferences.verseDisplay.classList.add("up");
 
-            UIManager.verseDisplayScreen.setSlidePanelHeight();
+            UIManager.verseDisplayScreen.setSlidePanelHeight(true);
 
         },
 
-        setSlidePanelHeight: function () {
+        setSlidePanelHeight: function (showSlidePanel) {
 
             //Get the distance from the top of the screen to the bottom of the verseDisplay
             var boundingBox = UIReferences.verseDisplay.getBoundingClientRect();
 
-            if (window.matchMedia("only screen and (max-width: 695px)").matches) {
-                var distance = ((boundingBox.bottom - boundingBox.top) + 190);
+            if (window.matchMedia("only screen and (max-width: 925px)").matches) {
+                var distance = ((boundingBox.bottom - boundingBox.top) + 100);
+                UIReferences.slidePanel.style.top = (distance + "px");
             } else {
-                var distance = ((boundingBox.bottom - boundingBox.top) + 140);
+                UIReferences.slidePanel.style.top = "auto";
+
             }
 
-            //Set the top of the sliding panel
-            UIReferences.slidePanel.style.top = (distance + "px");
-            UIManager.show(UIReferences.slidePanel);
+            if (showSlidePanel) {
+                UIManager.show(UIReferences.slidePanel);
+            }
 
         },
 
@@ -1895,6 +1881,13 @@ const UIManager = {
 
             //Remove the up class from the verseDisplay
             UIReferences.verseDisplay.classList.remove("up");
+
+            //Hide all slide panel screens
+            for (var i = 0; i < UIReferences.slidePanel.children.length; i++) {
+
+                UIManager.hide(UIReferences.slidePanel.children[i]);
+
+            }
 
             UIManager.hide(UIReferences.slidePanel);
 
@@ -1957,6 +1950,9 @@ window.addEventListener("resize", () => {
     resizeTimer = setTimeout(function () {
         document.body.classList.remove("no-transition");
     }, 200);
+
+    //Redraw the slidePanel position
+    UIManager.verseDisplayScreen.setSlidePanelHeight();
 });
 
 //Perform UI setup
