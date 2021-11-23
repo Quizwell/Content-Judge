@@ -19,8 +19,10 @@ const UIReferences = {
     bookSelectionContainer: document.querySelector(".bookSelectionContainer"),
     bookSelectionElementContainer: document.querySelector(".bookSelectionContainer .selectionElementContainer"),
     chapterSelectionContainer: document.querySelector(".chapterSelectionContainer"),
+    chapterSelectionContainerLabel: document.querySelector(".chapterSelectionContainer .label"),
     chapterSelectionElementContainer: document.querySelector(".chapterSelectionContainer .selectionElementContainer"),
     verseSelectionContainer: document.querySelector(".verseSelectionContainer"),
+    verseSelectionContainerLabel: document.querySelector(".verseSelectionContainer .label"),
     verseSelectionElementContainer: document.querySelector(".verseSelectionContainer .selectionElementContainer"),
 
     searchBarContainer: document.querySelector(".searchBarContainer"),
@@ -759,6 +761,9 @@ const UIManager = {
 
             }
 
+            //Set the label of the container
+            UIReferences.chapterSelectionContainerLabel.textContent = scriptureEngine.unabbreviateBookNamesInString(bookAbbreviation);
+
             //Show screen
             UIManager.show(UIReferences.chapterSelectionContainer, 200);
 
@@ -801,6 +806,9 @@ const UIManager = {
                 UIReferences.verseSelectionElementContainer.appendChild(verseSelectionElement);
 
             }
+
+            //Set the label of the container
+            UIReferences.verseSelectionContainerLabel.textContent = scriptureEngine.unabbreviateBookNamesInString(UIManager.searchByReference.currentSearchObject.bookAbbreviation) + " " + chapterNumber;
 
             //Show screen
             UIManager.show(UIReferences.verseSelectionContainer, 200);
@@ -998,8 +1006,8 @@ const UIManager = {
 
             navigateToVerse: function (reference, backwards, preserveStack) {
 
-                //Add the reference to the navigation stack, unless preserveStack is true
-                if (!preserveStack) {
+                //Add the reference to the navigation stack, unless preserveStack is set to true or the user is holding the Option key
+                if (!preserveStack && !optionKeyDown) {
                     UIManager.verseDisplayScreen.navigation.navigationStack.push(reference);
                 }
 
@@ -1109,6 +1117,11 @@ const UIManager = {
                                 //If the slide panel is showing, reset the height
                                 if (!closeSlidePanel && !UIReferences.slidePanel.classList.contains("hidden")) {
                                     UIManager.verseDisplayScreen.setSlidePanelHeight();
+                                }
+
+                                //If the slide panel pronoun clarification screen is showing, rehighlight the pronouns in the verse display
+                                if (!closeSlidePanel && !UIReferences.slidePanelPronounClarification.classList.contains("hidden")) {
+                                    UIManager.verseDisplayScreen.showSlidePanel("pronounClarification");
                                 }
 
                                 //Move the verse display to the opposite side
@@ -1373,6 +1386,32 @@ const UIManager = {
 
                     var element = document.createElement("div");
                     element.classList.add("listItem");
+                    function highlightPronoun(pronounClarification, highlightWord) {
+                        //Highlight this pronoun's corresponsing word in the verse display
+                        //Loop through every word in the verse display
+                        var occurrences = 0;
+                        for (var j = 0; j < UIReferences.verseDisplayTextContainer.children.length; j++) {    
+                            //If the current word is the same as the pronoun, add an occurrence.
+                            if (UIReferences.verseDisplayTextContainer.children[j].textContent === pronounClarification.pronoun) {
+                                occurrences++;
+                                //Highlight or unhighlight the word if this is the correct occurrence, or if occurences don't matter
+                                if (
+                                    (pronounClarification.occurrence && pronounClarification.occurrence == occurrences) ||
+                                    (!pronounClarification.occurrence)
+                                ) {
+                                    if (highlightWord) {
+                                        UIReferences.verseDisplayTextContainer.children[j].classList.add("highlight");
+                                    } else {
+                                        UIReferences.verseDisplayTextContainer.children[j].classList.remove("highlight");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    (function (currentClarification) {
+                        element.onmouseover = function () {highlightPronoun(currentClarification, true)};
+                        element.onmouseout = function () {highlightPronoun(currentClarification, false)};
+                    })(currentClarification)
                     if (
                         currentClarification.reference &&
                         (currentClarification.reference !== verse.reference)
@@ -1842,6 +1881,22 @@ const UIManager = {
                     break;
 
                 case "pronounClarification":
+                    //Get all pronoun clarifiations for the selected verse
+                    var pronounClarifications = scriptureEngine.getPronounClarificationsByReference(UIManager.verseDisplayScreen.currentVerseReference);
+
+                    //Highlight each pronoun in the verse display
+                    for (var i = 0; i < pronounClarifications.length; i++) {
+                        var currentPronounClarification = pronounClarifications[i];
+                        var currentPronoun = currentPronounClarification.pronoun;
+                        //Loop through every word of the verse display
+                        for (var w = 0; w < UIReferences.verseDisplayTextContainer.children.length; w++) {
+                            //If the current word matches the current pronoun, highlight it
+                            if (UIReferences.verseDisplayTextContainer.children[w].textContent == currentPronoun) {
+                                UIReferences.verseDisplayTextContainer.children[w].classList.add("outlined");
+                            }
+                        }
+                    }
+
                     UIManager.show(UIReferences.slidePanelPronounClarification);
                     break;
 
@@ -1954,6 +2009,32 @@ window.addEventListener("resize", () => {
     //Redraw the slidePanel position
     UIManager.verseDisplayScreen.setSlidePanelHeight();
 });
+
+//Listen for Option key updates
+var optionKeyDown = false;
+
+document.body.onkeydown = function(e) {
+  if (e.which === 18) {
+    optionKeyDown = true;
+  }
+};
+
+document.body.onkeyup = function(e) {
+  if (e.which === 18) {
+    optionKeyDown = false;
+  }
+};
+
+function checkOptionKey() {
+  if (document.webkitHidden) return;
+  window.addEventListener('mousemove', function onMove(e) {
+    optionKeyDown = e.altKey;
+    window.removeEventListener('mousemove', onMove, false);
+  }, false);
+}
+
+document.addEventListener('webkitvisibilitychange', checkOptionKey, false);
+window.addEventListener('load', checkOptionKey, false);
 
 //Perform UI setup
 

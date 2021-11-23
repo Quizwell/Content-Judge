@@ -355,6 +355,7 @@
 .searchModeSelectionScreen .gridContainer {
   display: grid;
   height: calc(100% - 45px);
+  height: calc(100% - max(45px, calc(env(safe-area-inset-bottom) + 26px)));
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
@@ -478,7 +479,6 @@
 .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer {
   position: absolute;
   width: calc(50% - 60px);
-  height: calc(100% - 115px);
   padding: 15px;
   border-radius: 15px;
   background: var(--content-background-color);
@@ -914,6 +914,11 @@
   border-radius: 5px !important;
 }
 
+.verseDisplay .textContainer p.highlight {
+  background: var(--secondary-content-background-color);
+  color: var(--app-accent-color);
+}
+
 .verseDisplay.highlightPrejump .textContainer p.prejump {
   box-sizing: border-box;
   border: none;
@@ -1080,6 +1085,10 @@
 .slidePanel {
   position: relative;
   height: calc(100% - 300px);
+  height: min(
+    calc(100% - 280px - env(safe-area-inset-bottom)),
+    calc(100% - 300px)
+  );
   margin-top: 20px;
   background: var(--content-background-color);
   border-radius: 15px;
@@ -1139,13 +1148,18 @@
   width: calc(100% - 50px);
 }
 
+.slidePanel .titleContainer {
+  display: flex;
+  width: calc(100% - 50px);
+}
+
 .slidePanel .singleWordInformation .title {
   display: inline-block;
   vertical-align: top;
 }
 
 .slidePanel .singleWordInformation .pronounClarification {
-  display: inline-block;
+  display: inline-flex;
   margin-top: 1px;
 }
 
@@ -1300,6 +1314,7 @@
 }
 
 .slidePanel .pronounClarification .listItem .headerContainer {
+  display: flex;
   margin-bottom: -5px;
 }
 
@@ -1326,9 +1341,10 @@
 }
 
 .slidePanel .pronounClarification .listItem p.reference {
-  margin: 0;
+  margin: 0 0 0 10px;
   font-size: 18px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .slidePanel .footnotes .listItem {

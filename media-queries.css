@@ -19,9 +19,8 @@
         
         position: absolute;
         top: 167px;
-        right: 20px;
-        width: calc(50% - 40px);
         height: calc(100% - 237px);
+        height: calc(100% - 237px - env(safe-area-inset-bottom));
         left: 50%;
         right: auto;
         width: calc(100% - 70px);
@@ -183,7 +182,7 @@
         position: absolute;
         height: 40px;
         bottom: 115px;
-        bottom: calc(115px + env(safe-area-inset-bottom));
+        bottom: max(calc(90px + env(safe-area-inset-bottom)), 115px);
         left: 20px;
         left: calc(20px + env(safe-area-inset-left));
         right: 20px;
@@ -205,7 +204,7 @@
         left: 20px;
         left: calc(20px + env(safe-area-inset-left));
         bottom: 20px;
-        bottom: calc(env(safe-area-inset-bottom) + 20px);
+        bottom: max(20px, calc(env(safe-area-inset-bottom) + 1px));
         z-index: 5;
     }
 
@@ -223,7 +222,7 @@
         left: 20px;
         left: calc(20px + env(safe-area-inset-left));
         bottom: 20px;
-        bottom: calc(env(safe-area-inset-bottom) + 20px);
+        bottom: max(20px, env(safe-area-inset-bottom));
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -288,12 +287,11 @@
     
     .slidePanel .pronounClarification .listItem {
         flex-wrap: wrap;
-        justify-content: center;
     }
     
-    .slidePanel .pronounClarification .listItem .reference {
+    .slidePanel .pronounClarification .listItem p.reference {
+        margin: 5px 0 0 0;
         width: 100%;
-        text-align: center;
     }
     
     .slidePanel .singleWordInformation .content .referencesContainer {
