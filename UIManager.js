@@ -3,18 +3,17 @@ const UIReferences = {
     mainScreen: document.querySelector(".mainScreen"),
 
     welcomeScreen: document.querySelector(".welcomeScreen"),
-    welcomeScreenHeader: document.querySelector(".welcomeScreen .headerBlock"),
+
+    changelogScreen: document.querySelector(".changelogScreen"),
+    changelogScreenVersion: document.querySelector(".changelogScreen .header .version"),
+    changelogScreenChangesContainer: document.querySelector(".changelogScreen .changes"),
 
     addWebClipScreen: document.querySelector(".addWebClipScreen"),
-
     flyswatterScreen: document.querySelector(".flyswatterScreen"),
-
     settingsScreen: document.querySelector(".settingsScreen"),
 
     searchModeSelectionScreen: document.querySelector(".searchModeSelectionScreen"),
-
     quizCycleYearSelector: document.querySelector(".searchModeSelectionScreen select"),
-
     searchByReferenceContainer: document.querySelector(".searchByReferenceContainer"),
     bookSelectionContainer: document.querySelector(".bookSelectionContainer"),
     bookSelectionElementContainer: document.querySelector(".bookSelectionContainer .selectionElementContainer"),
@@ -37,6 +36,8 @@ const UIReferences = {
 
     verseDisplayScreen: document.querySelector(".verseDisplayScreen"),
     verseDisplayScreenBackgroundOverlay: document.querySelector(".verseDisplayScreenBackgroundOverlay"),
+
+    verseDisplayScreenHeaderContainer: document.querySelector(".verseDisplayScreen .headerContainer"),
 
     verseDisplayScreenCloseButton: document.querySelector(".verseDisplayScreen .closeButton"),
     verseDisplayScreenBackButton: document.querySelector(".verseDisplayScreen .backButton"),
@@ -89,82 +90,41 @@ const UIReferences = {
 const UIManager = {
 
     hide: function (element, transitionTime) {
-
-        //If no transition time is provided, just add the hidden class
         if (transitionTime) {
-
             element.classList.add("hidden");
-
-            //Wait for the transition to complete, then force the element to hide
-            setTimeout(function () {
-                element.classList.add("requireDisplayNone");
-            }, transitionTime);
-
         } else if (transitionTime === null) {
-
             element.style.transition = "none";
-
             requestAnimationFrame(function () {
-
-                element.classList.add("requireDisplayNone");
                 element.classList.add("hidden");
-
                 requestAnimationFrame(function () {
-
                     element.style.removeProperty("transition");
-
                 });
-
             });
-
         } else {
-
             element.classList.add("hidden");
-
         }
-
     },
     show: function (element, transitionTime) {
 
-        //If no transition time is provided, just remove the hidden class
         if (transitionTime) {
-
             //If the element was hidden before, we'll need to make sure that requireDisplayNone is removed in order to show the animation.
-            element.classList.remove("requireDisplayNone");
-
-            requestAnimationFrame(function () {
-                element.classList.remove("hidden");
-            });
-
-        } else if (transitionTime === null) {
-
-            element.style.transition = "none";
-
-            requestAnimationFrame(function () {
-
-                element.classList.add("requireDisplayNone");
-                element.classList.add("hidden");
-
-                requestAnimationFrame(function () {
-
-                    element.style.removeProperty("transition");
-
-                });
-
-            });
-
-        } else {
-
             element.classList.remove("hidden");
-
+        } else if (transitionTime === null) {
+            element.style.transition = "none";
+            requestAnimationFrame(function () {
+                element.classList.add("hidden");
+                requestAnimationFrame(function () {
+                    element.style.removeProperty("transition");
+                });
+            });
+        } else {
+            element.classList.remove("hidden");
         }
-
     },
 
     buttonHandlers: {
 
         welcomeScreenEasterEgg: function () {
-
             easterEggClickCount++;
 
             if (easterEggClickCount === 10) {
@@ -173,195 +133,139 @@ const UIManager = {
                 easterEggClickCount = 0;
 
             }
-
         },
 
         hideWelcomeScreen: function () {
-
             //If the browser is running on iPhone or iPad and is not mobile Chrome, and if the page is not running as a Web Clip already, show the Web Clip prompt screen to encourage the user to add it to his home screen.
             if (
                 (window.navigator.userAgent.match(/iP(ad|hone)/i)) && !(window.navigator.userAgent.match(/CriOS/i)) && !window.navigator.standalone
             ) {
-
                 UIManager.show(UIReferences.addWebClipScreen, 200);
-
             } else {
-
                 UIManager.show(UIReferences.searchModeSelectionScreen, 200);
-
             }
-
         },
-        hideAddWebClipScreen: function () {
 
+        hideChangelogScreen: function () {
+            UIManager.hide(UIReferences.changelogScreen, 200);
+        },
+
+        hideAddWebClipScreen: function () {
             UIManager.show(UIReferences.searchModeSelectionScreen, 200);
             UIManager.hide(UIReferences.addWebClipScreen, 200);
-
         },
 
         showFlyswatterScreen: function () {
-
             UIManager.flyswatterScreen.showFlyswatterScreen();
-
         },
         closeFlyswatterScreen: function () {
-
             UIManager.flyswatterScreen.closeFlyswatterScreen();
-
         },
 
         showSettingsScreen: function () {
-
             UIManager.settingsScreen.populateAndShowSettingsScreen();
-
         },
         closeSettingsScreen: function () {
-
             UIManager.settingsScreen.closeSettingsScreen();
-
         },
 
         closeSearchModeSelectionScreen: function () {
-
             UIManager.hide(UIReferences.searchModeSelectionScreen, 200);
-
             setTimeout(function () {
-
                 UIManager.searchBarHandlers.clearSearchBar();
                 UIManager.buttonHandlers.closeVerseSelectionContainer();
                 UIManager.buttonHandlers.closeChapterSelectionContainer();
-
             }, 200);
-
         },
 
         closeChapterSelectionContainer: function () {
-
             UIManager.hide(UIReferences.chapterSelectionContainer, 200);
-
         },
         closeVerseSelectionContainer: function () {
-
             UIManager.hide(UIReferences.verseSelectionContainer, 200);
-
         },
 
         viewChapterButton: function () {
-
             var referenceString = UIManager.searchByReference.currentSearchObject.bookAbbreviation + " " + UIManager.searchByReference.currentSearchObject.chapter;
             UIManager.chapterDisplayScreen.populateAndShowChapterDisplayScreen(referenceString);
-
         },
         closeChapterDisplayScreen: function () {
-
             UIManager.chapterDisplayScreen.closeChapterDisplayScreen();
-
         },
 
         verseDisplayScreenCloseButton: function () {
-
             UIManager.verseDisplayScreen.closeVerseDisplayScreen();
-
         },
         verseDisplayScreenBackButton: function () {
-
             if (!UIReferences.verseDisplayScreenBackButton.getAttribute("disabled")) {
                 UIManager.verseDisplayScreen.navigation.toPreviousState();
             }
-
         },
 
         closeSlidePanel: function () {
-
             UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
             UIManager.verseDisplayScreen.deselectAllWords();
             UIManager.verseDisplayScreen.hideSlidePanel();
-
         },
 
         highlightPrejumpButton: function () {
-
             var button = UIReferences.highlightPrejumpButton;
             button.classList.toggle("active");
             UIReferences.verseDisplay.classList.toggle("highlightPrejump");
 
             //Update stored preference
             storageManager.set("highlightPrejump", !storageManager.get("highlightPrejump"));
-
         },
         highlightRareWordsButton: function () {
-
             var button = UIReferences.highlightRareWordsButton;
             button.classList.toggle("active");
             UIReferences.verseDisplay.classList.toggle("highlightRareWords");
 
             //Update stored preference
             storageManager.set("highlightRareWords", !storageManager.get("highlightRareWords"));
-
         },
 
         possibleQuestionsButton: function () {
-
             var button = UIReferences.possibleQuestionsButton;
             var wasActive = button.classList.contains("active");
 
             UIManager.verseDisplayScreen.deselectAllWords();
-
             UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
 
             if (wasActive) {
-
                 UIManager.verseDisplayScreen.hideSlidePanel();
-
             } else {
-
                 UIManager.verseDisplayScreen.showSlidePanel("possibleQuestions");
                 button.classList.add("active");
-
             }
-
         },
         pronounClarificationButton: function () {
-
             var button = UIReferences.pronounClarificationButton;
             var wasActive = button.classList.contains("active");
 
             UIManager.verseDisplayScreen.deselectAllWords();
-
             UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
 
             if (wasActive) {
-
                 UIManager.verseDisplayScreen.hideSlidePanel();
-
             } else {
-
                 UIManager.verseDisplayScreen.showSlidePanel("pronounClarification");
                 button.classList.add("active");
-
             }
-
         },
         footnotesButton: function () {
-
             var button = UIReferences.footnotesButton;
             var wasActive = button.classList.contains("active");
 
             UIManager.verseDisplayScreen.deselectAllWords();
-
             UIManager.verseDisplayScreen.toolbars.right.deselectAllToolbarItems();
 
             if (wasActive) {
-
                 UIManager.verseDisplayScreen.hideSlidePanel();
-
             } else {
-
                 UIManager.verseDisplayScreen.showSlidePanel("footnotes");
                 button.classList.add("active");
-
             }
-
         }
 
     },
@@ -487,26 +391,107 @@ const UIManager = {
     welcomeScreen: {
 
         easterEgg: function () {
-
-            easterEggClickCount++;
-
-            if (easterEggClickCount === 10) {
-
+            if (++easterEggClickCount === 10) {
                 easterEggClickCount = 0;
-
-                UIReferences.welcomeScreenHeader.classList.add("easterEgg");
-
+                UIReferences.welcomeScreen.classList.add("showEasterEgg");
                 setTimeout(function () {
-                    UIReferences.welcomeScreenHeader.classList.remove("easterEgg");
+                    UIReferences.welcomeScreen.classList.remove("showEasterEgg");
                 }, 10000)
-
             }
-
         }
 
     },
 
     flyswatterScreen: {
+
+        questionTree: {
+            name: "What type of problem are you experiencing?",
+            id: "flyswatter.contentJudge",
+            options: [
+                {
+                    name: "Unexpected Behavior",
+                    id: "flyswatter.contentJudge.unexpectedBehavior",
+                    options: [
+                        {
+                            name: "UI",
+                            id: "flyswatter.contentJudge.unexpectedBehavior.ui",
+                            options: [
+                                {
+                                    name: "Animation Problem",
+                                    id: "flyswatter.contentJudge.unexpectedBehavior.ui.animation",
+                                    options: null
+                                },
+                                {
+                                    name: "Unresponsive Component",
+                                    id: "flyswatter.contentJudge.unexpectedBehavior.ui.unresponsiveComponent",
+                                    options: null
+                                },
+                                {
+                                    name: "Misplaced Component",
+                                    id: "flyswatter.contentJudge.unexpectedBehavior.ui.misplacedComponent",
+                                    options: null
+                                }
+                            ]
+                        },
+                        {
+                            name: "Illogical App Behavior",
+                            id: "illogical",
+                            options: null
+                        }
+                    ]
+                },
+                {
+                    name: "Content Error",
+                    id: "flyswatter.contentJudge.contentError",
+                    options: [
+                        {
+                            name: "Scripture",
+                            id: "flyswatter.contentJudge.contentError.scripture",
+                            options: [
+                                {
+                                    name: "Missing Scripture",
+                                    id: "flyswatter.contentJudge.contentError.scripture.missing",
+                                    options: null
+                                },
+                                {
+                                    name: "Inaccurate Scripture",
+                                    id: "flyswatter.contentJudge.contentError.scripture.inaccurate",
+                                    options: null
+                                }
+                            ]
+                        },
+                        {
+                            name: "Pronoun Clarification",
+                            id: "flyswatter.contentJudge.contentError.pronounClarification",
+                            options: [
+                                {
+                                    name: "Missing Pronoun Clarification",
+                                    id: "flyswatter.contentJudge.contentError.pronounClarification.missing",
+                                    options: null
+                                },
+                                {
+                                    name: "Incorrect Pronoun Clarification",
+                                    id: "flyswatter.contentJudge.contentError.pronounClarification.incorrect",
+                                    options: null
+                                }
+                            ]
+                        },
+                        {
+                            name: "Concordance Information",
+                            id: "concordance",
+                            options: null
+                        }
+                    ]
+                },
+                {
+                    name: "Feature Suggestion",
+                    id: "flyswatter.contentJudge.featureSuggestion",
+                    options: null
+                }
+            ]
+        },
+
+        currentOption: undefined,
 
         showFlyswatterScreen: function () {
 
@@ -515,16 +500,63 @@ const UIManager = {
         },
 
         closeFlyswatterScreen: function () {
-
             UIManager.hide(UIReferences.flyswatterScreen, 200);
 
+            setTimeout(function () {
+                UIManager.flyswatterScreen.currentOption = undefined;
+                //Remove all optionsContainers except for the first one
+                while (UIReferences.flyswatterScreen.children.length > 2) {
+                    UIReferences.flyswatterScreen.removeChild(UIReferences.flyswatterScreen.children[2]);
+                }
+            }, 200);
         },
 
-        selectedOption: function (option) {
+        selectedOption: function (optionID) {
+            if (!this.currentOption) {
+                this.currentOption = this.questionTree;
+            }
 
-            UIManager.flyswatterScreen.closeFlyswatterScreen();
-            flyswatter.sendBugReport(option);
+            var optionsContainerElement = document.createElement("div");
+            optionsContainerElement.classList.add("optionsContainer");
+            optionsContainerElement.classList.add("hidden");
 
+            var titleElement = document.createElement("h2");
+            titleElement.textContent = this.currentOption.name;
+            titleElement.classList.add("title");
+            optionsContainerElement.appendChild(titleElement);
+
+            //Find the selected option by matching its ID
+            for (var i = 0; i < this.currentOption.options.length; i++) {
+                var currentOption = this.currentOption.options[i];
+                if (currentOption.id == optionID) {
+                    //If the selected option has suboptions, show them. If not, send the bug report.
+                    if (currentOption.options) {
+                        this.currentOption = currentOption;
+                        titleElement.textContent = currentOption.name;
+                        for (var j = 0; j < currentOption.options.length; j++) {
+                            var currentSuboption = currentOption.options[j];
+                            var optionElement = document.createElement("div");
+                            optionElement.textContent = currentSuboption.name;
+                            optionElement.classList.add("option");
+                            (function (optionID) {
+                                optionElement.onclick = function () {
+                                    UIManager.flyswatterScreen.selectedOption(optionID);
+                                }
+                            })(currentSuboption.id)
+                            optionsContainerElement.appendChild(optionElement);
+                        }
+                    } else {
+                        UIManager.flyswatterScreen.closeFlyswatterScreen();
+                        flyswatter.sendBugReport(optionID);
+                    }
+                    break;
+                }
+            }
+
+            UIReferences.flyswatterScreen.appendChild(optionsContainerElement);
+            requestAnimationFrame(function () {
+                optionsContainerElement.classList.remove("hidden");
+            });
         }
 
     },
@@ -569,29 +601,25 @@ const UIManager = {
             //Update all settings values
             var settingsScreenToggles = document.querySelectorAll(".settingsScreen .checkbox");
             for (var i = 0; i < settingsScreenToggles.length; i++) {
-
                 var currentToggle = settingsScreenToggles[i];
                 var currentToggleSettingName = currentToggle.dataset.settingName;
 
                 storageManager.set(currentToggleSettingName, currentToggle.classList.contains("checked"));
-
             }
 
             //Update all color picker values
             var settingsScreenColorPickers = document.querySelectorAll(".settingsScreen .colorSelector .picker");
             for (var i = 0; i < settingsScreenColorPickers.length; i++) {
-
                 var currentColorPicker = settingsScreenColorPickers[i];
                 var currentColorPickerSettingName = currentColorPicker.dataset.settingName;
 
                 storageManager.set(currentColorPickerSettingName, currentColorPicker.value);
-
             }
 
             //Run all settings update handlers
             var settingsUpdateHandlersKeys = Object.keys(UIManager.settingsScreen.settingUpdateHandlers);
             for (var i = 0; i < settingsUpdateHandlersKeys.length; i++) {
-                UIManager.settingsScreen.settingUpdateHandlers[settingsUpdateHandlersKeys]()
+                UIManager.settingsScreen.settingUpdateHandlers[settingsUpdateHandlersKeys[i]]()
             }
 
             //Hide the screen
@@ -602,7 +630,6 @@ const UIManager = {
         settingUpdateHandlers: {
 
             updateRareWordHighlightColors: function () {
-
                 document.documentElement.style.setProperty("--unique-word-highlight-color", storageManager.get("uniqueWordHighlightColor"));
                 document.documentElement.style.setProperty("--double-word-highlight-color", storageManager.get("doubleWordHighlightColor"));
                 document.documentElement.style.setProperty("--triple-word-highlight-color", storageManager.get("tripleWordHighlightColor"));
@@ -610,15 +637,60 @@ const UIManager = {
                 document.documentElement.style.setProperty("--unique-word-highlight-color-dark", storageManager.get("uniqueWordHighlightColorDark"));
                 document.documentElement.style.setProperty("--double-word-highlight-color-dark", storageManager.get("doubleWordHighlightColorDark"));
                 document.documentElement.style.setProperty("--triple-word-highlight-color-dark", storageManager.get("tripleWordHighlightColorDark"));
+            },
 
+            updateAppAccentColor: function () {
+                function getContrastingColor(hexColor) {
+                    //If a leading # is provided, remove it
+                    if (hexColor.slice(0, 1) === '#') {
+                        hexColor = hexColor.slice(1);
+                    }
+
+                    //If a three-character hexcode is provided, make it six-character
+                    if (hexColor.length === 3) {
+                        hexColor = hexColor.split('').map(function (hex) {
+                            return hex + hex;
+                        }).join('');
+                    }
+
+                    var r = parseInt(hexColor.substr(0, 2), 16);
+                    var g = parseInt(hexColor.substr(2, 2), 16);
+                    var b = parseInt(hexColor.substr(4, 2), 16);
+                    var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+                    return (yiq >= 130) ? '#000000' : '#ffffff';
+                }
+
+                document.documentElement.style.setProperty("--app-accent-color", storageManager.get("appAccentColor"));
+                document.documentElement.style.setProperty("--app-accent-color-dark", storageManager.get("appAccentColorDark"));
+
+                var lightModeTextColor = getContrastingColor(storageManager.get("appAccentColor"));
+                var darkModeTextColor = getContrastingColor(storageManager.get("appAccentColorDark"));
+                document.documentElement.style.setProperty("--accent-color-text-color", lightModeTextColor);
+                document.documentElement.style.setProperty("--accent-color-text-color-dark", darkModeTextColor);
+
+                document.documentElement.classList.remove("lightModeLightAccentColor");
+                document.documentElement.classList.remove("lightModeDarkAccentColor");
+                document.documentElement.classList.remove("darkModeLightAccentColor");
+                document.documentElement.classList.remove("darkModeDarkAccentColor");
+                document.documentElement.classList.add((lightModeTextColor === "#000000") ? "lightModeLightAccentColor" : "lightModeDarkAccentColor");
+                document.documentElement.classList.add((darkModeTextColor === "#000000") ? "darkModeLightAccentColor" : "darkModeDarkAccentColor");
             }
 
         },
 
         resetButtonHandlers: {
 
-            resetRareWordHighlightColors: function () {
+            resetAppAccentColor: function () {
+                var computedStyle = getComputedStyle(document.body);
 
+                storageManager.set("appAccentColor", computedStyle.getPropertyValue("--purple-color").trim());
+                storageManager.set("appAccentColorDark", computedStyle.getPropertyValue("--purple-color-dark").trim());
+
+                UIManager.settingsScreen.settingUpdateHandlers.updateAppAccentColor();
+                UIManager.settingsScreen.populateAndShowSettingsScreen();
+            },
+
+            resetRareWordHighlightColors: function () {
                 var computedStyle = getComputedStyle(document.body);
 
                 storageManager.set("uniqueWordHighlightColor", computedStyle.getPropertyValue("--orange-color").trim());
@@ -631,7 +703,6 @@ const UIManager = {
 
                 UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
                 UIManager.settingsScreen.populateAndShowSettingsScreen();
-
             }
 
         }
@@ -639,26 +710,22 @@ const UIManager = {
     },
 
     bookSelectorHandler: function () {
-
         var selectElement = UIReferences.quizCycleYearSelector;
         var value = selectElement.value;
-
         var selectedBook = scriptureEngine.getYearByAbbreviation(value);
 
         storageManager.set("quizCycleYear", selectedBook);
         scriptureEngine.currentYearObject = window[selectedBook];
+
         UIManager.searchByReference.populateSearchByReferenceContainer();
-
+        UIManager.buttonHandlers.closeVerseSelectionContainer();
+        UIManager.buttonHandlers.closeChapterSelectionContainer();
         UIManager.searchBarHandlers.clearSearchBar();
-
     },
 
     setBookSelector: function (bookObjectName) {
-
         var abbreviation = scriptureEngine.getYearAbbreviationByName(bookObjectName);
-
         UIReferences.quizCycleYearSelector.value = abbreviation;
-
     },
 
     bannerNotificationManager: {
@@ -833,10 +900,8 @@ const UIManager = {
                 bookSelectionElement.classList.add("bookSelectionElement");
                 (function (bookAbbreviation) {
                     bookSelectionElement.onclick = function () {
-
                         UIManager.searchByReference.currentSearchObject.bookAbbreviation = bookAbbreviation;
                         UIManager.searchByReference.populateAndShowChapterSelectionContainer();
-
                     }
                 })(currentBook.abbreviation)
 
@@ -979,19 +1044,17 @@ const UIManager = {
         },
 
         closeChapterDisplayScreen: function (preserveScreenHeirarchy) {
-
             if (preserveScreenHeirarchy) {
-
                 UIManager.hide(UIReferences.chapterDisplayScreen, 200);
-
             } else {
-
                 UIManager.hide(UIReferences.chapterSelectionContainer, null);
                 UIManager.hide(UIReferences.verseSelectionContainer, null);
                 UIManager.hide(UIReferences.chapterDisplayScreen, 200);
-
             }
 
+            setTimeout(function () {
+                UIReferences.chapterDisplayScreen.scrollTop = 0;
+            }, 200);
         }
 
     },
@@ -1265,6 +1328,10 @@ const UIManager = {
             //For each word in the verse, create an element in the verse display
             for (var i = 0; i < wordsInVerse.length; i++) {
 
+                if (wordsInVerse[i] === "") {
+                    continue;
+                }
+
                 var currentWordElement = document.createElement("p");
                 currentWordElement.textContent = wordsInVerse[i].replaceAll(/(\[[a-z]\])/g, "");
 
@@ -1278,8 +1345,8 @@ const UIManager = {
                     //Because this code is within the else block of the previous if statement, it will only run if the word is not punctuation
 
                     //If the current word is a unique word, double word, or triple word, apply the appropriate class
-                    var numberOfOccurences = scriptureEngine.currentYearObject.concordance[scriptureEngine.filterWord(currentWordElement.textContent, true)].references.length;
-                    switch (numberOfOccurences) {
+                    var numberOfOccurrences = scriptureEngine.currentYearObject.concordance[scriptureEngine.filterWord(currentWordElement.textContent, true)].references.length;
+                    switch (numberOfOccurrences) {
 
                         case 1:
                             currentWordElement.classList.add("uniqueWord");
@@ -1310,8 +1377,7 @@ const UIManager = {
                 if (matchesForFootnoteRegex) {
 
                     //There are footnote references in the word
-
-                    currentWordElement.classList.add("containsFootnoteReference");
+                    currentWordElement.classList.add("footnoteFollows");
 
                     for (var f = 0; f < matchesForFootnoteRegex.length; f++) {
 
@@ -1320,6 +1386,11 @@ const UIManager = {
                         currentWordFootnoteReferenceElement.textContent = matchesForFootnoteRegex[f];
                         currentWordFootnoteReferenceElement.onclick = function () {
                             UIManager.buttonHandlers.footnotesButton();
+                        }
+
+                        //If there is another footnote reference after this one, add the footnoteFollows class
+                        if (f < matchesForFootnoteRegex.length - 1) {
+                            currentWordFootnoteReferenceElement.classList.add("footnoteFollows");
                         }
 
                         footnoteReferenceElements.push(currentWordFootnoteReferenceElement);
@@ -1394,7 +1465,7 @@ const UIManager = {
                             //If the current word is the same as the pronoun, add an occurrence.
                             if (UIReferences.verseDisplayTextContainer.children[j].textContent === pronounClarification.pronoun) {
                                 occurrences++;
-                                //Highlight or unhighlight the word if this is the correct occurrence, or if occurences don't matter
+                                //Highlight or unhighlight the word if this is the correct occurrence, or if occurrences don't matter
                                 if (
                                     (pronounClarification.occurrence && pronounClarification.occurrence == occurrences) ||
                                     (!pronounClarification.occurrence)
@@ -1584,8 +1655,8 @@ const UIManager = {
             //Apply the selected class to the element
             wordElement.classList.add("selected");
 
-            //Find all other occurences of the same word in the current verse
-            var allOtherOccurences = [];
+            //Find all other occurrences of the same word in the current verse
+            var allOtherOccurrences = [];
             var allWords = UIReferences.verseDisplayTextContainer.children;
             for (var i = 0; i < allWords.length; i++) {
 
@@ -1594,15 +1665,15 @@ const UIManager = {
                     (scriptureEngine.filterWord(allWords[i].textContent, true) == filteredWord) &&
                     (allWords[i] != wordElement)
                 ) {
-                    allOtherOccurences.push(allWords[i]);
+                    allOtherOccurrences.push(allWords[i]);
                 }
 
             }
 
-            //Add the outlined class to all the other occurences
-            for (var i = 0; i < allOtherOccurences.length; i++) {
+            //Add the outlined class to all the other occurrences
+            for (var i = 0; i < allOtherOccurrences.length; i++) {
 
-                allOtherOccurences[i].classList.add("outlined");
+                allOtherOccurrences[i].classList.add("outlined");
 
             }
 
@@ -1610,9 +1681,11 @@ const UIManager = {
             var selectedVerseReference = UIManager.verseDisplayScreen.currentVerseReference;
 
             var concordanceReferences = scriptureEngine.currentYearObject.concordance[filteredWord].references;
-
+            var uniqueConcordanceReferences = [...new Set(concordanceReferences)];
             var totalOccurrences = concordanceReferences.length;
-            var occurrencesInVerse = (allOtherOccurences.length + 1);
+            var totalUniqueOccurrences = uniqueConcordanceReferences.length;
+
+            var occurrencesInVerse = (allOtherOccurrences.length + 1);
             var occurrencesInSection = 0;
             var occurrencesInChapter = 0;
             var occurrencesInBook = 0;
@@ -1741,31 +1814,49 @@ const UIManager = {
                 }
 
                 var currentVerseDisplayScreenVerse = new Verse(UIManager.verseDisplayScreen.currentVerseReference);
-                for (var i = 0; i < totalOccurrences; i++) {
+                for (var i = 0; i < totalUniqueOccurrences; i++) {
 
-                    var currentReference = concordanceReferences[i];
+                    var currentReference = uniqueConcordanceReferences[i];
                     var currentReferenceVerse = new Verse(currentReference);
                     
-                    var occurenceElement = document.createElement("div");
-                    occurenceElement.textContent = currentReference;
-                    occurenceElement.classList.add("reference");
+                    var occurrenceElement = document.createElement("div");
+                    occurrenceElement.classList.add("occurrence");
+
+                    var occurrenceReferenceElement = document.createElement("p");
+                    occurrenceReferenceElement.textContent = currentReference;
+                    occurrenceReferenceElement.classList.add("reference");
+                    occurrenceElement.appendChild(occurrenceReferenceElement);
+
+                    //If there is more than one occurrence of this unique reference in concordanceReferences, show the occurrence count
+                    var occurrenceCount = 0;
+                    for (var j = 0; j < concordanceReferences.length; j++) {
+                        if (concordanceReferences[j] == currentReference) {
+                            occurrenceCount++;
+                        }
+                    }
+                    if (occurrenceCount > 1) {
+                        var occurrenceCountElement = document.createElement("p");
+                        occurrenceCountElement.textContent += "x" + occurrenceCount;
+                        occurrenceCountElement.classList.add("count");
+                        occurrenceElement.appendChild(occurrenceCountElement);
+                    }
                     
                     if (currentReferenceVerse.bookName === currentVerseDisplayScreenVerse.bookName) {
-                        occurenceElement.classList.add("thisBook");
+                        occurrenceElement.classList.add("thisBook");
                         if (currentReferenceVerse.chapterNumber === currentVerseDisplayScreenVerse.chapterNumber) {
-                            occurenceElement.classList.add("thisChapter");
+                            occurrenceElement.classList.add("thisChapter");
                             if (currentReferenceVerse.sectionIndex === currentVerseDisplayScreenVerse.sectionIndex) {
-                                occurenceElement.classList.add("thisSection");
+                                occurrenceElement.classList.add("thisSection");
                             }
                         }
                     }
                     
                     (function (reference) {
-                        occurenceElement.onclick = function () {
+                        occurrenceElement.onclick = function () {
                             UIManager.verseDisplayScreen.navigation.navigateToVerse(reference, "automatic");
                         }
                     })(currentReference)
-                    referencesContainer.appendChild(occurenceElement);
+                    referencesContainer.appendChild(occurrenceElement);
 
                 }
 
@@ -1915,11 +2006,19 @@ const UIManager = {
 
         setSlidePanelHeight: function (showSlidePanel) {
 
+            UIManager.show(UIReferences.verseDisplayScreenHeaderContainer, 200);
+
             //Get the distance from the top of the screen to the bottom of the verseDisplay
             var boundingBox = UIReferences.verseDisplay.getBoundingClientRect();
 
-            if (window.matchMedia("only screen and (max-width: 925px)").matches) {
-                var distance = ((boundingBox.bottom - boundingBox.top) + 100);
+            if (window.matchMedia("only screen and (max-width: 375px)").matches) {
+                var distance = ((boundingBox.bottom - boundingBox.top) + 40);
+                UIReferences.slidePanel.style.top = (distance + "px");
+                if (UIReferences.verseDisplay.classList.contains("up")) {
+                    UIManager.hide(UIReferences.verseDisplayScreenHeaderContainer, 200);
+                }
+            } else if (window.matchMedia("only screen and (max-width: 925px)").matches) {
+                var distance = ((boundingBox.bottom - boundingBox.top) + 120);
                 UIReferences.slidePanel.style.top = (distance + "px");
             } else {
                 UIReferences.slidePanel.style.top = "auto";
@@ -1933,19 +2032,25 @@ const UIManager = {
         },
 
         hideSlidePanel: function () {
-
             //Remove the up class from the verseDisplay
             UIReferences.verseDisplay.classList.remove("up");
-
-            //Hide all slide panel screens
-            for (var i = 0; i < UIReferences.slidePanel.children.length; i++) {
-
-                UIManager.hide(UIReferences.slidePanel.children[i]);
-
-            }
-
             UIManager.hide(UIReferences.slidePanel);
 
+            //Show the verseDisplayScreen header
+            UIManager.show(UIReferences.verseDisplayScreenHeaderContainer, 200);
+            
+            //Hide all slide panel screens
+            for (var i = 0; i < UIReferences.slidePanel.children.length; i++) {
+                UIManager.hide(UIReferences.slidePanel.children[i]);
+            }
+
+            //Reset the scroll position
+            UIReferences.slidePanel.scrollTop = 0;
+
+            //Reset the concordance filters
+            UIReferences.singleWordInformationContent.classList.remove("thisSection");
+            UIReferences.singleWordInformationContent.classList.remove("thisChapter");
+            UIReferences.singleWordInformationContent.classList.remove("thisBook");
         },
 
         toolbars: {
@@ -1994,7 +2099,8 @@ for (var i = 0; i < checkboxes.length; i++) {
 
 }
 
-//Update rare word colors
+//Update colors
+UIManager.settingsScreen.settingUpdateHandlers.updateAppAccentColor();
 UIManager.settingsScreen.settingUpdateHandlers.updateRareWordHighlightColors();
 
 // When the window is being resized, don't let elements transition.

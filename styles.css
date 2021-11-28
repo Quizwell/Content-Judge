@@ -46,50 +46,46 @@
   box-shadow: 0 0 10px var(--dark-shadow-color);
 }
 
-.welcomeScreen .headerBlock .content .easterEggText {
-  position: absolute;
-  top: 50%;
-  left: calc(-20% - 200px);
-  width: 200px;
-  text-align: center;
-  transform: translate(-50%, -50%);
-  font-size: 25px;
-  font-weight: bold;
-  color: var(--accent-color-text-color);
-}
-
-.welcomeScreen .headerBlock.easterEgg .content .easterEggText {
-  animation: floatAcross 10s linear;
-}
-
-.welcomeScreen .headerBlock.easterEgg .content img {
-  opacity: 0;
-}
-
-@keyframes floatAcross {
-  0% {
-    left: calc(120% + 200px);
-  }
-  100% {
-    left: calc(-20% - 200px);
-  }
-}
-
 .welcomeScreen .textBlock {
   margin-top: 20px;
   font-size: 30px;
   text-align: center;
 }
 
-.welcomeScreen .textBlock p {
+.welcomeScreen .textBlock .quizwell {
+  transition: opacity 2s ease;
+}
+
+.welcomeScreen.showEasterEgg .textBlock .quizwell {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.welcomeScreen .textBlock .quizwell p {
   display: inline-block;
   font-size: 25px;
   margin-right: 5px;
 }
 
-.welcomeScreen .textBlock img {
+.welcomeScreen .textBlock .quizwell img {
   display: inline-block;
   vertical-align: middle;
+}
+
+.welcomeScreen .textBlock .easterEgg {
+  opacity: 0;
+  pointer-events: none;
+  position: relative;
+  bottom: 40px;
+  transform: translate(0, 20px);
+  transition: opacity 1s ease, transform 1.5s ease;
+}
+
+.welcomeScreen.showEasterEgg .textBlock .easterEgg {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
 }
 
 .welcomeScreen .buttonContainer {
@@ -138,13 +134,61 @@
   margin: 0;
 }
 
-.flyswatterScreen .question {
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
+.changelogScreen .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-.flyswatterScreen .question .option {
+.changelogScreen .header img {
+  border-radius: 18px;
+  box-shadow: 0 0 10px var(--dark-shadow-color);
+}
+
+.changelogScreen .header h1 {
+  margin: 0 0 0 20px;
+}
+
+.changelogScreen .changes {
+  width: calc(100% - 40px);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.changelogScreen .changes p::before {
+  content: "• ";
+}
+
+.changelogScreen button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 200px;
+}
+
+.flyswatterScreen .optionsContainer {
+  background: var(--page-background-color);
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  width: 100%;
+  max-width: 500px;
+  height: calc(100% - 80px);
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+.flyswatterScreen .optionsContainer.hidden {
+  display: block !important;
+  opacity: 0;
+  transform: translateX(calc(-50% + 50px));
+  pointer-events: none;
+}
+
+.flyswatterScreen .optionsContainer .option {
   background: var(--content-background-color);
   padding: 10px;
   margin-bottom: 10px;
@@ -154,7 +198,7 @@
   transition: opacity 0.1s ease;
 }
 
-.flyswatterScreen .question .option:active {
+.flyswatterScreen .optionsContainer .option:active {
   opacity: 0.5;
 }
 
@@ -479,6 +523,7 @@
 .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer {
   position: absolute;
   width: calc(50% - 60px);
+  height: calc(100% - 115px);
   padding: 15px;
   border-radius: 15px;
   background: var(--content-background-color);
@@ -747,6 +792,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: opacity 0.2s ease;
 }
 
 .verseDisplayScreen .headerContainer .button {
@@ -842,6 +888,10 @@
   transition: all 0.2s ease;
 }
 
+.verseDisplayScreen .headerContainer .verseTitleContainer .subtitle.hidden {
+  display: none;
+}
+
 .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle .tag {
   color: var(--memory-element-color);
   border: 2px solid var(--memory-element-color);
@@ -880,7 +930,7 @@
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-.verseDisplay .textContainer p.containsFootnoteReference {
+.verseDisplay .textContainer p.footnoteFollows {
   padding-right: 0;
 }
 
@@ -1036,15 +1086,48 @@
   background: var(--page-background-color);
 }
 
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem picture,
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem > img {
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img {
   display: block;
   width: 40px;
   margin: 0 auto;
 }
 
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem > img {
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.white {
   display: none;
+}
+
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.dark {
+  display: block;
+}
+
+.lightModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.black,
+.lightModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.white {
+  display: block;
+}
+
+.lightModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.white,
+.lightModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.black {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.black {
+    display: none;
+  }
+
+  .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.white {
+    display: block;
+  }
+
+  .darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.black,
+  .darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.white {
+    display: block;
+  }
+
+  .darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.white,
+  .darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.black {
+    display: none;
+  }
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem .label {
@@ -1056,11 +1139,6 @@
 
 /* Multiline items need adjusted spacing */
 
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.multiLine picture,
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.multiLine > img {
-  margin-top: auto;
-}
-
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.multiLine .label {
   margin-top: -2px;
 }
@@ -1068,14 +1146,6 @@
 /* Adjust styles for active buttons */
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active {
   background: var(--app-accent-color);
-}
-
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active picture {
-  display: none;
-}
-
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active > img {
-  display: block;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active .label {
@@ -1100,6 +1170,8 @@
 .slidePanel.hidden {
   display: block;
   overflow: hidden;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .slidePanel .closeButton {
@@ -1112,8 +1184,10 @@
   border-radius: 50%;
   cursor: pointer;
   z-index: 2;
-  display: none;
+  pointer-events: none;
+  opacity: 0;
 
+  display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 6px;
@@ -1125,7 +1199,8 @@
 }
 
 .slidePanel .slidePanelScreen:not(.hidden) ~ .closeButton {
-  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .slidePanel .slidePanelScreen {
@@ -1243,13 +1318,17 @@
   .content
   .concordanceInformationContainer
   .concordanceInformationItem
-  p,
+  p {
+  margin: 0;
+}
+
 .slidePanel
   .singleWordInformation
   .content
   .concordanceInformationContainer
   .concordanceInformationItem
   h1 {
+  font-size: 20px;
   margin: 0;
 }
 
@@ -1262,30 +1341,53 @@
   gap: 10px;
 }
 
-.slidePanel .singleWordInformation .content .referencesContainer .reference {
+.slidePanel .singleWordInformation .content .referencesContainer .occurrence {
   background: var(--secondary-page-background-color);
   padding: 10px;
   border-radius: 10px;
   text-align: center;
-  line-height: 30px;
   cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.slidePanel
+  .singleWordInformation
+  .content
+  .referencesContainer
+  .occurrence
+  .reference {
+  font-weight: bold;
+  margin: 0;
+}
+
+.slidePanel
+  .singleWordInformation
+  .content
+  .referencesContainer
+  .occurrence
+  .count {
+  font-weight: normal;
+  margin: 0 0 0 5px;
 }
 
 .slidePanel
   .singleWordInformation
   .content.thisSection
   .referencesContainer
-  .reference:not(.thisSection),
+  .occurrence:not(.thisSection),
 .slidePanel
   .singleWordInformation
   .content.thisChapter
   .referencesContainer
-  .reference:not(.thisChapter),
+  .occurrence:not(.thisChapter),
 .slidePanel
   .singleWordInformation
   .content.thisBook
   .referencesContainer
-  .reference:not(.thisBook) {
+  .occurrence:not(.thisBook) {
   display: none;
 }
 

@@ -28,6 +28,15 @@
     <meta name="theme-color" content="#ffffff" media=(prefers-color-sceme: light)>
     <meta name="theme-color" content="#000000" media=(prefers-color-sceme: dark)>
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNNMB3WP55"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GNNMB3WP55');
+    </script>
+
 </head>
 
 <body ontouchstart="">
@@ -50,20 +59,20 @@
 
                 <div class="content">
                     <img alt="Content Judge Logo" src="images/logos/Logo.png" width="auto" height="100px" onclick="UIManager.welcomeScreen.easterEgg()">
-
-                    <p class="easterEggText">#RegionalsNotFieldFinals</p>
                 </div>
 
             </div>
 
             <div class="textBlock">
                 <h1>Content Judge</h1>
-
-                <p>by</p>
-                <picture>
-                    <source srcset="images/logos/Quizwell-White.svg" media="(prefers-color-scheme: dark)">
-                    <img alt="Quizwell Logo" src="images/logos/Quizwell.svg" width="auto" height="40px">
-                </picture>
+                <div class="quizwell">
+                    <p>by</p>
+                    <picture>
+                        <source srcset="images/logos/Quizwell-White.svg" media="(prefers-color-scheme: dark)">
+                        <img alt="Quizwell Logo" src="images/logos/Quizwell.svg" width="auto" height="40px">
+                    </picture>
+                </div>
+                <p class="easterEgg">#RegionalsNotFieldFinals</p>
             </div>
 
             <div class="buttonContainer">
@@ -73,7 +82,7 @@
                         <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
                         <img alt="" src="images/icons/Flyswatter.svg" width="auto" height="35px">
                     </picture>
-                    <p class="label">Report a Bug</p>
+                    <p class="label">Report a Problem</p>
                 </button>
                 <button class="settings" onclick="UIManager.buttonHandlers.showSettingsScreen()">
                     <picture>
@@ -86,8 +95,18 @@
 
         </div>
 
-        <div class="flyswatterScreen screen floating requireDisplayNone hidden">
+        <div class="changelogScreen screen floating hidden">  
+            <div class="header">
+                <img alt="Content Judge" src="images/logos/Logo.png" class="logo" width="auto" height="75px">
+                <h1 class="version"></h1>
+            </div>
 
+            <div class="changes"></div>
+
+            <button class="close" onclick="UIManager.buttonHandlers.hideChangelogScreen()">Close</button>
+        </div>
+
+        <div class="flyswatterScreen screen floating hidden">
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeFlyswatterScreen()">
                 <picture class="arrow left">
                     <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
@@ -96,16 +115,15 @@
                 <h1 class="title">Flyswatter</h1>
             </div>
 
-            <div class="question">
-                <h2 class="questionText">What type of problem are you experiencing?</h2>
-                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('unexpectedBehavior')">Unexpected Behavior</div>
-                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('contentError')">Content Error</div>
-                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('featureSuggestion')">Feature Suggestion</div>
+            <div class="optionsContainer">
+                <h2 class="title">What type of problem are you experiencing?</h2>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.unexpectedBehavior')">Unexpected Behavior</div>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.contentError')">Content Error</div>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.featureSuggestion')">Feature Suggestion</div>
             </div>
-
         </div>
 
-        <div class="settingsScreen screen floating requireDisplayNone hidden">
+        <div class="settingsScreen screen floating hidden">
 
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
                 <picture class="arrow left">
@@ -118,11 +136,9 @@
             <div class="content">
 
                 <div class="section about">
-
                     <p class="title">About</p>
                     <p class="version"></p>
                     <p class="build"></p>
-
                 </div>
 
                 <div class="section search">
@@ -142,7 +158,7 @@
                         </div>
                         <p class="label">Advanced Search</p>
                     </div>
-                    <p class="label">Advanced Search allows you to use specially formatted search queries to filter results in multiple ways.</p>
+                    <p class="label">Allows you to use " + " for AND search and " / " for OR search. Repeat characters in an operator to increase its precedence (" // " is interpreted before " / ".)</p>
 
                     <div class="toggle">
                         <div class="checkbox checked" data-setting-name="useSmartSearch">
@@ -150,7 +166,24 @@
                         </div>
                         <p class="label">Smart Search</p>
                     </div>
-                    <p class="label">Smart Search allows you to find verses by searching for references.</p>
+                    <p class="label">Smart Search allows you to find verses by typing references into the search field.</p>
+
+                </div>
+
+                <div class="section appAccentColor">
+
+                    <p class="title">App Accent Color <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetAppAccentColor()">Reset to
+                        Default</span></p>
+
+                    <p class="subsectionTitle">Light Mode</p>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E73CE" class="picker" data-setting-name="appAccentColor">
+                    </div>
+                    
+                    <p class="subsectionTitle">Dark Mode</p>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E73CF" class="picker" data-setting-name="appAccentColorDark">
+                    </div>
 
                 </div>
 
@@ -192,7 +225,7 @@
 
         </div>
 
-        <div class="addWebClipScreen screen floating requireDisplayNone hidden">
+        <div class="addWebClipScreen screen floating hidden">
 
             <div class="header">
 
@@ -202,17 +235,10 @@
             </div>
 
             <h1>Add Content Judge to your Home Screen</h1>
-            <p class="regularText">You can add Content Judge as an app on your Home Screen. Tap
+            <p>You can add Content Judge as an app on your Home Screen. Tap
                 <picture>
                     <source srcset="images/icons/ShareIcon-White.svg" media="(prefers-color-scheme: dark)">
                     <img alt="Sharrow" src="images/icons/ShareIcon.svg" height="25px" width="auto">
-                </picture>, then tap <span>Add to Home Screen</span>.
-            </p>
-
-            <p class="iOS15Text">You can add Content Judge as an app on your Home Screen. Tap
-                <picture>
-                    <source srcset="images/icons/MoreIconiOS-White.svg" media="(prefers-color-scheme: dark)">
-                    <img alt="More" src="images/icons/MoreIconiOS.svg" height="25px" width="auto">
                 </picture>, then tap <span>Add to Home Screen</span>.
             </p>
 
@@ -220,7 +246,7 @@
 
         </div>
 
-        <div class="searchModeSelectionScreen screen requireDisplayNone hidden">
+        <div class="searchModeSelectionScreen screen hidden">
 
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSearchModeSelectionScreen()">
                 <picture class="arrow left">
@@ -230,7 +256,7 @@
                 <h1 class="title">Find a Verse</h1>
             </div>
 
-            <select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
+            <select name="cycleYear" id="quizCycleYearSelector" class="hidden" onchange="UIManager.bookSelectorHandler()">
                 <option value="M">Matthew (Incomplete)</option>
                 <option value="RJ">Romans and James</option>
                 <option value="A" disabled>Acts</option>
@@ -271,7 +297,7 @@
                         <div class="selectionElementContainer"></div>
                     </div>
 
-                    <div class="selectionContainer chapterSelectionContainer hidden requireDisplayNone">
+                    <div class="selectionContainer chapterSelectionContainer hidden">
                         <div class="labelContainer" onclick="UIManager.buttonHandlers.closeChapterSelectionContainer()">
                             <picture>
                                 <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
@@ -282,7 +308,7 @@
                         <div class="selectionElementContainer"></div>
                     </div>
 
-                    <div class="selectionContainer verseSelectionContainer hidden requireDisplayNone">
+                    <div class="selectionContainer verseSelectionContainer hidden">
                         <div class="labelContainer" onclick="UIManager.buttonHandlers.closeVerseSelectionContainer()">
                             <picture>
                                 <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
@@ -302,7 +328,7 @@
 
         </div>
 
-        <div class="chapterDisplayScreen screen requireDisplayNone hidden">
+        <div class="chapterDisplayScreen screen hidden">
 
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterDisplayScreen()">
                 <picture class="arrow left">
@@ -316,7 +342,7 @@
 
         </div>
 
-        <div class="verseDisplayScreen screen requireDisplayNone hidden">
+        <div class="verseDisplayScreen screen hidden">
 
             <div class="sidebarContainer">
 
@@ -382,20 +408,14 @@
                     <div class="toolbar left">
 
                         <div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
-                            <picture>
-                                <source srcset="images/icons/MemoryStar-White.svg" media="(prefers-color-scheme: dark)">
-                                <img alt="" src="images/icons/MemoryStar.svg" width="auto" height="40px">
-                            </picture>
-                            <img alt="" src="images/icons/MemoryStar-White.svg" width="auto" height="40px">
+                            <img class="white" alt="" src="images/icons/MemoryStar-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/MemoryStar.svg" width="auto" height="40px">
                             <p class="label">Prejump</p>
                         </div>
 
                         <div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
-                            <picture>
-                                <source srcset="images/icons/RareWords-White.svg" media="(prefers-color-scheme: dark)">
-                                <img alt="" src="images/icons/RareWords.svg" width="auto" height="40px">
-                            </picture>
-                            <img alt="" src="images/icons/RareWords-White.svg" width="auto" height="40px">
+                            <img class="white" alt="" src="images/icons/RareWords-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/RareWords.svg" width="auto" height="40px">
                             <p class="label">Rare Words</p>
                         </div>
 
@@ -406,29 +426,20 @@
                     <div class="toolbar right">
 
                         <div class="toolbarItem possibleQuestionsButton multiLine" onclick="UIManager.buttonHandlers.possibleQuestionsButton()" style="display: none">
-                            <picture>
-                                <source srcset="images/icons/QuestionMark-White.svg" media="(prefers-color-scheme: dark)">
-                                <img alt="" src="images/icons/QuestionMark.svg" width="auto" height="40px">
-                            </picture>
-                            <img alt="" src="images/icons/QuestionMark-White.svg" width="auto" height="40px">
+                            <img class="white" alt="" src="images/icons/QuestionMark-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/QuestionMark.svg" width="auto" height="40px">
                             <p class="label">Possible Questions</p>
                         </div>
 
                         <div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
-                            <picture>
-                                <source srcset="images/icons/PronounClarification-White.svg" media="(prefers-color-scheme: dark)">
-                                <img alt="" src="images/icons/PronounClarification.svg" width="auto" height="40px">
-                            </picture>
-                            <img alt="" src="images/icons/PronounClarification-White.svg" width="auto" height="40px">
+                            <img class="white" alt="" src="images/icons/PronounClarification-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/PronounClarification.svg" width="auto" height="40px">
                             <p class="label">Pronoun Clarification</p>
                         </div>
 
                         <div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
-                            <picture>
-                                <source srcset="images/icons/Footnotes-White.svg" media="(prefers-color-scheme: dark)">
-                                <img alt="" src="images/icons/Footnotes.svg" width="auto" height="40px">
-                            </picture>
-                            <img alt="" src="images/icons/Footnotes-White.svg" width="auto" height="40px">
+                            <img class="white" alt="" src="images/icons/Footnotes-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/Footnotes.svg" width="auto" height="40px">
                             <p class="label">Footnotes</p>
                         </div>
 

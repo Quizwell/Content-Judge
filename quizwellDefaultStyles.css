@@ -1,393 +1,334 @@
 :root {
-    
-    color-scheme: light dark;
+  color-scheme: light dark;
 
-    /* Light mode variable definitions */
-    --app-accent-color: #52A7FA;
-    --accent-color-text-color: #ffffff;
-    
-    --page-background-color: #ffffff;
-    --secondary-page-background-color: #fafafa;
-    --content-background-color: #eeeeee;
-    --secondary-content-background-color: #f0f0f0;
-    
-    --primary-text-color: #000000;
-    --secondary-text-color: #555555;
-    --ternary-text-color: #757575;
-    --inverted-text-color: #ffffff;
-    
-    --primary-button-color: var(--app-accent-color);
-    --secondary-button-color: #dddddd;
-    
-    --dark-shadow-color: #aaaaaa;
-    --light-shadow-color: #dddddd;
-    
-    --overlay-color: #000000;
-    
-    --blue-gradient: linear-gradient(90deg, #74BBBD, #5185A6);
-    --purple-gradient: linear-gradient(90deg, #7E74CF, #7E73CE);
-    --orange-gradient: linear-gradient(90deg, #D88041, #CF503D);
-    
-    --blue-color: #5185A6;
-    --purple-color: #7E73CE;
-    --orange-color: #CF503D;
-    
-    --blue-color-dark: #74BBBD;
-    --purple-color-dark: #7E74CF;
-    --orange-color-dark: #D88041;
-    
-    /* Content Judge only */
-    --memory-element-color: #62C45E;
-    
-    --unique-word-highlight-color: var(--orange-color);
-    --double-word-highlight-color: var(--blue-color);
-    --triple-word-highlight-color: var(--purple-color);
-    
-    --unique-word-highlight-color-dark: #D88041;
-    --double-word-highlight-color-dark: #74BBBD;
-    --triple-word-highlight-color-dark: #7E74CF;
+  /* Light mode variable definitions */
+  --app-accent-color: var(--purple-color);
+  --accent-color-text-color: #ffffff;
+  --app-accent-color-dark: var(--purple-color-dark);
+  --accent-color-text-color-dark: #ffffff;
 
+  --page-background-color: #ffffff;
+  --secondary-page-background-color: #fafafa;
+  --content-background-color: #eeeeee;
+  --secondary-content-background-color: #f0f0f0;
+
+  --primary-text-color: #000000;
+  --secondary-text-color: #555555;
+  --ternary-text-color: #757575;
+  --inverted-text-color: #ffffff;
+
+  --primary-button-color: var(--app-accent-color);
+  --secondary-button-color: #dddddd;
+
+  --dark-shadow-color: #aaaaaa;
+  --light-shadow-color: #dddddd;
+
+  --overlay-color: #000000;
+
+  --blue-gradient: linear-gradient(90deg, #74bbbd, #5185a6);
+  --purple-gradient: linear-gradient(90deg, #7e74cf, #7e73ce);
+  --orange-gradient: linear-gradient(90deg, #d88041, #cf503d);
+
+  --blue-color: #5185a6;
+  --purple-color: #7e73ce;
+  --orange-color: #cf503d;
+
+  --blue-color-dark: #74bbbd;
+  --purple-color-dark: #7e74cf;
+  --orange-color-dark: #d88041;
+
+  /* Content Judge only */
+  --memory-element-color: #62c45e;
+
+  --unique-word-highlight-color: var(--orange-color);
+  --double-word-highlight-color: var(--blue-color);
+  --triple-word-highlight-color: var(--purple-color);
+
+  --unique-word-highlight-color-dark: #d88041;
+  --double-word-highlight-color-dark: #74bbbd;
+  --triple-word-highlight-color-dark: #7e74cf;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        
-        /* Dark mode variable definitions */
-        --app-accent-color: #52A7FA;
-        --accent-color-text-color: #ffffff;
-        
-        --page-background-color: #000000;
-        --secondary-page-background-color: #0f0f0f;
-        --content-background-color: #222222;
-        --secondary-content-background-color: #333333;
-        
-        --primary-text-color: #ffffff;
-        --secondary-text-color: #C0C0C0;
-        --ternary-text-color: #A0A0A0;
-        --inverted-text-color: #000000;
-        
-        --primary-button-color: var(--app-accent-color);
-        --secondary-button-color: #444444;
-        
-        --dark-shadow-color: #222222;
-        --light-shadow-color: #222222;
-        
-        --overlay-color: #000000;
-        
-        /* Content Judge only */
-        --memory-element-color: #509F4C;
-        
-        --unique-word-highlight-color: var(--unique-word-highlight-color-dark) !important;
-        --double-word-highlight-color: var(--double-word-highlight-color-dark) !important;
-        --triple-word-highlight-color: var(--triple-word-highlight-color-dark) !important;
-        
-    }
+  :root {
+    /* Dark mode variable definitions */
+    --app-accent-color: var(--app-accent-color-dark) !important;
+    --accent-color-text-color: var(--accent-color-text-color-dark) !important;
+
+    --page-background-color: #000000;
+    --secondary-page-background-color: #0f0f0f;
+    --content-background-color: #222222;
+    --secondary-content-background-color: #333333;
+
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #c0c0c0;
+    --ternary-text-color: #a0a0a0;
+    --inverted-text-color: #000000;
+
+    --primary-button-color: var(--app-accent-color);
+    --secondary-button-color: #444444;
+
+    --dark-shadow-color: #222222;
+    --light-shadow-color: #222222;
+
+    --overlay-color: #000000;
+
+    /* Content Judge only */
+    --memory-element-color: #509f4c;
+
+    --unique-word-highlight-color: var(
+      --unique-word-highlight-color-dark
+    ) !important;
+    --double-word-highlight-color: var(
+      --double-word-highlight-color-dark
+    ) !important;
+    --triple-word-highlight-color: var(
+      --triple-word-highlight-color-dark
+    ) !important;
+  }
 }
 
 @font-face {
-
-    font-family: omnes-pro;
-    font-weight: 400;
-    src: url(fonts/omnes-pro-light.otf);
-
+  font-family: omnes-pro;
+  font-weight: 400;
+  src: url(fonts/omnes-pro-light.otf);
 }
 
 @font-face {
-
-    font-family: omnes-pro;
-    font-weight: 500;
-    src: url(fonts/omnes-pro-regular.otf);
-
+  font-family: omnes-pro;
+  font-weight: 500;
+  src: url(fonts/omnes-pro-regular.otf);
 }
 
 @font-face {
-
-    font-family: omnes-pro;
-    font-weight: 700;
-    src: url(fonts/omnes-pro-semibold.otf);
-
+  font-family: omnes-pro;
+  font-weight: 700;
+  src: url(fonts/omnes-pro-semibold.otf);
 }
 
 /* Remove the 350ms touch delay on iOS */
 html {
-    
-    touch-action: manipulation;
-    
+  touch-action: manipulation;
 }
 
-html, body {
-
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    
+html,
+body {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 body {
-    
-    font-family: omnes-pro;
-    background: var(--page-background-color);
-    color: var(--primary-text-color);
-    
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    
+  font-family: omnes-pro;
+  background: var(--page-background-color);
+  color: var(--primary-text-color);
+
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 .no-transition * {
-    
-    transition: none !important;
-    
+  transition: none !important;
 }
 
 .hidden {
-    
-    display: none;
-    
+  opacity: 0;
+  pointer-events: none;
 }
 
-h1, h2, h3, h4, h5, p {
-    
-    margin: 0 0 10px 0;
-    
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0 0 10px 0;
 }
 
 button {
-    
-    background: var(--primary-button-color);
-    border: none;
-    border-radius: 10px;
-    padding: 15px 15px;
-    min-width: 175px;
-    color: var(--accent-color-text-color);
-    cursor: pointer;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 15px;
-    
+  background: var(--primary-button-color);
+  border: none;
+  border-radius: 10px;
+  padding: 15px 15px;
+  min-width: 175px;
+  color: var(--accent-color-text-color);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 button.bottom {
-    
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    
-}
-
-.requireDisplayBlock {
-    
-    display: block !important;
-    
-}
-
-.requireDisplayNone {
-    
-    display: none !important;
-    
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
 }
 
 .bannerNotification {
-    
-    position: fixed;
-    left: 50%;
-    top: 15px;
-    transform: translate(-50%, 0);
-    z-index: 10;
-    border-radius: 32.5px;
-    width: 250px;
-    height: 65px;
-    
-    background-color: var(--page-background-color);
-    box-shadow: 0 0 10px var(--light-shadow-color);
-    
-    transition: transform 0.3s ease;
-    
+  position: fixed;
+  left: 50%;
+  top: 15px;
+  transform: translate(-50%, 0);
+  z-index: 10;
+  border-radius: 32.5px;
+  width: 250px;
+  height: 65px;
+
+  background-color: var(--page-background-color);
+  box-shadow: 0 0 10px var(--light-shadow-color);
+
+  transition: transform 0.3s ease;
 }
 
 .bannerNotification.hidden {
-    
-    display: block !important;
-    transform: translate(-50%, -100px);
-    
+  display: block !important;
+  transform: translate(-50%, -100px);
 }
 
 .bannerNotification .title {
-    
-    font-size: 20px;
-    width: calc(100% - 10px);
-    text-align: center;
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    margin: 0;
-    
+  font-size: 20px;
+  width: calc(100% - 10px);
+  text-align: center;
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 0;
 }
 
 .bannerNotification .subtitle {
-    
-    color: var(--ternary-text-color);
-    position: absolute;
-    width: fit-content;
-    margin: 0;
-    top: 36px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    
+  color: var(--ternary-text-color);
+  position: absolute;
+  width: fit-content;
+  margin: 0;
+  top: 36px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .screen {
-    
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--page-background-color);
+  box-shadow: 0 0 20px var(--dark-shadow-color);
+  box-sizing: border-box;
+  border: none;
+  opacity: 100%;
+  overflow: auto;
+  padding: 20px;
+
+  transition: all 0.2s ease-out;
+}
+
+.screen.hidden {
+  transform: translate(100px, 0);
+  opacity: 0;
+  display: block;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 700px) {
+  .screen.floating {
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+    max-width: 1000px;
+    max-height: 1000px;
+    border-radius: 20px;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+
+    transition: all 0.5s ease;
+  }
+
+  .screen.floating.hidden {
+    transform: translate(-50%, 100vh);
+    opacity: 0.5;
+  }
+
+  .screen.sheet {
+    top: 12.5%;
+    left: 50%;
+    width: 75%;
+    height: 87.5%;
+    max-width: 1000px;
+    max-height: 1000px;
+    border-radius: 20px 20px 0 0;
+    z-index: 1;
+    transform: translate(-50%, 0);
+
+    transition: all 0.5s ease;
+  }
+
+  .screen.sheet.hidden {
+    transform: translate(-50%, 100vh);
+    opacity: 0.5;
+  }
+
+  .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--page-background-color);
-    box-shadow: 0 0 20px var(--dark-shadow-color);
-    box-sizing: border-box;
-    border: none;
-    opacity: 100%;
-    overflow: auto;
-    padding: 20px;
-    
-    transition: all 0.2s ease-out;
-    
-}
-
-.screen.hidden {
-    
-    transform: translate(100px, 0);
     opacity: 0;
-    display: block;
-    overflow: hidden;
-    
+    background: var(--overlay-color);
+    pointer-events: none;
+
+    transition: all 0.3s ease;
+  }
+
+  .screen.floating:not(.hidden) ~ .overlay,
+  .screen.sheet:not(.hidden) ~ .overlay {
+    pointer-events: auto;
+    opacity: 0.2;
+  }
 }
 
-@media only screen and (min-width: 700px) {
-
-    .screen.floating {
-
-        top: 50%;
-        left: 50%;
-        width: 75%;
-        height: 75%;
-        max-width: 1000px;
-        max-height: 1000px;
-        border-radius: 20px;
-        z-index: 1;
-        transform: translate(-50%, -50%);
-
-        transition: all 0.5s ease;
-
-    }
-
-    .screen.floating.hidden {
-
-        transform: translate(-50%, 100vh);
-        opacity: 0.5;
-
-    }
-
-    .screen.sheet {
-
-        top: 12.5%;
-        left: 50%;
-        width: 75%;
-        height: 87.5%;
-        max-width: 1000px;
-        max-height: 1000px;
-        border-radius: 20px 20px 0 0;
-        z-index: 1;
-        transform: translate(-50%, 0);
-
-        transition: all 0.5s ease;
-
-    }
-
-    .screen.sheet.hidden {
-
-        transform: translate(-50%, 100vh);
-        opacity: 0.5;
-
-    }
-
-    .overlay {
-
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        background: var(--overlay-color);
-        pointer-events: none;
-
-        transition: all 0.3s ease;
-
-    }
-
-    .screen.floating:not(.hidden) ~ .overlay, 
-    .screen.sheet:not(.hidden) ~ .overlay {
-
-        pointer-events: auto;
-        opacity: 0.2;
-
-    }
-    
-}
-
-.screen .titleContainer {
-    
-    cursor: pointer;
-
+.screen > .titleContainer {
+  cursor: pointer;
 }
 
 .screen .titleContainer img {
-
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 0 10px 0;
-    
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 10px 0;
 }
 
 .screen .titleContainer h1.title {
-    
-    display: inline-block;
-    margin-left: 5px;
-    
+  display: inline-block;
+  margin-left: 5px;
 }
 
 .screen .titleContainer h2.subtitle {
-    
-    margin: -12px 0 0 40px;
-    color: var(--secondary-text-color);
-    
+  margin: -12px 0 0 40px;
+  color: var(--secondary-text-color);
 }
 
 *[disabled] {
-
-    opacity: 0.5;
-    cursor: default !important;
-    
+  opacity: 0.5;
+  cursor: default !important;
 }
 
 /* Rotate arrow elements to point in the correct direction */
 .arrow.right img {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .arrow.down img {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .arrow.left img {
-    transform: rotate(270deg);
+  transform: rotate(270deg);
 }
