@@ -124,17 +124,6 @@ const UIManager = {
 
     buttonHandlers: {
 
-        welcomeScreenEasterEgg: function () {
-            easterEggClickCount++;
-
-            if (easterEggClickCount === 10) {
-
-                alert("*goat noise*");
-                easterEggClickCount = 0;
-
-            }
-        },
-
         hideWelcomeScreen: function () {
             //If the browser is running on iPhone or iPad and is not mobile Chrome, and if the page is not running as a Web Clip already, show the Web Clip prompt screen to encourage the user to add it to his home screen.
             if (
