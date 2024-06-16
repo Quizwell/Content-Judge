@@ -95,17 +95,6 @@
 
         </div>
 
-        <div class="changelogScreen screen floating hidden">  
-            <div class="header">
-                <img alt="Content Judge" src="images/logos/Logo.png" class="logo" width="auto" height="75px">
-                <h1 class="version"></h1>
-            </div>
-
-            <div class="changes"></div>
-
-            <button class="close" onclick="UIManager.buttonHandlers.hideChangelogScreen()">Close</button>
-        </div>
-
         <div class="flyswatterScreen screen floating hidden">
             <div class="titleContainer" onclick="UIManager.buttonHandlers.closeFlyswatterScreen()">
                 <picture class="arrow left">
@@ -135,7 +124,7 @@
 
             <div class="content">
 
-                <div class="section about">
+                <div class="section about" onclick="UIManager.showChangelog()">
                     <p class="title">About</p>
                     <p class="version"></p>
                     <p class="build"></p>
@@ -223,6 +212,17 @@
 
             </div>
 
+        </div>
+
+        <div class="changelogScreen screen floating hidden">
+            <div class="header">
+                <img alt="Content Judge" src="images/logos/Logo.png" class="logo" width="auto" height="75px">
+                <h1 class="version"></h1>
+            </div>
+        
+            <div class="changes"></div>
+        
+            <button class="close" onclick="UIManager.buttonHandlers.hideChangelogScreen()">Close</button>
         </div>
 
         <div class="addWebClipScreen screen floating hidden">
@@ -521,6 +521,7 @@
     <script src="database/Matthew.js"></script>
     <script src="database/RomansJames.js"></script>
     <script src="database/Acts.js"></script>
+    <script src="database/GEPCP.js"></script>
     <script src="scriptureEngine.js"></script>
 
     <script src="UIManager.js"></script>

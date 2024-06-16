@@ -1,9 +1,17 @@
-const CONTENT_JUDGE_VERSION = "1.0.0";
-const CONTENT_JUDGE_BUILD = "CJ-R0002";
+const CONTENT_JUDGE_VERSION = "1.1.0";
+const CONTENT_JUDGE_BUILD = "CJ-R0008";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Version 1.0.0",
-		items: ["Version 1.0 is complete!"],
+		title: "Version 1.1.0",
+		items: [
+			"Added Galatians, Ephesians, Philippians, Colossians, and Philemon content. (Pronoun Clarifications coming at a future date.)",
+			"Memory verses are now highlighted when selecting a verse number.",
+			"When looking at concordance entries for a word, the current verse is now indicated.",
+			"Added footnotes to chapter display screen.",
+			"Prejump words are now underlined in green on the verse display screen.",
+			"Content search now prioritizes and highlights memory verses in results.",
+			"Content search now shows the number of results for your query.",
+		],
 	},
 ];
 

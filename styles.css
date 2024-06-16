@@ -1,1473 +1,1381 @@
 .welcomeScreen {
-  padding: 0;
+	padding: 0;
 }
 
 .welcomeScreen .headerBlock {
-  width: 100%;
-  height: 40%;
-  position: relative;
+	width: 100%;
+	height: 40%;
+	position: relative;
 }
 
 .welcomeScreen .headerBlock .background .gradient {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .welcomeScreen .headerBlock .background .gradient.layer1 {
-  background: linear-gradient(110deg, #36b3ba, #8b6bcd);
-  position: absolute;
-  opacity: 0.6;
-  z-index: 1;
+	background: linear-gradient(110deg, #36b3ba, #8b6bcd);
+	position: absolute;
+	opacity: 0.6;
+	z-index: 1;
 }
 
 .welcomeScreen .headerBlock .background .gradient.layer2 {
-  background: linear-gradient(30deg, #ef6a39, #1d7ca5);
-  position: absolute;
-  mix-blend-mode: hard-light;
-  filter: saturate(1.2);
-  z-index: 2;
+	background: linear-gradient(30deg, #ef6a39, #1d7ca5);
+	position: absolute;
+	mix-blend-mode: hard-light;
+	filter: saturate(1.2);
+	z-index: 2;
 }
 
 .welcomeScreen .headerBlock .content {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 3;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 3;
 }
 
 .welcomeScreen .headerBlock .content img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: opacity 1.5s ease;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	transition: opacity 1.5s ease;
 
-  border-radius: 20px;
-  box-shadow: 0 0 10px var(--dark-shadow-color);
+	border-radius: 20px;
+	box-shadow: 0 0 10px var(--dark-shadow-color);
 }
 
 .welcomeScreen .textBlock {
-  margin-top: 20px;
-  font-size: 30px;
-  text-align: center;
+	margin-top: 20px;
+	font-size: 30px;
+	text-align: center;
 }
 
 .welcomeScreen .textBlock .quizwell {
-  transition: opacity 2s ease;
+	transition: opacity 2s ease;
 }
 
 .welcomeScreen.showEasterEgg .textBlock .quizwell {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1s ease;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 1s ease;
 }
 
 .welcomeScreen .textBlock .quizwell p {
-  display: inline-block;
-  font-size: 25px;
-  margin-right: 5px;
+	display: inline-block;
+	font-size: 25px;
+	margin-right: 5px;
 }
 
 .welcomeScreen .textBlock .quizwell img {
-  display: inline-block;
-  vertical-align: middle;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .welcomeScreen .textBlock .easterEgg {
-  opacity: 0;
-  pointer-events: none;
-  position: relative;
-  bottom: 40px;
-  transform: translate(0, 20px);
-  transition: opacity 1s ease, transform 1.5s ease;
+	opacity: 0;
+	pointer-events: none;
+	position: relative;
+	bottom: 40px;
+	transform: translate(0, 20px);
+	transition: opacity 1s ease, transform 1.5s ease;
 }
 
 .welcomeScreen.showEasterEgg .textBlock .easterEgg {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
+	opacity: 1;
+	transform: none;
+	pointer-events: auto;
 }
 
 .welcomeScreen .buttonContainer {
-  position: absolute;
-  bottom: 20px;
-  bottom: calc(env(safe-area-inset-bottom) + 20px);
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: calc(100% - 40px);
-  max-width: 500px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 52px 52px;
-  gap: 15px;
-  overflow: hidden;
+	position: absolute;
+	bottom: 20px;
+	bottom: calc(env(safe-area-inset-bottom) + 20px);
+	left: 50%;
+	transform: translate(-50%, 0);
+	width: calc(100% - 40px);
+	max-width: 500px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 52px 52px;
+	gap: 15px;
+	overflow: hidden;
 }
 
 .welcomeScreen .buttonContainer button {
-  min-width: 0;
-  overflow: hidden;
-  padding: 0;
+	min-width: 0;
+	overflow: hidden;
+	padding: 0;
 }
 
 .welcomeScreen .buttonContainer button.start {
-  font-size: 20px;
-  grid-column: 1 / 3;
+	font-size: 20px;
+	grid-column: 1 / 3;
 }
 
 .welcomeScreen .buttonContainer button:not(.start) {
-  background: var(--content-background-color);
-  color: var(--primary-text-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	background: var(--content-background-color);
+	color: var(--primary-text-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .welcomeScreen .buttonContainer button:not(.start) img {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
 }
 
 .welcomeScreen .buttonContainer button:not(.start) p.label {
-  display: inline-block;
-  font-size: 16px;
-  margin: 0;
+	display: inline-block;
+	font-size: 16px;
+	margin: 0;
 }
 
 .changelogScreen .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 25px;
 }
 
 .changelogScreen .header img {
-  border-radius: 18px;
-  box-shadow: 0 0 10px var(--dark-shadow-color);
+	border-radius: 18px;
+	box-shadow: 0 0 10px var(--dark-shadow-color);
 }
 
 .changelogScreen .header h1 {
-  margin: 0 0 0 20px;
+	margin: 0 0 0 20px;
 }
 
 .changelogScreen .changes {
-  width: calc(100% - 40px);
-  max-width: 500px;
-  margin: 0 auto;
+	width: calc(100% - 40px);
+	max-width: 500px;
+	margin: 0 auto;
 }
 
 .changelogScreen .changes p::before {
-  content: "• ";
+	content: "• ";
 }
 
 .changelogScreen button {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 200px;
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: calc(100% - 40px);
+	max-width: 200px;
 }
 
 .flyswatterScreen .optionsContainer {
-  background: var(--page-background-color);
-  position: absolute;
-  left: 50%;
-  top: 80px;
-  width: 100%;
-  max-width: 500px;
-  height: calc(100% - 80px);
-  transform: translateX(-50%);
-  transition: all 0.3s ease;
+	background: var(--page-background-color);
+	position: absolute;
+	left: 50%;
+	top: 80px;
+	width: 100%;
+	max-width: 500px;
+	height: calc(100% - 80px);
+	transform: translateX(-50%);
+	transition: all 0.3s ease;
 }
 
 .flyswatterScreen .optionsContainer.hidden {
-  display: block !important;
-  opacity: 0;
-  transform: translateX(calc(-50% + 50px));
-  pointer-events: none;
+	display: block !important;
+	opacity: 0;
+	transform: translateX(calc(-50% + 50px));
+	pointer-events: none;
 }
 
 .flyswatterScreen .optionsContainer .option {
-  background: var(--content-background-color);
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  cursor: pointer;
+	background: var(--content-background-color);
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	cursor: pointer;
 
-  transition: opacity 0.1s ease;
+	transition: opacity 0.1s ease;
 }
 
 .flyswatterScreen .optionsContainer .option:active {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 .settingsScreen .section {
-  background: var(--content-background-color);
-  padding: 15px;
-  border-radius: 15px;
-  max-width: 750px;
-  margin: auto;
-  margin-bottom: 20px;
+	background: var(--content-background-color);
+	padding: 15px;
+	border-radius: 15px;
+	max-width: 750px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.settingsScreen .section.about {
+	cursor: pointer;
 }
 
 .settingsScreen .section .title {
-  font-size: 20px;
-  font-weight: bold;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .settingsScreen .section .title .reset {
-  color: var(--secondary-text-color);
-  font-size: 16px;
-  margin-left: 5px;
-  cursor: pointer;
+	color: var(--secondary-text-color);
+	font-size: 16px;
+	margin-left: 5px;
+	cursor: pointer;
 
-  transition: opacity 0.1s ease;
+	transition: opacity 0.1s ease;
 }
 
 .settingsScreen .section .title .reset:active {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 .settingsScreen .section > .label:not(:last-child) {
-  margin: 10px 0 15px 0;
+	margin: 10px 0 15px 0;
 }
 
 .settingsScreen .section > .label,
 .settingsScreen .section .subsectionTitle {
-  margin: 10px 0 5px 0;
+	margin: 10px 0 5px 0;
 }
 
 .settingsScreen .section .subsectionTitle {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .settingsScreen .toggle {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
 }
 
 .settingsScreen .toggle .checkbox {
-  width: 25px;
-  height: 25px;
-  border-radius: 8px;
-  margin-right: 10px;
-  background: var(--page-background-color);
-  cursor: pointer;
+	width: 25px;
+	height: 25px;
+	border-radius: 8px;
+	margin-right: 10px;
+	background: var(--page-background-color);
+	cursor: pointer;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  transition: background 0.1s ease;
+	transition: background 0.1s ease;
 }
 
 .settingsScreen .toggle .checkbox.checked {
-  background: var(--app-accent-color);
+	background: var(--app-accent-color);
 }
 
 .settingsScreen .toggle .checkbox .check {
-  opacity: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-  background: var(--accent-color-text-color);
+	opacity: 0;
+	width: 10px;
+	height: 10px;
+	border-radius: 3px;
+	background: var(--accent-color-text-color);
 
-  transition: opacity 0.1s ease;
+	transition: opacity 0.1s ease;
 }
 
 .settingsScreen .toggle .checkbox.checked .check {
-  opacity: 0.9;
+	opacity: 0.9;
 }
 
 .settingsScreen .toggle .label {
-  margin: 0;
-  font-weight: bold;
+	margin: 0;
+	font-weight: bold;
 }
 
 .settingsScreen .colorSelector .picker {
-  display: flex;
-  align-items: center;
-  vertical-align: center;
+	display: flex;
+	align-items: center;
+	vertical-align: center;
 }
 
 .settingsScreen .colorSelector .picker {
-  display: inline-block;
+	display: inline-block;
 }
 
 .settingsScreen .colorSelector .label {
-  display: inline-block;
-  margin-bottom: 3px;
+	display: inline-block;
+	margin-bottom: 3px;
 }
 
 .settingsScreen .section > p:last-child {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .addWebClipScreen {
-  padding: 0;
+	padding: 0;
 }
 
 .addWebClipScreen div.header {
-  width: 100vw;
-  height: 40%;
-  background-color: var(--content-background-color);
+	width: 100vw;
+	height: 40%;
+	background-color: var(--content-background-color);
 }
 
 .addWebClipScreen div.header img {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75px;
-  height: 75px;
-  border-radius: 15px;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 75px;
+	height: 75px;
+	border-radius: 15px;
 }
 
 .addWebClipScreen div.header p {
-  position: absolute;
-  top: calc(20% + 42px);
-  left: 50%;
-  transform: translate(-50%, 0);
-  font-size: 15px;
-  font-family: system-ui;
-  font-weight: normal;
+	position: absolute;
+	top: calc(20% + 42px);
+	left: 50%;
+	transform: translate(-50%, 0);
+	font-size: 15px;
+	font-family: system-ui;
+	font-weight: normal;
 }
 
 .addWebClipScreen h1 {
-  margin: 20px 15px 5px 15px;
+	margin: 20px 15px 5px 15px;
 }
 
 .addWebClipScreen > p {
-  line-height: 150%;
-  margin: 0 15px 0 15px;
+	line-height: 150%;
+	margin: 0 15px 0 15px;
 }
 
 .addWebClipScreen p img {
-  background: var(--content-background-color);
-  padding: 5px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  vertical-align: middle;
+	background: var(--content-background-color);
+	padding: 5px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	vertical-align: middle;
 }
 
 .addWebClipScreen p span {
-  background: var(--content-background-color);
-  font-family: system-ui;
-  padding: 2.5px;
-  border-radius: 5px;
+	background: var(--content-background-color);
+	font-family: system-ui;
+	padding: 2.5px;
+	border-radius: 5px;
 }
 
 .searchModeSelectionScreen {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 .searchModeSelectionScreen .titleContainer {
-  display: inline-block;
+	display: inline-block;
 }
 
 .searchModeSelectionScreen select {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--content-background-color);
-  color: var(--primary-text-color);
-  padding: 7px 7px 7px 14px;
-  vertical-align: top;
-  box-shadow: none;
-  border: none;
-  border-radius: 10px;
-  font-family: inherit;
-  font-weight: bold;
-  font-size: 15px;
-  width: calc(100% - 270px);
-  max-width: 250px;
-  cursor: pointer;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: var(--content-background-color);
+	color: var(--primary-text-color);
+	padding: 7px 7px 7px 14px;
+	vertical-align: top;
+	box-shadow: none;
+	border: none;
+	border-radius: 10px;
+	font-family: inherit;
+	font-weight: bold;
+	font-size: 15px;
+	width: calc(100% - 270px);
+	max-width: 250px;
+	cursor: pointer;
 
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
 }
 
 .searchModeSelectionScreen select:focus {
-  outline: none;
+	outline: none;
 }
 
 .searchModeSelectionScreen .gridContainer {
-  display: grid;
-  height: calc(100% - 45px);
-  height: calc(100% - max(45px, calc(env(safe-area-inset-bottom) + 26px)));
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "books searchBar"
-    "books searchResults";
-  grid-column-gap: 20px;
+	display: grid;
+	height: calc(100% - 45px);
+	height: calc(100% - max(45px, calc(env(safe-area-inset-bottom) + 26px)));
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: auto 1fr;
+	grid-template-areas:
+		"books searchBar"
+		"books searchResults";
+	grid-column-gap: 20px;
 }
 
 .searchModeSelectionScreen .searchBarContainer {
-  background: var(--content-background-color);
-  padding: 15px;
-  border-radius: 15px;
-  grid-area: searchBar;
+	background: var(--content-background-color);
+	padding: 15px;
+	border-radius: 15px;
+	grid-area: searchBar;
 
-  transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 
 .searchModeSelectionScreen .searchBarContainer .label {
-  font-size: 22px;
-  font-weight: bold;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 .searchModeSelectionScreen .searchBarContainer .searchBarWrapper {
-  position: relative;
+	position: relative;
 }
 
 .searchModeSelectionScreen .searchBarContainer .searchBarWrapper .searchBar {
-  border: none;
-  background: var(--page-background-color);
-  border-radius: 5px;
-  padding: 10px;
-  width: calc(100% - 20px);
-  height: 100%;
-  font-family: inherit;
-  letter-spacing: 0.5px;
-  font-size: 18px;
+	border: none;
+	background: var(--page-background-color);
+	border-radius: 5px;
+	padding: 10px;
+	width: calc(100% - 20px);
+	height: 100%;
+	font-family: inherit;
+	letter-spacing: 0.5px;
+	font-size: 18px;
 }
 
-.searchModeSelectionScreen
-  .searchBarContainer
-  .searchBarWrapper
-  .searchBar:focus {
-  outline: none;
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .searchBar:focus {
+	outline: none;
 }
 
 .searchModeSelectionScreen .searchBarContainer .searchBarWrapper .clearButton {
-  background: var(--content-background-color);
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  line-height: 25px;
-  text-align: center;
-  padding-top: 3px;
-  box-sizing: border-box;
-  cursor: pointer;
+	background: var(--content-background-color);
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	padding-top: 3px;
+	box-sizing: border-box;
+	cursor: pointer;
 
-  transition: opacity 0.2s ease;
+	transition: opacity 0.2s ease;
 
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translate(0, -50%);
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translate(0, -50%);
 }
 
-.searchModeSelectionScreen
-  .searchBarContainer
-  .searchBarWrapper
-  .clearButton
-  img {
-  width: 20px;
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .clearButton img {
+	width: 20px;
 }
 
-.searchModeSelectionScreen
-  .searchBarContainer
-  .searchBarWrapper
-  .clearButton.hidden {
-  display: block;
-  opacity: 0;
+.searchModeSelectionScreen .searchBarContainer .searchBarWrapper .clearButton.hidden {
+	display: block;
+	opacity: 0;
 }
 
 .searchModeSelectionScreen .searchResultsContainer {
-  background: var(--content-background-color);
+	background: var(--content-background-color);
 
-  padding: 15px;
-  border-radius: 15px;
-  margin-top: 20px;
-  overflow: scroll;
-  grid-area: searchResults;
+	padding: 15px;
+	border-radius: 15px;
+	margin-top: 20px;
+	overflow: scroll;
+	grid-area: searchResults;
 
-  transition: opacity 0.5s ease, transform 0.5s ease;
+	transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .searchModeSelectionScreen .searchResultsContainer .message {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
 }
 
 .searchModeSelectionScreen .searchResultsContainer .listItem {
-  background: var(--page-background-color);
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
+	background: var(--page-background-color);
+	border-radius: 8px;
+	padding: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.searchModeSelectionScreen .searchResultsContainer .listItem.memory {
+	border: 2px solid var(--memory-element-color);
+}
+
+.searchModeSelectionScreen .searchResultsContainer .listItem .reference {
+	margin-bottom: 2px;
 }
 
 .searchModeSelectionScreen .searchResultsContainer .listItem .content {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .searchModeSelectionScreen .searchByReferenceContainer {
-  background: var(--content-background-color);
-  border-radius: 15px;
-  grid-area: books;
-  overflow: auto;
+	background: var(--content-background-color);
+	border-radius: 15px;
+	grid-area: books;
+	overflow: auto;
 
-  transition: opacity 0.5s ease, transform 0.5s ease;
+	transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer {
-  position: absolute;
-  width: calc(50% - 60px);
-  height: calc(100% - 115px);
-  padding: 15px;
-  border-radius: 15px;
-  background: var(--content-background-color);
+	position: absolute;
+	width: calc(50% - 60px);
+	height: calc(100% - 30px);
+	padding: 15px;
+	border-radius: 15px;
+	background: var(--content-background-color);
 
-  transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer.hidden {
-  opacity: 0;
-  display: block;
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer.hidden {
+	opacity: 0;
+	display: block;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer
-  .labelContainer {
-  cursor: pointer;
-  display: inline;
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer {
+	cursor: pointer;
+	display: inline;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer
-  .labelContainer
-  img {
-  height: 20px;
-  width: auto;
-  transform: translate(0, 3px);
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer img {
+	height: 20px;
+	width: auto;
+	transform: translate(0, 3px);
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer
-  .labelContainer
-  .label {
-  display: inline;
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer .label {
+	display: inline;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer
-  .label {
-  font-weight: bold;
-  font-size: 22px;
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .label {
+	font-weight: bold;
+	font-size: 22px;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .verseSelectionContainer
-  .viewFullChapterButton {
-  display: inline;
-  font-weight: bold;
-  margin-left: 10px;
-  color: var(--secondary-text-color);
-  cursor: pointer;
+.searchModeSelectionScreen .searchByReferenceContainer .verseSelectionContainer .viewFullChapterButton {
+	display: inline;
+	font-weight: bold;
+	margin-left: 10px;
+	color: var(--secondary-text-color);
+	cursor: pointer;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .bookSelectionContainer
-  .selectionElementContainer {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 95px;
-  gap: 20px;
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .selectionElementContainer {
+	display: grid;
+	justify-content: center;
+	grid-template-columns: 1fr 1fr;
+	grid-auto-rows: 95px;
+	gap: 20px;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .bookSelectionContainer
-  .bookSelectionElement {
-  background: var(--page-background-color);
-  box-sizing: border-box;
-  padding: 15px;
-  border-radius: 15px;
-  cursor: pointer;
-  display: inline-block;
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement {
+	background: var(--page-background-color);
+	box-sizing: border-box;
+	padding: 15px;
+	border-radius: 15px;
+	cursor: pointer;
+	display: inline-block;
 
-  transition: opacity 0.1s ease;
+	transition: opacity 0.1s ease;
 }
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .bookSelectionContainer
-  .bookSelectionElement:active {
-  opacity: 0.5;
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement:active {
+	opacity: 0.5;
 }
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .bookSelectionContainer
-  .bookSelectionElement
-  .icon {
-  margin-bottom: 5px;
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement .icon {
+	margin-bottom: 5px;
 }
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .bookSelectionContainer
-  .bookSelectionElement
-  .label {
-  margin-bottom: 0;
+.searchModeSelectionScreen .searchByReferenceContainer .bookSelectionContainer .bookSelectionElement .label {
+	margin-bottom: 0;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer:not(.bookSelectionContainer)
-  .selectionElementContainer {
-  margin-top: 20px;
-  padding: 0 10px;
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(5, 50px);
-  grid-auto-rows: 50px;
-  gap: 10px;
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer {
+	margin-top: 20px;
+	padding: 0 10px;
+	display: grid;
+	justify-content: center;
+	grid-template-columns: repeat(5, 50px);
+	grid-auto-rows: 50px;
+	gap: 10px;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer:not(.bookSelectionContainer)
-  .selectionElementContainer
-  .selectionElement {
-  background: var(--page-background-color);
-  width: 50px;
-  height: 50px;
-  border-radius: 15px;
-  text-align: center;
-  line-height: 50px;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement {
+	background: var(--page-background-color);
+	width: 50px;
+	height: 50px;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 50px;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
 
-  transition: opacity 0.1s ease;
+	transition: opacity 0.1s ease;
 }
 
-.searchModeSelectionScreen
-  .searchByReferenceContainer
-  .selectionContainer:not(.bookSelectionContainer)
-  .selectionElementContainer
-  .selectionElement:active {
-  opacity: 0.5;
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement:active {
+	opacity: 0.5;
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement.memory {
+	border: 2px solid var(--memory-element-color);
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer .selectionElement.memoryStart {
+	text-decoration: underline;
 }
 
 .selectionScreen .numberElementsContainer .numberElement {
-  background: var(--content-background-color);
-  border-radius: 15px;
-  text-align: center;
-  line-height: 50px;
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
+	background: var(--content-background-color);
+	border-radius: 15px;
+	text-align: center;
+	line-height: 50px;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
 
-  transition: opacity 0.1s ease;
+	transition: opacity 0.1s ease;
 }
 
 .selectionScreen .numberElementsContainer .numberElement:active {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 .verseSelectionScreen .viewChapterButton {
-  width: 310px;
-  height: 50px;
-  border-radius: 15px;
-  margin: auto;
-  text-align: center;
-  line-height: 50px;
-  margin-bottom: 15px;
-  font-weight: bold;
-  background: var(--content-background-color);
-  cursor: pointer;
+	width: 310px;
+	height: 50px;
+	border-radius: 15px;
+	margin: auto;
+	text-align: center;
+	line-height: 50px;
+	margin-bottom: 15px;
+	font-weight: bold;
+	background: var(--content-background-color);
+	cursor: pointer;
 
-  transition: opacity 0.1s ease;
+	transition: opacity 0.1s ease;
 }
 
 .verseSelectionScreen .viewChapterButton:active {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 .chapterDisplayScreen {
-  padding: 20px;
+	padding: 20px;
 }
 
 .chapterDisplayScreen .titleContainer {
-  position: fixed;
-  left: 0;
-  top: 0;
-  background: var(--page-background-color);
-  width: 100%;
-  padding: 20px 20px 15px 20px;
-  box-shadow: 0 0 10px var(--dark-shadow-color);
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: var(--page-background-color);
+	width: 100%;
+	padding: 20px 20px 15px 20px;
+	box-shadow: 0 0 10px var(--dark-shadow-color);
 }
 
-.chapterDisplayScreen .content {
-  margin-top: 95px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.chapterDisplayScreen > .content {
+	margin-top: 95px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .chapterDisplayScreen .content .sectionContainer {
-  margin-bottom: 20px;
-  max-width: 500px;
-  word-spacing: 1px;
+	margin-bottom: 20px;
+	max-width: 500px;
+	word-spacing: 1px;
 }
 
 .chapterDisplayScreen .content .sectionContainer .sectionVersesContainer {
-  list-style-position: outside;
+	list-style-position: outside;
 }
 
-.chapterDisplayScreen
-  .content
-  .sectionContainer
-  .sectionVersesContainer
-  .verse {
-  cursor: pointer;
-  font-size: 18px;
-  margin-bottom: 5px;
-  line-height: 22px;
-  word-spacing: normal;
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse {
+	cursor: pointer;
+	font-size: 18px;
+	margin-bottom: 5px;
+	line-height: 22px;
+	word-spacing: normal;
 }
 
-.chapterDisplayScreen
-  .content
-  .sectionContainer
-  .sectionVersesContainer
-  .verse
-  .prejump {
-  border-bottom: 2px solid var(--memory-element-color);
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse .prejump {
+	border-bottom: 2px solid var(--memory-element-color);
 }
 
-.chapterDisplayScreen
-  .content
-  .sectionContainer
-  .sectionVersesContainer
-  .verse::marker {
-  font-weight: bold;
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse::marker {
+	font-weight: bold;
 }
 
-.chapterDisplayScreen
-  .content
-  .sectionContainer
-  .sectionVersesContainer
-  .verse.memory::marker {
-  color: var(--memory-element-color);
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse.memory::marker {
+	color: var(--memory-element-color);
+}
+
+.chapterDisplayScreen .content .footnote {
+	width: 100%;
+	max-width: 700px;
+	text-align: left;
+	display: flex;
+	gap: 10px;
+}
+
+.chapterDisplayScreen .content .footnote .letter {
+	min-width: 20px;
+}
+
+.chapterDisplayScreen .content .footnote .italic {
+	font-style: italic;
 }
 
 .verseDisplayScreen {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 500px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 1fr 500px;
 }
 
 .verseDisplayScreen.hidden {
-  transform: translate(0, 100px);
+	transform: translate(0, 100px);
 }
 
 .verseDisplayScreen .sidebarContainer {
-  grid-column: -2 / -1;
+	grid-column: -2 / -1;
 }
 
 .verseDisplayScreen .sidebarContainer > .headerContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: opacity 0.2s ease;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: opacity 0.2s ease;
 }
 
 .verseDisplayScreen .headerContainer .button {
-  background: var(--content-background-color);
-  border-radius: 15px;
-  padding: 10px;
-  height: 100px;
-  box-sizing: border-box;
-  cursor: pointer;
-  width: 90px;
-  margin: 0 20px 0 0;
+	background: var(--content-background-color);
+	border-radius: 15px;
+	padding: 10px;
+	height: 100px;
+	box-sizing: border-box;
+	cursor: pointer;
+	width: 90px;
+	margin: 0 20px 0 0;
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 
-  transition: opacity 0.2s ease;
+	transition: opacity 0.2s ease;
 }
 
 .verseDisplayScreen .headerContainer .button.hidden {
-  display: none;
+	display: none;
 }
 
 .verseDisplayScreen .headerContainer .button p.label {
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  font-weight: bold;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+	font-weight: bold;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .verseButton {
-  background: var(--page-background-color);
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	background: var(--page-background-color);
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .previousVerseButton {
-  margin-right: 10px;
+	margin-right: 10px;
 }
 
-.verseDisplayScreen
-  .headerContainer
-  .verseTitleContainer
-  .previousVerseButton
-  img {
-  margin: 2px 5px 0 0;
+.verseDisplayScreen .headerContainer .verseTitleContainer .previousVerseButton img {
+	margin: 2px 5px 0 0;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .nextVerseButton {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .nextVerseButton img {
-  margin: 2px 0 0 5px;
-  transform: rotate(180deg);
+	margin: 2px 0 0 5px;
+	transform: rotate(180deg);
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer {
-  background: var(--content-background-color);
-  border-radius: 15px;
-  padding: 0 10px;
-  height: 100px;
-  box-sizing: border-box;
-  width: calc(100% - 40px);
-  max-width: 300px;
-  margin: 0;
+	background: var(--content-background-color);
+	border-radius: 15px;
+	padding: 0 10px;
+	height: 100px;
+	box-sizing: border-box;
+	width: calc(100% - 40px);
+	max-width: 300px;
+	margin: 0;
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .title {
-  margin: 0;
-  width: 100%;
-  font-size: 25px;
+	margin: 0;
+	width: 100%;
+	font-size: 25px;
 
-  transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle {
-  color: var(--secondary-text-color);
-  margin: 5px 0 0 0;
-  font-size: 20px;
-  transition: all 0.2s ease;
+	color: var(--secondary-text-color);
+	margin: 5px 0 0 0;
+	font-size: 20px;
+	transition: all 0.2s ease;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle.hidden {
-  display: none;
+	display: none;
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer .subtitle .tag {
-  color: var(--memory-element-color);
-  border: 2px solid var(--memory-element-color);
-  padding: 2px 5px;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 14px;
-  vertical-align: middle;
+	color: var(--memory-element-color);
+	border: 2px solid var(--memory-element-color);
+	padding: 2px 5px;
+	border-radius: 5px;
+	margin-right: 5px;
+	font-size: 14px;
+	vertical-align: middle;
 }
 
 .verseDisplay {
-  position: absolute;
-  top: 50vh;
-  left: calc(50vw - 250px);
-  width: calc(100% - 600px);
-  box-sizing: border-box;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease, top 0.3s ease;
+	position: absolute;
+	top: 50vh;
+	left: calc(50vw - 250px);
+	width: calc(100% - 600px);
+	box-sizing: border-box;
+	transform: translate(-50%, -50%);
+	transition: all 0.3s ease, top 0.3s ease;
 }
 
 .verseDisplay .textContainer {
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
+	width: 100%;
+	max-width: 1000px;
+	margin: auto;
 }
 
 .verseDisplay .textContainer p {
-  font-size: 22px;
-  padding: 5px;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  border: 3px solid transparent;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+	font-size: 22px;
+	padding: 5px;
+	font-weight: bold;
+	display: inline-block;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	border: 3px solid transparent;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
 }
 
 .verseDisplay .textContainer p.footnoteFollows {
-  padding-right: 0;
+	padding-right: 0;
 }
 
 .verseDisplay .textContainer p.footnoteReference {
-  padding-left: 0;
-  margin-left: -2px;
+	padding-left: 0;
+	margin-left: -2px;
 }
 
 .verseDisplay .textContainer p.notSelectable {
-  cursor: default;
+	cursor: default;
 }
 
 .verseDisplay .textContainer p:not(.notSelectable):not(.selected):hover {
-  background: var(--secondary-content-background-color);
-  color: var(--ternary-text-color);
+	background: var(--secondary-content-background-color);
+	color: var(--ternary-text-color);
 }
 
 .verseDisplay .textContainer p.selected {
-  background: var(--app-accent-color);
-  color: var(--inverted-text-color);
+	background: var(--app-accent-color);
+	color: var(--inverted-text-color);
 
-  /* Override potential prejump styling */
-  border-bottom: 2px solid transparent !important;
+	/* Override potential prejump styling */
+	border-bottom: 2px solid transparent !important;
 }
 
 .verseDisplay .textContainer p.outlined {
-  border: 3px solid var(--app-accent-color) !important;
-  box-sizing: border-box;
+	border: 3px solid var(--app-accent-color) !important;
+	box-sizing: border-box;
 
-  /* Override potential prejump styling */
-  border-radius: 5px !important;
+	/* Override potential prejump styling */
+	border-radius: 5px !important;
 }
 
 .verseDisplay .textContainer p.highlight {
-  background: var(--secondary-content-background-color);
-  color: var(--app-accent-color);
+	background: var(--secondary-content-background-color);
+	color: var(--app-accent-color);
 }
 
 .verseDisplay.highlightPrejump .textContainer p.prejump {
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 2px solid var(--primary-text-color);
-  border-radius: 5px 5px 0 0;
+	box-sizing: border-box;
+	border: none;
+	border-bottom: 2px solid var(--memory-element-color);
+	border-radius: 5px 5px 0 0;
 }
 
 .verseDisplay.highlightRareWords .textContainer p.uniqueWord:not(.selected) {
-  color: var(--unique-word-highlight-color);
+	color: var(--unique-word-highlight-color);
 }
 
 .verseDisplay.highlightRareWords .textContainer p.doubleWord:not(.selected) {
-  color: var(--double-word-highlight-color);
+	color: var(--double-word-highlight-color);
 }
 
 .verseDisplay.highlightRareWords .textContainer p.tripleWord:not(.selected) {
-  color: var(--triple-word-highlight-color);
+	color: var(--triple-word-highlight-color);
 }
 
 .verseDisplayScreen .key {
-  background: var(--content-background-color);
-  padding: 5px;
-  border-radius: 15px;
-  box-sizing: border-box;
-  height: 50px;
-  margin-top: 20px;
+	background: var(--content-background-color);
+	padding: 5px;
+	border-radius: 15px;
+	box-sizing: border-box;
+	height: 50px;
+	margin-top: 20px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
 
-  opacity: 1;
-  transition: opacity 0.1s ease;
+	opacity: 1;
+	transition: opacity 0.1s ease;
 }
 
 .verseDisplayScreen .key .keyItem {
-  margin: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  box-sizing: border-box;
-  opacity: 0.25;
-  transition: opacity 0.1s ease;
+	margin: 5px;
+	font-size: 18px;
+	font-weight: bold;
+	box-sizing: border-box;
+	opacity: 0.25;
+	transition: opacity 0.1s ease;
 }
 
 .verseDisplayScreen .key .keyItem.prejump {
-  border-bottom: 2px solid var(--primary-text-color);
+	border-bottom: 2px solid var(--memory-element-color);
 }
 .verseDisplayScreen .key .keyItem.unique {
-  color: var(--unique-word-highlight-color);
+	color: var(--unique-word-highlight-color);
 }
 .verseDisplayScreen .key .keyItem.double {
-  color: var(--double-word-highlight-color);
+	color: var(--double-word-highlight-color);
 }
 .verseDisplayScreen .key .keyItem:last-child {
-  color: var(--triple-word-highlight-color);
+	color: var(--triple-word-highlight-color);
 }
 
 .verseDisplay.highlightPrejump ~ .key .keyItem.prejump {
-  opacity: 1;
+	opacity: 1;
 }
 
 .verseDisplay.highlightRareWords ~ .key .keyItem.rareWord {
-  opacity: 1;
+	opacity: 1;
 }
 
 .verseDisplayScreen .toolbarContainer {
-  display: flex;
-  margin-top: 20px;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 2;
+	display: flex;
+	margin-top: 20px;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 2;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar {
-  background: var(--content-background-color);
-  border-radius: 15px;
-  height: 90px;
+	background: var(--content-background-color);
+	border-radius: 15px;
+	height: 90px;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar.left {
-  left: 0;
-  left: 0;
+	left: 0;
+	left: 0;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar.left .divider {
-  display: none;
-  width: 4px;
-  height: 60px;
-  border-radius: 2px;
-  margin: 10px 5px;
-  box-sizing: border-box;
-  background: var(--primary-text-color);
+	display: none;
+	width: 4px;
+	height: 60px;
+	border-radius: 2px;
+	margin: 10px 5px;
+	box-sizing: border-box;
+	background: var(--primary-text-color);
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar.right {
-  right: 0;
+	right: 0;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 5px;
-  width: 100px;
-  height: 80px;
-  vertical-align: top;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.1s ease;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
+	width: 100px;
+	height: 80px;
+	vertical-align: top;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background 0.1s ease;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem:hover {
-  background: var(--page-background-color);
+	background: var(--page-background-color);
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img {
-  display: block;
-  width: 40px;
-  margin: 0 auto;
+	display: block;
+	width: 40px;
+	margin: 0 auto;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.white {
-  display: none;
+	display: none;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.dark {
-  display: block;
+	display: block;
 }
 
 .lightModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.black,
 .lightModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.white {
-  display: block;
+	display: block;
 }
 
 .lightModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.white,
 .lightModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.black {
-  display: none;
+	display: none;
 }
 
 @media (prefers-color-scheme: dark) {
-  .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.black {
-    display: none;
-  }
+	.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.black {
+		display: none;
+	}
 
-  .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.white {
-    display: block;
-  }
+	.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.white {
+		display: block;
+	}
 
-  .darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.black,
-  .darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.white {
-    display: block;
-  }
+	.darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.black,
+	.darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.white {
+		display: block;
+	}
 
-  .darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.white,
-  .darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.black {
-    display: none;
-  }
+	.darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.white,
+	.darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.black {
+		display: none;
+	}
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem .label {
-  font-weight: bold;
-  margin: 5px 0 0 0;
-  text-align: center;
-  line-height: 14px;
+	font-weight: bold;
+	margin: 5px 0 0 0;
+	text-align: center;
+	line-height: 14px;
 }
 
 /* Multiline items need adjusted spacing */
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.multiLine .label {
-  margin-top: -2px;
+	margin-top: -2px;
 }
 
 /* Adjust styles for active buttons */
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active {
-  background: var(--app-accent-color);
+	background: var(--app-accent-color);
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active .label {
-  color: var(--accent-color-text-color);
+	color: var(--accent-color-text-color);
 }
 
 .slidePanel {
-  position: relative;
-  height: calc(100% - 300px);
-  height: min(
-    calc(100% - 280px - env(safe-area-inset-bottom)),
-    calc(100% - 300px)
-  );
-  margin-top: 20px;
-  background: var(--content-background-color);
-  border-radius: 15px;
-  z-index: 1;
-  overflow: scroll;
-  transition: all 0.3s ease;
+	position: relative;
+	height: calc(100% - 300px);
+	height: min(calc(100% - 280px - env(safe-area-inset-bottom)), calc(100% - 300px));
+	margin-top: 20px;
+	background: var(--content-background-color);
+	border-radius: 15px;
+	z-index: 1;
+	overflow: scroll;
+	transition: all 0.3s ease;
 }
 
 .slidePanel.hidden {
-  display: block;
-  overflow: hidden;
-  opacity: 1;
-  pointer-events: auto;
+	display: block;
+	overflow: hidden;
+	opacity: 1;
+	pointer-events: auto;
 }
 
 .slidePanel .closeButton {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--secondary-page-background-color);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: var(--secondary-page-background-color);
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	z-index: 2;
+	pointer-events: none;
+	opacity: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 6px;
-  box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 6px;
+	box-sizing: border-box;
 }
 
 .slidePanel .closeButton picture:nth-child(1) {
-  display: none;
+	display: none;
 }
 
 .slidePanel .slidePanelScreen:not(.hidden) ~ .closeButton {
-  opacity: 1;
-  pointer-events: auto;
+	opacity: 1;
+	pointer-events: auto;
 }
 
 .slidePanel .slidePanelScreen {
-  position: absolute;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20px;
-  overflow: scroll;
+	position: absolute;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 20px;
+	overflow: scroll;
 
-  transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 .slidePanel.hidden .slidePanelScreen {
-  display: block !important;
-  opacity: 0;
-  pointer-events: none;
+	display: block !important;
+	opacity: 0;
+	pointer-events: none;
 }
 
 .slidePanel .slidePanelScreen:not(.singleWordInformation) .title {
-  width: calc(100% - 50px);
+	width: calc(100% - 50px);
 }
 
 .slidePanel .titleContainer {
-  display: flex;
-  width: calc(100% - 50px);
+	display: flex;
+	width: calc(100% - 50px);
 }
 
 .slidePanel .singleWordInformation .title {
-  display: inline-block;
-  vertical-align: top;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .slidePanel .singleWordInformation .pronounClarification {
-  display: inline-flex;
-  margin-top: 1px;
+	display: inline-flex;
+	margin-top: 1px;
 }
 
 .slidePanel .singleWordInformation .pronounClarification.link {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .slidePanel .singleWordInformation .pronounClarification.hidden {
-  display: none;
+	display: none;
 }
 
 .slidePanel .singleWordInformation .pronounClarification .arrow {
-  display: inline-block;
-  margin-left: 10px;
-  margin-bottom: 5px;
-  vertical-align: middle;
-  opacity: 0.6;
+	display: inline-block;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	opacity: 0.6;
 }
 
 .slidePanel .singleWordInformation .pronounClarification .antecedent {
-  display: inline-block;
-  line-height: 34px;
-  margin-left: 5px;
-  font-size: 25px;
-  font-weight: bold;
-  color: var(--secondary-text-color);
+	display: inline-block;
+	line-height: 34px;
+	margin-left: 5px;
+	font-size: 25px;
+	font-weight: bold;
+	color: var(--secondary-text-color);
 }
 
 .slidePanel .singleWordInformation .content .concordanceInformationContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 15px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	margin-bottom: 15px;
 }
 
-.slidePanel
-  .singleWordInformation
-  .content
-  .concordanceInformationContainer
-  .concordanceInformationItem {
-  background: var(--page-background-color);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  cursor: default;
-  transition: background 0.2s ease;
+.slidePanel .singleWordInformation .content .concordanceInformationContainer .concordanceInformationItem {
+	background: var(--page-background-color);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 0;
+	cursor: default;
+	transition: background 0.2s ease;
 }
 
-.slidePanel
-  .singleWordInformation
-  .content
-  .concordanceInformationContainer
-  .concordanceInformationItem:not(.thisVerse) {
-  cursor: pointer;
+.slidePanel .singleWordInformation .content .concordanceInformationContainer .concordanceInformationItem:not(.thisVerse) {
+	cursor: pointer;
 }
 
-.slidePanel
-  .singleWordInformation
-  .content.thisSection
-  .concordanceInformationContainer
-  .concordanceInformationItem.thisSection,
-.slidePanel
-  .singleWordInformation
-  .content.thisChapter
-  .concordanceInformationContainer
-  .concordanceInformationItem.thisChapter,
-.slidePanel
-  .singleWordInformation
-  .content.thisBook
-  .concordanceInformationContainer
-  .concordanceInformationItem.thisBook {
-  background: var(--app-accent-color);
-  color: var(--inverted-text-color);
+.slidePanel .singleWordInformation .content.thisSection .concordanceInformationContainer .concordanceInformationItem.thisSection,
+.slidePanel .singleWordInformation .content.thisChapter .concordanceInformationContainer .concordanceInformationItem.thisChapter,
+.slidePanel .singleWordInformation .content.thisBook .concordanceInformationContainer .concordanceInformationItem.thisBook {
+	background: var(--app-accent-color);
+	color: var(--inverted-text-color);
 }
 
-.slidePanel
-  .singleWordInformation
-  .content
-  .concordanceInformationContainer
-  .concordanceInformationItem
-  p {
-  margin: 0;
+.slidePanel .singleWordInformation .content .concordanceInformationContainer .concordanceInformationItem p {
+	margin: 0;
 }
 
-.slidePanel
-  .singleWordInformation
-  .content
-  .concordanceInformationContainer
-  .concordanceInformationItem
-  h1 {
-  font-size: 20px;
-  margin: 0;
+.slidePanel .singleWordInformation .content .concordanceInformationContainer .concordanceInformationItem h1 {
+	font-size: 20px;
+	margin: 0;
 }
 
 .slidePanel .singleWordInformation .content .referencesContainer {
-  font-weight: bold;
-  font-size: 18px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 50px;
-  gap: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-auto-rows: 50px;
+	gap: 10px;
 }
 
 .slidePanel .singleWordInformation .content .referencesContainer .occurrence {
-  background: var(--secondary-page-background-color);
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+	background: var(--secondary-page-background-color);
+	padding: 0 10px;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 }
 
-.slidePanel
-  .singleWordInformation
-  .content
-  .referencesContainer
-  .occurrence
-  .reference {
-  font-weight: bold;
-  margin: 0;
+.slidePanel .singleWordInformation .content .referencesContainer .occurrence.thisVerse {
+	border: 2px solid var(--app-accent-color);
+	cursor: auto;
 }
 
-.slidePanel
-  .singleWordInformation
-  .content
-  .referencesContainer
-  .occurrence
-  .count {
-  font-weight: normal;
-  margin: 0 0 0 5px;
+.slidePanel .singleWordInformation .content .referencesContainer .occurrence .reference {
+	font-weight: bold;
+	margin: 0;
 }
 
-.slidePanel
-  .singleWordInformation
-  .content.thisSection
-  .referencesContainer
-  .occurrence:not(.thisSection),
-.slidePanel
-  .singleWordInformation
-  .content.thisChapter
-  .referencesContainer
-  .occurrence:not(.thisChapter),
-.slidePanel
-  .singleWordInformation
-  .content.thisBook
-  .referencesContainer
-  .occurrence:not(.thisBook) {
-  display: none;
+.slidePanel .singleWordInformation .content .referencesContainer .occurrence .count {
+	font-weight: normal;
+	margin: 0 0 0 5px;
+}
+
+.slidePanel .singleWordInformation .content.thisSection .referencesContainer .occurrence:not(.thisSection),
+.slidePanel .singleWordInformation .content.thisChapter .referencesContainer .occurrence:not(.thisChapter),
+.slidePanel .singleWordInformation .content.thisBook .referencesContainer .occurrence:not(.thisBook) {
+	display: none;
 }
 
 .slidePanel .pronounClarification .message,
 .slidePanel .footnotes .message {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 20px;
-  font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .slidePanel .pronounClarification .listItem {
-  background: var(--secondary-page-background-color);
-  border-radius: 15px;
-  padding: 10px 20px;
-  margin-bottom: 15px;
-  cursor: default;
+	background: var(--secondary-page-background-color);
+	border-radius: 15px;
+	padding: 10px 20px;
+	margin-bottom: 15px;
+	cursor: default;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .slidePanel .pronounClarification .listItem.hasReference {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .slidePanel .pronounClarification .listItem .headerContainer {
-  display: flex;
-  margin-bottom: -5px;
+	display: flex;
+	margin-bottom: -5px;
 }
 
 .slidePanel .pronounClarification .listItem .pronoun {
-  display: inline-block;
-  margin-bottom: 0;
+	display: inline-block;
+	margin-bottom: 0;
 }
 
 .slidePanel .pronounClarification .listItem .arrow {
-  display: inline-block;
-  margin: 0 0 5px 10px;
-  vertical-align: middle;
-  opacity: 0.6;
+	display: inline-block;
+	margin: 0 0 5px 10px;
+	vertical-align: middle;
+	opacity: 0.6;
 }
 
 .slidePanel .pronounClarification .listItem .antecedent {
-  display: inline-block;
-  line-height: 34px;
-  margin-left: 5px;
-  margin-bottom: 0;
-  font-size: 25px;
-  font-weight: bold;
-  color: var(--secondary-text-color);
+	display: inline-block;
+	line-height: 34px;
+	margin-left: 5px;
+	margin-bottom: 0;
+	font-size: 25px;
+	font-weight: bold;
+	color: var(--secondary-text-color);
 }
 
 .slidePanel .pronounClarification .listItem p.reference {
-  margin: 0 0 0 10px;
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
+	margin: 0 0 0 10px;
+	font-size: 18px;
+	font-weight: bold;
+	white-space: nowrap;
 }
 
 .slidePanel .footnotes .listItem {
-  background: var(--secondary-page-background-color);
-  border-radius: 15px;
-  padding: 10px 20px;
-  margin-bottom: 15px;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
+	background: var(--secondary-page-background-color);
+	border-radius: 15px;
+	padding: 10px 20px;
+	margin-bottom: 15px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .slidePanel .footnotes .listItem .letter {
-  margin: 0 15px 0 0;
+	margin: 0 15px 0 0;
 }
 
 .slidePanel .footnotes .listItem .content {
-  margin: 0;
+	margin: 0;
 }
 
 .slidePanel .footnotes .listItem .content .emphasis {
-  font-style: italic;
+	font-style: italic;
 }

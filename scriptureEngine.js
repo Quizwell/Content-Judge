@@ -1,4 +1,4 @@
-storageManager.setDefault("quizCycleYear", "Acts");
+storageManager.setDefault("quizCycleYear", "GEPCP");
 
 var scriptureEngine = {
 	currentYearObject: undefined,
@@ -203,6 +203,7 @@ var scriptureEngine = {
 			for (var r = 0; r < referencesInQuery.length; r++) {
 				results.push({
 					reference: referencesInQuery[r],
+					memoryVerseStatus: new Verse(referencesInQuery[r]).memoryVerseStatus,
 				});
 			}
 
@@ -269,6 +270,7 @@ var scriptureEngine = {
 
 								results.push({
 									reference: currentBook.abbreviation + " " + (c + 1) + ":" + currentVerseNumber,
+									memoryVerseStatus: new Verse(currentBook.abbreviation + " " + (c + 1) + ":" + currentVerseNumber).memoryVerseStatus,
 								});
 							}
 						} else {
@@ -285,6 +287,7 @@ var scriptureEngine = {
 
 								results.push({
 									reference: currentBook.abbreviation + " " + (c + 1) + ":" + currentVerseNumber,
+									memoryVerseStatus: new Verse(currentBook.abbreviation + " " + (c + 1) + ":" + currentVerseNumber).memoryVerseStatus,
 								});
 							}
 						}
@@ -312,19 +315,22 @@ var scriptureEngine = {
 				var currentReferenceBook = splitReference[0];
 
 				//Capitalize the first letter of the book
-				currentReferenceBook = currentReferenceBook[0].toUpperCase() + currentReferenceBook.slice(1);
+				currentReferenceBook = currentReferenceBook[0].toUpperCase() + currentReferenceBook.slice(1).toLowerCase();
 
 				//Loop through every book of the current quiz cycle year.
 				var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
 				for (var b = 0; b < currentYearBooksKeys.length; b++) {
 					var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[b]];
 
+					var compositeReference = "";
 					if (currentReferenceBook === currentYearBooksKeys[b]) {
 						//The book name in the reference matches the full book name, so we need to use the abbreviation instead and add it to the Array of results
-						var compositeReference = currentBook.abbreviation + " " + splitReference[1];
-					} else if (currentReferenceBook.toUpperCase() === currentBook.abbreviation) {
+						compositeReference = currentBook.abbreviation + " " + splitReference[1];
+					} else if (currentReferenceBook === currentBook.abbreviation) {
 						//The book name in the reference matches the book abbreviation, so we'll add it to the Array of results
-						var compositeReference = currentReferenceBook + " " + splitReference[1];
+						compositeReference = currentReferenceBook + " " + splitReference[1];
+					} else {
+						continue;
 					}
 
 					//If there's a hyphen in the reference, split it into individual references
@@ -735,7 +741,7 @@ var scriptureEngine = {
 				if (currentReferenceBook === currentYearBooksKeys[b]) {
 					//The book name in the reference matches the full book name, so we need to use the abbreviation instead and add it to the Array of results
 					var compositeReference = currentBook.abbreviation + " " + splitReference[1];
-				} else if (currentReferenceBook.toUpperCase() === currentBook.abbreviation) {
+				} else if (currentReferenceBook === currentBook.abbreviation) {
 					//The book name in the reference matches the book abbreviation, so we'll add it to the Array of results
 					var compositeReference = currentReferenceBook + " " + splitReference[1];
 				}
@@ -799,9 +805,25 @@ var scriptureEngine = {
 			bookNames.push(keys[i]);
 		}
 
-		//Loop through every abbreviation, and replace it with the correct book name in the string
-		for (var a = 0; a < abbreviations.length; a++) {
-			string = string.replaceAll(abbreviations[a], bookNames[a]);
+		//Sort the abbreviations by length so that the longest abbreviations are replaced first. Sort the book names in tandem with their corresponding abbreviations
+		for (var i = 0; i < abbreviations.length; i++) {
+			for (var j = 0; j < abbreviations.length; j++) {
+				if (abbreviations[j].length < abbreviations[j + 1]?.length) {
+					var temp = abbreviations[j];
+					abbreviations[j] = abbreviations[j + 1];
+					abbreviations[j + 1] = temp;
+
+					temp = bookNames[j];
+					bookNames[j] = bookNames[j + 1];
+					bookNames[j + 1] = temp;
+				}
+			}
+		}
+
+		//Replace abbreviations with the full book names, unless the abbreviation is itself contained in a full book name
+		for (var i = 0; i < abbreviations.length; i++) {
+			var regex = new RegExp("\\b" + abbreviations[i] + "\\b", "g"); // Create a regex with word boundaries
+			string = string.replace(regex, bookNames[i]);
 		}
 
 		return string;
@@ -991,6 +1013,6 @@ Verse.prototype.relative = function (relativeInteger) {
 	return new Verse(referenceString);
 };
 
-var quizCycleYear = storageManager.get("quizCycleYear");
-
+// var quizCycleYear = storageManager.get("quizCycleYear");
+var quizCycleYear = "GEPCP";
 scriptureEngine.currentYearObject = window[quizCycleYear];
