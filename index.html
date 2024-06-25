@@ -221,7 +221,10 @@
             </select>
             <div class="gridContainer">
                 <div class="searchBarContainer">
-                    <p class="label">Search by Content</p>
+                    <div class="headerWrapper">
+                        <p class="label">Search by Content</p>
+                        <p class="filterMode hidden" onclick="UIManager.searchBarHandlers.changeFilterMode()">All</p>
+                    </div>
                     <div class="searchBarWrapper">
                         <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" onchange="UIManager.searchBarHandlers.onchange()" placeholder="Type part of a verse...">
                         <div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">

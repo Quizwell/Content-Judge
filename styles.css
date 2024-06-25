@@ -421,9 +421,37 @@
 	transition: all 0.4s ease-in-out;
 }
 
+.searchModeSelectionScreen .searchBarContainer .headerWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
 .searchModeSelectionScreen .searchBarContainer .label {
 	font-size: 22px;
 	font-weight: bold;
+}
+
+.searchModeSelectionScreen .searchBarContainer .filterMode {
+	font-size: 20px;
+	font-weight: bold;
+	background: var(--page-background-color);
+	padding: 1px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	box-sizing: border-box;
+	transition: opacity 0.2s ease;
+}
+
+.searchModeSelectionScreen .searchBarContainer .filterMode.hidden {
+	display: block !important;
+	opacity: 0;
+	pointer-events: none;
+	cursor: normal;
+}
+
+.searchModeSelectionScreen .searchBarContainer .filterMode.memory {
+	background: var(--memory-element-color);
+	color: white;
 }
 
 .searchModeSelectionScreen .searchBarContainer .searchBarWrapper {

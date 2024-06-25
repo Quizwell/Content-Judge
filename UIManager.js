@@ -23,6 +23,7 @@ const UIReferences = {
 	verseSelectionContainerLabel: document.querySelector(".verseSelectionContainer .label"),
 	verseSelectionElementContainer: document.querySelector(".verseSelectionContainer .selectionElementContainer"),
 
+	searchBarFilterMode: document.querySelector(".filterMode"),
 	searchBarContainer: document.querySelector(".searchBarContainer"),
 	searchBar: document.querySelector(".searchBar"),
 	searchBarClearButton: document.querySelector(".searchBarWrapper .clearButton"),
@@ -254,15 +255,37 @@ const UIManager = {
 	searchBarHandlers: {
 		resultsTimer: null,
 
+		changeFilterMode: function () {
+			switch (UIReferences.searchBarFilterMode.textContent) {
+				case "All":
+					UIReferences.searchBarFilterMode.textContent = "Memory";
+					UIReferences.searchBarFilterMode.classList.add("memory");
+					break;
+				case "Memory":
+					UIReferences.searchBarFilterMode.textContent = "Prejump";
+					break;
+				case "Prejump":
+					UIReferences.searchBarFilterMode.textContent = "All";
+					UIReferences.searchBarFilterMode.classList.remove("memory");
+					break;
+			}
+			UIManager.searchBarHandlers.onchange();
+		},
+
 		onfocus: function () {
 			UIManager.show(UIReferences.searchBarClearButton, 200);
 			UIReferences.searchModeSelectionScreen.classList.add("searchBarActive");
+			UIReferences.searchBarFilterMode.classList.remove("hidden");
 		},
 
 		onblur: function () {
 			if (UIReferences.searchBar.value == "") {
 				UIManager.hide(UIReferences.searchBarClearButton, 200);
 				UIReferences.searchModeSelectionScreen.classList.remove("searchBarActive");
+
+				UIReferences.searchBarFilterMode.classList.add("hidden");
+				UIReferences.searchBarFilterMode.textContent = "All";
+				UIReferences.searchBarFilterMode.classList.remove("memory");
 			}
 		},
 
@@ -285,7 +308,6 @@ const UIManager = {
 		onchange: function () {
 			document.querySelector(".searchBarContainer .label").textContent = "Search by Content";
 
-			var inputElement = UIReferences.searchBar;
 			var input = UIReferences.searchBar.value;
 
 			//Remove all current search results
@@ -299,19 +321,26 @@ const UIManager = {
 
 			var contentSearchResults = scriptureEngine.getVersesByContent(input, storageManager.get("useAdvancedSearch"));
 
-			document.querySelector(".searchBarContainer .label").textContent = contentSearchResults.length + " results";
-
 			if (contentSearchResults.length > 0) {
-				//Move memory verse results to the top
-				contentSearchResults.sort(function (a, b) {
-					if (a.memoryVerseStatus.isMemory && !b.memoryVerseStatus.isMemory) {
-						return -1;
-					} else if (!a.memoryVerseStatus.isMemory && b.memoryVerseStatus.isMemory) {
-						return 1;
-					} else {
-						return 0;
-					}
-				});
+				//If memory filter mode is enabled, filter out non-memory verses
+				if (UIReferences.searchBarFilterMode.textContent == "Memory") {
+					contentSearchResults = contentSearchResults.filter(function (verse) {
+						return verse.memoryVerseStatus.isMemory;
+					});
+				}
+
+				//If prejump filter mode is enabled, filter out non-prejump verses
+				if (UIReferences.searchBarFilterMode.textContent == "Prejump") {
+					contentSearchResults = contentSearchResults.filter(function (verse) {
+						//See if this is a memory verse and the match is the beginning of the verse
+						return (
+							verse.memoryVerseStatus.isMemory &&
+							scriptureEngine.filterVerse(new Verse(verse.reference).verseContent, true, false).startsWith(scriptureEngine.filterVerse(input, true, false))
+						);
+					});
+				}
+
+				document.querySelector(".searchBarContainer .label").textContent = contentSearchResults.length + " results";
 
 				//Loop through every search result and create an element for each
 				for (var i = 0; i < contentSearchResults.length; i++) {
