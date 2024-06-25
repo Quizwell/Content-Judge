@@ -960,7 +960,7 @@ function Verse(reference) {
 					memoryReference: currentMemoryReference,
 					memoryIndex: i,
 					startVerse: multipleVerseReferences[0],
-					endVerse: multipleVerseReferences[multipleVerseReferences.length + 1],
+					endVerse: multipleVerseReferences[multipleVerseReferences.length - 1],
 				};
 			}
 		}

@@ -340,6 +340,28 @@ const UIManager = {
 					});
 				}
 
+				//If either filter mode is enabled, make sure that multi-verse memory passages are listed as single results
+				if (UIReferences.searchBarFilterMode.textContent != "All") {
+					for (var i = 0; i < contentSearchResults.length; i++) {
+						var verseObject = new Verse(contentSearchResults[i].reference);
+						//If this verse isn't the start of the memory passage, replace it with the starting verse
+						if (verseObject.memoryVerseStatus.startVerse !== verseObject.reference) {
+							contentSearchResults[i] = new Verse(verseObject.memoryVerseStatus.startVerse);
+						} else {
+							contentSearchResults[i] = verseObject;
+						}
+					}
+					// Remove duplicates
+					for (var i = 0; i < contentSearchResults.length; i++) {
+						for (var j = i + 1; j < contentSearchResults.length; j++) {
+							if (contentSearchResults[i].reference == contentSearchResults[j].reference) {
+								contentSearchResults.splice(j, 1);
+								j--;
+							}
+						}
+					}
+				}
+
 				document.querySelector(".searchBarContainer .label").textContent = contentSearchResults.length + " results";
 
 				//Loop through every search result and create an element for each
@@ -355,15 +377,28 @@ const UIManager = {
 						listItemElement.onclick = function () {
 							UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
 						};
-					})(currentSearchResult.reference);
+					})(currentSearchResult.memoryVerseStatus.startVerse || currentSearchResult.reference);
 
 					var referenceElement = document.createElement("h1");
 					referenceElement.classList.add("reference");
-					referenceElement.textContent = currentSearchResult.reference;
+					if (UIReferences.searchBarFilterMode.textContent != "All" && currentSearchResult.memoryVerseStatus.type === "multiple") {
+						referenceElement.textContent = currentSearchResult.memoryVerseStatus.startVerse + "-" + currentSearchResult.memoryVerseStatus.endVerse.split(":")[1];
+					} else {
+						referenceElement.textContent = currentSearchResult.reference;
+					}
 
 					var contentElement = document.createElement("p");
 					contentElement.classList.add("content");
-					contentElement.textContent = new Verse(currentSearchResult.reference).verseContent;
+					if (UIReferences.searchBarFilterMode.textContent != "All" && currentSearchResult.memoryVerseStatus.type === "multiple") {
+						var individualVerses = scriptureEngine.getIndividualReferencesFromRangeReference(currentSearchResult.memoryVerseStatus.memoryReference);
+						var compiledVerses = "";
+						for (var j = 0; j < individualVerses.length; j++) {
+							compiledVerses += new Verse(individualVerses[j]).verseContent + " ";
+						}
+						contentElement.textContent = compiledVerses;
+					} else {
+						contentElement.textContent = new Verse(currentSearchResult.reference).verseContent;
+					}
 
 					listItemElement.appendChild(referenceElement);
 					listItemElement.appendChild(contentElement);
