@@ -1,16 +1,11 @@
-const CONTENT_JUDGE_VERSION = "1.1.0";
-const CONTENT_JUDGE_BUILD = "CJ-R0008";
+const CONTENT_JUDGE_VERSION = "1.1.1";
+const CONTENT_JUDGE_BUILD = "CJ-R0011";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Version 1.1.0",
+		title: "Version 1.1.1",
 		items: [
-			"Added Galatians, Ephesians, Philippians, Colossians, and Philemon content. (Pronoun Clarifications coming at a future date.)",
-			"Memory verses are now highlighted when selecting a verse number.",
-			"When looking at concordance entries for a word, the current verse is now indicated.",
-			"Added footnotes to chapter display screen.",
-			"Prejump words are now underlined in green on the verse display screen.",
-			"Content search now prioritizes and highlights memory verses in results.",
-			"Content search now shows the number of results for your query.",
+			"Added a new filter option for Content Search to allow you to limit results to just Memory verses or just Memory prejump matches. The filter resets when you're done searching.",
+			"When in Memory or Prejump mode, Content Search now lists each complete memory passage as one result item, instead of listing each verse of multiple verse passages individually.",
 		],
 	},
 ];

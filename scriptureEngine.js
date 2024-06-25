@@ -762,7 +762,7 @@ var scriptureEngine = {
 		//This function filters all punctuation and extra spacing out of a verse and converts it to lowercase
 
 		if (removeFootnotes) {
-			verseText = verseText.replaceAll(/(\[[a-z]\])/g, "");
+			verseText = verseText.replace(/(\[[a-z]\])/g, "");
 		}
 
 		if (preserveAdvancedSearchCharacters) {
@@ -960,7 +960,7 @@ function Verse(reference) {
 					memoryReference: currentMemoryReference,
 					memoryIndex: i,
 					startVerse: multipleVerseReferences[0],
-					endVerse: multipleVerseReferences[multipleVerseReferences.length + 1],
+					endVerse: multipleVerseReferences[multipleVerseReferences.length - 1],
 				};
 			}
 		}
