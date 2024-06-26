@@ -373,11 +373,19 @@ const UIManager = {
 					if (currentSearchResult.memoryVerseStatus.isMemory) {
 						listItemElement.classList.add("memory");
 					}
-					(function (reference) {
-						listItemElement.onclick = function () {
-							UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
-						};
-					})(currentSearchResult.memoryVerseStatus.startVerse || currentSearchResult.reference);
+					if (UIReferences.searchBarFilterMode.textContent != "All") {
+						(function (reference) {
+							listItemElement.onclick = function () {
+								UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+							};
+						})(currentSearchResult.memoryVerseStatus.startVerse);
+					} else {
+						(function (reference) {
+							listItemElement.onclick = function () {
+								UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+							};
+						})(currentSearchResult.reference);
+					}
 
 					var referenceElement = document.createElement("h1");
 					referenceElement.classList.add("reference");
