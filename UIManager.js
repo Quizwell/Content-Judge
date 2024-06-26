@@ -335,6 +335,7 @@ const UIManager = {
 						//See if this is a memory verse and the match is the beginning of the verse
 						return (
 							verse.memoryVerseStatus.isMemory &&
+							verse.memoryVerseStatus.startVerse === verse.reference &&
 							scriptureEngine.filterVerse(new Verse(verse.reference).verseContent, true, false).startsWith(scriptureEngine.filterVerse(input, true, false))
 						);
 					});
@@ -373,11 +374,19 @@ const UIManager = {
 					if (currentSearchResult.memoryVerseStatus.isMemory) {
 						listItemElement.classList.add("memory");
 					}
-					(function (reference) {
-						listItemElement.onclick = function () {
-							UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
-						};
-					})(currentSearchResult.memoryVerseStatus.startVerse || currentSearchResult.reference);
+					if (UIReferences.searchBarFilterMode.textContent != "All") {
+						(function (reference) {
+							listItemElement.onclick = function () {
+								UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+							};
+						})(currentSearchResult.memoryVerseStatus.startVerse);
+					} else {
+						(function (reference) {
+							listItemElement.onclick = function () {
+								UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+							};
+						})(currentSearchResult.reference);
+					}
 
 					var referenceElement = document.createElement("h1");
 					referenceElement.classList.add("reference");
@@ -437,6 +446,9 @@ const UIManager = {
 
 	showChangelog: function () {
 		UIReferences.changelogScreenVersion.textContent = "Version " + CONTENT_JUDGE_VERSION;
+		while (UIReferences.changelogScreenChangesContainer.children[0]) {
+			UIReferences.changelogScreenChangesContainer.removeChild(UIReferences.changelogScreenChangesContainer.children[0]);
+		}
 		for (var i = 0; i < CONTENT_JUDGE_CHANGELOG.length; i++) {
 			var currentSection = CONTENT_JUDGE_CHANGELOG[i];
 			if (currentSection.items.length > 0) {

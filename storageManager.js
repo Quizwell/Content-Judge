@@ -1,11 +1,14 @@
-const CONTENT_JUDGE_VERSION = "1.2.0";
-const CONTENT_JUDGE_BUILD = "CJ-R0012";
+const CONTENT_JUDGE_VERSION = "1.2.1";
+const CONTENT_JUDGE_BUILD = "CJ-R0016";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Version 1.2.0",
+		title: "Version 1.2.1",
 		items: [
-			"Added a new filter option for Content Search to allow you to limit results to just Memory verses or just Memory prejump matches. The filter resets when you're done searching.",
-			"When in Memory or Prejump mode, Content Search now lists each complete memory passage as one result item, instead of listing each verse of multiple verse passages individually.",
+			"Added Quiz Cycle Year selector to choose content.",
+			"Added GEPCP Decades Quizzing cycle year content for Q2024.",
+			"Fixed multi-verse memory search results always opening the first verse when tapped.",
+			"Fixed Prejump filter false positives for multi-verse passages where a verse other than the first verse starts with the query.",
+			"Fixed changelog screen duplicating patch notes upon every reopen.",
 		],
 	},
 ];

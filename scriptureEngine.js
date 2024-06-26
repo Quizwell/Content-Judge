@@ -620,6 +620,9 @@ var scriptureEngine = {
 			case "GEPCP":
 				yearName = "GEPCP";
 				break;
+			case "GEPCP_D":
+				yearName = "GEPCP_Decades";
+				break;
 
 			case "L":
 				yearName = "Luke";
@@ -655,6 +658,9 @@ var scriptureEngine = {
 
 			case "GEPCP":
 				abbreviation = "GEPCP";
+				break;
+			case "GEPCP_Decades":
+				abbreviation = "GEPCP_D";
 				break;
 
 			case "Luke":
@@ -1013,6 +1019,5 @@ Verse.prototype.relative = function (relativeInteger) {
 	return new Verse(referenceString);
 };
 
-// var quizCycleYear = storageManager.get("quizCycleYear");
-var quizCycleYear = "GEPCP";
+var quizCycleYear = storageManager.get("quizCycleYear");
 scriptureEngine.currentYearObject = window[quizCycleYear];
