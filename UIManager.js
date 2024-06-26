@@ -446,6 +446,9 @@ const UIManager = {
 
 	showChangelog: function () {
 		UIReferences.changelogScreenVersion.textContent = "Version " + CONTENT_JUDGE_VERSION;
+		while (UIReferences.changelogScreenChangesContainer.children[0]) {
+			UIReferences.changelogScreenChangesContainer.removeChild(UIReferences.changelogScreenChangesContainer.children[0]);
+		}
 		for (var i = 0; i < CONTENT_JUDGE_CHANGELOG.length; i++) {
 			var currentSection = CONTENT_JUDGE_CHANGELOG[i];
 			if (currentSection.items.length > 0) {
