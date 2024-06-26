@@ -387,8 +387,7 @@
 	font-family: inherit;
 	font-weight: bold;
 	font-size: 15px;
-	width: calc(100% - 270px);
-	max-width: 250px;
+	max-width: min(calc(100% - 270px), 200px);
 	cursor: pointer;
 
 	-moz-appearance: none;
@@ -398,6 +397,14 @@
 
 .searchModeSelectionScreen select:focus {
 	outline: none;
+}
+
+.searchModeSelectionScreen .cycleYearArrow {
+	position: absolute;
+	top: 26px;
+	right: 27px;
+	transform: rotate(-90deg);
+	pointer-events: none;
 }
 
 .searchModeSelectionScreen .gridContainer {

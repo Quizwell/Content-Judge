@@ -1013,6 +1013,5 @@ Verse.prototype.relative = function (relativeInteger) {
 	return new Verse(referenceString);
 };
 
-// var quizCycleYear = storageManager.get("quizCycleYear");
-var quizCycleYear = "GEPCP";
+var quizCycleYear = storageManager.get("quizCycleYear");
 scriptureEngine.currentYearObject = window[quizCycleYear];

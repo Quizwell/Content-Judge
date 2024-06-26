@@ -209,16 +209,22 @@
                 </picture>
                 <h1 class="title">Find a Verse</h1>
             </div>
-            <select name="cycleYear" id="quizCycleYearSelector" class="hidden" onchange="UIManager.bookSelectorHandler()">
+            <select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
                 <option value="M" disabled>Matthew</option>
                 <option value="RJ">Romans and James</option>
                 <option value="A" disabled>Acts</option>
-                <option value="GEPCP">Galatians, Ephesians, Philippians, Colossians, and Philemon</option>
+                <option value="GEPCP">GEPCP</option>
                 <option value="L" disabled>Luke</option>
                 <option value="C" disabled>1st and 2nd Corinthians</option>
                 <option value="J" disabled>John</option>
                 <option value="HP" disabled>Hebrews and 1st &#38; 2nd Peter</option>
             </select>
+            <div class="cycleYearArrow">
+                <picture>
+                    <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img alt="" src="images/icons/BackArrow.svg" width="auto" height="15px">
+                </picture>
+            </div>
             <div class="gridContainer">
                 <div class="searchBarContainer">
                     <div class="headerWrapper">
