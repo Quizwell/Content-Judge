@@ -335,6 +335,7 @@ const UIManager = {
 						//See if this is a memory verse and the match is the beginning of the verse
 						return (
 							verse.memoryVerseStatus.isMemory &&
+							verse.memoryVerseStatus.startVerse === verse.reference &&
 							scriptureEngine.filterVerse(new Verse(verse.reference).verseContent, true, false).startsWith(scriptureEngine.filterVerse(input, true, false))
 						);
 					});
