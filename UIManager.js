@@ -255,7 +255,10 @@ const UIManager = {
 	searchBarHandlers: {
 		resultsTimer: null,
 
-		changeFilterMode: function () {
+		changeFilterMode: function (e) {
+			UIReferences.searchBar.focus();
+			e.stopPropagation();
+			e.preventDefault();
 			switch (UIReferences.searchBarFilterMode.textContent) {
 				case "All":
 					UIReferences.searchBarFilterMode.textContent = "Memory";
