@@ -282,7 +282,7 @@ const UIManager = {
 		},
 
 		onblur: function () {
-			if (UIReferences.searchBar.value == "") {
+			if (UIReferences.searchBar.value == "" && UIReferences.searchBarFilterMode.textContent == "All") {
 				UIManager.hide(UIReferences.searchBarClearButton, 200);
 				UIReferences.searchModeSelectionScreen.classList.remove("searchBarActive");
 
@@ -318,11 +318,11 @@ const UIManager = {
 				UIReferences.searchResultsContainer.removeChild(UIReferences.searchResultsContainer.firstChild);
 			}
 
-			if (input == "") {
+			if (input == "" && UIReferences.searchBarFilterMode.textContent == "All") {
 				return;
 			}
 
-			var contentSearchResults = scriptureEngine.getVersesByContent(input, storageManager.get("useAdvancedSearch"));
+			var contentSearchResults = scriptureEngine.getVersesByContent(input, storageManager.get("useAdvancedSearch"), input == "" && UIReferences.searchBarFilterMode.textContent != "All");
 
 			if (contentSearchResults.length > 0) {
 				//If memory filter mode is enabled, filter out non-memory verses
@@ -410,6 +410,9 @@ const UIManager = {
 						contentElement.textContent = compiledVerses;
 					} else {
 						contentElement.textContent = new Verse(currentSearchResult.reference).verseContent;
+						if (contentElement.textContent == "") {
+							continue;
+						}
 					}
 
 					listItemElement.appendChild(referenceElement);
@@ -428,9 +431,11 @@ const UIManager = {
 
 		clearSearchBar: function () {
 			document.querySelector(".searchBarContainer .label").textContent = "Search by Content";
+			UIReferences.searchBarFilterMode.textContent = "All";
+			UIReferences.searchBarFilterMode.classList.remove("memory");
 			UIReferences.searchBar.value = "";
 			UIReferences.searchBar.blur();
-			UIManager.searchBarHandlers.oninput();
+			UIManager.searchBarHandlers.onchange();
 			UIManager.searchBarHandlers.onblur();
 		},
 	},
