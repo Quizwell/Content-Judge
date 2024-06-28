@@ -366,6 +366,13 @@ const UIManager = {
 					}
 				}
 
+				//If the prejump filter is enabled, sort the results alphabetically
+				if (UIReferences.searchBarFilterMode.textContent == "Prejump") {
+					contentSearchResults.sort(function (a, b) {
+						return scriptureEngine.filterVerse(a.verseContent, true, false).localeCompare(scriptureEngine.filterVerse(b.verseContent, true, false));
+					});
+				}
+
 				document.querySelector(".searchBarContainer .label").textContent = contentSearchResults.length + " results";
 
 				//Loop through every search result and create an element for each

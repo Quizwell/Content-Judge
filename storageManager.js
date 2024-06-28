@@ -1,12 +1,13 @@
 const CONTENT_JUDGE_VERSION = "1.3.0";
-const CONTENT_JUDGE_BUILD = "CJ-R0020";
+const CONTENT_JUDGE_BUILD = "CJ-R0021";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Version 1.2.2",
+		title: "Version 1.3.0",
 		items: [
-			"Content search filter mode can now be set even before you enter a query.",
-			"A list of all memory verses is now displayed if the Memory or Prejump filter is set with no search query.",
-			"Fixed a bug where Smart Search would return nonexistent blank verses if an invalid reference was supplied.",
+			"Added Luke content and enhanced support for single-book years.",
+			"Added support for cross-section verses.",
+			"Verses are now alphabetized when the Prejump filter is enabled.",
+			"Fixed UI issues with long chapters.",
 		],
 	},
 ];
