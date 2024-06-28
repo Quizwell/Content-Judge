@@ -115,7 +115,7 @@ var scriptureEngine = {
 		}
 	},
 
-	getVersesByContent: function (query, useAdvancedSearch) {
+	getVersesByContent: function (query, useAdvancedSearch, forceSearch) {
 		//Define advanced search functions now for possible use later
 		function parse(input) {
 			var andMatches = input.match(/ \++ /g);
@@ -223,7 +223,7 @@ var scriptureEngine = {
 		}
 
 		//If the result of the previous filters is an empty string, return the results as they are
-		if (scriptureEngine.filterVerse(query).length === 0) {
+		if (!forceSearch && scriptureEngine.filterVerse(query).length === 0) {
 			return results;
 		}
 
