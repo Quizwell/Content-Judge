@@ -776,7 +776,9 @@ const UIManager = {
 
 		UIManager.searchByReference.populateSearchByReferenceContainer();
 		UIManager.buttonHandlers.closeVerseSelectionContainer();
-		UIManager.buttonHandlers.closeChapterSelectionContainer();
+		if (Object.keys(scriptureEngine.currentYearObject.books).length > 1) {
+			UIManager.buttonHandlers.closeChapterSelectionContainer();
+		}
 		UIManager.searchBarHandlers.clearSearchBar();
 	},
 
@@ -925,33 +927,47 @@ const UIManager = {
 				UIReferences.bookSelectionElementContainer.removeChild(UIReferences.bookSelectionElementContainer.firstChild);
 			}
 
-			//Populate
-			var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
-			for (var i = 0; i < currentYearBooksKeys.length; i++) {
-				var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
-				var currentBookName = currentYearBooksKeys[i];
+			//Count how many books are in the current year
+			var bookCount = Object.keys(scriptureEngine.currentYearObject.books).length;
+			if (bookCount == 1) {
+				//If there is only one book in the year, skip the book selection and go straight to the chapter selection
+				document.querySelector(".labelContainer.multipleBooks").classList.add("hidden");
+				document.querySelector(".labelContainer.singleBook").classList.remove("hidden");
+				document.querySelector(".labelContainer.singleBook .label").textContent = Object.keys(scriptureEngine.currentYearObject.books)[0];
+				UIManager.searchByReference.currentSearchObject.bookAbbreviation = scriptureEngine.currentYearObject.books[Object.keys(scriptureEngine.currentYearObject.books)[0]].abbreviation;
+				UIManager.searchByReference.populateAndShowChapterSelectionContainer();
+				return;
+			} else {
+				document.querySelector(".labelContainer.multipleBooks").classList.remove("hidden");
+				document.querySelector(".labelContainer.singleBook").classList.add("hidden");
+				//Populate the book selection
+				var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+				for (var i = 0; i < currentYearBooksKeys.length; i++) {
+					var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
+					var currentBookName = currentYearBooksKeys[i];
 
-				var bookSelectionElement = document.createElement("div");
-				bookSelectionElement.classList.add("bookSelectionElement");
-				(function (bookAbbreviation) {
-					bookSelectionElement.onclick = function () {
-						UIManager.searchByReference.currentSearchObject.bookAbbreviation = bookAbbreviation;
-						UIManager.searchByReference.populateAndShowChapterSelectionContainer();
-					};
-				})(currentBook.abbreviation);
+					var bookSelectionElement = document.createElement("div");
+					bookSelectionElement.classList.add("bookSelectionElement");
+					(function (bookAbbreviation) {
+						bookSelectionElement.onclick = function () {
+							UIManager.searchByReference.currentSearchObject.bookAbbreviation = bookAbbreviation;
+							UIManager.searchByReference.populateAndShowChapterSelectionContainer();
+						};
+					})(currentBook.abbreviation);
 
-				var bookSelectionElementIcon = document.createElement("h1");
-				bookSelectionElementIcon.classList.add("icon");
-				bookSelectionElementIcon.textContent = currentBook.abbreviation;
+					var bookSelectionElementIcon = document.createElement("h1");
+					bookSelectionElementIcon.classList.add("icon");
+					bookSelectionElementIcon.textContent = currentBook.abbreviation;
 
-				var bookSelectionElementLabel = document.createElement("p");
-				bookSelectionElementLabel.classList.add("label");
-				bookSelectionElementLabel.textContent = currentBookName;
+					var bookSelectionElementLabel = document.createElement("p");
+					bookSelectionElementLabel.classList.add("label");
+					bookSelectionElementLabel.textContent = currentBookName;
 
-				bookSelectionElement.appendChild(bookSelectionElementIcon);
-				bookSelectionElement.appendChild(bookSelectionElementLabel);
+					bookSelectionElement.appendChild(bookSelectionElementIcon);
+					bookSelectionElement.appendChild(bookSelectionElementLabel);
 
-				UIReferences.bookSelectionElementContainer.appendChild(bookSelectionElement);
+					UIReferences.bookSelectionElementContainer.appendChild(bookSelectionElement);
+				}
 			}
 		},
 	},
@@ -989,6 +1005,9 @@ const UIManager = {
 			var verses = [];
 			var verseCount = 0;
 
+			var carryoverVerse = null;
+			var carryoverVerseReference = null;
+
 			for (var s = 0; s < chapter.sections.length; s++) {
 				var currentSection = chapter.sections[s];
 
@@ -1009,6 +1028,31 @@ const UIManager = {
 				sectionContainerElement.appendChild(sectionTitleElement);
 				sectionContainerElement.appendChild(sectionVersesContainerElement);
 
+				//If there is a carry-over verse, add it to the beginning of the section and account for numbering
+				if (carryoverVerse) {
+					var currentVerseElement = document.createElement("li");
+					currentVerseElement.classList.add("verse");
+					currentVerseElement.classList.add("carryover");
+					currentVerseElement.textContent = carryoverVerse;
+
+					var memoryVerseStatus = new Verse(carryoverVerseReference).memoryVerseStatus;
+					if (memoryVerseStatus.isMemory) {
+						currentVerseElement.classList.add("memory");
+					}
+
+					(function (referenceString) {
+						currentVerseElement.onclick = function () {
+							UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(referenceString);
+						};
+					})(carryoverVerseReference);
+
+					sectionVersesContainerElement.appendChild(currentVerseElement);
+					sectionVersesContainerElement.start = verseCount;
+
+					carryoverVerse = null;
+					carryoverVerseReference = null;
+				}
+
 				//Loop through each verse
 				for (var v = 0; v < currentSection.verses.length; v++) {
 					verseCount++;
@@ -1018,7 +1062,14 @@ const UIManager = {
 
 					var currentVerseElement = document.createElement("li");
 					currentVerseElement.classList.add("verse");
-					currentVerseElement.textContent = currentVerse;
+
+					if (currentVerse.indexOf(" {SECTION} ") > -1) {
+						currentVerseElement.textContent = currentVerse.split(" {SECTION} ")[0];
+						carryoverVerse = currentVerse.split(" {SECTION} ")[1];
+						carryoverVerseReference = currentVerseReference;
+					} else {
+						currentVerseElement.textContent = currentVerse;
+					}
 
 					var memoryVerseStatus = new Verse(currentVerseReference).memoryVerseStatus;
 					if (memoryVerseStatus.isMemory) {
@@ -1090,7 +1141,9 @@ const UIManager = {
 			if (preserveScreenHeirarchy) {
 				UIManager.hide(UIReferences.chapterDisplayScreen, 200);
 			} else {
-				UIManager.hide(UIReferences.chapterSelectionContainer, null);
+				if (Object.keys(scriptureEngine.currentYearObject.books).length > 1) {
+					UIManager.hide(UIReferences.chapterSelectionContainer, null);
+				}
 				UIManager.hide(UIReferences.verseSelectionContainer, null);
 				UIManager.hide(UIReferences.chapterDisplayScreen, 200);
 			}
@@ -1269,7 +1322,9 @@ const UIManager = {
 			if (preserveScreenHeirarchy) {
 				UIManager.hide(UIReferences.verseDisplayScreen, 200);
 			} else {
-				UIManager.hide(UIReferences.chapterSelectionContainer, null);
+				if (Object.keys(scriptureEngine.currentYearObject.books).length > 1) {
+					UIManager.hide(UIReferences.chapterSelectionContainer, null);
+				}
 				UIManager.hide(UIReferences.verseSelectionContainer, null);
 				UIManager.hide(UIReferences.verseDisplayScreen, 200);
 			}

@@ -561,9 +561,11 @@
 	position: absolute;
 	width: calc(50% - 60px);
 	height: calc(100% - 30px);
+	max-height: calc(100% - 115px);
 	padding: 15px;
 	border-radius: 15px;
 	background: var(--content-background-color);
+	overflow: auto;
 
 	transition: all 0.2s ease;
 }
@@ -576,6 +578,14 @@
 .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer {
 	cursor: pointer;
 	display: inline;
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer.singleBook {
+	cursor: default;
+}
+
+.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer.hidden {
+	display: none;
 }
 
 .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer .labelContainer img {
@@ -631,7 +641,7 @@
 
 .searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer {
 	margin-top: 20px;
-	padding: 0 10px;
+	padding: 0 10px 20px 10px;
 	display: grid;
 	justify-content: center;
 	grid-template-columns: repeat(5, 50px);
@@ -739,6 +749,10 @@
 	margin-bottom: 5px;
 	line-height: 22px;
 	word-spacing: normal;
+}
+
+.chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse.carryover {
+	list-style-type: none;
 }
 
 .chapterDisplayScreen .content .sectionContainer .sectionVersesContainer .verse .prejump {

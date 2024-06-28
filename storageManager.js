@@ -1,5 +1,5 @@
-const CONTENT_JUDGE_VERSION = "1.2.2";
-const CONTENT_JUDGE_BUILD = "CJ-R0018";
+const CONTENT_JUDGE_VERSION = "1.3.0";
+const CONTENT_JUDGE_BUILD = "CJ-R0020";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
 		title: "Version 1.2.2",
