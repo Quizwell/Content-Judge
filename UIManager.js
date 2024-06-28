@@ -261,6 +261,9 @@ const UIManager = {
 			e.preventDefault();
 			switch (UIReferences.searchBarFilterMode.textContent) {
 				case "All":
+					UIReferences.searchBarFilterMode.textContent = "Starts With";
+					break;
+				case "Starts With":
 					UIReferences.searchBarFilterMode.textContent = "Memory";
 					UIReferences.searchBarFilterMode.classList.add("memory");
 					break;
@@ -318,34 +321,34 @@ const UIManager = {
 				UIReferences.searchResultsContainer.removeChild(UIReferences.searchResultsContainer.firstChild);
 			}
 
-			if (input == "" && UIReferences.searchBarFilterMode.textContent == "All") {
+			if (input == "" && !UIReferences.searchBarFilterMode.classList.contains("memory")) {
 				return;
 			}
 
-			var contentSearchResults = scriptureEngine.getVersesByContent(input, storageManager.get("useAdvancedSearch"), input == "" && UIReferences.searchBarFilterMode.textContent != "All");
+			var contentSearchResults = scriptureEngine.getVersesByContent(input, storageManager.get("useAdvancedSearch"), input == "" && UIReferences.searchBarFilterMode.classList.contains("memory"));
 
 			if (contentSearchResults.length > 0) {
-				//If memory filter mode is enabled, filter out non-memory verses
-				if (UIReferences.searchBarFilterMode.textContent == "Memory") {
+				//If memory filter modes are enabled, filter out non-memory verses
+				if (UIReferences.searchBarFilterMode.classList.contains("memory")) {
 					contentSearchResults = contentSearchResults.filter(function (verse) {
 						return verse.memoryVerseStatus.isMemory;
 					});
 				}
 
-				//If prejump filter mode is enabled, filter out non-prejump verses
-				if (UIReferences.searchBarFilterMode.textContent == "Prejump") {
+				//If Starts With or Prejump filter modes are enabled, filter out non-starting verses
+				if (UIReferences.searchBarFilterMode.textContent == "Starts With" || UIReferences.searchBarFilterMode.textContent == "Prejump") {
 					contentSearchResults = contentSearchResults.filter(function (verse) {
-						//See if this is a memory verse and the match is the beginning of the verse
-						return (
-							verse.memoryVerseStatus.isMemory &&
-							verse.memoryVerseStatus.startVerse === verse.reference &&
-							scriptureEngine.filterVerse(new Verse(verse.reference).verseContent, true, false).startsWith(scriptureEngine.filterVerse(input, true, false))
-						);
+						return scriptureEngine.filterVerse(new Verse(verse.reference).verseContent, true, false).startsWith(scriptureEngine.filterVerse(input, true, false));
 					});
 				}
 
-				//If either filter mode is enabled, make sure that multi-verse memory passages are listed as single results
-				if (UIReferences.searchBarFilterMode.textContent != "All") {
+				//For prejump filter, make sure the verse matched is at the start of the memory passage
+				if (UIReferences.searchBarFilterMode.textContent == "Prejump") {
+					contentSearchResults = contentSearchResults.filter((verse) => verse.memoryVerseStatus.startVerse === verse.reference);
+				}
+
+				//If either memory filter mode is enabled, make sure that multi-verse memory passages are listed as single results
+				if (UIReferences.searchBarFilterMode.classList.contains("memory")) {
 					for (var i = 0; i < contentSearchResults.length; i++) {
 						var verseObject = new Verse(contentSearchResults[i].reference);
 						//If this verse isn't the start of the memory passage, replace it with the starting verse
