@@ -215,7 +215,7 @@
                 <option value="A" disabled>Acts</option>
                 <option value="GEPCP">GEPCP</option>
                 <option value="GEPCP_D">GEPCP (Decades)</option>
-                <option value="L" disabled>Luke</option>
+                <option value="L">Luke</option>
                 <option value="C" disabled>1st and 2nd Corinthians</option>
                 <option value="J" disabled>John</option>
                 <option value="HP" disabled>Hebrews and 1st &#38; 2nd Peter</option>
@@ -248,12 +248,15 @@
                         <div class="selectionElementContainer"></div>
                     </div>
                     <div class="selectionContainer chapterSelectionContainer hidden">
-                        <div class="labelContainer" onclick="UIManager.buttonHandlers.closeChapterSelectionContainer()">
+                        <div class="labelContainer multipleBooks" onclick="UIManager.buttonHandlers.closeChapterSelectionContainer()">
                             <picture>
                                 <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
                                 <img src="images/icons/BackArrow.svg">
                             </picture>
                             <p class="label">Chapter</p>
+                        </div>
+                        <div class="labelContainer singleBook">
+                            <p class="label"></p>
                         </div>
                         <div class="selectionElementContainer"></div>
                     </div>
@@ -416,6 +419,7 @@
     <script src="database/Acts.js"></script>
     <script src="database/GEPCP.js"></script>
     <script src="database/GEPCP_Decades.js"></script>
+    <script src="database/Luke.js"></script>
     <script src="scriptureEngine.js"></script>
 
     <script src="UIManager.js"></script>

@@ -884,6 +884,9 @@ function Verse(reference) {
 			//Subtract 1 from the verse number to get the index
 			verseContent = currentSection.verses[verseNumber - 1];
 
+			//Filter out any section breaks of format {SECTION}
+			verseContent = verseContent.replace(" {SECTION} ", " ");
+
 			var footnotesInVerse = [];
 
 			//Search the verse for footnote references
