@@ -1,14 +1,9 @@
-const CONTENT_JUDGE_VERSION = "1.3.0";
-const CONTENT_JUDGE_BUILD = "CJ-R0022";
+const CONTENT_JUDGE_VERSION = "1.3.1";
+const CONTENT_JUDGE_BUILD = "CJ-R0024";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Version 1.3.0",
-		items: [
-			"Added Luke content and enhanced support for single-book years.",
-			"Added support for cross-section verses.",
-			"Verses are now alphabetized when the Prejump filter is enabled.",
-			"Fixed UI issues with long chapters.",
-		],
+		title: "Version 1.3.1",
+		items: ["Fixed issue with chapter selection not repopulating after searching."],
 	},
 ];
 

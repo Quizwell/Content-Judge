@@ -157,7 +157,9 @@ const UIManager = {
 			setTimeout(function () {
 				UIManager.searchBarHandlers.clearSearchBar();
 				UIManager.buttonHandlers.closeVerseSelectionContainer();
-				UIManager.buttonHandlers.closeChapterSelectionContainer();
+				if (Object.keys(scriptureEngine.currentYearObject.books).length > 1) {
+					UIManager.buttonHandlers.closeChapterSelectionContainer();
+				}
 			}, 200);
 		},
 
