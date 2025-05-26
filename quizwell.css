@@ -37,7 +37,6 @@
 	--purple-color-dark: #7e74cf;
 	--orange-color-dark: #d88041;
 
-	/* Content Judge only */
 	--memory-element-color: #62c45e;
 
 	--unique-word-highlight-color: var(--orange-color);
@@ -73,31 +72,12 @@
 
 		--overlay-color: #000000;
 
-		/* Content Judge only */
 		--memory-element-color: #509f4c;
 
 		--unique-word-highlight-color: var(--unique-word-highlight-color-dark) !important;
 		--double-word-highlight-color: var(--double-word-highlight-color-dark) !important;
 		--triple-word-highlight-color: var(--triple-word-highlight-color-dark) !important;
 	}
-}
-
-@font-face {
-	font-family: omnes-pro;
-	font-weight: 400;
-	src: url(fonts/omnes-pro-light.otf);
-}
-
-@font-face {
-	font-family: omnes-pro;
-	font-weight: 500;
-	src: url(fonts/omnes-pro-regular.otf);
-}
-
-@font-face {
-	font-family: omnes-pro;
-	font-weight: 700;
-	src: url(fonts/omnes-pro-semibold.otf);
 }
 
 /* Remove the 350ms touch delay on iOS */
@@ -116,7 +96,10 @@ body {
 }
 
 body {
-	font-family: omnes-pro;
+	font-family: "Inter";
+	font-optical-sizing: auto;
+	font-style: normal;
+
 	background: var(--page-background-color);
 	color: var(--primary-text-color);
 
