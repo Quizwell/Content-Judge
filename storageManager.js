@@ -1,9 +1,10 @@
-const CONTENT_JUDGE_VERSION = "1.3.1";
-const CONTENT_JUDGE_BUILD = "CJ-R0024";
+const CONTENT_JUDGE_VERSION = "1.3.2";
+const CONTENT_JUDGE_BUILD = "CJ-R0025";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Version 1.3.1",
-		items: ["Fixed issue with chapter selection not repopulating after searching."],
+		title: "Version 1.3.2",
+		items: ["Footnote results now appear when searching by content, including support for Advanced Search parameters."],
+		items: ["Fixed several issues with memory verse search results when using the Starts With search mode."],
 	},
 ];
 

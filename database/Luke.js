@@ -204,7 +204,7 @@ var Luke = {
 						c: "Lev. 12:8",
 						d: "Or _promised, / now dismiss_",
 						e: "Or _then had been a widow for eighty-four years._",
-						f: "Or be about my Father’s business",
+						f: "Or _be about my Father’s business_",
 					},
 				},
 				{

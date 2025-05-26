@@ -115,6 +115,176 @@ var scriptureEngine = {
 		}
 	},
 
+	getFootnotesByContent: function (query, useAdvancedSearch) {
+		//Define advanced search functions now for possible use later
+		function parse(input) {
+			var andMatches = input.match(/ \++ /g);
+			var orMatches = input.match(/ \/+ /g);
+
+			var andLongestLength = 0;
+			var orLongestLength = 0;
+			var andSearchRegex;
+			var orSearchRegex;
+
+			if (andMatches) {
+				andMatches.forEach((item, index) => {
+					if (item.length > andLongestLength) {
+						andLongestLength = item.length;
+					}
+				});
+				andSearchRegex = new RegExp(" " + "\\+".repeat(andLongestLength - 2) + " ", "g");
+			}
+
+			if (orMatches) {
+				orMatches.forEach((item, index) => {
+					if (item.length > orLongestLength) {
+						orLongestLength = item.length;
+					}
+				});
+				orSearchRegex = new RegExp(" " + "\\/".repeat(orLongestLength - 2) + " ", "g");
+			}
+
+			if (andMatches || orMatches) {
+				if (andLongestLength >= orLongestLength) {
+					return and(...input.split(andSearchRegex));
+				} else {
+					return or(...input.split(orSearchRegex));
+				}
+			}
+
+			return input;
+		}
+
+		function checkFootnoteFor(string) {
+			if (filteredCurrentFootnote.indexOf(string) === -1) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		function and() {
+			for (var i = 0; i < arguments.length; i++) {
+				var currentArgument = parse(arguments[i]);
+				if (typeof currentArgument === "string") {
+					if (!checkFootnoteFor(currentArgument)) {
+						return false;
+					}
+				} else {
+					if (!currentArgument) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+
+		function or() {
+			for (var i = 0; i < arguments.length; i++) {
+				var currentArgument = parse(arguments[i]);
+				if (typeof currentArgument === "string") {
+					if (checkFootnoteFor(currentArgument)) {
+						return true;
+					}
+				} else {
+					if (currentArgument) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
+		var results = [];
+
+		//Find all the global NOT flags in the query string. Save them, and then remove them.
+		var globalNotRegex = /(^|\s)!\w+/g;
+		var globalNotMatches = query.match(globalNotRegex);
+		if (globalNotMatches) {
+			query = query.replaceAll(globalNotRegex, "");
+
+			globalNotMatches.forEach((item, index, array) => {
+				array[index] = item.substring(item.indexOf("!") + 1);
+			});
+		}
+
+		//If the result of the previous filters is an empty string, return the results as they are
+		if (scriptureEngine.filterVerse(query).length === 0) {
+			return results;
+		}
+
+		function getFootnoteVerseNumber(footnoteLetter) {
+			var verseCount = 0;
+			for (var s = 0; s < currentChapter.sections.length; s++) {
+				var currentSection = currentChapter.sections[s];
+				for (var v = 0; v < currentSection.verses.length; v++) {
+					verseCount++;
+					var currentVerse = currentSection.verses[v];
+					if (currentVerse.indexOf("[" + footnoteLetter + "]") !== -1) {
+						return verseCount;
+					}
+				}
+			}
+		}
+
+		//Loop through every book
+		var booksKeys = Object.keys(scriptureEngine.currentYearObject.books);
+		for (var b = 0; b < booksKeys.length; b++) {
+			var currentBook = scriptureEngine.currentYearObject.books[booksKeys[b]];
+
+			//Loop through every chapter
+			for (var c = 0; c < currentBook.chapters.length; c++) {
+				var currentChapter = currentBook.chapters[c];
+
+				//Loop through every footnote
+				var footnoteKeys = Object.keys(currentChapter.footnotes);
+				footnoteLoop: for (var v = 0; v < footnoteKeys.length; v++) {
+					var currentFootnote = currentChapter.footnotes[footnoteKeys[v]];
+
+					var filteredCurrentFootnote = scriptureEngine.filterVerse(currentFootnote.replaceAll("_", ""), true);
+					var filteredQuery = scriptureEngine.filterVerse(query, true, true);
+
+					//Determine whether to use the advanced search algorithm or not
+					if (useAdvancedSearch && filteredQuery.match(/( [/+]+ |!)/g)) {
+						//Loop through each global NOT item. If there are any matches in this footnote, move to the next one.
+						if (globalNotMatches) {
+							for (var n = 0; n < globalNotMatches.length; n++) {
+								if (filteredCurrentFootnote.indexOf(globalNotMatches[n]) !== -1) {
+									continue footnoteLoop;
+								}
+							}
+						}
+
+						if (parse(filteredQuery)) {
+							results.push({
+								reference: currentBook.abbreviation + " " + (c + 1) + ":" + getFootnoteVerseNumber(footnoteKeys[v]),
+								footnote: {
+									letter: footnoteKeys[v],
+									text: currentFootnote,
+								},
+							});
+						}
+					} else {
+						filteredQuery = scriptureEngine.filterVerse(filteredQuery, true);
+
+						//Simply check if the footnote contains the search query.
+						if (filteredCurrentFootnote.indexOf(filteredQuery) !== -1) {
+							results.push({
+								reference: currentBook.abbreviation + " " + (c + 1) + ":" + getFootnoteVerseNumber(footnoteKeys[v]),
+								footnote: {
+									letter: footnoteKeys[v],
+									text: currentFootnote,
+								},
+							});
+						}
+					}
+				}
+			}
+		}
+
+		return results;
+	},
+
 	getVersesByContent: function (query, useAdvancedSearch, forceSearch) {
 		//Define advanced search functions now for possible use later
 		function parse(input) {

@@ -327,7 +327,13 @@ const UIManager = {
 				return;
 			}
 
+			var footnoteSearchResults = [];
+			if (!UIReferences.searchBarFilterMode.classList.contains("memory")) {
+				footnoteSearchResults = scriptureEngine.getFootnotesByContent(input, storageManager.get("useAdvancedSearch"));
+			}
 			var contentSearchResults = scriptureEngine.getVersesByContent(input, storageManager.get("useAdvancedSearch"), input == "" && UIReferences.searchBarFilterMode.classList.contains("memory"));
+
+			contentSearchResults = footnoteSearchResults.concat(contentSearchResults);
 
 			if (contentSearchResults.length > 0) {
 				//If memory filter modes are enabled, filter out non-memory verses
@@ -339,8 +345,12 @@ const UIManager = {
 
 				//If Starts With or Prejump filter modes are enabled, filter out non-starting verses
 				if (UIReferences.searchBarFilterMode.textContent == "Starts With" || UIReferences.searchBarFilterMode.textContent == "Prejump") {
-					contentSearchResults = contentSearchResults.filter(function (verse) {
-						return scriptureEngine.filterVerse(new Verse(verse.reference).verseContent, true, false).startsWith(scriptureEngine.filterVerse(input, true, false));
+					contentSearchResults = contentSearchResults.filter(function (result) {
+						if (result.footnote) {
+							return scriptureEngine.filterVerse(result.footnote.text, true, false).startsWith(scriptureEngine.filterVerse(input, true, false));
+						} else {
+							return scriptureEngine.filterVerse(new Verse(result.reference).verseContent, true, false).startsWith(scriptureEngine.filterVerse(input, true, false));
+						}
 					});
 				}
 
@@ -386,42 +396,65 @@ const UIManager = {
 
 					var listItemElement = document.createElement("div");
 					listItemElement.classList.add("listItem");
-					if (currentSearchResult.memoryVerseStatus.isMemory) {
+					if (currentSearchResult?.memoryVerseStatus?.isMemory) {
 						listItemElement.classList.add("memory");
 					}
-					if (UIReferences.searchBarFilterMode.textContent != "All") {
+					//If either memory filter is enabled, make sure that each result goes to the first verse of the memory passage.
+					if (UIReferences.searchBarFilterMode.classList.contains("memory")) {
 						(function (reference) {
 							listItemElement.onclick = function () {
 								UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
 							};
 						})(currentSearchResult.memoryVerseStatus.startVerse);
+					} else if (!currentSearchResult.footnote) {
+						(function (reference) {
+							listItemElement.onclick = function () {
+								UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+							};
+						})(currentSearchResult.reference);
 					} else {
 						(function (reference) {
 							listItemElement.onclick = function () {
 								UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(reference);
+								UIManager.buttonHandlers.footnotesButton();
 							};
 						})(currentSearchResult.reference);
 					}
 
 					var referenceElement = document.createElement("h1");
 					referenceElement.classList.add("reference");
-					if (UIReferences.searchBarFilterMode.textContent != "All" && currentSearchResult.memoryVerseStatus.type === "multiple") {
+					if (UIReferences.searchBarFilterMode.classList.contains("memory") && currentSearchResult.memoryVerseStatus.type === "multiple") {
 						referenceElement.textContent = currentSearchResult.memoryVerseStatus.startVerse + "-" + currentSearchResult.memoryVerseStatus.endVerse.split(":")[1];
-					} else {
+					} else if (!currentSearchResult.footnote) {
 						referenceElement.textContent = currentSearchResult.reference;
+					} else {
+						referenceElement.textContent = currentSearchResult.reference + " [" + currentSearchResult.footnote.letter + "]";
 					}
 
 					var contentElement = document.createElement("p");
 					contentElement.classList.add("content");
-					if (UIReferences.searchBarFilterMode.textContent != "All" && currentSearchResult.memoryVerseStatus.type === "multiple") {
+					if (UIReferences.searchBarFilterMode.classList.contains("memory") && currentSearchResult.memoryVerseStatus.type === "multiple") {
 						var individualVerses = scriptureEngine.getIndividualReferencesFromRangeReference(currentSearchResult.memoryVerseStatus.memoryReference);
 						var compiledVerses = "";
 						for (var j = 0; j < individualVerses.length; j++) {
 							compiledVerses += new Verse(individualVerses[j]).verseContent + " ";
 						}
 						contentElement.textContent = compiledVerses;
-					} else {
+					} else if (!currentSearchResult.footnote) {
 						contentElement.textContent = new Verse(currentSearchResult.reference).verseContent;
+						if (contentElement.textContent == "") {
+							continue;
+						}
+					} else {
+						var splitFootnote = currentSearchResult.footnote.text.split("_");
+						for (var s = 0; s < splitFootnote.length; s++) {
+							var span = document.createElement("span");
+							span.textContent = splitFootnote[s];
+							if (s % 2 != 0) {
+								span.classList.add("italic");
+							}
+							contentElement.appendChild(span);
+						}
 						if (contentElement.textContent == "") {
 							continue;
 						}

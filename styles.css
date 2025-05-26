@@ -548,6 +548,10 @@
 	margin-bottom: 0;
 }
 
+.searchModeSelectionScreen .searchResultsContainer .listItem .content .italic {
+	font-style: italic;
+}
+
 .searchModeSelectionScreen .searchByReferenceContainer {
 	background: var(--content-background-color);
 	border-radius: 15px;
