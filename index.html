@@ -38,10 +38,6 @@
 
 	<body ontouchstart="">
 		<div class="mainScreen">
-			<div class="bannerNotification hidden">
-				<h1 class="title"></h1>
-				<p class="subtitle"></p>
-			</div>
 			<div class="welcomeScreen screen">
 				<div class="headerBlock">
 					<div class="background">
@@ -66,17 +62,11 @@
 				<div class="buttonContainer">
 					<button class="start" onclick="UIManager.buttonHandlers.hideWelcomeScreen()">Get Started</button>
 					<button class="flyswatter" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
-						<picture>
-							<source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)" />
-							<img alt="" src="images/icons/Flyswatter.svg" width="auto" height="35px" />
-						</picture>
+						<i class="fa-solid fa-bug"></i>
 						<p class="label">Report a Problem</p>
 					</button>
 					<button class="settings" onclick="UIManager.buttonHandlers.showSettingsScreen()">
-						<picture>
-							<source srcset="images/icons/Settings-White.svg" media="(prefers-color-scheme: dark)" />
-							<img alt="" src="images/icons/Settings.svg" width="auto" height="35px" />
-						</picture>
+						<i class="fa-solid fa-gear"></i>
 						<p class="label">Settings</p>
 					</button>
 				</div>
@@ -299,25 +289,16 @@
 				<div class="sidebarContainer">
 					<div class="headerContainer">
 						<div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
-							<picture>
-								<source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)" />
-								<img alt="" src="images/icons/Close.svg" width="auto" height="40px" />
-							</picture>
+							<i class="fa-solid fa-circle-xmark"></i>
 							<p class="label">Close</p>
 						</div>
 						<div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
-							<picture class="arrow left">
-								<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-								<img alt="" src="images/icons/Arrow.svg" width="auto" height="40px" />
-							</picture>
+							<i class="fa-solid fa-arrow-left"></i>
 							<p class="label">Back</p>
 						</div>
 						<div class="verseTitleContainer">
 							<div class="verseButton previousVerseButton">
-								<picture>
-									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-									<img alt="Show Previous Verse" src="images/icons/BackArrow.svg" width="auto" height="25px" />
-								</picture>
+								<i class="fa-solid fa-chevron-left"></i>
 							</div>
 							<div class="infoContainer">
 								<h1 class="title"></h1>
@@ -327,10 +308,7 @@
 								</h3>
 							</div>
 							<div class="verseButton nextVerseButton">
-								<picture>
-									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-									<img alt="Show Next Verse" src="images/icons/BackArrow.svg" width="auto" height="25px" />
-								</picture>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
 						</div>
 					</div>
@@ -346,13 +324,12 @@
 					<div class="toolbarContainer">
 						<div class="toolbar left">
 							<div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
-								<img class="white" alt="" src="images/icons/MemoryStar-White.svg" width="auto" height="40px" />
-								<img class="black" alt="" src="images/icons/MemoryStar.svg" width="auto" height="40px" />
+								<i class="fa-solid fa-star"></i>
 								<p class="label">Prejump</p>
 							</div>
 							<div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
-								<img class="white" alt="" src="images/icons/RareWords-White.svg" width="auto" height="40px" />
-								<img class="black" alt="" src="images/icons/RareWords.svg" width="auto" height="40px" />
+								<i class="fa-solid fa-highlighter"></i>
+								<!-- <i class="fa-solid fa-diagram-project"></i> -->
 								<p class="label">Rare Words</p>
 							</div>
 							<div class="divider"></div>
@@ -364,13 +341,12 @@
 								<p class="label">Possible Questions</p>
 							</div>
 							<div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
-								<img class="white" alt="" src="images/icons/PronounClarification-White.svg" width="auto" height="40px" />
-								<img class="black" alt="" src="images/icons/PronounClarification.svg" width="auto" height="40px" />
+								<i class="fa-solid fa-people-arrows"></i>
+								<!-- <i class="fa-solid fa-person-circle-question"></i> -->
 								<p class="label">Pronoun Clarification</p>
 							</div>
 							<div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
-								<img class="white" alt="" src="images/icons/Footnotes-White.svg" width="auto" height="40px" />
-								<img class="black" alt="" src="images/icons/Footnotes.svg" width="auto" height="40px" />
+								<i class="fa-solid fa-square-poll-horizontal"></i>
 								<p class="label">Footnotes</p>
 							</div>
 						</div>

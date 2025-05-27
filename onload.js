@@ -1,12 +1,16 @@
 //REGULAR ONLOAD CODE
 
-console.log("Begone, ugly performance-intensive animated gradient!");
-
 //VERSION AND UPDATE HANDLING
 
 if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion") != CONTENT_JUDGE_VERSION) {
 	//This code runs if the current version of Content Judge is newer than the last used version
-	UIManager.showChangelog();
+	new BannerNotification({
+		icon: "circle-check",
+		title: "Version " + CONTENT_JUDGE_VERSION,
+		message: "Tap to see what's new",
+		duration: 10000,
+		callback: UIManager.showChangelog,
+	});
 }
 
 if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedBuild") != CONTENT_JUDGE_BUILD) {

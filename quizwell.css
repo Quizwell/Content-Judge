@@ -140,6 +140,11 @@ button {
 	font-size: 15px;
 }
 
+button svg {
+	margin-right: 8px;
+	font-size: 20px;
+}
+
 .bannerNotification {
 	position: fixed;
 	left: 50%;

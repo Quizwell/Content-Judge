@@ -550,6 +550,7 @@
 
 .searchModeSelectionScreen .searchResultsContainer .listItem .content .italic {
 	font-style: italic;
+	color: var(--secondary-text-color);
 }
 
 .searchModeSelectionScreen .searchByReferenceContainer {
@@ -785,6 +786,7 @@
 
 .chapterDisplayScreen .content .footnote .italic {
 	font-style: italic;
+	color: var(--secondary-text-color);
 }
 
 .verseDisplayScreen {
@@ -828,6 +830,10 @@
 	transition: opacity 0.2s ease;
 }
 
+.verseDisplayScreen .headerContainer .button svg {
+	font-size: 25px;
+}
+
 .verseDisplayScreen .headerContainer .button.hidden {
 	display: none;
 }
@@ -854,17 +860,8 @@
 	margin-right: 10px;
 }
 
-.verseDisplayScreen .headerContainer .verseTitleContainer .previousVerseButton img {
-	margin: 2px 5px 0 0;
-}
-
 .verseDisplayScreen .headerContainer .verseTitleContainer .nextVerseButton {
 	margin-left: 10px;
-}
-
-.verseDisplayScreen .headerContainer .verseTitleContainer .nextVerseButton img {
-	margin: 2px 0 0 5px;
-	transform: rotate(180deg);
 }
 
 .verseDisplayScreen .headerContainer .verseTitleContainer {
@@ -1097,48 +1094,8 @@
 	background: var(--page-background-color);
 }
 
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img {
-	display: block;
-	width: 40px;
-	margin: 0 auto;
-}
-
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.white {
-	display: none;
-}
-
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.dark {
-	display: block;
-}
-
-.lightModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.black,
-.lightModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.white {
-	display: block;
-}
-
-.lightModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.white,
-.lightModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.black {
-	display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-	.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.black {
-		display: none;
-	}
-
-	.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem img.white {
-		display: block;
-	}
-
-	.darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.black,
-	.darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.white {
-		display: block;
-	}
-
-	.darkModeLightAccentColor .verseDisplayScreen .toolbarItem.active img.white,
-	.darkModeDarkAccentColor .verseDisplayScreen .toolbarItem.active img.black {
-		display: none;
-	}
+.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem svg {
+	font-size: 35px;
 }
 
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem .label {
@@ -1157,9 +1114,6 @@
 /* Adjust styles for active buttons */
 .verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active {
 	background: var(--app-accent-color);
-}
-
-.verseDisplayScreen .toolbarContainer .toolbar .toolbarItem.active .label {
 	color: var(--accent-color-text-color);
 }
 
@@ -1431,4 +1385,5 @@
 
 .slidePanel .footnotes .listItem .content .emphasis {
 	font-style: italic;
+	color: var(--secondary-text-color);
 }

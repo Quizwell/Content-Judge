@@ -2109,3 +2109,5 @@ document.querySelector(".settingsScreen .about .build").textContent = "Build " +
 
 UIManager.searchByReference.populateSearchByReferenceContainer();
 UIManager.setBookSelector(storageManager.get("quizCycleYear"));
+
+UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen("L 1:1");
