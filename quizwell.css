@@ -124,7 +124,7 @@ h3,
 h4,
 h5,
 p {
-	margin: 0 0 10px 0;
+	margin: 0;
 }
 
 button {
@@ -140,27 +140,17 @@ button {
 	font-size: 15px;
 }
 
-button.bottom {
-	position: absolute;
-	bottom: 20px;
-	left: 20px;
-	right: 20px;
-}
-
 .bannerNotification {
 	position: fixed;
 	left: 50%;
 	top: 15px;
 	transform: translate(-50%, 0);
 	z-index: 10;
-	border-radius: 32.5px;
-	width: 250px;
-	height: 65px;
-
+	height: 60px;
+	border-radius: 30px;
 	background-color: var(--page-background-color);
 	box-shadow: 0 0 10px var(--light-shadow-color);
-
-	transition: transform 0.3s ease;
+	transition: all 0.2s ease;
 }
 
 .bannerNotification.hidden {
@@ -168,25 +158,34 @@ button.bottom {
 	transform: translate(-50%, -100px);
 }
 
+.bannerNotification .icon {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: baseline;
+	line-height: 60px;
+}
+
+.bannerNotification .content {
+	margin: 0 20px 0 55px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
 .bannerNotification .title {
 	font-size: 20px;
 	width: calc(100% - 10px);
-	text-align: center;
-	position: absolute;
-	top: 12px;
-	left: 50%;
-	transform: translate(-50%, 0);
-	margin: 0;
 }
 
-.bannerNotification .subtitle {
+.bannerNotification .message {
 	color: var(--ternary-text-color);
-	position: absolute;
 	width: fit-content;
-	margin: 0;
-	top: 36px;
-	left: 50%;
-	transform: translate(-50%, 0);
 }
 
 .screen {

@@ -832,54 +832,6 @@ const UIManager = {
 		UIReferences.quizCycleYearSelector.value = abbreviation;
 	},
 
-	bannerNotificationManager: {
-		queue: [],
-		isRendering: false,
-
-		timer: function (ms) {
-			return new Promise((res) => setTimeout(res, ms));
-		},
-
-		notificationElement: document.querySelector(".bannerNotification"),
-		titleElement: document.querySelector(".bannerNotification .title"),
-		subtitleElement: document.querySelector(".bannerNotification .subtitle"),
-
-		showMessage: function (title, subtitle, extended) {
-			this.queue.push({
-				title: title,
-				subtitle: subtitle,
-				extended: extended,
-			});
-			if (!this.isRendering) {
-				this.render();
-			}
-		},
-
-		render: async function () {
-			this.isRendering = true;
-
-			while (this.queue[0]) {
-				var currentItem = this.queue[0];
-
-				this.titleElement.textContent = currentItem.title;
-				this.subtitleElement.textContent = currentItem.subtitle;
-
-				this.notificationElement.classList.remove("hidden");
-
-				this.queue.shift();
-
-				if (currentItem.extended) {
-					await this.timer(6000);
-				} else {
-					await this.timer(2000);
-				}
-			}
-
-			this.notificationElement.classList.add("hidden");
-			this.isRendering = false;
-		},
-	},
-
 	searchByReference: {
 		currentSearchObject: {
 			bookAbbreviation: undefined,
