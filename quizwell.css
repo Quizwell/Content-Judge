@@ -2,10 +2,10 @@
 	color-scheme: light dark;
 
 	/* Light mode variable definitions */
-	--app-accent-color: var(--purple-color);
+	--app-accent-color: #000000;
 	--accent-color-text-color: #ffffff;
-	--app-accent-color-dark: var(--purple-color-dark);
-	--accent-color-text-color-dark: #ffffff;
+	--app-accent-color-dark: #ffffff;
+	--accent-color-text-color-dark: #000000;
 
 	--page-background-color: #ffffff;
 	--secondary-page-background-color: #fafafa;
@@ -29,9 +29,9 @@
 	--purple-gradient: linear-gradient(90deg, #7e74cf, #7e73ce);
 	--orange-gradient: linear-gradient(90deg, #d88041, #cf503d);
 
-	--blue-color: #5185a6;
-	--purple-color: #7e73ce;
-	--orange-color: #cf503d;
+	--blue-color: #1b81a6;
+	--purple-color: #8869d1;
+	--orange-color: #f26835;
 
 	--blue-color-dark: #74bbbd;
 	--purple-color-dark: #7e74cf;
@@ -43,9 +43,9 @@
 	--double-word-highlight-color: var(--blue-color);
 	--triple-word-highlight-color: var(--purple-color);
 
-	--unique-word-highlight-color-dark: #d88041;
-	--double-word-highlight-color-dark: #74bbbd;
-	--triple-word-highlight-color-dark: #7e74cf;
+	--unique-word-highlight-color-dark: var(--orange-color-dark);
+	--double-word-highlight-color-dark: var(--blue-color-dark);
+	--triple-word-highlight-color-dark: var(--purple-color-dark);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -145,54 +145,6 @@ button svg {
 	font-size: 20px;
 }
 
-.bannerNotification {
-	position: fixed;
-	left: 50%;
-	top: 15px;
-	transform: translate(-50%, 0);
-	z-index: 10;
-	height: 60px;
-	border-radius: 30px;
-	background-color: var(--page-background-color);
-	box-shadow: 0 0 10px var(--light-shadow-color);
-	transition: all 0.2s ease;
-}
-
-.bannerNotification.hidden {
-	display: block !important;
-	transform: translate(-50%, -100px);
-}
-
-.bannerNotification .icon {
-	width: 60px;
-	height: 60px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	font-size: 20px;
-	text-align: center;
-	vertical-align: baseline;
-	line-height: 60px;
-}
-
-.bannerNotification .content {
-	margin: 0 20px 0 55px;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.bannerNotification .title {
-	font-size: 20px;
-	width: calc(100% - 10px);
-}
-
-.bannerNotification .message {
-	color: var(--ternary-text-color);
-	width: fit-content;
-}
-
 .screen {
 	position: fixed;
 	top: 0;
@@ -206,7 +158,6 @@ button svg {
 	opacity: 100%;
 	overflow: auto;
 	padding: 20px;
-
 	transition: all 0.2s ease-out;
 }
 
@@ -228,30 +179,10 @@ button svg {
 		border-radius: 20px;
 		z-index: 1;
 		transform: translate(-50%, -50%);
-
 		transition: all 0.5s ease;
 	}
 
 	.screen.floating.hidden {
-		transform: translate(-50%, 100vh);
-		opacity: 0.5;
-	}
-
-	.screen.sheet {
-		top: 12.5%;
-		left: 50%;
-		width: 75%;
-		height: 87.5%;
-		max-width: 1000px;
-		max-height: 1000px;
-		border-radius: 20px 20px 0 0;
-		z-index: 1;
-		transform: translate(-50%, 0);
-
-		transition: all 0.5s ease;
-	}
-
-	.screen.sheet.hidden {
 		transform: translate(-50%, 100vh);
 		opacity: 0.5;
 	}
@@ -265,7 +196,6 @@ button svg {
 		opacity: 0;
 		background: var(--overlay-color);
 		pointer-events: none;
-
 		transition: all 0.3s ease;
 	}
 
@@ -299,17 +229,4 @@ button svg {
 *[disabled] {
 	opacity: 0.5;
 	cursor: default !important;
-}
-
-/* Rotate arrow elements to point in the correct direction */
-.arrow.right img {
-	transform: rotate(90deg);
-}
-
-.arrow.down img {
-	transform: rotate(180deg);
-}
-
-.arrow.left img {
-	transform: rotate(270deg);
 }

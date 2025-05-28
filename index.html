@@ -15,6 +15,7 @@
 		<script defer src="/fontawesome/fontawesome.min.js"></script>
 
 		<link rel="stylesheet" href="quizwell.css" />
+		<link rel="stylesheet" href="components.css" />
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="stylesheet" href="media-queries.css" />
 
@@ -23,12 +24,13 @@
 
 		<meta name="apple-mobile-web-app-title" content="Content Judge" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<link rel="apple-touch-icon" sizes="180x180" href="https://quizwell.github.io/Content-Judge/apple-touch-icon.png" />
 
 		<link rel="icon" type="image/png" sizes="32x32" href="https://quizwell.github.io/Content-Judge/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="https://quizwell.github.io/Content-Judge/favicon-16x16.png" />
-		<link rel="manifest" href="https://quizwell.github.io/Content-Judge/site.webmanifest" />
+		<!-- <link rel="manifest" href="https://quizwell.github.io/Content-Judge/site.webmanifest" /> -->
 		<link rel="mask-icon" href="https://quizwell.github.io/Content-Judge/safari-pinned-tab.svg" color="#5da6a5" />
 		<meta name="msapplication-TileColor" content="#00aba9" />
 
@@ -38,7 +40,8 @@
 
 	<body ontouchstart="">
 		<div class="mainScreen">
-			<div class="welcomeScreen screen">
+			<div class="testScreen screen">Test</div>
+			<div class="welcomeScreen screen hidden">
 				<div class="headerBlock">
 					<div class="background">
 						<div class="gradient layer1"></div>
@@ -130,27 +133,27 @@
 						<p class="title">App Accent Color <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetAppAccentColor()">Reset to Default</span></p>
 						<p class="subsectionTitle">Light Mode</p>
 						<div class="colorSelector">
-							<input type="color" value="#7E73CE" class="picker" data-setting-name="appAccentColor" />
+							<input type="color" value="#000000" class="picker" data-setting-name="appAccentColor" />
 						</div>
 
 						<p class="subsectionTitle">Dark Mode</p>
 						<div class="colorSelector">
-							<input type="color" value="#7E73CF" class="picker" data-setting-name="appAccentColorDark" />
+							<input type="color" value="#ffffff" class="picker" data-setting-name="appAccentColorDark" />
 						</div>
 					</div>
 					<div class="section rareWordHighlighting">
 						<p class="title">Rare Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
 						<p class="subsectionTitle">Light Mode</p>
 						<div class="colorSelector">
-							<input type="color" value="#CF503D" class="picker" data-setting-name="uniqueWordHighlightColor" />
+							<input type="color" value="#f26835" class="picker" data-setting-name="uniqueWordHighlightColor" />
 							<p class="label">Unique Words</p>
 						</div>
 						<div class="colorSelector">
-							<input type="color" value="#5185A6" class="picker" data-setting-name="doubleWordHighlightColor" />
+							<input type="color" value="#1b81a6" class="picker" data-setting-name="doubleWordHighlightColor" />
 							<p class="label">Double Words</p>
 						</div>
 						<div class="colorSelector">
-							<input type="color" value="#7E73CE" class="picker" data-setting-name="tripleWordHighlightColor" />
+							<input type="color" value="#8869d1" class="picker" data-setting-name="tripleWordHighlightColor" />
 							<p class="label">Triple Words</p>
 						</div>
 						<p class="subsectionTitle">Dark Mode</p>
@@ -396,11 +399,10 @@
 		</div>
 
 		<script src="storageManager.js"></script>
-		<script src="concordanceGenerator.js"></script>
 
+		<script src="concordanceGenerator.js"></script>
 		<script src="database/Matthew.js"></script>
 		<script src="database/RomansJames.js"></script>
-		<script src="database/Acts.js"></script>
 		<script src="database/GEPCP.js"></script>
 		<script src="database/GEPCP_Decades.js"></script>
 		<script src="database/Luke.js"></script>
@@ -409,6 +411,9 @@
 		<script src="UIManager.js"></script>
 
 		<script src="components/Icon.js"></script>
+		<script src="components/List.js"></script>
+		<script src="components/ListOptions.js"></script>
+		<script src="components/ListItem.js"></script>
 		<script src="components/BannerNotification.js"></script>
 
 		<script src="flyswatter.js"></script>

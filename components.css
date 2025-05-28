@@ -1,0 +1,157 @@
+/* BannerNotification */
+.bannerNotification {
+	position: fixed;
+	left: 50%;
+	top: 15px;
+	transform: translate(-50%, 0);
+	z-index: 10;
+	height: 60px;
+	border-radius: 30px;
+	background-color: var(--page-background-color);
+	box-shadow: 0 0 10px var(--light-shadow-color);
+	transition: all 0.2s ease;
+}
+
+.bannerNotification.hidden {
+	display: block !important;
+	transform: translate(-50%, -100px);
+}
+
+.bannerNotification .icon {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: baseline;
+	line-height: 60px;
+}
+
+.bannerNotification .content {
+	margin: 0 20px 0 55px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.bannerNotification .title {
+	font-size: 18px;
+	width: calc(100% - 10px);
+}
+
+.bannerNotification .message {
+	color: var(--ternary-text-color);
+	width: fit-content;
+}
+
+/* List */
+.list {
+	overflow-y: auto;
+}
+
+.list .sectionTitle:not(:first-child) {
+	margin: 10px 0 0 0;
+}
+
+.list .listWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin-top: 10px;
+}
+
+/* ListOptions */
+.list .options {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 17px;
+	margin: 5px 0;
+}
+
+.list .options > svg {
+	font-size: 25px;
+}
+
+.list .options .iconContainer svg {
+	transition: transform 0.1s ease;
+}
+
+.list .options .iconContainer.descending svg {
+	transform: rotateX(180deg);
+}
+
+.list .options .itemsWrapper {
+	display: flex;
+	gap: 5px;
+}
+
+.list .options .itemsWrapper .item,
+.list .options .iconContainer {
+	background: var(--content-background-color);
+	padding: 8px 12px;
+	border-radius: 100vh; /* Fully rounded sides */
+	color: var(--item-color, inherit);
+	cursor: pointer;
+	transition: all 0.1s ease;
+}
+
+.list .options .itemsWrapper .item.enabled {
+	background: var(--item-color, var(--app-accent-color));
+	color: var(--accent-color-text-color);
+}
+
+.list .options .itemsWrapper .item svg {
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+/* ListItem */
+.list .listWrapper .item {
+	background: var(--content-background-color);
+	border-radius: 100vh;
+	padding: 8px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.list .listWrapper .item.hidden {
+	display: none !important;
+}
+
+.list .listWrapper .item.callback {
+	cursor: pointer;
+	transition: all 0.1s ease;
+}
+
+.list .listWrapper .item.callback:active {
+	background: var(--page-background-color);
+}
+
+.list .listWrapper .item svg {
+	width: 20px;
+	font-size: 20px;
+}
+
+.list .listWrapper .item .leading {
+	margin-right: auto;
+}
+
+.list .listWrapper .item .leading .title {
+	font-weight: bold;
+	color: var(--item-color, initial);
+}
+
+.list .listWrapper .item .leading .subtitle {
+	color: var(--ternary-text-color);
+	font-size: 14px;
+}
+
+.list .listWrapper .item .trailing {
+	font-weight: bold;
+}
