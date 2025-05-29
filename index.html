@@ -41,37 +41,88 @@
 	<body ontouchstart="">
 		<div class="mainScreen">
 			<div class="testScreen screen hidden">Test</div>
-			<div class="welcomeScreen screen">
-				<div class="headerBlock">
-					<div class="background">
-						<div class="gradient layer1"></div>
-						<div class="gradient layer2"></div>
-					</div>
-					<div class="content">
-						<img alt="Content Judge Logo" src="images/logos/Logo.png" width="auto" height="100px" onclick="UIManager.welcomeScreen.easterEgg()" />
-					</div>
-				</div>
-				<div class="textBlock">
+			<div class="homeScreen screen">
+				<div class="header">
+					<img alt="Content Judge Logo" src="images/logos/logo.png" width="auto" height="100px" />
 					<h1>Content Judge</h1>
-					<div class="quizwell">
-						<p>by</p>
-						<picture>
-							<source srcset="images/logos/Quizwell-White.svg" media="(prefers-color-scheme: dark)" />
-							<img alt="Quizwell Logo" src="images/logos/Quizwell.svg" width="auto" height="40px" />
-						</picture>
-					</div>
-					<p class="easterEgg">#It'sARegionNotAField</p>
 				</div>
-				<div class="buttonContainer">
-					<button class="start" onclick="UIManager.buttonHandlers.hideWelcomeScreen()">Get Started</button>
-					<button class="flyswatter" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
-						<i class="fa-solid fa-bug"></i>
-						<p class="label">Report a Problem</p>
-					</button>
-					<button class="settings" onclick="UIManager.buttonHandlers.showSettingsScreen()">
-						<i class="fa-solid fa-gear"></i>
-						<p class="label">Settings</p>
-					</button>
+				<div class="spacer"></div>
+				<div class="list">
+					<div class="listWrapper">
+						<h3 class="sectionTitle">Search by Content</h3>
+						<div class="searchBarWrapper">
+							<i class="fa-solid fa-magnifying-glass"></i>
+							<input
+								type="text"
+								class="searchBar"
+								onfocus="UIManager.searchBarHandlers.onfocus()"
+								onblur="UIManager.searchBarHandlers.onblur()"
+								oninput="UIManager.searchBarHandlers.oninput()"
+								onchange="UIManager.searchBarHandlers.onchange()"
+							/>
+							<div class="closeButton">
+								<i class="fa-solid fa-circle-xmark"></i>
+							</div>
+						</div>
+						<h3 class="sectionTitle">Search by Reference</h3>
+						<div class="searchByReferenceContainer">
+							<div class="book largeGrid"></div>
+							<div class="chapter smallGrid hidden">
+								<div class="header">
+									<div class="leading" onclick="searchByReference.hideChapterSelection()">
+										<i class="fa-solid fa-chevron-left"></i>
+										<span>Book Name</span>
+									</div>
+								</div>
+								<div class="items"></div>
+							</div>
+							<div class="verse smallGrid hidden">
+								<div class="header">
+									<div class="leading" onclick="searchByReference.hideVerseSelection()">
+										<i class="fa-solid fa-chevron-left"></i>
+										<span>Chapter Name</span>
+									</div>
+									<div class="trailing" onclick="searchByReference.viewFullChapter()">
+										<span>View Full Chapter</span>
+										<i class="fa-solid fa-chevron-right"></i>
+									</div>
+								</div>
+								<div class="items"></div>
+							</div>
+						</div>
+						<h3 class="sectionTitle">More</h3>
+						<div class="navigationLink" onclick="UIManager.buttonHandlers.hidehomeScreen()">
+							<i class="fa-solid fa-flag-checkered"></i>
+							<div class="leading"><p class="title">Get Started</p></div>
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+						<div class="navigationLink" disabled>
+							<i class="fa-solid fa-book"></i>
+							<div class="leading"><p class="title">Concordance</p></div>
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+						<div class="navigationLink" disabled>
+							<i class="fa-solid fa-list"></i>
+							<div class="leading"><p class="title">Lists</p></div>
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+						<div class="navigationLink" disabled>
+							<i class="fa-solid fa-star"></i>
+							<div class="leading"><p class="title">Memory</p></div>
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+						<h3 class="sectionTitle">Settings</h3>
+						<div class="navigationLink" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
+							<i class="fa-solid fa-bug"></i>
+							<div class="leading"><p class="title">Report a Problem</p></div>
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+						<div class="navigationLink" onclick="UIManager.buttonHandlers.showSettingsScreen()">
+							<i class="fa-solid fa-gear"></i>
+							<div class="leading"><p class="title">Settings</p></div>
+							<i class="fa-solid fa-chevron-right"></i>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="flyswatterScreen screen floating hidden">
@@ -408,13 +459,13 @@
 		<script src="database/Luke.js"></script>
 		<script src="scriptureEngine.js"></script>
 
-		<script src="UIManager.js"></script>
-
 		<script src="components/Icon.js"></script>
 		<script src="components/List.js"></script>
 		<script src="components/ListOptions.js"></script>
 		<script src="components/ListItem.js"></script>
 		<script src="components/BannerNotification.js"></script>
+
+		<script src="UIManager.js"></script>
 
 		<script src="flyswatter.js"></script>
 

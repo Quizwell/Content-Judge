@@ -25,6 +25,8 @@
 
 	--overlay-color: #000000;
 
+	--gradient-url: url("images/gradient-light.png");
+
 	--blue-gradient: linear-gradient(90deg, #74bbbd, #5185a6);
 	--purple-gradient: linear-gradient(90deg, #7e74cf, #7e73ce);
 	--orange-gradient: linear-gradient(90deg, #d88041, #cf503d);
@@ -71,6 +73,8 @@
 		--light-shadow-color: #222222;
 
 		--overlay-color: #000000;
+
+		--gradient-url: url("images/gradient-dark.png");
 
 		--memory-element-color: #509f4c;
 

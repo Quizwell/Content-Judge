@@ -25,7 +25,7 @@
 	z-index: -1;
 	pointer-events: none;
 	padding-bottom: 56.25%;
-	background-image: url("images/gradient-light.png");
+	background-image: var(--gradient-url);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	-webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%), linear-gradient(to right, transparent 0%, black 100%);
@@ -156,18 +156,29 @@
 
 /* List */
 .list {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 	overflow-y: auto;
+	scrollbar-width: none;
+	padding: 15px 0;
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+	mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+}
+
+.list .sectionTitle {
+	margin: 0 0 0 5px;
+	font-size: 15px;
 }
 
 .list .sectionTitle:not(:first-child) {
-	margin: 10px 0 0 0;
+	margin-top: 10px;
 }
 
 .list .listWrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	margin-top: 10px;
 }
 
 /* ListOptions */
@@ -176,7 +187,6 @@
 	align-items: center;
 	gap: 10px;
 	font-size: 17px;
-	margin: 5px 0;
 }
 
 .list .options > svg {
@@ -194,10 +204,14 @@
 .list .options .itemsWrapper {
 	display: flex;
 	gap: 5px;
+	overflow-x: auto;
+	margin-right: -20px;
 }
 
 .list .options .itemsWrapper .item,
 .list .options .iconContainer {
+	display: flex;
+	white-space: nowrap;
 	background: var(--content-background-color);
 	padding: 8px 12px;
 	border-radius: 100vh; /* Fully rounded sides */
@@ -217,7 +231,7 @@
 }
 
 /* ListItem */
-.list .listWrapper .item {
+.list .listWrapper > .item {
 	background: var(--content-background-color);
 	border-radius: 100vh;
 	padding: 8px 20px;
@@ -227,38 +241,77 @@
 	gap: 12px;
 }
 
-.list .listWrapper .item.hidden {
+.list .listWrapper > .item.hidden {
 	display: none !important;
 }
 
-.list .listWrapper .item.callback {
+.list .listWrapper > .item.callback {
 	cursor: pointer;
 	transition: all 0.1s ease;
 }
 
-.list .listWrapper .item.callback:active {
+.list .listWrapper > .item.callback:not([disabled]):active {
 	background: var(--page-background-color);
 }
 
-.list .listWrapper .item svg {
+.list .listWrapper > .item svg {
 	width: 20px;
 	font-size: 20px;
 }
 
-.list .listWrapper .item .leading {
+.list .listWrapper > .item .leading {
 	margin-right: auto;
 }
 
-.list .listWrapper .item .leading .title {
+.list .listWrapper > .item .leading .title {
 	font-weight: bold;
 	color: var(--item-color, initial);
 }
 
-.list .listWrapper .item .leading .subtitle {
+.list .listWrapper > .item .leading .subtitle {
 	color: var(--ternary-text-color);
 	font-size: 14px;
 }
 
-.list .listWrapper .item .trailing {
+.list .listWrapper > .item .trailing {
 	font-weight: bold;
+}
+
+/* NavigationLink */
+.navigationLink {
+	background: var(--link-color, var(--content-background-color));
+	color: var(--link-text-color, initial);
+	height: 30px;
+	font-size: 18px;
+	border-radius: 10px;
+	padding: 8px 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	cursor: pointer;
+	transition: all 0.1s ease;
+}
+
+.navigationLink:not([disabled]):active {
+	background: var(--page-background-color);
+}
+
+.navigationLink svg {
+	width: 20px;
+	font-size: 20px;
+}
+
+.navigationLink .leading {
+	margin-right: auto;
+}
+
+.navigationLink .leading .title {
+	font-weight: bold;
+	color: var(--item-color, initial);
+}
+
+.navigationLink .leading .subtitle {
+	color: var(--ternary-text-color);
+	font-size: 14px;
 }
