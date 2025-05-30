@@ -1533,12 +1533,17 @@ const UIManager = {
 
 			//Show the reference of the verse
 			UIReferences.verseDisplayScreenTitle.textContent = verse.expandedReference;
+			document.querySelector(".verseDisplayScreen .header .title .reference").textContent = verse.expandedReference;
 
 			//Disable both neighboring verse buttons
 			UIReferences.verseDisplayScreenPreviousVerseButton.setAttribute("disabled", "disabled");
 			UIReferences.verseDisplayScreenNextVerseButton.setAttribute("disabled", "disabled");
 			UIReferences.verseDisplayScreenPreviousVerseButton.onclick = null;
 			UIReferences.verseDisplayScreenNextVerseButton.onclick = null;
+			document.querySelector(".verseDisplayScreen .header .trailing .previous").classList.add("disabled");
+			document.querySelector(".verseDisplayScreen .header .trailing .previous").onclick = null;
+			document.querySelector(".verseDisplayScreen .header .trailing .next").classList.add("disabled");
+			document.querySelector(".verseDisplayScreen .header .trailing .next").onclick = null;
 
 			//Get the neighboring verses. Selectively enable the buttons.
 			var previousVerse = verse.relative(-1);
@@ -1549,12 +1554,20 @@ const UIManager = {
 					UIManager.verseDisplayScreen.navigation.navigateToVerse(previousVerse.reference, true);
 				};
 				UIReferences.verseDisplayScreenPreviousVerseButton.removeAttribute("disabled");
+				document.querySelector(".verseDisplayScreen .header .trailing .previous").classList.remove("disabled");
+				document.querySelector(".verseDisplayScreen .header .trailing .previous").onclick = function () {
+					UIManager.verseDisplayScreen.navigation.navigateToVerse(previousVerse.reference, true);
+				};
 			}
 			if (nextVerse) {
 				UIReferences.verseDisplayScreenNextVerseButton.onclick = function () {
 					UIManager.verseDisplayScreen.navigation.navigateToVerse(nextVerse.reference);
 				};
 				UIReferences.verseDisplayScreenNextVerseButton.removeAttribute("disabled");
+				document.querySelector(".verseDisplayScreen .header .trailing .next").classList.remove("disabled");
+				document.querySelector(".verseDisplayScreen .header .trailing .next").onclick = function () {
+					UIManager.verseDisplayScreen.navigation.navigateToVerse(nextVerse.reference);
+				};
 			}
 
 			//Populate the verse display
@@ -1635,6 +1648,7 @@ const UIManager = {
 				//Show memory indicator
 				UIReferences.verseDisplayScreenSubtitleText.textContent = memoryVerseStatus.memoryReference;
 				UIManager.show(UIReferences.verseDisplayScreenSubtitle);
+				document.querySelector(".verseDisplayScreen .header .leading .memory").classList.remove("hidden");
 
 				//Show the prejump only if this is the first verse of the memory verse
 				if (memoryVerseStatus.startVerse == referenceString) {
@@ -1650,6 +1664,7 @@ const UIManager = {
 				}
 			} else {
 				UIManager.hide(UIReferences.verseDisplayScreenSubtitle);
+				document.querySelector(".verseDisplayScreen .header .leading .memory").classList.add("hidden");
 			}
 
 			//Clear and repopulate the pronoun clarification slide panel screen
@@ -2160,6 +2175,7 @@ const UIManager = {
 
 		setSlidePanelHeight: function (showSlidePanel) {
 			UIManager.show(UIReferences.verseDisplayScreenHeaderContainer, 200);
+			document.querySelector(".verseDisplayScreen .header").classList.remove("hidden");
 
 			//Get the distance from the top of the screen to the bottom of the verseDisplay
 			var boundingBox = UIReferences.verseDisplay.getBoundingClientRect();
@@ -2169,6 +2185,7 @@ const UIManager = {
 				UIReferences.slidePanel.style.top = distance + "px";
 				if (UIReferences.verseDisplay.classList.contains("up")) {
 					UIManager.hide(UIReferences.verseDisplayScreenHeaderContainer, 200);
+					document.querySelector(".verseDisplayScreen .header").classList.add("hidden");
 				}
 			} else if (window.matchMedia("only screen and (max-width: 925px)").matches) {
 				var distance = boundingBox.bottom - boundingBox.top + 120;
@@ -2189,6 +2206,7 @@ const UIManager = {
 
 			//Show the verseDisplayScreen header
 			UIManager.show(UIReferences.verseDisplayScreenHeaderContainer, 200);
+			document.querySelector(".verseDisplayScreen .header").classList.remove("hidden");
 
 			//Hide all slide panel screens
 			for (var i = 0; i < UIReferences.slidePanel.children.length; i++) {
@@ -2288,3 +2306,5 @@ document.querySelector(".settingsScreen .about .build").textContent = "Build " +
 UIManager.searchByReference.populateSearchByReferenceContainer();
 searchByReference.render();
 UIManager.setBookSelector(storageManager.get("quizCycleYear"));
+
+UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen("G 3:13");

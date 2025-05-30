@@ -67,11 +67,11 @@
 
 	.verseDisplay.verseDisplay.highlightPrejump,
 	.verseDisplay.verseDisplay.verseDisplay.highlightRareWords {
-		top: calc(50vh - 27.5px);
+		top: calc(50vh - 35px);
 	}
 
 	.verseDisplay.up {
-		top: 110px !important;
+		top: 100px !important;
 		transform: none;
 	}
 
@@ -282,12 +282,6 @@
 	}
 }
 
-@media only screen and (max-width: 415px) {
-	.welcomeScreen .textBlock h1 {
-		font-size: 50px;
-	}
-}
-
 @media only screen and (max-width: 375px) {
 	.searchModeSelectionScreen .searchByReferenceContainer .selectionContainer:not(.bookSelectionContainer) .selectionElementContainer {
 		gap: 2px;
@@ -299,9 +293,7 @@
 		line-height: 45px;
 		border-radius: 12px;
 	}
-}
 
-@media only screen and (max-width: 375px) {
 	.verseDisplayScreen .headerContainer .verseTitleContainer {
 		position: relative;
 	}

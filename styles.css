@@ -898,6 +898,69 @@
 	grid-column: -2 / -1;
 }
 
+.verseDisplayScreen .header {
+	display: flex;
+	justify-content: space-between;
+	transition: opacity 0.2s ease;
+}
+
+.verseDisplayScreen .header svg {
+	font-size: 25px;
+}
+
+.verseDisplayScreen .header .leading .title {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	cursor: pointer;
+}
+
+.verseDisplayScreen .header .leading .title h1 {
+	font-weight: 900;
+}
+
+.verseDisplayScreen .header .leading .memory {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 3px;
+	margin-left: 5px;
+	font-size: 20px;
+	font-weight: 600;
+	transition: opacity 0.2s ease;
+}
+
+.verseDisplayScreen .header .leading .memory svg {
+	color: var(--memory-element-color);
+	font-size: 18px;
+}
+
+.verseDisplayScreen .header .trailing {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease;
+}
+
+/* Visually shift buttons up when the memory status is hidden */
+.verseDisplayScreen .header:has(.leading .memory.hidden) .trailing {
+	transform: translateY(-12px);
+}
+
+.verseDisplayScreen .header .trailing div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+.verseDisplayScreen .header .trailing div svg {
+	font-size: 30px;
+}
+
 .verseDisplayScreen .sidebarContainer > .headerContainer {
 	display: flex;
 	justify-content: space-between;
@@ -1212,8 +1275,8 @@
 
 .slidePanel {
 	position: relative;
-	height: calc(100% - 300px);
-	height: min(calc(100% - 280px - env(safe-area-inset-bottom)), calc(100% - 300px));
+	height: calc(100% - 265px);
+	height: min(calc(100% - 265px - env(safe-area-inset-bottom)), calc(100% - 265px));
 	margin-top: 20px;
 	background: var(--content-background-color);
 	border-radius: 15px;

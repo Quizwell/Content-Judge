@@ -40,6 +40,7 @@
 	--orange-color-dark: #d88041;
 
 	--memory-element-color: #62c45e;
+	--memory-elemeent-gradient: linear-gradient(45deg, #35c7bd, #549bb6);
 
 	--unique-word-highlight-color: var(--orange-color);
 	--double-word-highlight-color: var(--blue-color);
