@@ -211,7 +211,7 @@ const UIReferences = {
 
 	searchBarFilterMode: document.querySelector(".filterMode"),
 	searchBarContainer: document.querySelector(".searchBarContainer"),
-	searchBar: document.querySelector(".searchBar"),
+	searchBar: document.querySelector(".searchModeSelectionScreen .searchBar"),
 	searchBarClearButton: document.querySelector(".searchBarWrapper .clearButton"),
 	searchResultsContainer: document.querySelector(".searchModeSelectionScreen .searchResultsContainer"),
 
