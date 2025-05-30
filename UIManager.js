@@ -1648,7 +1648,14 @@ const UIManager = {
 				//Show memory indicator
 				UIReferences.verseDisplayScreenSubtitleText.textContent = memoryVerseStatus.memoryReference;
 				UIManager.show(UIReferences.verseDisplayScreenSubtitle);
-				document.querySelector(".verseDisplayScreen .header .leading .memory").classList.remove("hidden");
+				document.querySelector(".verseDisplayScreen .header .memory").classList.remove("hidden");
+
+				//If the memory verse is a single verse
+				if (memoryVerseStatus.type == "single") {
+					document.querySelector(".verseDisplayScreen .header .memory .reference").textContent = "Memory";
+				} else {
+					document.querySelector(".verseDisplayScreen .header .memory .reference").textContent = memoryVerseStatus.memoryReference;
+				}
 
 				//Show the prejump only if this is the first verse of the memory verse
 				if (memoryVerseStatus.startVerse == referenceString) {

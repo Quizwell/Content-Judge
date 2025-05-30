@@ -280,7 +280,7 @@
 /* NavigationLink */
 .navigationLink {
 	background: var(--link-color, var(--content-background-color));
-	color: var(--link-text-color, initial);
+	color: var(--link-text-color, var(--primary-text-color));
 	height: 30px;
 	font-size: 18px;
 	border-radius: 10px;
@@ -308,7 +308,6 @@
 
 .navigationLink .leading .title {
 	font-weight: bold;
-	color: var(--item-color, initial);
 }
 
 .navigationLink .leading .subtitle {
