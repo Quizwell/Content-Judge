@@ -2,9 +2,11 @@
 	color-scheme: light dark;
 
 	/* Light mode variable definitions */
-	--app-accent-color: #000000;
+	--default-app-accent-color: #000000;
+	--app-accent-color: var(--default-app-accent-color);
 	--accent-color-text-color: #ffffff;
-	--app-accent-color-dark: #ffffff;
+	--default-app-accent-color-dark: #ffffff;
+	--app-accent-color-dark: var(--default-app-accent-color-dark);
 	--accent-color-text-color-dark: #000000;
 
 	--page-background-color: #ffffff;

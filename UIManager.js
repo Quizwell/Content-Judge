@@ -961,8 +961,8 @@ const UIManager = {
 			resetAppAccentColor: function () {
 				var computedStyle = getComputedStyle(document.body);
 
-				storageManager.set("appAccentColor", computedStyle.getPropertyValue("--purple-color").trim());
-				storageManager.set("appAccentColorDark", computedStyle.getPropertyValue("--purple-color-dark").trim());
+				storageManager.set("appAccentColor", computedStyle.getPropertyValue("--default-app-accent-color").trim());
+				storageManager.set("appAccentColorDark", computedStyle.getPropertyValue("--default-app-accent-color-dark").trim());
 
 				UIManager.settingsScreen.settingUpdateHandlers.updateAppAccentColor();
 				UIManager.settingsScreen.populateAndShowSettingsScreen();
