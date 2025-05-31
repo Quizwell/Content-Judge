@@ -1,189 +1,5 @@
 const searchBar = {};
 
-const searchByReference = {
-	containerElement: document.querySelector(".searchByReferenceContainer"),
-	booksScreen: document.querySelector(".searchByReferenceContainer .book"),
-	chaptersScreen: document.querySelector(".searchByReferenceContainer .chapter"),
-	versesScreen: document.querySelector(".searchByReferenceContainer .verse"),
-
-	booksContainerElement: document.querySelector(".searchByReferenceContainer .book"),
-	chaptersTitleElement: document.querySelector(".searchByReferenceContainer .chapter .header .leading span"),
-	chaptersContainerElement: document.querySelector(".searchByReferenceContainer .chapter .items"),
-	versesTitleElement: document.querySelector(".searchByReferenceContainer .verse .header .leading span"),
-	versesContainerElement: document.querySelector(".searchByReferenceContainer .verse .items"),
-
-	currentSearchObject: {
-		bookAbbreviation: undefined,
-		chapter: undefined,
-		verse: undefined,
-	},
-
-	showChapterSelection: function () {
-		if (Object.keys(scriptureEngine.currentYearObject.books).length > 1) {
-			//The user is getting here from the book selection screen, so set the active class
-			this.containerElement.classList.add("active");
-		}
-
-		//Clear the current items in the container
-		while (this.chaptersContainerElement.firstChild) {
-			this.chaptersContainerElement.removeChild(this.chaptersContainerElement.firstChild);
-		}
-
-		var bookAbbreviation = this.currentSearchObject.bookAbbreviation;
-		var selectedBookObject = scriptureEngine.getBookByAbbreviation(bookAbbreviation);
-
-		var numberOfChapters = selectedBookObject.chapters.length;
-		for (var i = 0; i < numberOfChapters; i++) {
-			var chapterElement = document.createElement("div");
-			chapterElement.textContent = i + 1;
-			(function (chapterNumber) {
-				chapterElement.addEventListener("click", function () {
-					searchByReference.currentSearchObject.chapter = chapterNumber;
-					searchByReference.showVerseSelection();
-				});
-			})(i + 1);
-
-			this.chaptersContainerElement.appendChild(chapterElement);
-		}
-
-		//Set the label of the container
-		this.chaptersTitleElement.textContent = scriptureEngine.unabbreviateBookNamesInString(bookAbbreviation);
-
-		this.chaptersContainerElement.scrollTop = 0;
-
-		//Show screen
-		this.booksScreen.classList.add("hidden");
-		this.chaptersScreen.classList.remove("hidden");
-	},
-	hideChapterSelection: function () {
-		this.containerElement.classList.remove("active");
-		this.chaptersScreen.classList.add("hidden");
-		this.booksScreen.classList.remove("hidden");
-	},
-
-	showVerseSelection: function () {
-		this.containerElement.classList.add("active");
-
-		//Clear the current items in the screen
-		while (this.versesContainerElement.firstChild) {
-			this.versesContainerElement.removeChild(this.versesContainerElement.firstChild);
-		}
-
-		var selectedBookAbbreviation = this.currentSearchObject.bookAbbreviation;
-		var selectedBook = scriptureEngine.getBookByAbbreviation(this.currentSearchObject.bookAbbreviation);
-		var chapterNumber = this.currentSearchObject.chapter;
-
-		var numberOfVerses = new Verse(selectedBookAbbreviation + " " + chapterNumber + ":1").chapterLength;
-		for (var i = 0; i < numberOfVerses; i++) {
-			var verseElement = document.createElement("div");
-			// If the verse is a memory verse, add a class to the element
-			var memoryStatus = new Verse(selectedBookAbbreviation + " " + chapterNumber + ":" + (i + 1)).memoryVerseStatus;
-			if (memoryStatus.isMemory) {
-				verseElement.classList.add("memory");
-			}
-			if (memoryStatus.startVerse === selectedBookAbbreviation + " " + chapterNumber + ":" + (i + 1)) {
-				verseElement.classList.add("start");
-			}
-			verseElement.textContent = i + 1;
-			(function (verseNumber) {
-				verseElement.addEventListener("click", function () {
-					searchByReference.currentSearchObject.verse = verseNumber;
-
-					var bookAbbreviation = searchByReference.currentSearchObject.bookAbbreviation;
-					var chapterNumber = searchByReference.currentSearchObject.chapter;
-					var referenceString = bookAbbreviation + " " + chapterNumber + ":" + verseNumber;
-
-					UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(referenceString);
-				});
-			})(i + 1);
-
-			this.versesContainerElement.appendChild(verseElement);
-		}
-
-		//Set the label of the container
-		this.versesTitleElement.textContent = scriptureEngine.unabbreviateBookNamesInString(this.currentSearchObject.bookAbbreviation) + " " + chapterNumber;
-
-		this.versesContainerElement.scrollTop = 0;
-
-		//Show screen
-		this.chaptersScreen.classList.add("hidden");
-		this.versesScreen.classList.remove("hidden");
-	},
-	hideVerseSelection: function () {
-		if (Object.keys(scriptureEngine.currentYearObject.books).length === 1) {
-			//The chapter selection is the top level, so remove the active class
-			this.containerElement.classList.remove("active");
-		}
-		this.versesScreen.classList.add("hidden");
-		this.chaptersScreen.classList.remove("hidden");
-	},
-
-	viewFullChapter: function () {
-		var referenceString = this.currentSearchObject.bookAbbreviation + " " + this.currentSearchObject.chapter;
-		UIManager.chapterDisplayScreen.populateAndShowChapterDisplayScreen(referenceString);
-	},
-
-	render: function () {
-		//Clear book items
-		while (this.booksContainerElement.firstChild) {
-			this.booksContainerElement.removeChild(this.booksContainerElement.firstChild);
-		}
-
-		//Count how many books are in the current year
-		var bookCount = Object.keys(scriptureEngine.currentYearObject.books).length;
-		if (bookCount == 1) {
-			//If there is only one book in the year, skip the book selection and go straight to the chapter selection
-			this.containerElement.classList.add("singleBook");
-			this.chaptersTitleElement.textContent = scriptureEngine.unabbreviateBookNamesInString(
-				scriptureEngine.currentYearObject.books[Object.keys(scriptureEngine.currentYearObject.books)[0]].abbreviation
-			);
-
-			this.currentSearchObject.bookAbbreviation = scriptureEngine.currentYearObject.books[Object.keys(scriptureEngine.currentYearObject.books)[0]].abbreviation;
-			this.showChapterSelection();
-			return;
-		} else {
-			this.containerElement.classList.remove("singleBook");
-
-			//Populate the book selection
-			var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
-			for (var i = 0; i < currentYearBooksKeys.length; i++) {
-				var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
-				var currentBookName = currentYearBooksKeys[i];
-
-				var bookElement = document.createElement("div");
-				bookElement.classList.add("item");
-				(function (bookAbbreviation) {
-					bookElement.addEventListener("click", function () {
-						searchByReference.currentSearchObject.bookAbbreviation = bookAbbreviation;
-						searchByReference.showChapterSelection();
-					});
-				})(currentBook.abbreviation);
-
-				var abbreviationElement = document.createElement("h1");
-				abbreviationElement.classList.add("abbreviation");
-				abbreviationElement.textContent = currentBook.abbreviation;
-
-				var bookNameElement = document.createElement("p");
-				bookNameElement.classList.add("name");
-				bookNameElement.textContent = currentBookName;
-
-				bookElement.appendChild(abbreviationElement);
-				bookElement.appendChild(bookNameElement);
-				bookElement.appendChild(new Icon("chevron-right"));
-
-				this.booksContainerElement.appendChild(bookElement);
-			}
-		}
-	},
-
-	resetNavigation: function () {
-		this.hideVerseSelection();
-		if (Object.keys(scriptureEngine.currentYearObject.books).length > 1) {
-			this.hideChapterSelection();
-		}
-	},
-};
-
 const UIReferences = {
 	mainScreen: document.querySelector(".mainScreen"),
 
@@ -221,7 +37,6 @@ const UIReferences = {
 	chapterDisplayScreenContent: document.querySelector(".chapterDisplayScreen .content"),
 
 	verseDisplayScreen: document.querySelector(".verseDisplayScreen"),
-	verseDisplayScreenBackgroundOverlay: document.querySelector(".verseDisplayScreenBackgroundOverlay"),
 
 	verseDisplayScreenHeaderContainer: document.querySelector(".verseDisplayScreen .headerContainer"),
 
@@ -1319,7 +1134,6 @@ const UIManager = {
 					UIManager.hide(UIReferences.chapterSelectionContainer, null);
 				}
 				UIManager.hide(UIReferences.verseSelectionContainer, null);
-				searchByReference.resetNavigation();
 				UIManager.hide(UIReferences.chapterDisplayScreen, 200);
 			}
 
@@ -1501,7 +1315,6 @@ const UIManager = {
 					UIManager.hide(UIReferences.chapterSelectionContainer, null);
 				}
 				UIManager.hide(UIReferences.verseSelectionContainer, null);
-				searchByReference.resetNavigation();
 
 				UIManager.hide(UIReferences.verseDisplayScreen, 200);
 			}
@@ -2310,8 +2123,8 @@ window.addEventListener("load", checkOptionKey, false);
 document.querySelector(".settingsScreen .about .version").textContent = "Version " + CONTENT_JUDGE_VERSION;
 document.querySelector(".settingsScreen .about .build").textContent = "Build " + CONTENT_JUDGE_BUILD;
 
+const searchByReference = new ReferenceSelector({ anchored: true });
+document.querySelector(".searchByReference").appendChild(searchByReference.anchorElement);
 UIManager.searchByReference.populateSearchByReferenceContainer();
-searchByReference.render();
-UIManager.setBookSelector(storageManager.get("quizCycleYear"));
 
-UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen("G 3:13");
+UIManager.setBookSelector(storageManager.get("quizCycleYear"));
