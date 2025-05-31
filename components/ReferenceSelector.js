@@ -12,7 +12,9 @@ function ReferenceSelector({ anchored } = {}) {
 			this.containerElement.style.top = Math.max(top, 20) + "px";
 		}
 		this.overlay.show();
-		this.containerElement.classList.remove("hidden");
+		requestAnimationFrame(() => {
+			this.containerElement.classList.remove("hidden");
+		});
 	};
 	this.dismiss = function () {
 		this.chaptersContainer.classList.add("hidden");
@@ -168,6 +170,17 @@ function ReferenceSelector({ anchored } = {}) {
 
 		this.chaptersContainer.classList.add("hidden");
 		this.versesContainer.classList.remove("hidden");
+
+		var floatingRect = this.versesContainer.getBoundingClientRect();
+		if (floatingRect.height > window.innerHeight - 90) {
+			// If the floating element is taller than the viewport, limit its height
+			this.versesContainer.style.maxHeight = window.innerHeight - 90 + "px";
+			floatingRect = this.versesContainer.getBoundingClientRect();
+		}
+		if (floatingRect.bottom + 50 > window.innerHeight) {
+			// If the bottom edge is below the viewport, adjust the top position
+			this.containerElement.style.top = window.innerHeight - floatingRect.height - 70 + "px";
+		}
 	};
 
 	this.resetNavigation = function () {
