@@ -40,7 +40,7 @@
 
 	<body ontouchstart="">
 		<div class="mainScreen">
-			<div class="testScreen screen hidden">Test</div>
+			<div class="testScreen screen hidden"></div>
 			<div class="homeScreen screen">
 				<div class="header">
 					<img alt="Content Judge Logo" src="images/logos/logo.png" width="auto" height="100px" />
@@ -65,31 +65,7 @@
 							</div>
 						</div>
 						<h3 class="sectionTitle">Search by Reference</h3>
-						<div class="searchByReferenceContainer">
-							<div class="book largeGrid"></div>
-							<div class="chapter smallGrid hidden">
-								<div class="header">
-									<div class="leading" onclick="searchByReference.hideChapterSelection()">
-										<i class="fa-solid fa-chevron-left"></i>
-										<span>Book Name</span>
-									</div>
-								</div>
-								<div class="items"></div>
-							</div>
-							<div class="verse smallGrid hidden">
-								<div class="header">
-									<div class="leading" onclick="searchByReference.hideVerseSelection()">
-										<i class="fa-solid fa-chevron-left"></i>
-										<span>Chapter Name</span>
-									</div>
-									<div class="trailing" onclick="searchByReference.viewFullChapter()">
-										<span>View Full Chapter</span>
-										<i class="fa-solid fa-chevron-right"></i>
-									</div>
-								</div>
-								<div class="items"></div>
-							</div>
-						</div>
+						<div class="searchByReference"></div>
 						<h3 class="sectionTitle">More</h3>
 						<div class="navigationLink" onclick="UIManager.buttonHandlers.hidehomeScreen()">
 							<i class="fa-solid fa-flag-checkered"></i>
@@ -462,7 +438,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="overlay"></div>
 		</div>
 
 		<script src="storageManager.js"></script>
@@ -480,6 +455,8 @@
 		<script src="components/ListOptions.js"></script>
 		<script src="components/ListItem.js"></script>
 		<script src="components/BannerNotification.js"></script>
+		<script src="components/Overlay.js"></script>
+		<script src="components/ReferenceSelector.js"></script>
 
 		<script src="UIManager.js"></script>
 

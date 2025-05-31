@@ -1,5 +1,10 @@
 //REGULAR ONLOAD CODE
 
+var REFERENCESELECT = new ReferenceSelector({ anchored: true });
+
+// REFERENCESELECT.showBookSelection();
+document.querySelector(".testScreen").appendChild(REFERENCESELECT.anchorElement);
+
 var LIST = new List({
 	items: [
 		{
