@@ -499,8 +499,13 @@ const UIManager = {
 				UIReferences.changelogScreenChangesContainer.appendChild(titleElement);
 
 				for (var c = 0; c < currentSection.items.length; c++) {
-					var changeElement = document.createElement("p");
-					changeElement.textContent = currentSection.items[c];
+					var changeElement = document.createElement("div");
+					changeElement.appendChild(new Icon(currentSection.items[c].icon));
+
+					var textElement = document.createElement("p");
+					textElement.textContent = currentSection.items[c].text;
+					changeElement.appendChild(textElement);
+
 					UIReferences.changelogScreenChangesContainer.appendChild(changeElement);
 				}
 			}
@@ -2118,7 +2123,6 @@ window.addEventListener("load", checkOptionKey, false);
 //Perform UI setup
 
 document.querySelector(".settingsScreen .about .version").textContent = "Version " + CONTENT_JUDGE_VERSION;
-document.querySelector(".settingsScreen .about .build").textContent = "Build " + CONTENT_JUDGE_BUILD;
 
 const searchByReference = new ReferenceSelector({ anchored: true });
 document.querySelector(".searchByReference").appendChild(searchByReference.anchorElement);
