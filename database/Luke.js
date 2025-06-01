@@ -2959,6 +2959,10 @@ var Luke = {
 	],
 	numbers: [
 		{
+			text: "all",
+			number: 0.9,
+		},
+		{
 			text: "eight",
 			number: 8,
 		},
@@ -3004,11 +3008,15 @@ var Luke = {
 		},
 		{
 			text: "half",
-			number: 0.5,
+			number: 0.95,
 		},
 		{
 			text: "hundred",
 			number: -1,
+		},
+		{
+			text: "many",
+			number: 0.75,
 		},
 		{
 			text: "nine",
@@ -3017,6 +3025,14 @@ var Luke = {
 		{
 			text: "ninety-nine",
 			number: 99,
+		},
+		{
+			text: "none",
+			number: 0,
+		},
+		{
+			text: "nothing",
+			number: 0,
 		},
 		{
 			text: "one",
@@ -3045,6 +3061,10 @@ var Luke = {
 		{
 			text: "sixty",
 			number: 60,
+		},
+		{
+			text: "some",
+			number: 0.5,
 		},
 		{
 			text: "ten",

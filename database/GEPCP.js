@@ -1,6 +1,7 @@
 var GEPCP = {
-	books: {
-		Galatians: {
+	books: [
+		{
+			name: "Galatians",
 			abbreviation: "G",
 			chapters: [
 				{
@@ -293,7 +294,8 @@ var GEPCP = {
 				},
 			],
 		},
-		Ephesians: {
+		{
+			name: "Ephesians",
 			abbreviation: "E",
 			chapters: [
 				{
@@ -578,7 +580,8 @@ var GEPCP = {
 				},
 			],
 		},
-		Philippians: {
+		{
+			name: "Philippians",
 			abbreviation: "P",
 			chapters: [
 				{
@@ -786,7 +789,8 @@ var GEPCP = {
 				},
 			],
 		},
-		Colossians: {
+		{
+			name: "Colossians",
 			abbreviation: "C",
 			chapters: [
 				{
@@ -986,7 +990,8 @@ var GEPCP = {
 				},
 			],
 		},
-		Philemon: {
+		{
+			name: "Philemon",
 			abbreviation: "Phm",
 			chapters: [
 				{
@@ -1039,8 +1044,482 @@ var GEPCP = {
 				},
 			],
 		},
-	},
-	concordance: undefined,
+	],
+	concordance: null,
+	biblicalReferences: [
+		{
+			reference: "G 3:6",
+			source: "Genesis 15:6",
+		},
+		{
+			reference: "G 3:8",
+			source: "Genesis 12:3",
+		},
+		{
+			reference: "G 3:8",
+			source: "Genesis 18:18",
+		},
+		{
+			reference: "G 3:8",
+			source: "Genesis 22:18",
+		},
+		{
+			reference: "G 3:10",
+			source: "Deuteronomy 27:26",
+		},
+		{
+			reference: "G 3:11",
+			source: "Habakkuk 2:4",
+		},
+		{
+			reference: "G 3:12",
+			source: "Leviticus 18:5",
+		},
+		{
+			reference: "G 3:13",
+			source: "Deuteronomy 21:23",
+		},
+		{
+			reference: "G 3:16",
+			source: "Genesis 12:7",
+		},
+		{
+			reference: "G 3:16",
+			source: "Genesis 13:15",
+		},
+		{
+			reference: "G 3:16",
+			source: "Genesis 24:7",
+		},
+		{
+			reference: "G 4:27",
+			source: "Isaiah 54:1",
+		},
+		{
+			reference: "G 4:30",
+			source: "Genesis 21:10",
+		},
+		{
+			reference: "G 5:14",
+			source: "Leviticus 19:18",
+		},
+		{
+			reference: "E 4:8",
+			source: "Psalm 68:18",
+		},
+		{
+			reference: "E 4:26",
+			source: "Psalm 4:4",
+		},
+		{
+			reference: "E 5:31",
+			source: "Genesis 2:24",
+		},
+		{
+			reference: "E 6:3",
+			source: "Deuteronomy 5:16",
+		},
+		{
+			reference: "P 2:15",
+			source: "Deuteronomy 32:5",
+		},
+	],
+	properNouns: [
+		{
+			noun: "Abba",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Abraham",
+			type: "Name",
+		},
+		{
+			noun: "Abraham's",
+			type: "Name",
+		},
+		{
+			noun: "Antioch",
+			type: "Place",
+		},
+		{
+			noun: "Apphia",
+			type: "Name",
+		},
+		{
+			noun: "Arabia",
+			type: "Place",
+		},
+		{
+			noun: "Archippus",
+			type: "Name",
+		},
+		{
+			noun: "Aristarchus",
+			type: "Name",
+		},
+		{
+			noun: "Barnabas",
+			type: "Name",
+		},
+		{
+			noun: "Benjamin",
+			type: "Name",
+		},
+		{
+			noun: "Book",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Caesar's",
+			type: "Name",
+		},
+		{
+			noun: "Cephas",
+			type: "Name",
+		},
+		{
+			noun: "Christ",
+			type: "Name",
+		},
+		{
+			noun: "Christ's",
+			type: "Name",
+		},
+		{
+			noun: "Cilicia",
+			type: "Place",
+		},
+		{
+			noun: "Clement",
+			type: "Name",
+		},
+		{
+			noun: "Colossae",
+			type: "Place",
+		},
+		{
+			noun: "Creator",
+			type: "Name",
+		},
+		{
+			noun: "Damascus",
+			type: "Place",
+		},
+		{
+			noun: "Deity",
+			type: "Name",
+		},
+		{
+			noun: "Demas",
+			type: "Name",
+		},
+		{
+			noun: "Epaphras",
+			type: "Name",
+		},
+		{
+			noun: "Epaphroditus",
+			type: "Name",
+		},
+		{
+			noun: "Ephesus",
+			type: "Place",
+		},
+		{
+			noun: "Euodia",
+			type: "Name",
+		},
+		{
+			noun: "Father",
+			type: "Name",
+		},
+		{
+			noun: "Galatia",
+			type: "Place",
+		},
+		{
+			noun: "Galatians",
+			type: "Group",
+		},
+		{
+			noun: "Gentile",
+			type: "Name",
+		},
+		{
+			noun: "Gentiles",
+			type: "Group",
+		},
+		{
+			noun: "God",
+			type: "Name",
+		},
+		{
+			noun: "God's",
+			type: "Name",
+		},
+		{
+			noun: "Greek",
+			type: "Name",
+		},
+		{
+			noun: "Hagar",
+			type: "Name",
+		},
+		{
+			noun: "Hebrew",
+			type: "Name",
+		},
+		{
+			noun: "Hebrews",
+			type: "Group",
+		},
+		{
+			noun: "Hierapolis",
+			type: "Place",
+		},
+		{
+			noun: "Holy",
+			type: "Proper Noun",
+		},
+		{
+			noun: "I",
+			type: "Noun",
+		},
+		{
+			noun: "Isaac",
+			type: "Name",
+		},
+		{
+			noun: "Israel",
+			type: "Place",
+		},
+		{
+			noun: "James",
+			type: "Name",
+		},
+		{
+			noun: "Jerusalem",
+			type: "Place",
+		},
+		{
+			noun: "Jesus",
+			type: "Name",
+		},
+		{
+			noun: "Jew",
+			type: "Name",
+		},
+		{
+			noun: "Jewish",
+			type: "Name",
+		},
+		{
+			noun: "Jews",
+			type: "Group",
+		},
+		{
+			noun: "John",
+			type: "Name",
+		},
+		{
+			noun: "Judaism",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Judea",
+			type: "Place",
+		},
+		{
+			noun: "Justus",
+			type: "Name",
+		},
+		{
+			noun: "Laodicea",
+			type: "Place",
+		},
+		{
+			noun: "Laodiceans",
+			type: "Group",
+		},
+		{
+			noun: "Law",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Lord",
+			type: "Name",
+		},
+		{
+			noun: "Lord's",
+			type: "Name",
+		},
+		{
+			noun: "Luke",
+			type: "Name",
+		},
+		{
+			noun: "Macedonia",
+			type: "Place",
+		},
+		{
+			noun: "Mark",
+			type: "Name",
+		},
+		{
+			noun: "Master",
+			type: "Name",
+		},
+		{
+			noun: "Mount Sinai",
+			type: "Place",
+		},
+		{
+			noun: "New Moon",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Nympha",
+			type: "Name",
+		},
+		{
+			noun: "Onesimus",
+			type: "Name",
+		},
+		{
+			noun: "Paul",
+			type: "Name",
+		},
+		{
+			noun: "Peter",
+			type: "Name",
+		},
+		{
+			noun: "Pharisee",
+			type: "Name",
+		},
+		{
+			noun: "Philemon",
+			type: "Name",
+		},
+		{
+			noun: "Philippi",
+			type: "Place",
+		},
+		{
+			noun: "Philippians",
+			type: "Group",
+		},
+		{
+			noun: "Sabbath",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Savior",
+			type: "Name",
+		},
+		{
+			noun: "Scripture",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Scythian",
+			type: "Name",
+		},
+		{
+			noun: "Seed",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Son",
+			type: "Name",
+		},
+		{
+			noun: "spirit",
+			type: "Name",
+		},
+		{
+			noun: "Syntyche",
+			type: "Name",
+		},
+		{
+			noun: "Syria",
+			type: "Place",
+		},
+		{
+			noun: "Thessalonica",
+			type: "Place",
+		},
+		{
+			noun: "Timothy",
+			type: "Name",
+		},
+		{
+			noun: "Titus",
+			type: "Name",
+		},
+		{
+			noun: "Tychicus",
+			type: "Name",
+		},
+	],
+	numbers: [
+		{
+			text: "430",
+			number: 430,
+		},
+		{
+			text: "all",
+			number: 0.9,
+		},
+		{
+			text: "eighth",
+			number: 8,
+		},
+		{
+			text: "fifteen",
+			number: 15,
+		},
+		{
+			text: "first",
+			number: 1,
+		},
+		{
+			text: "fourteen",
+			number: 14,
+		},
+		{
+			text: "many",
+			number: 0.75,
+		},
+		{
+			text: "none",
+			number: 0,
+		},
+		{
+			text: "nothing",
+			number: 0,
+		},
+		{
+			text: "once",
+			number: 1,
+		},
+		{
+			text: "one",
+			number: 1,
+		},
+		{
+			text: "some",
+			number: 0.5,
+		},
+		{
+			text: "three",
+			number: 3,
+		},
+		{
+			text: "two",
+			number: 2,
+		},
+	],
 	memoryVerses: {
 		singles: [
 			"G 1:10",
