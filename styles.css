@@ -91,6 +91,10 @@
 	outline: none;
 }
 
+.changelogScreen {
+	padding-bottom: 0;
+}
+
 .changelogScreen .header {
 	display: flex;
 	justify-content: center;
@@ -108,13 +112,31 @@
 }
 
 .changelogScreen .changes {
-	width: calc(100% - 40px);
+	width: calc(100vw - 40px);
 	max-width: 500px;
+	box-sizing: border-box;
+	height: calc(100% - 100px);
+	overflow-y: auto;
 	margin: 0 auto;
+	padding-bottom: 90px;
 }
 
-.changelogScreen .changes p::before {
-	content: "• ";
+.changelogScreen .changes h3 {
+	margin: 20px 0 10px 0;
+	text-align: center;
+}
+
+.changelogScreen .changes div {
+	display: grid;
+	grid-template-columns: 40px 1fr;
+	align-items: center;
+	margin-bottom: 10px;
+	gap: 10px;
+}
+
+.changelogScreen .changes div svg {
+	font-size: 25px;
+	justify-self: center;
 }
 
 .changelogScreen button {
