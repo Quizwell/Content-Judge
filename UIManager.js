@@ -814,9 +814,6 @@ const UIManager = {
 			UIManager.buttonHandlers.closeChapterSelectionContainer();
 		}
 		UIManager.searchBarHandlers.clearSearchBar();
-
-		searchByReference.render();
-		searchByReference.resetNavigation();
 	},
 
 	setBookSelector: function (bookObjectName) {
