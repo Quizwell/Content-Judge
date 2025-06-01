@@ -11,6 +11,17 @@ function ReferenceSelector({ anchored } = {}) {
 			const top = rect.top - 45;
 			this.containerElement.style.top = Math.max(top, 20) + "px";
 		}
+
+		document.addEventListener(
+			"keydown",
+			(event) => {
+				if (event.key === "Escape") {
+					this.back();
+				}
+			},
+			{ once: true }
+		);
+
 		this.overlay.show();
 		requestAnimationFrame(() => {
 			this.containerElement.classList.remove("hidden");
