@@ -40,8 +40,8 @@
 
 	<body ontouchstart="">
 		<div class="mainScreen">
-			<div class="testScreen screen hidden"></div>
-			<div class="homeScreen screen">
+			<div class="testScreen screen"></div>
+			<div class="homeScreen screen hidden">
 				<div class="header">
 					<img alt="Content Judge Logo" src="images/logos/logo.png" width="auto" height="100px" />
 					<h1>Content Judge</h1>
@@ -276,7 +276,7 @@
 							<div class="selectionElementContainer"></div>
 						</div>
 						<div class="selectionContainer chapterSelectionContainer hidden">
-							<div class="labelContainer multipleBooks" onclick="UIManager.buttonHandlers.closeChapterSelectionContainer()">
+							<div class="labelContainer multipleBooks">
 								<picture>
 									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
 									<img src="images/icons/BackArrow.svg" />
@@ -289,14 +289,14 @@
 							<div class="selectionElementContainer"></div>
 						</div>
 						<div class="selectionContainer verseSelectionContainer hidden">
-							<div class="labelContainer" onclick="UIManager.buttonHandlers.closeVerseSelectionContainer()">
+							<div class="labelContainer">
 								<picture>
 									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
 									<img src="images/icons/BackArrow.svg" />
 								</picture>
 								<p class="label">Verse</p>
 							</div>
-							<div class="viewFullChapterButton" onclick="UIManager.buttonHandlers.viewChapterButton()">View Full Chapter</div>
+							<div class="viewFullChapterButton">View Full Chapter</div>
 							<div class="selectionElementContainer"></div>
 						</div>
 					</div>
@@ -442,10 +442,8 @@
 		<script src="storageManager.js"></script>
 
 		<script src="concordanceGenerator.js"></script>
-		<script src="database/Matthew.js"></script>
 		<script src="database/RomansJames.js"></script>
 		<script src="database/GEPCP.js"></script>
-		<script src="database/GEPCP_Decades.js"></script>
 		<script src="database/Luke.js"></script>
 		<script src="scriptureEngine.js"></script>
 

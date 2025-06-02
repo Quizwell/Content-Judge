@@ -48,10 +48,8 @@ function ReferenceSelector({ anchored } = {}) {
 			booksContainer.removeChild(booksContainer.firstChild);
 		}
 
-		var currentYearBooksKeys = Object.keys(scriptureEngine.currentYearObject.books);
-		for (var i = 0; i < currentYearBooksKeys.length; i++) {
-			var currentBook = scriptureEngine.currentYearObject.books[currentYearBooksKeys[i]];
-			var currentBookName = currentYearBooksKeys[i];
+		for (var i = 0; i < scriptureEngine.currentYearObject.books.length; i++) {
+			var currentBook = scriptureEngine.currentYearObject.books[i];
 
 			var bookElement = document.createElement("div");
 			bookElement.classList.add("item");
@@ -73,7 +71,7 @@ function ReferenceSelector({ anchored } = {}) {
 
 			var bookNameElement = document.createElement("p");
 			bookNameElement.classList.add("name");
-			bookNameElement.textContent = currentBookName;
+			bookNameElement.textContent = currentBook.name;
 
 			bookElement.appendChild(abbreviationElement);
 			bookElement.appendChild(bookNameElement);
@@ -145,12 +143,12 @@ function ReferenceSelector({ anchored } = {}) {
 		for (var i = 0; i < numberOfVerses; i++) {
 			var verseElement = document.createElement("div");
 			// If the verse is a memory verse, add a class to the element
-			var memoryStatus = new Verse(selectedBookAbbreviation + " " + chapterNumber + ":" + (i + 1)).memoryVerseStatus;
-			if (memoryStatus.isMemory) {
+			var memoryStatus = new Verse(selectedBookAbbreviation + " " + chapterNumber + ":" + (i + 1)).memory;
+			if (memoryStatus.status) {
 				verseElement.classList.add("memory");
-			}
-			if (memoryStatus.startVerse === selectedBookAbbreviation + " " + chapterNumber + ":" + (i + 1)) {
-				verseElement.classList.add("start");
+				if (memoryStatus.start.reference === selectedBookAbbreviation + " " + chapterNumber + ":" + (i + 1)) {
+					verseElement.classList.add("start");
+				}
 			}
 			verseElement.textContent = i + 1;
 			(function (verseNumber) {
@@ -196,7 +194,7 @@ function ReferenceSelector({ anchored } = {}) {
 
 	this.resetNavigation = function () {
 		this.hideVerseSelection();
-		if (Object.keys(scriptureEngine.currentYearObject.books).length > 1) {
+		if (scriptureEngine.currentYearObject.books.length > 1) {
 			this.hideChapterSelection();
 		}
 	};

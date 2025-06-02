@@ -2,9 +2,8 @@ function generateConcordance(currentCycleYearObject) {
 	var concordance = {};
 
 	//Loop through every book object
-	var booksObjectKeys = Object.keys(currentCycleYearObject.books);
-	for (var b = 0; b < booksObjectKeys.length; b++) {
-		var currentBook = currentCycleYearObject.books[booksObjectKeys[b]];
+	for (var b = 0; b < currentCycleYearObject.books.length; b++) {
+		var currentBook = currentCycleYearObject.books[b];
 		var currentAbbreviation = currentBook.abbreviation;
 
 		//Loop through all chapters of the book
