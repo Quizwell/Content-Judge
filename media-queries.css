@@ -57,7 +57,7 @@
 		font-size: 20px;
 	}
 
-	.verseDisplay {
+	.verseDisplayScreen .verseDisplay {
 		top: 50vh;
 		left: 0;
 		margin-left: 20px;
@@ -65,17 +65,17 @@
 		transform: translate(0, -50%);
 	}
 
-	.verseDisplay.verseDisplay.highlightPrejump,
-	.verseDisplay.verseDisplay.verseDisplay.highlightRareWords {
+	.verseDisplayScreen .verseDisplay.highlightPrejump,
+	.verseDisplayScreen .verseDisplay.highlightRareWords {
 		top: calc(50vh - 35px);
 	}
 
-	.verseDisplay.up {
+	.verseDisplayScreen .verseDisplay.up {
 		top: 100px !important;
 		transform: none;
 	}
 
-	.verseDisplay .textContainer p {
+	.verseDisplayScreen .verseDisplay .textContainer p {
 		font-size: 18px;
 		margin-bottom: 0;
 	}
@@ -171,8 +171,8 @@
 		opacity: 0;
 	}
 
-	.verseDisplay.highlightPrejump:not(.up) ~ .key,
-	.verseDisplay.highlightRareWords:not(.up) ~ .key {
+	.verseDisplayScreen .verseDisplay.highlightPrejump:not(.up) ~ .key,
+	.verseDisplayScreen .verseDisplay.highlightRareWords:not(.up) ~ .key {
 		opacity: 1;
 	}
 
@@ -210,7 +210,7 @@
 		transition: 0.3s opacity ease;
 	}
 
-	.verseDisplay.up ~ .toolbarContainer {
+	.verseDisplayScreen .verseDisplay.up ~ .toolbarContainer {
 		opacity: 0;
 	}
 
@@ -331,13 +331,13 @@
 		right: 10px;
 	}
 
-	.verseDisplay.up {
+	.verseDisplayScreen .verseDisplay.up {
 		top: 20px !important;
 		top: max(20px, env(safe-area-inset-top)) !important;
 		transform: none;
 	}
 
-	.verseDisplay .textContainer p {
+	.verseDisplayScreen .verseDisplay .textContainer p {
 		font-size: 15px;
 	}
 

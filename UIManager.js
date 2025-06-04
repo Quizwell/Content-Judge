@@ -904,7 +904,7 @@ const UIManager = {
 							prejumpElement.classList.add("prejump");
 							prejumpElement.textContent = memoryVerseStatus.prejump;
 
-							var textNode = document.createTextNode(currentVerse.slice(prejump.length));
+							var textNode = document.createTextNode(currentVerse.slice(memoryVerseStatus.prejump.length));
 
 							currentVerseElement.textContent = "";
 							currentVerseElement.appendChild(prejumpElement);

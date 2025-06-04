@@ -128,6 +128,17 @@ function ReferenceSelector({ anchored } = {}) {
 		if (anchored) {
 			this.present();
 		}
+
+		var floatingRect = this.chaptersContainer.getBoundingClientRect();
+		if (floatingRect.height > window.innerHeight - 90) {
+			// If the floating element is taller than the viewport, limit its height
+			this.chaptersContainer.style.maxHeight = window.innerHeight - 90 + "px";
+			floatingRect = this.chaptersContainer.getBoundingClientRect();
+		}
+		if (floatingRect.bottom + 50 > window.innerHeight) {
+			// If the bottom edge is below the viewport, adjust the top position
+			this.containerElement.style.top = window.innerHeight - floatingRect.height - 70 + "px";
+		}
 	};
 
 	this.showVerseSelection = function () {
@@ -273,7 +284,9 @@ function ReferenceSelector({ anchored } = {}) {
 	this.versesContainer.classList.add("hidden");
 	this.itemsWrapper.appendChild(this.versesContainer);
 
-	this.overlay = new Overlay();
+	this.overlay = new Overlay({
+		callback: this.dismiss.bind(this),
+	});
 
 	document.body.appendChild(this.overlay.element);
 	document.body.appendChild(this.containerElement);

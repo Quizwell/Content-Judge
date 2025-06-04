@@ -952,7 +952,7 @@
 	vertical-align: middle;
 }
 
-.verseDisplay {
+.verseDisplayScreen .verseDisplay {
 	position: absolute;
 	top: 50vh;
 	left: calc(50vw - 250px);
@@ -962,13 +962,13 @@
 	transition: all 0.3s ease, top 0.3s ease;
 }
 
-.verseDisplay .textContainer {
+.verseDisplayScreen .verseDisplay .textContainer {
 	width: 100%;
 	max-width: 1000px;
 	margin: auto;
 }
 
-.verseDisplay .textContainer p {
+.verseDisplayScreen .verseDisplay .textContainer p {
 	font-size: 22px;
 	padding: 5px;
 	font-weight: bold;
@@ -980,25 +980,25 @@
 	transition: background 0.2s ease, color 0.2s ease;
 }
 
-.verseDisplay .textContainer p.footnoteFollows {
+.verseDisplayScreen .verseDisplay .textContainer p.footnoteFollows {
 	padding-right: 0;
 }
 
-.verseDisplay .textContainer p.footnoteReference {
+.verseDisplayScreen .verseDisplay .textContainer p.footnoteReference {
 	padding-left: 0;
 	margin-left: -2px;
 }
 
-.verseDisplay .textContainer p.notSelectable {
+.verseDisplayScreen .verseDisplay .textContainer p.notSelectable {
 	cursor: default;
 }
 
-.verseDisplay .textContainer p:not(.notSelectable):not(.selected):hover {
+.verseDisplayScreen .verseDisplay .textContainer p:not(.notSelectable):not(.selected):hover {
 	background: var(--secondary-content-background-color);
 	color: var(--ternary-text-color);
 }
 
-.verseDisplay .textContainer p.selected {
+.verseDisplayScreen .verseDisplay .textContainer p.selected {
 	background: var(--app-accent-color);
 	color: var(--inverted-text-color);
 
@@ -1006,7 +1006,7 @@
 	border-bottom: 2px solid transparent !important;
 }
 
-.verseDisplay .textContainer p.outlined {
+.verseDisplayScreen .verseDisplay .textContainer p.outlined {
 	border: 3px solid var(--app-accent-color) !important;
 	box-sizing: border-box;
 
@@ -1014,27 +1014,27 @@
 	border-radius: 5px !important;
 }
 
-.verseDisplay .textContainer p.highlight {
+.verseDisplayScreen .verseDisplay .textContainer p.highlight {
 	background: var(--secondary-content-background-color);
 	color: var(--app-accent-color);
 }
 
-.verseDisplay.highlightPrejump .textContainer p.prejump {
+.verseDisplayScreen .verseDisplay.highlightPrejump .textContainer p.prejump {
 	box-sizing: border-box;
 	border: none;
 	border-bottom: 2px solid var(--memory-element-color);
 	border-radius: 5px 5px 0 0;
 }
 
-.verseDisplay.highlightRareWords .textContainer p.uniqueWord:not(.selected) {
+.verseDisplayScreen .verseDisplay.highlightRareWords .textContainer p.uniqueWord:not(.selected) {
 	color: var(--unique-word-highlight-color);
 }
 
-.verseDisplay.highlightRareWords .textContainer p.doubleWord:not(.selected) {
+.verseDisplayScreen .verseDisplay.highlightRareWords .textContainer p.doubleWord:not(.selected) {
 	color: var(--double-word-highlight-color);
 }
 
-.verseDisplay.highlightRareWords .textContainer p.tripleWord:not(.selected) {
+.verseDisplayScreen .verseDisplay.highlightRareWords .textContainer p.tripleWord:not(.selected) {
 	color: var(--triple-word-highlight-color);
 }
 
@@ -1077,11 +1077,11 @@
 	color: var(--triple-word-highlight-color);
 }
 
-.verseDisplay.highlightPrejump ~ .key .keyItem.prejump {
+.verseDisplayScreen .verseDisplay.highlightPrejump ~ .key .keyItem.prejump {
 	opacity: 1;
 }
 
-.verseDisplay.highlightRareWords ~ .key .keyItem.rareWord {
+.verseDisplayScreen .verseDisplay.highlightRareWords ~ .key .keyItem.rareWord {
 	opacity: 1;
 }
 

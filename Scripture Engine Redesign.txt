@@ -48,7 +48,7 @@ Verse(reference, parentSection) = {
     verseNumber: Number,
     text: String,
     plainText: String, // User-presentable text without section breaks
-    filteredText: String, // Searchable text with footnotes removed
+    filteredText: String, // Searchable text with footnotes and punctuation removed
 
     memory: {
         status: Boolean,

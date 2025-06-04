@@ -1075,45 +1075,17 @@ class Verse {
 	}
 
 	relative(relativeInteger) {
-		//If this verse is the first verse of the first chapter or the last verse of the last chapter, stop now.
-		if ((this.chapterNumber == 1 && this.verseNumber == 1 && relativeInteger < 0) || (this.chapterNumber == this.bookLength && this.verseNumber == this.chapterLength && relativeInteger > 0)) {
-			return false;
+		//This function returns a new Verse object that is relative to the current verse by the given integer.
+		var chapter = this.book.chapters[this.chapterNumber - 1];
+		var verseNumber = this.verseNumber + relativeInteger;
+
+		if (verseNumber < 1) {
+			return false; //No previous verse
+		} else if (verseNumber > scriptureEngine.getVerseCountFromChapter(chapter)) {
+			return false; //No next verse
+		} else {
+			return new Verse(this.reference.split(":")[0] + ":" + verseNumber);
 		}
-
-		//See if the verse requested exists in the current chapter
-		var newChapterNumber = this.chapterNumber;
-		var newVerseNumber = this.verseNumber + relativeInteger;
-
-		//If the requested verse lies outside of this chapter, move to the correct one
-		if (newVerseNumber <= 0) {
-			var newChapter;
-			var newChapterLength;
-
-			while (newVerseNumber <= 0) {
-				newChapterNumber--;
-				newChapter = scriptureEngine.currentYearObject.books[this.bookName].chapters[newChapterNumber - 1].sections;
-				newChapterLength = newChapter.reduce(function (accumulator, currentItem) {
-					return accumulator + currentItem.verses.length;
-				}, 0);
-				newVerseNumber += newChapterLength ?? this.chapterLength;
-			}
-		} else if (newVerseNumber > this.chapterLength) {
-			var newChapter;
-			var newChapterLength;
-
-			while (newVerseNumber > (newChapterLength ?? this.chapterLength)) {
-				newVerseNumber -= newChapterLength ?? this.chapterLength;
-
-				newChapterNumber++;
-				newChapter = scriptureEngine.currentYearObject.books[this.bookName].chapters[newChapterNumber - 1].sections;
-				newChapterLength = newChapter.reduce(function (accumulator, currentItem) {
-					return accumulator + currentItem.verses.length;
-				}, 0);
-			}
-		}
-
-		var referenceString = `${this.book.abbreviation} ${newChapterNumber}:${newVerseNumber}`;
-		return new Verse(referenceString);
 	}
 }
 

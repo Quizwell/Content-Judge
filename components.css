@@ -32,6 +32,7 @@
 	mask-image: linear-gradient(to bottom, black 0%, transparent 100%), linear-gradient(to right, transparent 0%, black 100%);
 	-webkit-mask-composite: intersect;
 	mask-composite: intersect;
+	transform: translate3d(0, 0, 0); /* Fix flickering on iOS Safari */
 }
 
 @media only screen and (prefers-color-scheme: dark) {
@@ -74,7 +75,6 @@
 		height: 100%;
 		opacity: 0;
 		background: var(--overlay-color);
-		pointer-events: none;
 		transition: all 0.3s ease;
 	}
 
@@ -265,7 +265,7 @@
 
 .list .listWrapper > .item .leading .title {
 	font-weight: bold;
-	color: var(--item-color, initial);
+	color: var(--item-color, var(--primary-text-color));
 }
 
 .list .listWrapper > .item .leading .subtitle {
@@ -325,6 +325,10 @@
 	background: var(--page-background-color);
 	opacity: 0.8;
 	transition: opacity 0.2s ease;
+}
+
+.overlay.dismissable {
+	cursor: pointer;
 }
 
 .overlay.hidden {
@@ -462,4 +466,148 @@
 
 .referenceSelector .smallGrid div:active {
 	opacity: 0.8;
+}
+
+/* VerseDisplay */
+.verseDisplay {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.verseDisplay.selectable {
+	font-size: 20px;
+	line-height: 1.5;
+}
+
+.verseDisplay .word:not(:last-child)::after {
+	content: " ";
+	display: inline-block;
+	white-space: pre;
+}
+
+.verseDisplay .prejump {
+	text-decoration: underline 2px solid var(--memory-element-color);
+}
+
+.verseDisplay .prejump::after {
+	text-decoration: inherit;
+}
+
+/* I ain't commenting allat */
+/* Good luck */
+
+.verseDisplay.selectable .word:has(.selectable) {
+	cursor: pointer;
+}
+
+.verseDisplay.selectable .word {
+	position: relative;
+}
+
+.verseDisplay.selectable .word.multiselected .selectable {
+	opacity: 1 !important;
+	transition: opacity 0.1s ease;
+}
+
+.verseDisplay.selectable .word .selectable {
+	position: relative;
+	transition: color 0.2s ease, opacity 0.1s ease;
+}
+
+.verseDisplay.selectable .word::before,
+.verseDisplay.selectable .word .selectable::before {
+	content: " ";
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 25px;
+	z-index: -1;
+	border-radius: 5px;
+	background: var(--app-accent-color);
+	padding: 1px 2.5px;
+	opacity: 0;
+}
+
+.verseDisplay.selectable .word::before {
+	transition: border-radius 0.2s ease;
+}
+
+.verseDisplay.selectable .word .selectable::before {
+	transition: opacity 0.2s ease;
+}
+
+.verseDisplay.selectable .word.multiselected::before {
+	border-radius: 0;
+	transform: translate(calc(-50% - 2.5px), -50%);
+}
+.verseDisplay.selectable .word.multiselected.start::before {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.verseDisplay.selectable .word.multiselected.end::before {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.verseDisplay.selectable .word.multiselected,
+.verseDisplay.selectable .word.selected .selectable {
+	color: var(--accent-color-text-color);
+	opacity: 1 !important;
+}
+
+.verseDisplay.selectable .word.multiselected::before,
+.verseDisplay.selectable .word.selected .selectable::before {
+	opacity: 1;
+}
+
+.verseDisplay.selectable .prejump.selected::after {
+	opacity: 0 !important;
+}
+
+.verseDisplay.selectable .word.selected .selectable.unique,
+.verseDisplay.selectable .word.selected .selectable.double,
+.verseDisplay.selectable .word.selected .selectable.triple {
+	color: white;
+}
+
+.verseDisplay.selectable .word.selected .selectable.unique::before {
+	background: var(--unique-word-highlight-color);
+}
+.verseDisplay.selectable .word.selected .selectable.double::before {
+	background: var(--double-word-highlight-color);
+}
+.verseDisplay.selectable .word.selected .selectable.triple::before {
+	background: var(--triple-word-highlight-color);
+}
+
+.verseDisplay.selectable .prejump::after,
+.verseDisplay.selectable .word .footnote {
+	transition: opacity 0.1s ease;
+}
+
+/* When hovering over the word or adjacent punctuation, highlight the word */
+.verseDisplay.selectable .word:not(:has(.footnote:hover)):hover .selectable,
+.verseDisplay.selectable .prejump:not(:has(.footnote:hover)):not(.multiselected):hover::after {
+	opacity: 0.5;
+}
+
+/* When hovering over a footnote, highlight the footnote */
+.verseDisplay.selectable .word .footnote:hover {
+	opacity: 0.5;
+}
+
+.verseDisplay.showRareWords .unique {
+	color: var(--unique-word-highlight-color);
+}
+.verseDisplay.showRareWords .double {
+	color: var(--double-word-highlight-color);
+}
+.verseDisplay.showRareWords .triple {
+	color: var(--triple-word-highlight-color);
 }
