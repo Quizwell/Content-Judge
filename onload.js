@@ -120,11 +120,11 @@ var LIST = new List({
 
 document.querySelector(".testScreen").appendChild(LIST.listElement);
 
-var CHAPTERDISPLAY = new ChapterDisplay("L 15:8", {
-	allowVerseSelection: true,
-	showRareWords: true,
-	showPrejump: true,
-}).present();
+// var CHAPTERDISPLAY = new ChapterDisplay("L 15:8", {
+// 	allowVerseSelection: true,
+// 	showRareWords: true,
+// 	showPrejump: true,
+// }).present();
 
 //VERSION AND UPDATE HANDLING
 
@@ -141,3 +141,21 @@ if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion
 
 //Set the current Content Judge version and build
 storageManager.set("lastUsedVersion", CONTENT_JUDGE_VERSION);
+
+window.addEventListener("error", function (e) {
+	console.log(e);
+	new BannerNotification({
+		icon: "spaghetti-monster-flying",
+		title: "Error",
+		message: "Tap to send bug report",
+		duration: 10000,
+		callback: () => {
+			var subject = "Flyswatter: Bug Report";
+			var body = `Content Judge Version ${CONTENT_JUDGE_VERSION}%0D%0A%0D%0A${e.filename}:${e.lineno}%0D%0A${e.message}%0D%0A${e.error.stack}%0D%0A%0D%0APlease mention as much as possible about the problem you are experiencing below this line.`;
+
+			var mailtoURL = "mailto:quizwell@icloud.com?subject=" + subject + "&body=" + body;
+
+			window.open(mailtoURL, "_blank") || window.location.replace(mailtoURL);
+		},
+	});
+});

@@ -1,4 +1,4 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 1";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
 		title: "Redesigned Interface",
