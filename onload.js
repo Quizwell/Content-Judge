@@ -120,6 +120,12 @@ var LIST = new List({
 
 document.querySelector(".testScreen").appendChild(LIST.listElement);
 
+var CHAPTERDISPLAY = new ChapterDisplay("L 15:8", {
+	allowVerseSelection: true,
+	showRareWords: true,
+	showPrejump: true,
+}).present();
+
 //VERSION AND UPDATE HANDLING
 
 if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion") != CONTENT_JUDGE_VERSION) {

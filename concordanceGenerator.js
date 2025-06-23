@@ -28,7 +28,7 @@ function generateConcordance(currentCycleYearObject) {
 					//Loop through every word of current filtered verse
 					for (var w = 0; w < filteredCurrentVerseWordArray.length; w++) {
 						var currentWord = filteredCurrentVerseWordArray[w];
-						var currentWordMatches = currentWord.match(/(\w+\'\w+)|(\w+)/g);
+						var currentWordMatches = currentWord.match(/(\w+[\'\-\w]+\w+)|(\w+)/g);
 						if (!currentWordMatches) {
 							//The word is either a blank space or a hyphen
 							continue;

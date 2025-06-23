@@ -233,8 +233,10 @@
 /* ListItem */
 .list .listWrapper > .item {
 	background: var(--content-background-color);
-	border-radius: 100vh;
+	min-height: 50px;
+	border-radius: 25px;
 	padding: 8px 20px;
+	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -474,11 +476,14 @@
 	display: flex;
 	flex-wrap: wrap;
 	font-size: 18px;
-	font-weight: 600;
+	font-weight: 300;
+	margin: 10px 0;
+	/* transition: font-size 0.2s ease, font-weight 0.2s ease, line-height 0.2s ease; */
 }
 
 .verseDisplay.selectable {
 	font-size: 20px;
+	font-weight: 600;
 	line-height: 1.5;
 }
 
@@ -488,7 +493,7 @@
 	white-space: pre;
 }
 
-.verseDisplay .prejump {
+.verseDisplay.showPrejump .prejump {
 	text-decoration: underline 2px solid var(--memory-element-color);
 }
 
@@ -610,4 +615,187 @@
 }
 .verseDisplay.showRareWords .triple {
 	color: var(--triple-word-highlight-color);
+}
+
+/* ChapterDisplay */
+.chapterDisplay {
+	padding: 0;
+}
+
+.chapterDisplay .header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px 20px 0 20px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	transition: opacity 0.2s ease;
+}
+
+.chapterDisplay .header svg {
+	font-size: 25px;
+}
+
+.chapterDisplay .header .leading .title {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 10px;
+	cursor: pointer;
+}
+
+.chapterDisplay .header .leading .title h1 {
+	font-weight: 900;
+}
+
+.chapterDisplay .header .leading .memory {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 3px;
+	margin-left: 5px;
+	font-size: 20px;
+	font-weight: 600;
+	transition: opacity 0.2s ease;
+}
+
+.chapterDisplay .header .leading .memory svg {
+	color: var(--memory-element-color);
+	font-size: 18px;
+}
+
+.chapterDisplay .header .trailing {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.chapterDisplay .header .trailing div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+.chapterDisplay .header .trailing div svg {
+	font-size: 30px;
+}
+
+.chapterDisplay .verses {
+	height: 100%;
+	padding: 90px 20px 20px 20px;
+	box-sizing: border-box;
+	overflow-y: auto;
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 60px), transparent calc(100% - 40px), transparent 100%);
+	mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 60px), transparent calc(100% - 40px), transparent 100%);
+	padding-bottom: 80px;
+}
+
+.chapterDisplay .verses:not(:has(~ .panel.hidden)) {
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 100px), transparent calc(100% - 80px), transparent 100%);
+	mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 100px), transparent calc(100% - 80px), transparent 100%);
+}
+
+.chapterDisplay .verses:has(~ .footer.hidden) {
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 20px), transparent 100%);
+	mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 20px), transparent 100%);
+	padding-bottom: 20px;
+}
+
+.chapterDisplay.allowVerseSelection .verses .verseDisplay:not(.selectable) {
+	cursor: pointer;
+	transition: opacity 0.2s ease;
+}
+
+.chapterDisplay .sectionTitle {
+	font-size: 18px;
+	font-weight: 800;
+	transition: opacity 0.2s ease;
+}
+
+.chapterDisplay.allowVerseSelection .verses:has(> .selectable) .verseDisplay:not(.selectable),
+.chapterDisplay.allowVerseSelection .verses:has(> .selectable) .sectionTitle {
+	opacity: 0.2;
+}
+
+.chapterDisplay .footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 0 20px 20px 20px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.chapterDisplay .footer.hidden {
+	transform: translateY(100%);
+}
+
+.chapterDisplay .footer svg {
+	font-size: 20px;
+}
+
+.chapterDisplay .footer div {
+	background: var(--content-background-color);
+	height: 40px;
+	border-radius: 20px;
+	padding: 0 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	cursor: pointer;
+	transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.chapterDisplay .footer div.active {
+	background: var(--app-accent-color);
+	color: var(--accent-color-text-color);
+}
+
+.chapterDisplay .panel {
+	position: fixed;
+	bottom: 80px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 0 20px;
+	box-sizing: border-box;
+	background: var(--page-background-color);
+	transition: opacity 0.2s ease, height 0.3s ease;
+}
+
+.chapterDisplay .panel::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	background: var(--page-background-color);
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+	mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+	pointer-events: none;
+	transform: translateY(-30px);
+}
+
+.chapterDisplay .panel h1 {
+	font-weight: 700;
+	font-size: 30px;
+	text-align: center;
+}
+
+.chapterDisplay .panel .content {
+	height: 100%;
+	overflow-y: auto;
+	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+	mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
 }

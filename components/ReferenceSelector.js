@@ -1,42 +1,124 @@
-function ReferenceSelector({ anchored } = {}) {
-	this.currentSearchObject = {
-		bookAbbreviation: undefined,
-		chapter: undefined,
-		verse: undefined,
-	};
+class ReferenceSelector {
+	constructor({ anchored = false, reference, callback } = {}) {
+		this.anchored = anchored;
+		this.callback = callback;
 
-	this.present = function () {
+		this.currentSearchObject = {
+			bookAbbreviation: undefined,
+			chapter: undefined,
+			verse: undefined,
+		};
+
+		if (reference) {
+			reference = reference.split(" ");
+			this.currentSearchObject.bookAbbreviation = reference[0];
+			reference = reference[1].split(":");
+			this.currentSearchObject.chapter = parseInt(reference[0]);
+			if (reference[1]) {
+				this.currentSearchObject.verse = parseInt(reference[1]);
+			}
+		}
+
+		this.containerElement = document.createElement("div");
+		this.containerElement.classList.add("referenceSelector");
+		this.containerElement.classList.add("floating");
+		this.containerElement.classList.add("hidden");
+
+		var headerContainer = document.createElement("div");
+		headerContainer.classList.add("header");
+
+		var backButton = document.createElement("div");
+		backButton.classList.add("back");
+		backButton.appendChild(new Icon("circle-xmark"));
+		backButton.addEventListener("click", this.back.bind(this));
+		headerContainer.appendChild(backButton);
+
+		Object.defineProperty(this, "backIcon", {
+			get: function () {
+				return backButton.firstElementChild;
+			},
+		});
+
+		this.headerTitle = document.createElement("h1");
+		this.headerTitle.classList.add("title");
+		headerContainer.appendChild(this.headerTitle);
+
+		this.doneButton = document.createElement("div");
+		this.doneButton.classList.add("done");
+		this.doneButton.appendChild(new Icon("circle-check"));
+		this.doneButton.addEventListener("click", this.done.bind(this));
+		headerContainer.appendChild(this.doneButton);
+
+		this.containerElement.appendChild(headerContainer);
+
+		this.itemsWrapper = document.createElement("div");
+		this.itemsWrapper.classList.add("items");
+		this.containerElement.appendChild(this.itemsWrapper);
+
+		this.booksContainer = document.createElement("div");
+		this.booksContainer.classList.add("book");
+		this.itemsWrapper.appendChild(this.booksContainer);
+
+		this.chaptersContainer = document.createElement("div");
+		this.chaptersContainer.classList.add("chapter");
+		this.chaptersContainer.classList.add("smallGrid");
+		this.chaptersContainer.classList.add("hidden");
+		this.itemsWrapper.appendChild(this.chaptersContainer);
+
+		this.versesContainer = document.createElement("div");
+		this.versesContainer.classList.add("verse");
+		this.versesContainer.classList.add("smallGrid");
+		this.versesContainer.classList.add("hidden");
+		this.itemsWrapper.appendChild(this.versesContainer);
+
+		this.overlay = new Overlay({
+			callback: this.dismiss.bind(this),
+		});
+
+		document.body.appendChild(this.overlay.element);
+		document.body.appendChild(this.containerElement);
+
 		if (anchored) {
+			this.anchorElement = document.createElement("div");
+			this.anchorElement.classList.add("referenceSelector");
+			this.anchorElement.classList.add("anchored");
+			this.showBookSelection();
+		}
+	}
+
+	present() {
+		if (this.anchored) {
 			const rect = this.anchorElement.getBoundingClientRect();
 			const top = rect.top - 45;
 			this.containerElement.style.top = Math.max(top, 20) + "px";
+		} else {
+			if (!this.currentSearchObject.bookAbbreviation) {
+				this.showBookSelection();
+			} else if (!this.currentSearchObject.chapter) {
+				this.showChapterSelection();
+			} else {
+				this.showVerseSelection();
+			}
 		}
 
-		document.addEventListener(
-			"keydown",
-			(event) => {
-				if (event.key === "Escape") {
-					this.back();
-				}
-			},
-			{ once: true }
-		);
+		document.addEventListener("keydown", this.keyboardListener.bind(this));
 
 		this.overlay.show();
 		requestAnimationFrame(() => {
 			this.containerElement.classList.remove("hidden");
 		});
-	};
-	this.dismiss = function () {
+	}
+	dismiss() {
+		document.removeEventListener("keydown", this.keyboardListener.bind(this));
 		this.chaptersContainer.classList.add("hidden");
 		this.versesContainer.classList.add("hidden");
 		this.containerElement.classList.add("hidden");
 		this.overlay.hide();
-	};
+	}
 
-	this.showBookSelection = function () {
+	showBookSelection() {
 		var booksContainer;
-		if (anchored) {
+		if (this.anchored) {
 			booksContainer = document.createElement("div");
 			booksContainer.classList.add("book");
 			this.anchorElement.appendChild(booksContainer);
@@ -80,17 +162,16 @@ function ReferenceSelector({ anchored } = {}) {
 			booksContainer.appendChild(bookElement);
 		}
 
-		if (!anchored) {
+		if (!this.anchored) {
 			this.headerTitle.textContent = "Select a Book";
 			this.backIcon.classList.remove("fa-circle-chevron-left");
 			this.backIcon.classList.add("fa-circle-xmark");
 			this.doneButton.classList.add("hidden");
 			this.booksContainer.classList.remove("hidden");
-			this.present();
 		}
-	};
+	}
 
-	this.showChapterSelection = function () {
+	showChapterSelection() {
 		while (this.chaptersContainer.firstChild) {
 			this.chaptersContainer.removeChild(this.chaptersContainer.firstChild);
 		}
@@ -125,7 +206,7 @@ function ReferenceSelector({ anchored } = {}) {
 		this.booksContainer.classList.add("hidden");
 		this.chaptersContainer.classList.remove("hidden");
 
-		if (anchored) {
+		if (this.anchored) {
 			this.present();
 		}
 
@@ -139,9 +220,9 @@ function ReferenceSelector({ anchored } = {}) {
 			// If the bottom edge is below the viewport, adjust the top position
 			this.containerElement.style.top = window.innerHeight - floatingRect.height - 70 + "px";
 		}
-	};
+	}
 
-	this.showVerseSelection = function () {
+	showVerseSelection() {
 		while (this.versesContainer.firstChild) {
 			this.versesContainer.removeChild(this.versesContainer.firstChild);
 		}
@@ -163,19 +244,10 @@ function ReferenceSelector({ anchored } = {}) {
 			}
 			verseElement.textContent = i + 1;
 			(function (verseNumber) {
-				verseElement.addEventListener(
-					"click",
-					function () {
-						this.dismiss();
-						this.currentSearchObject.verse = verseNumber;
-
-						var bookAbbreviation = this.currentSearchObject.bookAbbreviation;
-						var chapterNumber = this.currentSearchObject.chapter;
-						var referenceString = bookAbbreviation + " " + chapterNumber + ":" + verseNumber;
-
-						UIManager.verseDisplayScreen.populateAndShowVerseDisplayScreen(referenceString);
-					}.bind(this)
-				);
+				verseElement.addEventListener("click", () => {
+					this.currentSearchObject.verse = verseNumber;
+					this.selectedReference();
+				});
 			}).bind(this)(i + 1);
 
 			this.versesContainer.appendChild(verseElement);
@@ -201,22 +273,54 @@ function ReferenceSelector({ anchored } = {}) {
 			// If the bottom edge is below the viewport, adjust the top position
 			this.containerElement.style.top = window.innerHeight - floatingRect.height - 70 + "px";
 		}
-	};
+	}
 
-	this.resetNavigation = function () {
+	selectedReference() {
+		this.dismiss();
+
+		var bookAbbreviation = this.currentSearchObject.bookAbbreviation;
+		var chapterNumber = this.currentSearchObject.chapter;
+		var verseNumber = this.currentSearchObject.verse;
+		var referenceString;
+		if (verseNumber) {
+			referenceString = bookAbbreviation + " " + chapterNumber + ":" + verseNumber;
+		} else {
+			referenceString = bookAbbreviation + " " + chapterNumber;
+		}
+
+		if (this.callback) {
+			this.callback(referenceString);
+		} else {
+			new ChapterDisplay(referenceString, {
+				allowVerseSelection: true,
+				showRareWords: true,
+				showPrejump: true,
+			}).present();
+		}
+	}
+
+	resetNavigation() {
 		this.hideVerseSelection();
 		if (scriptureEngine.currentYearObject.books.length > 1) {
 			this.hideChapterSelection();
 		}
-	};
+	}
 
-	this.back = function () {
+	keyboardListener(event) {
+		if (event.key === "Escape") {
+			this.back();
+		}
+	}
+
+	back() {
 		if (!this.versesContainer.classList.contains("hidden")) {
+			this.currentSearchObject.verse = null;
 			this.versesContainer.classList.add("hidden");
 			this.showChapterSelection();
 		} else if (!this.chaptersContainer.classList.contains("hidden")) {
+			this.currentSearchObject.chapter = null;
 			this.chaptersContainer.classList.add("hidden");
-			if (!anchored) {
+			if (!this.anchored) {
 				this.showBookSelection();
 			} else {
 				this.dismiss();
@@ -224,77 +328,9 @@ function ReferenceSelector({ anchored } = {}) {
 		} else {
 			this.dismiss();
 		}
-	};
+	}
 
-	this.done = function () {
-		this.dismiss();
-		var referenceString = this.currentSearchObject.bookAbbreviation + " " + this.currentSearchObject.chapter;
-		UIManager.chapterDisplayScreen.populateAndShowChapterDisplayScreen(referenceString);
-	};
-
-	this.containerElement = document.createElement("div");
-	this.containerElement.classList.add("referenceSelector");
-	this.containerElement.classList.add("floating");
-	this.containerElement.classList.add("hidden");
-
-	var headerContainer = document.createElement("div");
-	headerContainer.classList.add("header");
-
-	var backButton = document.createElement("div");
-	backButton.classList.add("back");
-	backButton.appendChild(new Icon("circle-xmark"));
-	backButton.addEventListener("click", this.back.bind(this));
-	headerContainer.appendChild(backButton);
-
-	Object.defineProperty(this, "backIcon", {
-		get: function () {
-			return backButton.firstElementChild;
-		},
-	});
-
-	this.headerTitle = document.createElement("h1");
-	this.headerTitle.classList.add("title");
-	headerContainer.appendChild(this.headerTitle);
-
-	this.doneButton = document.createElement("div");
-	this.doneButton.classList.add("done");
-	this.doneButton.appendChild(new Icon("circle-check"));
-	this.doneButton.addEventListener("click", this.done.bind(this));
-	headerContainer.appendChild(this.doneButton);
-
-	this.containerElement.appendChild(headerContainer);
-
-	this.itemsWrapper = document.createElement("div");
-	this.itemsWrapper.classList.add("items");
-	this.containerElement.appendChild(this.itemsWrapper);
-
-	this.booksContainer = document.createElement("div");
-	this.booksContainer.classList.add("book");
-	this.itemsWrapper.appendChild(this.booksContainer);
-
-	this.chaptersContainer = document.createElement("div");
-	this.chaptersContainer.classList.add("chapter");
-	this.chaptersContainer.classList.add("smallGrid");
-	this.chaptersContainer.classList.add("hidden");
-	this.itemsWrapper.appendChild(this.chaptersContainer);
-
-	this.versesContainer = document.createElement("div");
-	this.versesContainer.classList.add("verse");
-	this.versesContainer.classList.add("smallGrid");
-	this.versesContainer.classList.add("hidden");
-	this.itemsWrapper.appendChild(this.versesContainer);
-
-	this.overlay = new Overlay({
-		callback: this.dismiss.bind(this),
-	});
-
-	document.body.appendChild(this.overlay.element);
-	document.body.appendChild(this.containerElement);
-
-	if (anchored) {
-		this.anchorElement = document.createElement("div");
-		this.anchorElement.classList.add("referenceSelector");
-		this.anchorElement.classList.add("anchored");
-		this.showBookSelection();
+	done() {
+		this.selectedReference();
 	}
 }

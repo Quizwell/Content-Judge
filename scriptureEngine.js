@@ -851,9 +851,9 @@ var scriptureEngine = {
 		}
 
 		if (preserveAdvancedSearchCharacters) {
-			verseText = verseText.replaceAll(/[^\w/+! ]/g, "");
+			verseText = verseText.replaceAll(/[^\w/+!' ]/g, "");
 		} else {
-			verseText = verseText.replaceAll(/[^\w ]/g, "");
+			verseText = verseText.replaceAll(/[^\w' ]/g, "");
 		}
 		verseText = verseText.replace(/\s\s+/g, " ");
 		verseText = verseText.trim();

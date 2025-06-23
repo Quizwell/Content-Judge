@@ -1,5 +1,5 @@
 class VerseDisplay {
-	constructor(verse, { selectable = false, showRareWords = false, showPrejump = true } = {}) {
+	constructor(verse, { selectable = false, showRareWords = false, showPrejump = true, selectionCallback } = {}) {
 		if (typeof verse === "string") {
 			this.verse = new Verse(verse);
 			this.reference = verse;
@@ -13,6 +13,7 @@ class VerseDisplay {
 		this.selectable = selectable;
 		this.showRareWords = showRareWords;
 		this.showPrejump = showPrejump;
+		this.select = selectionCallback;
 
 		// Add event listeners for word selection
 		this.element.addEventListener("mousedown", this.dragStart.bind(this));
@@ -41,9 +42,14 @@ class VerseDisplay {
 			var startCharacters;
 			startCharacters = word.match(/^[^\w]+/);
 			// Get all of the punctuation and footnotes following the word
-			var endCharacters = word.match(/([\.,?!()\[\]"']|\[\w+\])+$/);
+			var endCharacters = word.match(/([\.,:;?!()\[\]"']|\[\w+\])+$/);
 
 			var filteredWord = word.slice(startCharacters ? startCharacters[0].length : 0, word.length - (endCharacters ? endCharacters[0].length : 0));
+
+			if (filteredWord === "") {
+				// If the filtered word is empty, skip this iteration
+				continue;
+			}
 
 			if (startCharacters) {
 				const startElement = document.createElement("span");
@@ -54,6 +60,9 @@ class VerseDisplay {
 			const wordElement = document.createElement("span");
 			wordElement.className = "selectable";
 			wordElement.textContent = filteredWord;
+			if (!scriptureEngine.currentYearObject.concordance[filteredWord.toLowerCase()]) {
+				console.warn(`Concordance entry not found for word: ${filteredWord}`);
+			}
 			const occurrenceCount = scriptureEngine.currentYearObject.concordance[filteredWord.toLowerCase()].references.length;
 			switch (occurrenceCount) {
 				case 1:
@@ -219,11 +228,6 @@ class VerseDisplay {
 			this.select("multiword", selectedWords.join(" "));
 		}
 	}
-	dragCancel() {
-		if (!this.selectable || !this.dragData.isDragging) return;
-		this.dragData.isDragging = false;
-		this.updateDragHighlight();
-	}
 
 	select(type, value) {
 		switch (type) {
@@ -244,7 +248,7 @@ class VerseDisplay {
 			selectedWord.classList.remove("selected");
 		});
 		if (clearSelection) {
-			console.log("Deselected");
+			this.select(null);
 		}
 	}
 
@@ -256,6 +260,13 @@ class VerseDisplay {
 		if (value) {
 			this.element.classList.add("selectable");
 		} else {
+			this.element.querySelectorAll(".word.multiselected").forEach((selectedWord) => {
+				selectedWord.classList.remove("multiselected");
+				selectedWord.classList.remove("start");
+				selectedWord.classList.remove("end");
+			});
+			this.dragData = {};
+			this.deselect(false);
 			this.element.classList.remove("selectable");
 		}
 	}
