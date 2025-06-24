@@ -137,7 +137,6 @@ if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion
 		duration: 10000,
 		callback: UIManager.showChangelog,
 	});
-	UIManager.settingsScreen.resetButtonHandlers.resetAppAccentColor();
 }
 
 //Set the current Content Judge version and build

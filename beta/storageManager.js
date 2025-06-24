@@ -1,28 +1,11 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 1";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 2";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Redesigned Interface",
+		title: "Bug Fixes",
 		items: [
 			{
-				icon: "wand-magic-sparkles",
-				text: "Refreshed look with more vibrant colors, more legible typography, and smoother animations.",
-			},
-			{
-				icon: "bars-staggered",
-				text: "Redesigned verse viewer with less obtrusive buttons and scrollable access to all verses in the chapter.",
-			},
-		],
-	},
-	{
-		title: "Technical Improvements",
-		items: [
-			{
-				icon: "bolt",
-				text: "Optimized, lazy-loading Scripture Engine for better memory usage and performance when working with multiple verses.",
-			},
-			{
-				icon: "window-restore",
-				text: "New component-based UI system designed for better maintainability and scalability.",
+				icon: "book-bible",
+				text: "Fixed broken concordance entries and crashes when selecting certain chapters.",
 			},
 		],
 	},
