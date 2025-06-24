@@ -164,6 +164,7 @@ class ChapterDisplay {
 		this.verseDisplays.forEach((verseDisplay) => {
 			verseDisplay.selectable = false;
 		});
+		this.hidePanel();
 		if (clearSelection) {
 			this.reference = this.reference.split(":")[0];
 			this.titleElement.textContent = scriptureEngine.unabbreviateBookNamesInString(this.reference);
@@ -257,6 +258,9 @@ class ChapterDisplay {
 	}
 
 	recenterActiveVerse() {
+		if (!this.activeVerseDisplay) {
+			return;
+		}
 		if (this.panel.classList.contains("hidden")) {
 			const verseRect = this.activeVerseDisplay.element.getBoundingClientRect();
 			const containerRect = this.versesContainer.getBoundingClientRect();
