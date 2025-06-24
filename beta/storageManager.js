@@ -4,8 +4,16 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "Bug Fixes",
 		items: [
 			{
+				icon: "mobile-screen",
+				text: "Fixed verse and word selection on mobile.",
+			},
+			{
 				icon: "book-bible",
 				text: "Fixed broken concordance entries and crashes when selecting certain chapters.",
+			},
+			{
+				icon: "circle-play",
+				text: "Fixed stuttering animations when selecting a reference or moving between verses.",
 			},
 		],
 	},

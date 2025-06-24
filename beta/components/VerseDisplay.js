@@ -129,6 +129,10 @@ class VerseDisplay {
 			return;
 		}
 
+		if (event.type === "touchstart") {
+			event.preventDefault();
+		}
+
 		// Find the starting word
 		const target = event.target.closest(".word");
 		if (!target) {

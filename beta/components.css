@@ -345,7 +345,7 @@
 	position: fixed;
 	top: 150px;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translate3d(-50%, 0, 0);
 	transition: opacity 0.2s ease, top 0.3s ease;
 }
 
@@ -597,15 +597,17 @@
 	transition: opacity 0.1s ease;
 }
 
-/* When hovering over the word or adjacent punctuation, highlight the word */
-.verseDisplay.selectable .word:not(:has(.footnote:hover)):hover .selectable,
-.verseDisplay.selectable .prejump:not(:has(.footnote:hover)):not(.multiselected):hover::after {
-	opacity: 0.5;
-}
+@media (hover: hover) {
+	/* When hovering over the word or adjacent punctuation, highlight the word */
+	.verseDisplay.selectable .word:not(:has(.footnote:hover)):hover .selectable,
+	.verseDisplay.selectable .prejump:not(:has(.footnote:hover)):not(.multiselected):hover::after {
+		opacity: 0.5;
+	}
 
-/* When hovering over a footnote, highlight the footnote */
-.verseDisplay.selectable .word .footnote:hover {
-	opacity: 0.5;
+	/* When hovering over a footnote, highlight the footnote */
+	.verseDisplay.selectable .word .footnote:hover {
+		opacity: 0.5;
+	}
 }
 
 .verseDisplay.showRareWords .unique {

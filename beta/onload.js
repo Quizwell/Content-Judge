@@ -1,12 +1,12 @@
 //REGULAR ONLOAD CODE
 
-var VERSEDISPLAY2 = new VerseDisplay("L 15:8", { selectable: true, showRareWords: true, showPrejump: true });
+var VERSEDISPLAY2 = new VerseDisplay("L 15:8", { selectable: true, showRareWords: true, showPrejump: true, selectionCallback: console.log });
 document.querySelector(".testScreen").appendChild(VERSEDISPLAY2.element);
 
-var VERSEDISPLAY = new VerseDisplay("L 20:26", { selectable: true, showRareWords: true, showPrejump: true });
+var VERSEDISPLAY = new VerseDisplay("L 20:26", { selectable: true, showRareWords: true, showPrejump: true, selectionCallback: console.log });
 document.querySelector(".testScreen").appendChild(VERSEDISPLAY.element);
 
-var VERSEDISPLAY3 = new VerseDisplay("L 3:8", { selectable: true, showRareWords: true, showPrejump: true });
+var VERSEDISPLAY3 = new VerseDisplay("L 3:8", { selectable: true, showRareWords: true, showPrejump: true, selectionCallback: console.log });
 document.querySelector(".testScreen").appendChild(VERSEDISPLAY3.element);
 
 var REFERENCESELECT = new ReferenceSelector({ anchored: true });
