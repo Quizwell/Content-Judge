@@ -1,6 +1,7 @@
 var Luke = {
-	books: {
-		Luke: {
+	books: [
+		{
+			name: "Luke",
 			abbreviation: "L",
 			chapters: [
 				{
@@ -1929,8 +1930,1187 @@ var Luke = {
 				},
 			],
 		},
-	},
-	concordance: undefined,
+	],
+	concordance: null,
+	biblicalReferences: [
+		{
+			reference: "L 2:23",
+			source: "Exodus 13:2, 12",
+		},
+		{
+			reference: "L 2:24",
+			source: "Leviticus 12:8",
+		},
+		{
+			reference: "L 3:6",
+			source: "Isaiah 40:3-5",
+		},
+		{
+			reference: "L 4:4",
+			source: "Deuteronomy 8:3",
+		},
+		{
+			reference: "L 4:8",
+			source: "Deuteronomy 6:13",
+		},
+		{
+			reference: "L 4:11",
+			source: "Psalm 91:11-12",
+		},
+		{
+			reference: "L 4:12",
+			source: "Deuteronomy 6:16",
+		},
+		{
+			reference: "L 4:19",
+			source: "Isaiah 61:1-2",
+		},
+		{
+			reference: "L 4:19",
+			source: "Isaiah 58:6",
+		},
+		{
+			reference: "L 7:27",
+			source: "Malachi 3:1",
+		},
+		{
+			reference: "L 8:10",
+			source: "Isaiah 6:9",
+		},
+		{
+			reference: "L 10:27",
+			source: "Deuteronomy 6:5",
+		},
+		{
+			reference: "L 10:27",
+			source: "Leviticus 19:18",
+		},
+		{
+			reference: "L 13:35",
+			source: "Psalm 118:26",
+		},
+		{
+			reference: "L 18:20",
+			source: "Exodus 20:12-16",
+		},
+		{
+			reference: "L 18:20",
+			source: "Deuteronomy 5:16-20",
+		},
+		{
+			reference: "L 19:38",
+			source: "Psalm 118:26",
+		},
+		{
+			reference: "L 19:46",
+			source: "Isaiah 56:7",
+		},
+		{
+			reference: "L 19:46",
+			source: "Jeremiah 7:11",
+		},
+		{
+			reference: "L 20:17",
+			source: "Psalm 118:22",
+		},
+		{
+			reference: "L 20:37",
+			source: "Exodus 3:6",
+		},
+		{
+			reference: "L 20:43",
+			source: "Psalm 110:1",
+		},
+		{
+			reference: "L 22:37",
+			source: "Isaiah 53:12",
+		},
+		{
+			reference: "L 23:30",
+			source: "Hosea 10:8",
+		},
+		{
+			reference: "L 23:46",
+			source: "Psalm 31:5",
+		},
+	],
+	properNouns: [
+		{
+			noun: "Aaron",
+			type: "Name",
+		},
+		{
+			noun: "Abel",
+			type: "Name",
+		},
+		{
+			noun: "Abijah",
+			type: "Name",
+		},
+		{
+			noun: "Abilene",
+			type: "Place",
+		},
+		{
+			noun: "Abraham",
+			type: "Name",
+		},
+		{
+			noun: "Abraham's",
+			type: "Name",
+		},
+		{
+			noun: "Abyss",
+			type: "Place",
+		},
+		{
+			noun: "Adam",
+			type: "Name",
+		},
+		{
+			noun: "Addi",
+			type: "Name",
+		},
+		{
+			noun: "Alphaeus",
+			type: "Name",
+		},
+		{
+			noun: "Amminadab",
+			type: "Name",
+		},
+		{
+			noun: "Amos",
+			type: "Name",
+		},
+		{
+			noun: "Andrew",
+			type: "Name",
+		},
+		{
+			noun: "Anna",
+			type: "Name",
+		},
+		{
+			noun: "Annas",
+			type: "Name",
+		},
+		{
+			noun: "Arimathea",
+			type: "Place",
+		},
+		{
+			noun: "Arphaxad",
+			type: "Name",
+		},
+		{
+			noun: "Asher",
+			type: "Name",
+		},
+		{
+			noun: "Augustus",
+			type: "Name",
+		},
+		{
+			noun: "Baptist",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Barabbas",
+			type: "Name",
+		},
+		{
+			noun: "Bartholomew",
+			type: "Name",
+		},
+		{
+			noun: "Beelzebul",
+			type: "Name",
+		},
+		{
+			noun: "Benefactors",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Bethany",
+			type: "Place",
+		},
+		{
+			noun: "Bethlehem",
+			type: "Place",
+		},
+		{
+			noun: "Bethphage",
+			type: "Place",
+		},
+		{
+			noun: "Bethsaida",
+			type: "Place",
+		},
+		{
+			noun: "Boaz",
+			type: "Name",
+		},
+		{
+			noun: "Book",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Bread",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Caesar",
+			type: "Name",
+		},
+		{
+			noun: "Caesar's",
+			type: "Name",
+		},
+		{
+			noun: "Caiaphas",
+			type: "Name",
+		},
+		{
+			noun: "Cainan",
+			type: "Name",
+		},
+		{
+			noun: "Capernaum",
+			type: "Place",
+		},
+		{
+			noun: "Chorazin",
+			type: "Place",
+		},
+		{
+			noun: "Chosen",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Chuza",
+			type: "Name",
+		},
+		{
+			noun: "Cleopas",
+			type: "Name",
+		},
+		{
+			noun: "Cosam",
+			type: "Name",
+		},
+		{
+			noun: "Council",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Cyrene",
+			type: "Place",
+		},
+		{
+			noun: "David",
+			type: "Name",
+		},
+		{
+			noun: "Day",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Eber",
+			type: "Name",
+		},
+		{
+			noun: "Eleven",
+			type: "Group",
+		},
+		{
+			noun: "Eliakim",
+			type: "Name",
+		},
+		{
+			noun: "Eliezer",
+			type: "Name",
+		},
+		{
+			noun: "Elijah",
+			type: "Name",
+		},
+		{
+			noun: "Elijah's",
+			type: "Name",
+		},
+		{
+			noun: "Elisha",
+			type: "Name",
+		},
+		{
+			noun: "Elizabeth",
+			type: "Name",
+		},
+		{
+			noun: "Elizabeth's",
+			type: "Name",
+		},
+		{
+			noun: "Elmadam",
+			type: "Name",
+		},
+		{
+			noun: "Emmaus",
+			type: "Place",
+		},
+		{
+			noun: "Enoch",
+			type: "Name",
+		},
+		{
+			noun: "Enosh",
+			type: "Name",
+		},
+		{
+			noun: "Er",
+			type: "Name",
+		},
+		{
+			noun: "Esli",
+			type: "Name",
+		},
+		{
+			noun: "Father",
+			type: "Name",
+		},
+		{
+			noun: "Father's",
+			type: "Name",
+		},
+		{
+			noun: "Festival",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Gabriel",
+			type: "Name",
+		},
+		{
+			noun: "Galilean",
+			type: "Name",
+		},
+		{
+			noun: "Galileans",
+			type: "Group",
+		},
+		{
+			noun: "Galilee",
+			type: "Place",
+		},
+		{
+			noun: "Gennesaret",
+			type: "Place",
+		},
+		{
+			noun: "Gentiles",
+			type: "Group",
+		},
+		{
+			noun: "Gerasenes",
+			type: "Group",
+		},
+		{
+			noun: "God",
+			type: "Name",
+		},
+		{
+			noun: "God's",
+			type: "Name",
+		},
+		{
+			noun: "Hades",
+			type: "Place",
+		},
+		{
+			noun: "Heli",
+			type: "Name",
+		},
+		{
+			noun: "Herod",
+			type: "Name",
+		},
+		{
+			noun: "Herod's",
+			type: "Name",
+		},
+		{
+			noun: "Herodias",
+			type: "Name",
+		},
+		{
+			noun: "Hezron",
+			type: "Name",
+		},
+		{
+			noun: "High",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Holy",
+			type: "Proper Noun",
+		},
+		{
+			noun: "I",
+			type: "Noun",
+		},
+		{
+			noun: "I'll",
+			type: "Noun",
+		},
+		{
+			noun: "I'm",
+			type: "Noun",
+		},
+		{
+			noun: "I've",
+			type: "Noun",
+		},
+		{
+			noun: "Isaac",
+			type: "Name",
+		},
+		{
+			noun: "Isaiah",
+			type: "Name",
+		},
+		{
+			noun: "Iscariot",
+			type: "Name",
+		},
+		{
+			noun: "Israel",
+			type: ["Name", "Group", "Place"],
+		},
+		{
+			noun: "Iturea",
+			type: "Place",
+		},
+		{
+			noun: "Jacob",
+			type: "Name",
+		},
+		{
+			noun: "Jacob's",
+			type: "Name",
+		},
+		{
+			noun: "Jairus",
+			type: "Name",
+		},
+		{
+			noun: "James",
+			type: "Name",
+		},
+		{
+			noun: "Jannai",
+			type: "Name",
+		},
+		{
+			noun: "Jared",
+			type: "Name",
+		},
+		{
+			noun: "Jericho",
+			type: "Place",
+		},
+		{
+			noun: "Jerusalem",
+			type: "Place",
+		},
+		{
+			noun: "Jesse",
+			type: "Name",
+		},
+		{
+			noun: "Jesus",
+			type: "Name",
+		},
+		{
+			noun: "Jesus'",
+			type: "Name",
+		},
+		{
+			noun: "Jews",
+			type: "Group",
+		},
+		{
+			noun: "Joanan",
+			type: "Name",
+		},
+		{
+			noun: "Joanna",
+			type: "Name",
+		},
+		{
+			noun: "Joda",
+			type: "Name",
+		},
+		{
+			noun: "John",
+			type: "Name",
+		},
+		{
+			noun: "John's",
+			type: "Name",
+		},
+		{
+			noun: "Jonah",
+			type: "Name",
+		},
+		{
+			noun: "Jonam",
+			type: "Name",
+		},
+		{
+			noun: "Jordan",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Jorim",
+			type: "Name",
+		},
+		{
+			noun: "Josek",
+			type: "Name",
+		},
+		{
+			noun: "Joseph",
+			type: "Name",
+		},
+		{
+			noun: "Joseph's",
+			type: "Name",
+		},
+		{
+			noun: "Joshua",
+			type: "Name",
+		},
+		{
+			noun: "Judah",
+			type: "Name",
+		},
+		{
+			noun: "Judas",
+			type: "Name",
+		},
+		{
+			noun: "Judea",
+			type: "Place",
+		},
+		{
+			noun: "Judean",
+			type: "Place",
+		},
+		{
+			noun: "Kenan",
+			type: "Name",
+		},
+		{
+			noun: "Lake",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Lamech",
+			type: "Name",
+		},
+		{
+			noun: "Law",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Lazarus",
+			type: "Name",
+		},
+		{
+			noun: "Legion",
+			type: "Name",
+		},
+		{
+			noun: "Levi",
+			type: "Name",
+		},
+		{
+			noun: "Levite",
+			type: "Name",
+		},
+		{
+			noun: "Lord",
+			type: "Name",
+		},
+		{
+			noun: "Lord's",
+			type: "Name",
+		},
+		{
+			noun: "Lot",
+			type: "Name",
+		},
+		{
+			noun: "Lot's",
+			type: "Name",
+		},
+		{
+			noun: "Lysanias",
+			type: "Name",
+		},
+		{
+			noun: "Maath",
+			type: "Name",
+		},
+		{
+			noun: "Magdalene",
+			type: "Name",
+		},
+		{
+			noun: "Mahalalel",
+			type: "Name",
+		},
+		{
+			noun: "Man", //Son of Man
+			type: "Proper Noun",
+		},
+		{
+			noun: "Martha",
+			type: "Name",
+		},
+		{
+			noun: "Mary",
+			type: "Name",
+		},
+		{
+			noun: "Mary's",
+			type: "Name",
+		},
+		{
+			noun: "Mattatha",
+			type: "Name",
+		},
+		{
+			noun: "Mattathias",
+			type: "Name",
+		},
+		{
+			noun: "Matthat",
+			type: "Name",
+		},
+		{
+			noun: "Matthew",
+			type: "Name",
+		},
+		{
+			noun: "Melea",
+			type: "Name",
+		},
+		{
+			noun: "Melki",
+			type: "Name",
+		},
+		{
+			noun: "Menna",
+			type: "Name",
+		},
+		{
+			noun: "Messiah",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Methuselah",
+			type: "Name",
+		},
+		{
+			noun: "Mighty",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Moses",
+			type: "Name",
+		},
+		{
+			noun: "Most",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Mount",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Naaman",
+			type: "Name",
+		},
+		{
+			noun: "Naggai",
+			type: "Name",
+		},
+		{
+			noun: "Nahor",
+			type: "Name",
+		},
+		{
+			noun: "Nahshon",
+			type: "Name",
+		},
+		{
+			noun: "Nahum",
+			type: "Name",
+		},
+		{
+			noun: "Nain",
+			type: "Place",
+		},
+		{
+			noun: "Nathan",
+			type: "Name",
+		},
+		{
+			noun: "Nazareth",
+			type: "Place",
+		},
+		{
+			noun: "Neri",
+			type: "Name",
+		},
+		{
+			noun: "Nineveh",
+			type: "Place",
+		},
+		{
+			noun: "Ninevites",
+			type: "Group",
+		},
+		{
+			noun: "Noah",
+			type: "Name",
+		},
+		{
+			noun: "Obed",
+			type: "Name",
+		},
+		{
+			noun: "Olives",
+			type: "Proper Noun",
+		},
+		{
+			noun: "One",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Passover",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Peleg",
+			type: "Name",
+		},
+		{
+			noun: "Penuel",
+			type: "Name",
+		},
+		{
+			noun: "Perez",
+			type: "Name",
+		},
+		{
+			noun: "Peter",
+			type: "Name",
+		},
+		{
+			noun: "Pharisee",
+			type: "Name",
+		},
+		{
+			noun: "Pharisee's",
+			type: "Name",
+		},
+
+		{
+			noun: "Pharisees",
+			type: "Group",
+		},
+		{
+			noun: "Philip",
+			type: "Name",
+		},
+		{
+			noun: "Pilate",
+			type: "Name",
+		},
+		{
+			noun: "Pontius",
+			type: "Name",
+		},
+		{
+			noun: "Preparation",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Prophets",
+			type: ["Proper Noun", "Group"],
+		},
+		{
+			noun: "Psalms",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Queen",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Quirinius",
+			type: "Name",
+		},
+		{
+			noun: "Ram",
+			type: "Name",
+		},
+		{
+			noun: "Reu",
+			type: "Name",
+		},
+		{
+			noun: "Rhesa",
+			type: "Name",
+		},
+		{
+			noun: "Roman",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Sabbath",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Sadducees",
+			type: "Group",
+		},
+		{
+			noun: "Salmon",
+			type: "Name",
+		},
+		{
+			noun: "Samaria",
+			type: "Place",
+		},
+		{
+			noun: "Samaritan",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Satan",
+			type: "Name",
+		},
+		{
+			noun: "Savior",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Scriptures",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Semein",
+			type: "Name",
+		},
+		{
+			noun: "Serug",
+			type: "Name",
+		},
+		{
+			noun: "Seth",
+			type: "Name",
+		},
+		{
+			noun: "Shealtiel",
+			type: "Name",
+		},
+		{
+			noun: "Shelah",
+			type: "Name",
+		},
+		{
+			noun: "Shem",
+			type: "Name",
+		},
+		{
+			noun: "Sidon",
+			type: "Place",
+		},
+		{
+			noun: "Siloam",
+			type: "Place",
+		},
+		{
+			noun: "Simeon",
+			type: "Name",
+		},
+		{
+			noun: "Simon",
+			type: "Name",
+		},
+		{
+			noun: "Skull",
+			type: "Place",
+		},
+		{
+			noun: "Sodom",
+			type: "Place",
+		},
+		{
+			noun: "Solomon",
+			type: "Name",
+		},
+		{
+			noun: "Solomon's",
+			type: "Name",
+		},
+		{
+			noun: "Son",
+			type: "Proper Noun",
+		},
+		{
+			noun: "South",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Spirit",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Susanna",
+			type: "Name",
+		},
+		{
+			noun: "Syria",
+			type: "Place",
+		},
+		{
+			noun: "Syrian",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Teacher",
+			type: "Name",
+		},
+		{
+			noun: "Terah",
+			type: "Name",
+		},
+		{
+			noun: "Theophilus",
+			type: "Name",
+		},
+		{
+			noun: "Thomas",
+			type: "Name",
+		},
+		{
+			noun: "Tiberius",
+			type: "Name",
+		},
+		{
+			noun: "Traconitis",
+			type: "Place",
+		},
+		{
+			noun: "Twelve",
+			type: "Group",
+		},
+		{
+			noun: "Tyre",
+			type: "Place",
+		},
+		{
+			noun: "Unleavened",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Zacchaeus",
+			type: "Name",
+		},
+		{
+			noun: "Zarephath",
+			type: "Place",
+		},
+		{
+			noun: "Zealot",
+			type: "Proper Noun",
+		},
+		{
+			noun: "Zebedee",
+			type: "Name",
+		},
+		{
+			noun: "Zechariah",
+			type: "Name",
+		},
+		{
+			noun: "Zechariah's",
+			type: "Name",
+		},
+		{
+			noun: "Zerubbabel",
+			type: "Name",
+		},
+	],
+	numbers: [
+		{
+			text: "all",
+			number: 0.9,
+		},
+		{
+			text: "eight",
+			number: 8,
+		},
+		{
+			text: "eighteen",
+			number: 18,
+		},
+		{
+			text: "eighth",
+			number: 8,
+		},
+		{
+			text: "eighty-four",
+			number: 84,
+		},
+		{
+			text: "Eleven",
+			number: 11,
+		},
+		{
+			text: "fifteenth",
+			number: 15,
+		},
+		{
+			text: "fifty",
+			number: 50,
+		},
+		{
+			text: "first",
+			number: 1,
+		},
+		{
+			text: "five",
+			number: 5,
+		},
+		{
+			text: "forty",
+			number: 40,
+		},
+		{
+			text: "four",
+			number: 4,
+		},
+		{
+			text: "half",
+			number: 0.95,
+		},
+		{
+			text: "hundred",
+			number: -1,
+		},
+		{
+			text: "many",
+			number: 0.75,
+		},
+		{
+			text: "nine",
+			number: 9,
+		},
+		{
+			text: "ninety-nine",
+			number: 99,
+		},
+		{
+			text: "none",
+			number: 0,
+		},
+		{
+			text: "nothing",
+			number: 0,
+		},
+		{
+			text: "one",
+			number: 1,
+		},
+		{
+			text: "second",
+			number: 2,
+		},
+		{
+			text: "seven",
+			number: 7,
+		},
+		{
+			text: "seventy-two",
+			number: 72,
+		},
+		{
+			text: "six",
+			number: 6,
+		},
+		{
+			text: "sixth",
+			number: 6,
+		},
+		{
+			text: "sixty",
+			number: 60,
+		},
+		{
+			text: "some",
+			number: 0.5,
+		},
+		{
+			text: "ten",
+			number: 10,
+		},
+		{
+			text: "tenth",
+			number: 10,
+		},
+		{
+			text: "third",
+			number: 3,
+		},
+		{
+			text: "thirty",
+			number: 30,
+		},
+		{
+			text: "thousand",
+			number: -1,
+		},
+		{
+			text: "thousands",
+			number: -1,
+		},
+		{
+			text: "three",
+			number: 3,
+		},
+		{
+			text: "twelve",
+			number: 12,
+		},
+		{
+			text: "twenty",
+			number: 20,
+		},
+		{
+			text: "twice",
+			number: 2,
+		},
+		{
+			text: "two",
+			number: 2,
+		},
+	],
 	memoryVerses: {
 		singles: [
 			"L 1:31",

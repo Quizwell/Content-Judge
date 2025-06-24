@@ -2,9 +2,8 @@ function generateConcordance(currentCycleYearObject) {
 	var concordance = {};
 
 	//Loop through every book object
-	var booksObjectKeys = Object.keys(currentCycleYearObject.books);
-	for (var b = 0; b < booksObjectKeys.length; b++) {
-		var currentBook = currentCycleYearObject.books[booksObjectKeys[b]];
+	for (var b = 0; b < currentCycleYearObject.books.length; b++) {
+		var currentBook = currentCycleYearObject.books[b];
 		var currentAbbreviation = currentBook.abbreviation;
 
 		//Loop through all chapters of the book
@@ -29,7 +28,7 @@ function generateConcordance(currentCycleYearObject) {
 					//Loop through every word of current filtered verse
 					for (var w = 0; w < filteredCurrentVerseWordArray.length; w++) {
 						var currentWord = filteredCurrentVerseWordArray[w];
-						var currentWordMatches = currentWord.match(/(\w+’\w+)|(\w+)/g);
+						var currentWordMatches = currentWord.match(/(\w+[\'\-\w]+\w+)|(\w+)/g);
 						if (!currentWordMatches) {
 							//The word is either a blank space or a hyphen
 							continue;

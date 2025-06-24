@@ -1,0 +1,75 @@
+scriptureEngine
+    getFootnotesByContent(query, useAdvancedSearch),
+    getVersesByContent(query, useAdvancedSearch, forceSearch),
+    findReferencesInString(stringToSearch),
+    getBookByAbbreviation(abbreviation),
+    getYearByAbbreviation(abbreviation),
+    getYearAbbreviationByName(name),
+    filterReference(reference),
+    filterVerse(verseText, removeFootnotes, preserveAdvancedSearchCharacters),
+    filterWord(word, removeFootnotes),
+    unabbreviateBookNamesInString(string),
+
+Book(abbreviation) = {
+    abbreviation: String,
+    name: String,
+    chapters: [Chapter]
+}
+
+Chapter(reference, parentBook) = {
+    reference: String, // "L 1"
+    chapterNumber: Number,
+    sections: [Section],
+    verseCount: Number,
+
+    book: Book,
+
+    relative(relativeIndex): Chapter,
+    compare(Chapter): Number // Returns -1 if this chapter is before the other, 0 if equal, 1 if after
+}
+
+Section(parentChapter, index) = {
+    index: Number,
+    title: String,
+    verses: [Verse],
+    verseCount: Number,
+
+    book: Book,
+    chapter: Chapter,
+
+    relative(relativeIndex): Section,
+    compare(Section): Number // Returns -1 if this section is before the other, 0 if equal, 1 if after
+}
+
+Range(rangeReference) = [Verse]
+
+Verse(reference, parentSection) = {
+    reference: String, // "L 1:1"
+    verseNumber: Number,
+    text: String,
+    plainText: String, // User-presentable text without section breaks
+    filteredText: String, // Searchable text with footnotes and punctuation removed
+
+    memory: {
+        status: Boolean,
+        multiple: Boolean,
+        reference: String,
+        start: Verse,
+        end: Verse
+    },
+    footnotes: [{
+        letter: String,
+        text: String
+    }],
+    pronounClarifications: [{
+        // TODO
+    }],
+
+    book: Book,
+    chapter: Chapter,
+    section: Section,
+
+    relative(relativeIndex): Verse,
+    compare(Verse): Number, // Returns -1 if this verse is before the other, 0 if equal, 1 if after
+
+}

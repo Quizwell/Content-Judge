@@ -1,0 +1,158 @@
+:root {
+	color-scheme: light dark;
+
+	/* Light mode variable definitions */
+	--default-app-accent-color: #000000;
+	--app-accent-color: var(--default-app-accent-color);
+	--accent-color-text-color: #ffffff;
+	--default-app-accent-color-dark: #ffffff;
+	--app-accent-color-dark: var(--default-app-accent-color-dark);
+	--accent-color-text-color-dark: #000000;
+
+	--page-background-color: #ffffff;
+	--secondary-page-background-color: #fafafa;
+	--content-background-color: #eeeeee;
+	--secondary-content-background-color: #f0f0f0;
+
+	--primary-text-color: #000000;
+	--secondary-text-color: #555555;
+	--ternary-text-color: #757575;
+	--inverted-text-color: #ffffff;
+
+	--primary-button-color: var(--app-accent-color);
+	--secondary-button-color: #dddddd;
+
+	--dark-shadow-color: #aaaaaa;
+	--light-shadow-color: #dddddd;
+
+	--overlay-color: #000000;
+
+	--gradient-url: url("images/gradient-light.png");
+
+	--blue-gradient: linear-gradient(90deg, #74bbbd, #5185a6);
+	--purple-gradient: linear-gradient(90deg, #7e74cf, #7e73ce);
+	--orange-gradient: linear-gradient(90deg, #d88041, #cf503d);
+
+	--blue-color: #1b81a6;
+	--purple-color: #8869d1;
+	--orange-color: #f26835;
+
+	--blue-color-dark: #74bbbd;
+	--purple-color-dark: #7e74cf;
+	--orange-color-dark: #d88041;
+
+	--memory-element-color: #62c45e;
+	--memory-elemeent-gradient: linear-gradient(45deg, #35c7bd, #549bb6);
+
+	--unique-word-highlight-color: var(--orange-color);
+	--double-word-highlight-color: var(--blue-color);
+	--triple-word-highlight-color: var(--purple-color);
+
+	--unique-word-highlight-color-dark: var(--orange-color-dark);
+	--double-word-highlight-color-dark: var(--blue-color-dark);
+	--triple-word-highlight-color-dark: var(--purple-color-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* Dark mode variable definitions */
+		--app-accent-color: var(--app-accent-color-dark) !important;
+		--accent-color-text-color: var(--accent-color-text-color-dark) !important;
+
+		--page-background-color: #000000;
+		--secondary-page-background-color: #0f0f0f;
+		--content-background-color: #222222;
+		--secondary-content-background-color: #333333;
+
+		--primary-text-color: #ffffff;
+		--secondary-text-color: #c0c0c0;
+		--ternary-text-color: #a0a0a0;
+		--inverted-text-color: #000000;
+
+		--primary-button-color: var(--app-accent-color);
+		--secondary-button-color: #444444;
+
+		--dark-shadow-color: #222222;
+		--light-shadow-color: #222222;
+
+		--overlay-color: #000000;
+
+		--gradient-url: url("images/gradient-dark.png");
+
+		--memory-element-color: #509f4c;
+
+		--unique-word-highlight-color: var(--unique-word-highlight-color-dark) !important;
+		--double-word-highlight-color: var(--double-word-highlight-color-dark) !important;
+		--triple-word-highlight-color: var(--triple-word-highlight-color-dark) !important;
+	}
+}
+
+/* Remove the 350ms touch delay on iOS */
+html {
+	touch-action: manipulation;
+}
+
+html,
+body {
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	font-family: "Inter";
+	font-optical-sizing: auto;
+	font-style: normal;
+
+	background: var(--page-background-color);
+	color: var(--primary-text-color);
+
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+}
+
+.no-transition * {
+	transition: none !important;
+}
+
+.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+	margin: 0;
+}
+
+button {
+	background: var(--primary-button-color);
+	border: none;
+	border-radius: 10px;
+	padding: 15px 15px;
+	min-width: 175px;
+	color: var(--accent-color-text-color);
+	cursor: pointer;
+	font-family: inherit;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+button svg {
+	margin-right: 8px;
+	font-size: 20px;
+}
+
+*[disabled] {
+	opacity: 0.5;
+	cursor: default !important;
+}

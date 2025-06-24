@@ -1,466 +1,432 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<title>Content Judge</title>
+<head>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <meta charset="UTF-8">
+    <title>Content Judge</title>
 
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <link rel="stylesheet" href="quizwellDefaultStyles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="media-queries.css">
 
-		<script defer src="/fontawesome/solid.min.js"></script>
-		<script defer src="/fontawesome/brands.min.js"></script>
-		<script defer src="/fontawesome/fontawesome.min.js"></script>
+    <meta name="description" content="Quickly look up any Nazarene Bible quizzing verse.">
+    <meta name="keywords" content="Content Judge, Quizwell, quizzing, teen quizzing, Nazarene, Bible quizzing">
 
-		<link rel="stylesheet" href="quizwell.css" />
-		<link rel="stylesheet" href="components.css" />
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="media-queries.css" />
+    <meta name="apple-mobile-web-app-title" content="Content Judge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://quizwell.github.io/Content-Judge/apple-touch-icon.png">
 
-		<meta name="description" content="Quickly look up any Nazarene Bible quizzing verse." />
-		<meta name="keywords" content="Content Judge, Quizwell, quizzing, teen quizzing, Nazarene, Bible quizzing" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://quizwell.github.io/Content-Judge/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://quizwell.github.io/Content-Judge/favicon-16x16.png">
+    <link rel="manifest" href="https://quizwell.github.io/Content-Judge/site.webmanifest">
+    <link rel="mask-icon" href="https://quizwell.github.io/Content-Judge/safari-pinned-tab.svg" color="#5da6a5">
+    <meta name="msapplication-TileColor" content="#00aba9">
 
-		<meta name="apple-mobile-web-app-title" content="Content Judge" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<link rel="apple-touch-icon" sizes="180x180" href="https://quizwell.github.io/Content-Judge/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media=(prefers-color-sceme: light)>
+    <meta name="theme-color" content="#000000" media=(prefers-color-sceme: dark)>
 
-		<link rel="icon" type="image/png" sizes="32x32" href="https://quizwell.github.io/Content-Judge/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="https://quizwell.github.io/Content-Judge/favicon-16x16.png" />
-		<!-- <link rel="manifest" href="https://quizwell.github.io/Content-Judge/site.webmanifest" /> -->
-		<link rel="mask-icon" href="https://quizwell.github.io/Content-Judge/safari-pinned-tab.svg" color="#5da6a5" />
-		<meta name="msapplication-TileColor" content="#00aba9" />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNNMB3WP55"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GNNMB3WP55');
+    </script>
 
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-sceme:" light) />
-		<meta name="theme-color" content="#000000" media="(prefers-color-sceme:" dark) />
-	</head>
+</head>
+<body ontouchstart="">
+    <div class="mainScreen">
+        <div class="bannerNotification hidden">
+            <h1 class="title"></h1>
+            <p class="subtitle"></p>
+        </div>
+        <div class="welcomeScreen screen">
+            <div class="headerBlock">
+                <div class="background">
+                    <div class="gradient layer1"></div>
+                    <div class="gradient layer2"></div>
+                </div>
+                <div class="content">
+                    <img alt="Content Judge Logo" src="images/logos/Logo.png" width="auto" height="100px" onclick="UIManager.welcomeScreen.easterEgg()">
+                </div>
+            </div>
+            <div class="textBlock">
+                <h1>Content Judge</h1>
+                <div class="quizwell">
+                    <p>by</p>
+                    <picture>
+                        <source srcset="images/logos/Quizwell-White.svg" media="(prefers-color-scheme: dark)">
+                        <img alt="Quizwell Logo" src="images/logos/Quizwell.svg" width="auto" height="40px">
+                    </picture>
+                </div>
+                <p class="easterEgg">#It'sARegionNotAField</p>
+            </div>
+            <div class="buttonContainer">
+                <button class="start" onclick="UIManager.buttonHandlers.hideWelcomeScreen()">Get Started</button>
+                <button class="flyswatter" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
+                    <picture>
+                        <source srcset="images/icons/Flyswatter-White.svg" media="(prefers-color-scheme: dark)">
+                        <img alt="" src="images/icons/Flyswatter.svg" width="auto" height="35px">
+                    </picture>
+                    <p class="label">Report a Problem</p>
+                </button>
+                <button class="settings" onclick="UIManager.buttonHandlers.showSettingsScreen()">
+                    <picture>
+                        <source srcset="images/icons/Settings-White.svg" media="(prefers-color-scheme: dark)">
+                        <img alt="" src="images/icons/Settings.svg" width="auto" height="35px">
+                    </picture>
+                    <p class="label">Settings</p>
+                </button>
+            </div>
+        </div>
+        <div class="flyswatterScreen screen floating hidden">
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeFlyswatterScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title">Flyswatter</h1>
+            </div>
+            <div class="optionsContainer">
+                <h2 class="title">What type of problem are you experiencing?</h2>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.unexpectedBehavior')">Unexpected Behavior</div>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.contentError')">Content Error</div>
+                <div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.featureSuggestion')">Feature Suggestion</div>
+            </div>
+        </div>
+        <div class="settingsScreen screen floating hidden">
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title">Settings</h1>
+            </div>
+            <div class="content">
+                <div class="section about" onclick="UIManager.showChangelog()">
+                    <p class="title">About</p>
+                    <p class="version"></p>
+                    <p class="build"></p>
+                </div>
+                <div class="section search">
+                    <p class="title">Search by Content</p>
+                    <div class="toggle">
+                        <div class="checkbox checked" data-setting-name="useInstantSearch">
+                            <div class="check"></div>
+                        </div>
+                        <p class="label">Instant Results</p>
+                    </div>
+                    <p class="label">Instant Results updates search results immediately as you type. Enabling Instant Results may result in impacted performance on slower devices.</p>
+                    <div class="toggle">
+                        <div class="checkbox" data-setting-name="useAdvancedSearch">
+                            <div class="check"></div>
+                        </div>
+                        <p class="label">Advanced Search</p>
+                    </div>
+                    <p class="label">Allows you to use " + " for AND search and " / " for OR search. Repeat characters in an operator to increase its precedence (" // " is interpreted before " / ".)</p>
+                    <div class="toggle">
+                        <div class="checkbox checked" data-setting-name="useSmartSearch">
+                            <div class="check"></div>
+                        </div>
+                        <p class="label">Smart Search</p>
+                    </div>
+                    <p class="label">Smart Search allows you to find verses by typing references into the search field.</p>
+                </div>
+                <div class="section appAccentColor">
+                    <p class="title">App Accent Color <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetAppAccentColor()">Reset to
+                        Default</span></p>
+                    <p class="subsectionTitle">Light Mode</p>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E73CE" class="picker" data-setting-name="appAccentColor">
+                    </div>
+                    
+                    <p class="subsectionTitle">Dark Mode</p>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E73CF" class="picker" data-setting-name="appAccentColorDark">
+                    </div>
+                </div>
+                <div class="section rareWordHighlighting">
+                    <p class="title">Rare Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
+                    <p class="subsectionTitle">Light Mode</p>
+                    <div class="colorSelector">
+                        <input type="color" value="#CF503D" class="picker" data-setting-name="uniqueWordHighlightColor">
+                        <p class="label">Unique Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#5185A6" class="picker" data-setting-name="doubleWordHighlightColor">
+                        <p class="label">Double Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E73CE" class="picker" data-setting-name="tripleWordHighlightColor">
+                        <p class="label">Triple Words</p>
+                    </div>
+                    <p class="subsectionTitle">Dark Mode</p>
+                    <div class="colorSelector">
+                        <input type="color" value="#D88041" class="picker" data-setting-name="uniqueWordHighlightColorDark">
+                        <p class="label">Unique Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#74BBBD" class="picker" data-setting-name="doubleWordHighlightColorDark">
+                        <p class="label">Double Words</p>
+                    </div>
+                    <div class="colorSelector">
+                        <input type="color" value="#7E74CF" class="picker" data-setting-name="tripleWordHighlightColorDark">
+                        <p class="label">Triple Words</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="changelogScreen screen floating hidden">
+            <div class="header">
+                <img alt="Content Judge" src="images/logos/Logo.png" class="logo" width="auto" height="75px">
+                <h1 class="version"></h1>
+            </div>
+            <div class="changes"></div>
+            <button class="close" onclick="UIManager.buttonHandlers.hideChangelogScreen()">Close</button>
+        </div>
+        <div class="addWebClipScreen screen floating hidden">
+            <div class="header">
+                <img alt="Content Judge app icon" src="images/logos/Logo.png">
+                <p>Content Judge</p>
+            </div>
+            <h1>Add Content Judge to your Home Screen</h1>
+            <p>You can add Content Judge as an app on your Home Screen. Tap
+                <picture>
+                    <source srcset="images/icons/ShareIcon-White.svg" media="(prefers-color-scheme: dark)">
+                    <img alt="Sharrow" src="images/icons/ShareIcon.svg" height="25px" width="auto">
+                </picture>, then tap <span>Add to Home Screen</span>.
+            </p>
+            <button class="bottom" onclick="UIManager.buttonHandlers.hideAddWebClipScreen()">Get Started</button>
+        </div>
+        <div class="searchModeSelectionScreen screen hidden">
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeSearchModeSelectionScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title">Find a Verse</h1>
+            </div>
+            <select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
+                <option value="M" disabled>Matthew</option>
+                <option value="RJ">Romans and James</option>
+                <option value="A" disabled>Acts</option>
+                <option value="GEPCP">GEPCP</option>
+                <option value="GEPCP_D">GEPCP (Decades)</option>
+                <option value="L">Luke</option>
+                <option value="C" disabled>1st and 2nd Corinthians</option>
+                <option value="J" disabled>John</option>
+                <option value="HP" disabled>Hebrews and 1st &#38; 2nd Peter</option>
+            </select>
+            <div class="cycleYearArrow">
+                <picture>
+                    <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img alt="" src="images/icons/BackArrow.svg" width="auto" height="15px">
+                </picture>
+            </div>
+            <div class="gridContainer">
+                <div class="searchBarContainer">
+                    <div class="headerWrapper">
+                        <p class="label">Search by Content</p>
+                        <p class="filterMode hidden" onmousedown="UIManager.searchBarHandlers.changeFilterMode(event)">All</p>
+                    </div>
+                    <div class="searchBarWrapper">
+                        <input type="text" class="searchBar" onfocus="UIManager.searchBarHandlers.onfocus()" onblur="UIManager.searchBarHandlers.onblur()" oninput="UIManager.searchBarHandlers.oninput()" onchange="UIManager.searchBarHandlers.onchange()" placeholder="Type part of a verse...">
+                        <div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">
+                            <picture>
+                                <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="Exit Search" src="images/icons/Close.svg" width="auto" height="15px">
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchByReferenceContainer">
+                    <div class="selectionContainer bookSelectionContainer">
+                        <p class="label">Search by Reference</p>
+                        <div class="selectionElementContainer"></div>
+                    </div>
+                    <div class="selectionContainer chapterSelectionContainer hidden">
+                        <div class="labelContainer multipleBooks" onclick="UIManager.buttonHandlers.closeChapterSelectionContainer()">
+                            <picture>
+                                <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                                <img src="images/icons/BackArrow.svg">
+                            </picture>
+                            <p class="label">Chapter</p>
+                        </div>
+                        <div class="labelContainer singleBook">
+                            <p class="label"></p>
+                        </div>
+                        <div class="selectionElementContainer"></div>
+                    </div>
+                    <div class="selectionContainer verseSelectionContainer hidden">
+                        <div class="labelContainer" onclick="UIManager.buttonHandlers.closeVerseSelectionContainer()">
+                            <picture>
+                                <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                                <img src="images/icons/BackArrow.svg">
+                            </picture>
+                            <p class="label">Verse</p>
+                        </div>
+                        <div class="viewFullChapterButton" onclick="UIManager.buttonHandlers.viewChapterButton()">View Full Chapter</div>
+                        <div class="selectionElementContainer"></div>
+                    </div>
+                </div>
+                <div class="searchResultsContainer"></div>
+            </div>
+        </div>
+        <div class="chapterDisplayScreen screen hidden">
+            <div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterDisplayScreen()">
+                <picture class="arrow left">
+                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                    <img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow">
+                </picture>
+                <h1 class="title"></h1>
+                <h2 class="subtitle"></h2>
+            </div>
+            <div class="content"></div>
+        </div>
+        <div class="verseDisplayScreen screen hidden">
+            <div class="sidebarContainer">
+                <div class="headerContainer">
+                    <div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
+                        <picture>
+                            <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                            <img alt="" src="images/icons/Close.svg" width="auto" height="40px">
+                        </picture>
+                        <p class="label">Close</p>
+                    </div>
+                    <div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
+                        <picture class="arrow left">
+                            <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                            <img alt="" src="images/icons/Arrow.svg" width="auto" height="40px">
+                        </picture>
+                        <p class="label">Back</p>
+                    </div>
+                    <div class="verseTitleContainer">
+                        <div class="verseButton previousVerseButton">
+                            <picture>
+                                <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="Show Previous Verse" src="images/icons/BackArrow.svg" width="auto" height="25px">
+                            </picture>
+                        </div>
+                        <div class="infoContainer">
+                            <h1 class="title"></h1>
+                            <h3 class="subtitle">
+                                <span class="tag">Mem.</span>
+                                <span class="text"></span>
+                            </h3>
+                        </div>
+                        <div class="verseButton nextVerseButton">
+                            <picture>
+                                <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                                <img alt="Show Next Verse" src="images/icons/BackArrow.svg" width="auto" height="25px">
+                            </picture>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="verseDisplay">
+                    <div class="textContainer"></div>
+                </div>
+                <div class="key">
+                    <p class="keyItem prejump">Prejump</p>
+                    <p class="keyItem rareWord unique">Unique</p>
+                    <p class="keyItem rareWord double">Double</p>
+                    <p class="keyItem rareWord triple">Triple</p>
+                </div>
+                <div class="toolbarContainer">
+                    <div class="toolbar left">
+                        <div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
+                            <img class="white" alt="" src="images/icons/MemoryStar-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/MemoryStar.svg" width="auto" height="40px">
+                            <p class="label">Prejump</p>
+                        </div>
+                        <div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
+                            <img class="white" alt="" src="images/icons/RareWords-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/RareWords.svg" width="auto" height="40px">
+                            <p class="label">Rare Words</p>
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="toolbar right">
+                        <div class="toolbarItem possibleQuestionsButton multiLine" onclick="UIManager.buttonHandlers.possibleQuestionsButton()" style="display: none">
+                            <img class="white" alt="" src="images/icons/QuestionMark-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/QuestionMark.svg" width="auto" height="40px">
+                            <p class="label">Possible Questions</p>
+                        </div>
+                        <div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
+                            <img class="white" alt="" src="images/icons/PronounClarification-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/PronounClarification.svg" width="auto" height="40px">
+                            <p class="label">Pronoun Clarification</p>
+                        </div>
+                        <div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
+                            <img class="white" alt="" src="images/icons/Footnotes-White.svg" width="auto" height="40px">
+                            <img class="black" alt="" src="images/icons/Footnotes.svg" width="auto" height="40px">
+                            <p class="label">Footnotes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slidePanel hidden">
+                    <div class="singleWordInformation slidePanelScreen hidden">
+                        <div class="titleContainer">
+                            <h1 class="title"></h1>
+                            <div class="pronounClarification">
+                                <picture class="arrow right">
+                                    <source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)">
+                                    <img alt="Antecedent is:" src="images/icons/Arrow.svg" width="auto" height="30px">
+                                </picture>
+                                <p class="antecedent"></p>
+                            </div>
+                        </div>
+                        <h2 class="subtitle"></h2>
+                        <div class="content"></div>
+                    </div>
+                    <div class="possibleQuestions slidePanelScreen hidden">
+                        <h1 class="title">Possible Questions</h1>
+                        <h2 class="subtitle"></h2>
+                        <div class="content"></div>
+                    </div>
+                    <div class="pronounClarification slidePanelScreen hidden">
+                        <h1 class="title">Pronoun Clarification</h1>
+                        <div class="content"></div>
+                    </div>
+                    <div class="footnotes slidePanelScreen hidden">
+                        <h1 class="title">Footnotes</h1>
+                        <div class="content"></div>
+                    </div>
+                    <div class="closeButton" onclick="UIManager.buttonHandlers.closeSlidePanel()">
+                        <picture class="arrow left">
+                            <source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)">
+                            <img alt="Close panel" src="images/icons/BackArrow.svg" width="auto" height="30px">
+                        </picture>
+                        <picture>
+                            <source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)">
+                            <img alt="Close panel" src="images/icons/Close.svg" width="auto" height="22px">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
 
-	<body ontouchstart="">
-		<div class="mainScreen">
-			<div class="testScreen screen hidden"></div>
-			<div class="homeScreen screen">
-				<div class="header">
-					<img alt="Content Judge Logo" src="images/logos/logo.png" width="auto" height="100px" />
-					<h1>Content Judge</h1>
-				</div>
-				<div class="spacer"></div>
-				<div class="list">
-					<div class="listWrapper">
-						<h3 class="sectionTitle">Search by Content</h3>
-						<div class="searchBarWrapper">
-							<i class="fa-solid fa-magnifying-glass"></i>
-							<input
-								type="text"
-								class="searchBar"
-								onfocus="UIManager.searchBarHandlers.onfocus()"
-								onblur="UIManager.searchBarHandlers.onblur()"
-								oninput="UIManager.searchBarHandlers.oninput()"
-								onchange="UIManager.searchBarHandlers.onchange()"
-							/>
-							<div class="closeButton">
-								<i class="fa-solid fa-circle-xmark"></i>
-							</div>
-						</div>
-						<h3 class="sectionTitle">Search by Reference</h3>
-						<div class="searchByReference"></div>
-						<h3 class="sectionTitle">More</h3>
-						<div class="navigationLink" onclick="UIManager.buttonHandlers.hidehomeScreen()">
-							<i class="fa-solid fa-magnifying-glass-arrow-right"></i>
-							<div class="leading"><p class="title">Old Search Screen</p></div>
-							<i class="fa-solid fa-chevron-right"></i>
-						</div>
-						<div class="navigationLink" disabled>
-							<i class="fa-solid fa-book"></i>
-							<div class="leading"><p class="title">Concordance</p></div>
-							<i class="fa-solid fa-chevron-right"></i>
-						</div>
-						<div class="navigationLink" disabled>
-							<i class="fa-solid fa-list"></i>
-							<div class="leading"><p class="title">Lists</p></div>
-							<i class="fa-solid fa-chevron-right"></i>
-						</div>
-						<div class="navigationLink" disabled>
-							<i class="fa-solid fa-star"></i>
-							<div class="leading"><p class="title">Memory</p></div>
-							<i class="fa-solid fa-chevron-right"></i>
-						</div>
-						<h3 class="sectionTitle">Settings</h3>
-						<div class="navigationLink" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
-							<i class="fa-solid fa-bug"></i>
-							<div class="leading"><p class="title">Report a Problem</p></div>
-							<i class="fa-solid fa-chevron-right"></i>
-						</div>
-						<div class="navigationLink" onclick="UIManager.buttonHandlers.showSettingsScreen()">
-							<i class="fa-solid fa-gear"></i>
-							<div class="leading"><p class="title">Settings</p></div>
-							<i class="fa-solid fa-chevron-right"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="flyswatterScreen screen floating hidden">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeFlyswatterScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
-					<h1 class="title">Flyswatter</h1>
-				</div>
-				<div class="optionsContainer">
-					<h2 class="title">What type of problem are you experiencing?</h2>
-					<div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.unexpectedBehavior')">Unexpected Behavior</div>
-					<div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.contentError')">Content Error</div>
-					<div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.featureSuggestion')">Feature Suggestion</div>
-				</div>
-			</div>
-			<div class="settingsScreen screen floating hidden">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
-					<h1 class="title">Settings</h1>
-				</div>
-				<div class="content">
-					<div class="section about" onclick="UIManager.showChangelog()">
-						<p class="title">About</p>
-						<p class="version"></p>
-						<p class="build"></p>
-					</div>
-					<div class="section search">
-						<p class="title">Search by Content</p>
-						<div class="toggle">
-							<div class="checkbox checked" data-setting-name="useInstantSearch">
-								<div class="check"></div>
-							</div>
-							<p class="label">Instant Results</p>
-						</div>
-						<p class="label">Instant Results updates search results immediately as you type. Enabling Instant Results may result in impacted performance on slower devices.</p>
-						<div class="toggle">
-							<div class="checkbox" data-setting-name="useAdvancedSearch">
-								<div class="check"></div>
-							</div>
-							<p class="label">Advanced Search</p>
-						</div>
-						<p class="label">
-							Allows you to use " + " for AND search and " / " for OR search. Repeat characters in an operator to increase its precedence (" // " is interpreted before " / ".)
-						</p>
-						<div class="toggle">
-							<div class="checkbox checked" data-setting-name="useSmartSearch">
-								<div class="check"></div>
-							</div>
-							<p class="label">Smart Search</p>
-						</div>
-						<p class="label">Smart Search allows you to find verses by typing references into the search field.</p>
-					</div>
-					<div class="section appAccentColor">
-						<p class="title">App Accent Color <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetAppAccentColor()">Reset to Default</span></p>
-						<p class="subsectionTitle">Light Mode</p>
-						<div class="colorSelector">
-							<input type="color" value="#000000" class="picker" data-setting-name="appAccentColor" />
-						</div>
+    <script src="storageManager.js"></script>
+    <script src="concordanceGenerator.js"></script>
 
-						<p class="subsectionTitle">Dark Mode</p>
-						<div class="colorSelector">
-							<input type="color" value="#ffffff" class="picker" data-setting-name="appAccentColorDark" />
-						</div>
-					</div>
-					<div class="section rareWordHighlighting">
-						<p class="title">Rare Word Highlighting <span class="reset" onclick="UIManager.settingsScreen.resetButtonHandlers.resetRareWordHighlightColors()">Reset to Default</span></p>
-						<p class="subsectionTitle">Light Mode</p>
-						<div class="colorSelector">
-							<input type="color" value="#f26835" class="picker" data-setting-name="uniqueWordHighlightColor" />
-							<p class="label">Unique Words</p>
-						</div>
-						<div class="colorSelector">
-							<input type="color" value="#1b81a6" class="picker" data-setting-name="doubleWordHighlightColor" />
-							<p class="label">Double Words</p>
-						</div>
-						<div class="colorSelector">
-							<input type="color" value="#8869d1" class="picker" data-setting-name="tripleWordHighlightColor" />
-							<p class="label">Triple Words</p>
-						</div>
-						<p class="subsectionTitle">Dark Mode</p>
-						<div class="colorSelector">
-							<input type="color" value="#D88041" class="picker" data-setting-name="uniqueWordHighlightColorDark" />
-							<p class="label">Unique Words</p>
-						</div>
-						<div class="colorSelector">
-							<input type="color" value="#74BBBD" class="picker" data-setting-name="doubleWordHighlightColorDark" />
-							<p class="label">Double Words</p>
-						</div>
-						<div class="colorSelector">
-							<input type="color" value="#7E74CF" class="picker" data-setting-name="tripleWordHighlightColorDark" />
-							<p class="label">Triple Words</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="changelogScreen screen floating hidden">
-				<div class="header">
-					<img alt="Content Judge" src="images/logos/Logo.png" class="logo" width="auto" height="75px" />
-					<h1 class="version"></h1>
-				</div>
-				<div class="changes"></div>
-				<button class="close" onclick="UIManager.buttonHandlers.hideChangelogScreen()">Close</button>
-			</div>
-			<div class="addWebClipScreen screen floating hidden">
-				<div class="header">
-					<img alt="Content Judge app icon" src="images/logos/Logo.png" />
-					<p>Content Judge</p>
-				</div>
-				<h1>Add Content Judge to your Home Screen</h1>
-				<p>
-					You can add Content Judge as an app on your Home Screen. Tap
-					<picture>
-						<source srcset="images/icons/ShareIcon-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Sharrow" src="images/icons/ShareIcon.svg" height="25px" width="auto" /> </picture
-					>, then tap <span>Add to Home Screen</span>.
-				</p>
-				<button class="bottom" onclick="UIManager.buttonHandlers.hideAddWebClipScreen()">Get Started</button>
-			</div>
-			<div class="searchModeSelectionScreen screen hidden">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeSearchModeSelectionScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
-					<h1 class="title">Find a Verse</h1>
-				</div>
-				<select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
-					<option value="M" disabled>Matthew</option>
-					<option value="RJ" disabled>Romans and James</option>
-					<option value="A" disabled>Acts</option>
-					<option value="GEPCP" disabled>GEPCP</option>
-					<option value="L">Luke</option>
-					<option value="C" disabled>1st and 2nd Corinthians</option>
-					<option value="J" disabled>John</option>
-					<option value="HP" disabled>Hebrews and 1st &#38; 2nd Peter</option>
-				</select>
-				<div class="cycleYearArrow">
-					<picture>
-						<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="" src="images/icons/BackArrow.svg" width="auto" height="15px" />
-					</picture>
-				</div>
-				<div class="gridContainer">
-					<div class="searchBarContainer">
-						<div class="headerWrapper">
-							<p class="label">Search by Content</p>
-							<p class="filterMode hidden" onmousedown="UIManager.searchBarHandlers.changeFilterMode(event)">All</p>
-						</div>
-						<div class="searchBarWrapper">
-							<input
-								type="text"
-								class="searchBar"
-								onfocus="UIManager.searchBarHandlers.onfocus()"
-								onblur="UIManager.searchBarHandlers.onblur()"
-								oninput="UIManager.searchBarHandlers.oninput()"
-								onchange="UIManager.searchBarHandlers.onchange()"
-								placeholder="Type part of a verse..."
-							/>
-							<div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">
-								<picture>
-									<source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)" />
-									<img alt="Exit Search" src="images/icons/Close.svg" width="auto" height="15px" />
-								</picture>
-							</div>
-						</div>
-					</div>
-					<div class="searchByReferenceContainer">
-						<div class="selectionContainer bookSelectionContainer">
-							<p class="label">Search by Reference</p>
-							<div class="selectionElementContainer"></div>
-						</div>
-						<div class="selectionContainer chapterSelectionContainer hidden">
-							<div class="labelContainer multipleBooks">
-								<picture>
-									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-									<img src="images/icons/BackArrow.svg" />
-								</picture>
-								<p class="label">Chapter</p>
-							</div>
-							<div class="labelContainer singleBook">
-								<p class="label"></p>
-							</div>
-							<div class="selectionElementContainer"></div>
-						</div>
-						<div class="selectionContainer verseSelectionContainer hidden">
-							<div class="labelContainer">
-								<picture>
-									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-									<img src="images/icons/BackArrow.svg" />
-								</picture>
-								<p class="label">Verse</p>
-							</div>
-							<div class="viewFullChapterButton">View Full Chapter</div>
-							<div class="selectionElementContainer"></div>
-						</div>
-					</div>
-					<div class="searchResultsContainer"></div>
-				</div>
-			</div>
-			<div class="chapterDisplayScreen screen hidden">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterDisplayScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
-					<h1 class="title"></h1>
-					<h2 class="subtitle"></h2>
-				</div>
-				<div class="content"></div>
-			</div>
-			<div class="verseDisplayScreen screen hidden">
-				<div class="sidebarContainer">
-					<div class="header">
-						<div class="leading">
-							<div class="title" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
-								<i class="fa-solid fa-chevron-left"></i>
-								<h1 class="reference"></h1>
-							</div>
-							<p class="memory">
-								<i class="fa-solid fa-star"></i>
-								<span class="reference">Memory</span>
-							</p>
-						</div>
-						<div class="trailing">
-							<div class="previous"><i class="fa-solid fa-circle-arrow-left"></i></div>
-							<div class="next"><i class="fa-solid fa-circle-arrow-right"></i></div>
-						</div>
-					</div>
-					<div class="headerContainer" style="display: none">
-						<div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
-							<i class="fa-solid fa-circle-xmark"></i>
-							<p class="label">Close</p>
-						</div>
-						<div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
-							<i class="fa-solid fa-arrow-left"></i>
-							<p class="label">Back</p>
-						</div>
-						<div class="verseTitleContainer">
-							<div class="verseButton previousVerseButton">
-								<i class="fa-solid fa-chevron-left"></i>
-							</div>
-							<div class="infoContainer">
-								<h1 class="title"></h1>
-								<h3 class="subtitle">
-									<span class="tag">Mem.</span>
-									<span class="text"></span>
-								</h3>
-							</div>
-							<div class="verseButton nextVerseButton">
-								<i class="fa-solid fa-chevron-right"></i>
-							</div>
-						</div>
-					</div>
-					<div class="verseDisplay">
-						<div class="textContainer"></div>
-					</div>
-					<div class="key">
-						<p class="keyItem prejump">Prejump</p>
-						<p class="keyItem rareWord unique">Unique</p>
-						<p class="keyItem rareWord double">Double</p>
-						<p class="keyItem rareWord triple">Triple</p>
-					</div>
-					<div class="toolbarContainer">
-						<div class="toolbar left">
-							<div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
-								<i class="fa-solid fa-star"></i>
-								<p class="label">Prejump</p>
-							</div>
-							<div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
-								<i class="fa-solid fa-highlighter"></i>
-								<!-- <i class="fa-solid fa-diagram-project"></i> -->
-								<p class="label">Rare Words</p>
-							</div>
-							<div class="divider"></div>
-						</div>
-						<div class="toolbar right">
-							<div class="toolbarItem possibleQuestionsButton multiLine" onclick="UIManager.buttonHandlers.possibleQuestionsButton()" style="display: none">
-								<img class="white" alt="" src="images/icons/QuestionMark-White.svg" width="auto" height="40px" />
-								<img class="black" alt="" src="images/icons/QuestionMark.svg" width="auto" height="40px" />
-								<p class="label">Possible Questions</p>
-							</div>
-							<div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
-								<i class="fa-solid fa-people-arrows"></i>
-								<!-- <i class="fa-solid fa-person-circle-question"></i> -->
-								<p class="label">Pronoun Clarification</p>
-							</div>
-							<div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
-								<i class="fa-solid fa-square-poll-horizontal"></i>
-								<p class="label">Footnotes</p>
-							</div>
-						</div>
-					</div>
-					<div class="slidePanel hidden">
-						<div class="singleWordInformation slidePanelScreen hidden">
-							<div class="titleContainer">
-								<h1 class="title"></h1>
-								<div class="pronounClarification">
-									<picture class="arrow right">
-										<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-										<img alt="Antecedent is:" src="images/icons/Arrow.svg" width="auto" height="30px" />
-									</picture>
-									<p class="antecedent"></p>
-								</div>
-							</div>
-							<h2 class="subtitle"></h2>
-							<div class="content"></div>
-						</div>
-						<div class="possibleQuestions slidePanelScreen hidden">
-							<h1 class="title">Possible Questions</h1>
-							<h2 class="subtitle"></h2>
-							<div class="content"></div>
-						</div>
-						<div class="pronounClarification slidePanelScreen hidden">
-							<h1 class="title">Pronoun Clarification</h1>
-							<div class="content"></div>
-						</div>
-						<div class="footnotes slidePanelScreen hidden">
-							<h1 class="title">Footnotes</h1>
-							<div class="content"></div>
-						</div>
-						<div class="closeButton" onclick="UIManager.buttonHandlers.closeSlidePanel()">
-							<picture class="arrow left">
-								<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-								<img alt="Close panel" src="images/icons/BackArrow.svg" width="auto" height="30px" />
-							</picture>
-							<picture>
-								<source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)" />
-								<img alt="Close panel" src="images/icons/Close.svg" width="auto" height="22px" />
-							</picture>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <script src="database/Matthew.js"></script>
+    <script src="database/RomansJames.js"></script>
+    <script src="database/Acts.js"></script>
+    <script src="database/GEPCP.js"></script>
+    <script src="database/GEPCP_Decades.js"></script>
+    <script src="database/Luke.js"></script>
+    <script src="scriptureEngine.js"></script>
 
-		<script src="storageManager.js"></script>
+    <script src="UIManager.js"></script>
 
-		<script src="concordanceGenerator.js"></script>
-		<script src="database/RomansJames.js"></script>
-		<script src="database/GEPCP.js"></script>
-		<script src="database/Luke.js"></script>
-		<script src="scriptureEngine.js"></script>
+    <script src="flyswatter.js"></script>
 
-		<script src="components/Icon.js"></script>
-		<script src="components/List.js"></script>
-		<script src="components/ListOptions.js"></script>
-		<script src="components/ListItem.js"></script>
-		<script src="components/BannerNotification.js"></script>
-		<script src="components/Overlay.js"></script>
-		<script src="components/ReferenceSelector.js"></script>
-		<script src="components/VerseDisplay.js"></script>
-		<script src="components/ChapterDisplay.js"></script>
+    <script src="onload.js"></script>
 
-		<script src="UIManager.js"></script>
-
-		<script src="flyswatter.js"></script>
-
-		<script src="onload.js"></script>
-	</body>
+</body>
 </html>
