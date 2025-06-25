@@ -324,17 +324,167 @@
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: var(--page-background-color);
-	opacity: 0.8;
+	backdrop-filter: blur(10px);
+	background: var(--overlay-background-color);
 	transition: opacity 0.2s ease;
+
+	&.dismissable {
+		cursor: pointer;
+	}
+	&.hidden {
+		opacity: 0;
+	}
 }
 
-.overlay.dismissable {
+/* SearchOverlay */
+.searchOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	max-height: 100vh;
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+
+	&.hidden {
+		transform: translateX(100px);
+	}
+}
+
+.searchOverlay .header {
+	flex-shrink: 0;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+}
+
+.searchOverlay .closeButton {
+	height: 100%;
+	width: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 	cursor: pointer;
+
+	svg {
+		font-size: 30px;
+		color: var(--primary-text-color);
+	}
 }
 
-.overlay.hidden {
-	opacity: 0;
+.searchOverlay.loading .searchBarWrapper {
+	animation: searchBarLoading 2s infinite;
+}
+
+@keyframes searchBarLoading {
+	0% {
+		background-position: center top;
+	}
+	50% {
+		background-position: center bottom;
+	}
+	100% {
+		background-position: center top;
+	}
+}
+
+.searchOverlay .searchBarWrapper {
+	background-image: var(--gradient-url);
+	background-repeat: no-repeat;
+	background-attachment: absolute;
+	background-position: center;
+	background-size: 100% auto;
+	color: white;
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 30px;
+	border-radius: 28px;
+	font-size: 18px;
+	padding: 8px 15px;
+	overflow: hidden;
+	transition: all 0.1s ease;
+
+	svg {
+		width: 20px;
+		font-size: 20px;
+	}
+
+	input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: none;
+		background: transparent;
+		font: inherit;
+		color: inherit;
+		padding: 0 46px;
+
+		&::placeholder {
+			color: white;
+			opacity: 0.5;
+		}
+
+		&:placeholder-shown ~ .clearButton {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.clearButton {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 46px;
+		height: 46px;
+		border-radius: 0 10px 10px 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.1s ease;
+
+		&:active {
+			opacity: 0.5;
+		}
+	}
+}
+
+.searchOverlay .list {
+	transition: opacity 0.2s ease, transform 0.2s ease;
+
+	&.hidden {
+		transform: translateY(100px);
+	}
+
+	div.listWrapper > .item {
+		background: var(--overlay-foreground-color);
+		backdrop-filter: blur(5px);
+		box-shadow: var(--page-background-color) 0 0 5px inset;
+		opacity: 0;
+		animation: listItemIn 0.2s ease forwards;
+	}
+}
+
+/* Animate in each list item from the bottom */
+@keyframes listItemIn {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 /* ReferenceSelector */

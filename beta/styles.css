@@ -14,6 +14,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	gap: 10px;
 }
 
 .homeScreen .header img {
@@ -34,7 +35,7 @@
 	height: 20px;
 }
 
-.homeScreen .searchBarWrapper {
+.homeScreen .searchButton {
 	background-image: var(--gradient-url);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -48,47 +49,14 @@
 	border-radius: 10px;
 	font-size: 18px;
 	padding: 8px 15px;
-	transition: all 0.1s ease;
-}
-
-.homeScreen .searchBarWrapper svg {
-	width: 20px;
-	font-size: 20px;
-}
-
-.homeScreen .searchBarWrapper .closeButton {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 46px;
-	height: 46px;
-	border-radius: 0 10px 10px 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	cursor: pointer;
 	transition: all 0.1s ease;
 }
 
-.homeScreen .searchBarWrapper .closeButton:active {
-	opacity: 0.5;
-}
-
-.homeScreen .searchBarWrapper input {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	border: none;
-	background: transparent;
-	font: inherit;
-	color: inherit;
-	padding: 0 46px;
-}
-
-.homeScreen .searchBarWrapper input:focus {
-	outline: none;
+.homeScreen .searchButton svg {
+	width: 20px;
+	font-size: 20px;
+	margin-right: 10px;
 }
 
 .changelogScreen {

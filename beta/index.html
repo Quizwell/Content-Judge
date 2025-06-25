@@ -47,25 +47,13 @@
 					<h1>Content Judge</h1>
 				</div>
 				<div class="spacer"></div>
+				<div class="searchButton" onclick="new SearchOverlay()">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<p>Search</p>
+				</div>
+				<div class="searchByReference"></div>
 				<div class="list">
 					<div class="listWrapper">
-						<h3 class="sectionTitle">Search by Content</h3>
-						<div class="searchBarWrapper">
-							<i class="fa-solid fa-magnifying-glass"></i>
-							<input
-								type="text"
-								class="searchBar"
-								onfocus="UIManager.searchBarHandlers.onfocus()"
-								onblur="UIManager.searchBarHandlers.onblur()"
-								oninput="UIManager.searchBarHandlers.oninput()"
-								onchange="UIManager.searchBarHandlers.onchange()"
-							/>
-							<div class="closeButton">
-								<i class="fa-solid fa-circle-xmark"></i>
-							</div>
-						</div>
-						<h3 class="sectionTitle">Search by Reference</h3>
-						<div class="searchByReference"></div>
 						<h3 class="sectionTitle">More</h3>
 						<div class="navigationLink" onclick="UIManager.buttonHandlers.hidehomeScreen()">
 							<i class="fa-solid fa-magnifying-glass-arrow-right"></i>
@@ -453,6 +441,7 @@
 		<script src="components/ListItem.js"></script>
 		<script src="components/BannerNotification.js"></script>
 		<script src="components/Overlay.js"></script>
+		<script src="components/SearchOverlay.js"></script>
 		<script src="components/ReferenceSelector.js"></script>
 		<script src="components/VerseDisplay.js"></script>
 		<script src="components/ChapterDisplay.js"></script>

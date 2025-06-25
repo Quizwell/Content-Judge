@@ -4,26 +4,30 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "New Features",
 		items: [
 			{
+				icon: "magnifying-glass",
+				text: "Search by content from the new home screen.",
+			},
+			{
 				icon: "highlighter",
 				text: "Tap and drag across multiple words in a verse to see all other uses of that phrase in the material.",
 			},
 		],
 	},
-	// {
-	// 	title: "Bug Fixes",
-	// 	items: [
-	// 		{
-	// 			icon: "mobile-screen",
-	// 			text: "Fixed verse and word selection on mobile.",
-	// 		},
-	// 	],
-	// },
+	{
+		title: "Bug Fixes",
+		items: [
+			{
+				icon: "align-justify",
+				text: "Tweaked opacity in dark mode for vetter verse visibility when scrolling.",
+			},
+		],
+	},
 	{
 		title: "Known Issues",
 		items: [
 			{
 				icon: "bug",
-				text: "Search by Content is not yet functional on the new home screen. Use the Old Search Screen instead.",
+				text: "Search by Content is missing filter options.",
 			},
 			{
 				icon: "spider",

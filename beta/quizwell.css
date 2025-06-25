@@ -25,7 +25,8 @@
 	--dark-shadow-color: #aaaaaa;
 	--light-shadow-color: #dddddd;
 
-	--overlay-color: #000000;
+	--overlay-background-color: rgba(255, 255, 255, 0.2);
+	--overlay-foreground-color: rgba(238, 238, 238, 0.6);
 
 	--gradient-url: url("images/gradient-light.png");
 
@@ -75,7 +76,8 @@
 		--dark-shadow-color: #222222;
 		--light-shadow-color: #222222;
 
-		--overlay-color: #000000;
+		--overlay-background-color: rgba(0, 0, 0, 0.3);
+		--overlay-foreground-color: rgba(34, 34, 34, 0.5);
 
 		--gradient-url: url("images/gradient-dark.png");
 
@@ -100,6 +102,7 @@ body {
 	left: 0;
 	height: 100%;
 	width: 100%;
+	margin: 0;
 }
 
 body {
