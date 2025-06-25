@@ -626,7 +626,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	font-size: 18px;
-	font-weight: 300;
+	font-weight: 400;
 	margin: 10px 0;
 	transform: translate3d(0, 0, 0);
 	/* transition: font-size 0.2s ease, font-weight 0.2s ease, line-height 0.2s ease; */
@@ -872,7 +872,7 @@
 
 .chapterDisplay.allowVerseSelection .verses:has(> .selectable) .verseDisplay:not(.selectable),
 .chapterDisplay.allowVerseSelection .verses:has(> .selectable) .sectionTitle {
-	opacity: 0.2;
+	opacity: 0.25;
 }
 
 .chapterDisplay .footer {
