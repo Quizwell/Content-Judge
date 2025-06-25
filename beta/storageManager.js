@@ -1,22 +1,23 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 2";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 3";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "Bug Fixes",
+		title: "New Features",
 		items: [
 			{
-				icon: "mobile-screen",
-				text: "Fixed verse and word selection on mobile.",
-			},
-			{
-				icon: "book-bible",
-				text: "Fixed broken concordance entries and crashes when selecting certain chapters.",
-			},
-			{
-				icon: "circle-play",
-				text: "Fixed stuttering animations when selecting a reference or moving between verses.",
+				icon: "highlighter",
+				text: "Tap and drag across multiple words in a verse to see all other uses of that phrase in the material.",
 			},
 		],
 	},
+	// {
+	// 	title: "Bug Fixes",
+	// 	items: [
+	// 		{
+	// 			icon: "mobile-screen",
+	// 			text: "Fixed verse and word selection on mobile.",
+	// 		},
+	// 	],
+	// },
 	{
 		title: "Known Issues",
 		items: [
@@ -26,7 +27,7 @@ const CONTENT_JUDGE_CHANGELOG = [
 			},
 			{
 				icon: "spider",
-				text: "Multiword selection is not yet available in the verse viewer, and concordance entries cannot be filtered and may take up too much UI space.",
+				text: "Concordance entries in the verse viewer cannot be filtered and may take up too much UI space displaying each verse.",
 			},
 			{
 				icon: "bugs",

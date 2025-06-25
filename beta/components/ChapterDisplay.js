@@ -209,6 +209,33 @@ class ChapterDisplay {
 		this.panel.classList.remove("hidden");
 	}
 
+	showMultiwordPanel(value) {
+		const multiwordUses = scriptureEngine.getVersesByContent(value);
+
+		this.panelTitle.textContent = value;
+		this.panelTitle.style.color = "";
+
+		const concordanceListItems = [];
+		multiwordUses.forEach((use) => {
+			concordanceListItems.push({
+				leading: { title: use.reference, subtitle: new Verse(use.reference).text },
+				trailing: { icon: "chevron-right" },
+				callback: () => {
+					this.hidePanel();
+					this.reference = use.reference;
+				},
+			});
+		});
+		var usesList = new List({
+			items: concordanceListItems,
+			itemConstructor: (item) => new ListItem(item),
+		});
+		this.panelContent.replaceChildren(usesList.listElement);
+
+		this.redrawPanelSize();
+		this.panel.classList.remove("hidden");
+	}
+
 	showFootnotesPanel(footnoteLetter) {
 		this.panelTitle.textContent = "Footnotes";
 		this.panelTitle.style.color = "";
@@ -334,7 +361,7 @@ class ChapterDisplay {
 										this.showConcordancePanel(value);
 										break;
 									case "multiword":
-										this.showPanel("Multiword Selection Coming Soon");
+										this.showMultiwordPanel(value);
 										break;
 									case null:
 										this.hidePanel();
