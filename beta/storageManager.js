@@ -1,4 +1,4 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 3";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 4";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
 		title: "New Features",
@@ -17,8 +17,8 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "Bug Fixes",
 		items: [
 			{
-				icon: "align-justify",
-				text: "Tweaked opacity in dark mode for vetter verse visibility when scrolling.",
+				icon: "image",
+				text: "Fixed broken changelog image and removed unused icons.",
 			},
 		],
 	},
