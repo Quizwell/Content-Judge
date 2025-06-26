@@ -21,6 +21,10 @@ const CONTENT_JUDGE_CHANGELOG = [
 				text: "Fixed banner notification styling on narrow displays.",
 			},
 			{
+				icon: "star",
+				text: "Fixed memory status sometimes appearing incorrectly when selecting a single verse.",
+			},
+			{
 				icon: "image",
 				text: "Fixed broken changelog image and removed unused icons.",
 			},

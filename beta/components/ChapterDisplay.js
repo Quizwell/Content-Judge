@@ -395,11 +395,12 @@ class ChapterDisplay {
 		if (this.activeVerseDisplay?.verse.memory.status) {
 			if (this.activeVerseDisplay.verse.memory.multiple) {
 				this.memoryReference.textContent = this.activeVerseDisplay.verse.memory.reference;
+			} else {
+				this.memoryReference.textContent = "Memory";
 			}
 			this.memoryWrapper.classList.remove("hidden");
 		} else {
 			this.memoryWrapper.classList.add("hidden");
-			this.memoryReference.textContent = "Memory";
 		}
 	}
 
