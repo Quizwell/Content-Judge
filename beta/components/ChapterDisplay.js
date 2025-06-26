@@ -311,12 +311,13 @@ class ChapterDisplay {
 	}
 
 	present() {
-		if (this.reference.indexOf(":") !== -1) {
-			this.selectVerse(this.reference);
-		}
-		this.element.style.display = "";
+		this.element.style.display = "block";
 		requestAnimationFrame(() => {
 			this.element.classList.remove("hidden");
+			if (this.reference.indexOf(":") !== -1) {
+				this.selectVerse(this.reference);
+				this.recenterActiveVerse();
+			}
 		});
 		return this;
 	}

@@ -12,7 +12,7 @@
 	opacity: 100%;
 	overflow: auto;
 	padding: 20px;
-	transition: all 0.2s ease-out;
+	transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
 .screen::before {
