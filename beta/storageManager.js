@@ -1,32 +1,24 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 4";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 5";
 const CONTENT_JUDGE_CHANGELOG = [
-	{
-		title: "Technical Improvements",
-		items: [
-			{
-				icon: "bolt-lightning",
-				text: "Vastly improved rendering optimization for lists and unloaded screens, especially on mobile devices.",
-			},
-			{
-				icon: "code",
-				text: "Restructured style rules and removed several thousand lines of legacy code for load time and memory improvements.",
-			},
-		],
-	},
+	// {
+	// 	title: "Technical Improvements",
+	// 	items: [
+	// 		{
+	// 			icon: "bolt-lightning",
+	// 			text: "Vastly improved rendering optimization for lists and unloaded screens, especially on mobile devices.",
+	// 		},
+	// 		{
+	// 			icon: "code",
+	// 			text: "Restructured style rules and removed several thousand lines of legacy code for load time and memory improvements.",
+	// 		},
+	// 	],
+	// },
 	{
 		title: "Bug Fixes",
 		items: [
 			{
-				icon: "bell",
-				text: "Fixed banner notification styling on narrow displays.",
-			},
-			{
-				icon: "star",
-				text: "Fixed memory status sometimes appearing incorrectly when selecting a single verse.",
-			},
-			{
-				icon: "image",
-				text: "Fixed broken changelog image and removed unused icons.",
+				icon: "mobile-screen",
+				text: "Fixed top edge safe area for iOS web app.",
 			},
 		],
 	},

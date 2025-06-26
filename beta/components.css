@@ -71,7 +71,7 @@
 .bannerNotification {
 	position: fixed;
 	left: 50%;
-	top: 15px;
+	top: max(15px, env(safe-area-inset-top) + 5px);
 	transform: translate(-50%, 0);
 	width: calc(100% - 40px);
 	max-width: 250px;
@@ -307,7 +307,7 @@
 	left: 0;
 	right: 0;
 	max-height: 100vh;
-	padding: 20px;
+	padding: max(env(safe-area-inset-top), 20px) 20px 20px 20px;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
