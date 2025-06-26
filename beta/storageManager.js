@@ -16,10 +16,10 @@ const CONTENT_JUDGE_CHANGELOG = [
 	{
 		title: "Bug Fixes",
 		items: [
-			// {
-			// 	icon: "magnifying-glass",
-			// 	text: "Fixed crashes and unresponsive UI when searching on mobile.",
-			// },
+			{
+				icon: "bell",
+				text: "Fixed banner notification styling on narrow displays.",
+			},
 			{
 				icon: "image",
 				text: "Fixed broken changelog image and removed unused icons.",
