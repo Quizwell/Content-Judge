@@ -11,6 +11,7 @@ class ChapterDisplay {
 		}
 		this.element.classList.add("screen");
 		this.element.classList.add("hidden");
+		this.element.style.display = "none";
 		document.body.appendChild(this.element);
 
 		this.versesContainer = document.createElement("div");
@@ -54,6 +55,7 @@ class ChapterDisplay {
 			referenceSelectorButton.appendChild(new Icon("grip"));
 			referenceSelectorButton.addEventListener("click", () => {
 				const referenceSelector = new ReferenceSelector({
+					disposable: true,
 					reference: this.reference,
 					callback: function (reference) {
 						this.reference = reference;
@@ -312,6 +314,7 @@ class ChapterDisplay {
 		if (this.reference.indexOf(":") !== -1) {
 			this.selectVerse(this.reference);
 		}
+		this.element.style.display = "";
 		requestAnimationFrame(() => {
 			this.element.classList.remove("hidden");
 		});
@@ -320,6 +323,12 @@ class ChapterDisplay {
 
 	dismiss() {
 		this.element.classList.add("hidden");
+		setTimeout(() => {
+			if (this.element.parentNode) {
+				this.element.parentNode.removeChild(this.element);
+			}
+			this.element = null;
+		}, 200);
 	}
 
 	get reference() {

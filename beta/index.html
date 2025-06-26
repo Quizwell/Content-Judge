@@ -55,11 +55,6 @@
 				<div class="list">
 					<div class="listWrapper">
 						<h3 class="sectionTitle">More</h3>
-						<div class="navigationLink" onclick="UIManager.buttonHandlers.hidehomeScreen()">
-							<i class="fa-solid fa-magnifying-glass-arrow-right"></i>
-							<div class="leading"><p class="title">Old Search Screen</p></div>
-							<i class="fa-solid fa-chevron-right"></i>
-						</div>
 						<div class="navigationLink" disabled>
 							<i class="fa-solid fa-book"></i>
 							<div class="leading"><p class="title">Concordance</p></div>
@@ -76,7 +71,7 @@
 							<i class="fa-solid fa-chevron-right"></i>
 						</div>
 						<h3 class="sectionTitle">Settings</h3>
-						<div class="navigationLink" onclick="UIManager.buttonHandlers.showFlyswatterScreen()">
+						<div class="navigationLink" onclick="flyswatter.sendBugReport()">
 							<i class="fa-solid fa-bug"></i>
 							<div class="leading"><p class="title">Report a Problem</p></div>
 							<i class="fa-solid fa-chevron-right"></i>
@@ -89,22 +84,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="flyswatterScreen screen floating hidden">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeFlyswatterScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
-					<h1 class="title">Flyswatter</h1>
-				</div>
-				<div class="optionsContainer">
-					<h2 class="title">What type of problem are you experiencing?</h2>
-					<div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.unexpectedBehavior')">Unexpected Behavior</div>
-					<div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.contentError')">Content Error</div>
-					<div class="option" onclick="UIManager.flyswatterScreen.selectedOption('flyswatter.contentJudge.featureSuggestion')">Feature Suggestion</div>
-				</div>
-			</div>
-			<div class="settingsScreen screen floating hidden">
+			<div class="settingsScreen screen floating hidden" style="display: none">
 				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
 					<picture class="arrow left">
 						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
@@ -187,238 +167,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="changelogScreen screen floating hidden">
+			<div class="changelogScreen screen floating hidden" style="display: none">
 				<div class="header">
 					<img alt="Content Judge" src="images/apps/content-judge.png" class="logo" width="auto" height="75px" />
 					<h1 class="version"></h1>
 				</div>
 				<div class="changes"></div>
 				<button class="close" onclick="UIManager.buttonHandlers.hideChangelogScreen()">Close</button>
-			</div>
-			<div class="addWebClipScreen screen floating hidden">
-				<div class="header">
-					<img alt="Content Judge app icon" src="images/logos/Logo.png" />
-					<p>Content Judge</p>
-				</div>
-				<h1>Add Content Judge to your Home Screen</h1>
-				<p>
-					You can add Content Judge as an app on your Home Screen. Tap
-					<picture>
-						<source srcset="images/icons/ShareIcon-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Sharrow" src="images/icons/ShareIcon.svg" height="25px" width="auto" /> </picture
-					>, then tap <span>Add to Home Screen</span>.
-				</p>
-				<button class="bottom" onclick="UIManager.buttonHandlers.hideAddWebClipScreen()">Get Started</button>
-			</div>
-			<div class="searchModeSelectionScreen screen hidden">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeSearchModeSelectionScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
-					<h1 class="title">Find a Verse</h1>
-				</div>
-				<select name="cycleYear" id="quizCycleYearSelector" onchange="UIManager.bookSelectorHandler()">
-					<option value="M" disabled>Matthew</option>
-					<option value="RJ" disabled>Romans and James</option>
-					<option value="A" disabled>Acts</option>
-					<option value="GEPCP" disabled>GEPCP</option>
-					<option value="L">Luke</option>
-					<option value="C" disabled>1st and 2nd Corinthians</option>
-					<option value="J" disabled>John</option>
-					<option value="HP" disabled>Hebrews and 1st &#38; 2nd Peter</option>
-				</select>
-				<div class="cycleYearArrow">
-					<picture>
-						<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="" src="images/icons/BackArrow.svg" width="auto" height="15px" />
-					</picture>
-				</div>
-				<div class="gridContainer">
-					<div class="searchBarContainer">
-						<div class="headerWrapper">
-							<p class="label">Search by Content</p>
-							<p class="filterMode hidden" onmousedown="UIManager.searchBarHandlers.changeFilterMode(event)">All</p>
-						</div>
-						<div class="searchBarWrapper">
-							<input
-								type="text"
-								class="searchBar"
-								onfocus="UIManager.searchBarHandlers.onfocus()"
-								onblur="UIManager.searchBarHandlers.onblur()"
-								oninput="UIManager.searchBarHandlers.oninput()"
-								onchange="UIManager.searchBarHandlers.onchange()"
-								placeholder="Type part of a verse..."
-							/>
-							<div class="clearButton hidden" onclick="UIManager.searchBarHandlers.clearSearchBar()">
-								<picture>
-									<source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)" />
-									<img alt="Exit Search" src="images/icons/Close.svg" width="auto" height="15px" />
-								</picture>
-							</div>
-						</div>
-					</div>
-					<div class="searchByReferenceContainer">
-						<div class="selectionContainer bookSelectionContainer">
-							<p class="label">Search by Reference</p>
-							<div class="selectionElementContainer"></div>
-						</div>
-						<div class="selectionContainer chapterSelectionContainer hidden">
-							<div class="labelContainer multipleBooks">
-								<picture>
-									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-									<img src="images/icons/BackArrow.svg" />
-								</picture>
-								<p class="label">Chapter</p>
-							</div>
-							<div class="labelContainer singleBook">
-								<p class="label"></p>
-							</div>
-							<div class="selectionElementContainer"></div>
-						</div>
-						<div class="selectionContainer verseSelectionContainer hidden">
-							<div class="labelContainer">
-								<picture>
-									<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-									<img src="images/icons/BackArrow.svg" />
-								</picture>
-								<p class="label">Verse</p>
-							</div>
-							<div class="viewFullChapterButton">View Full Chapter</div>
-							<div class="selectionElementContainer"></div>
-						</div>
-					</div>
-					<div class="searchResultsContainer"></div>
-				</div>
-			</div>
-			<div class="chapterDisplayScreen screen hidden">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeChapterDisplayScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
-					<h1 class="title"></h1>
-					<h2 class="subtitle"></h2>
-				</div>
-				<div class="content"></div>
-			</div>
-			<div class="verseDisplayScreen screen hidden">
-				<div class="sidebarContainer">
-					<div class="header">
-						<div class="leading">
-							<div class="title" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
-								<i class="fa-solid fa-chevron-left"></i>
-								<h1 class="reference"></h1>
-							</div>
-							<p class="memory">
-								<i class="fa-solid fa-star"></i>
-								<span class="reference">Memory</span>
-							</p>
-						</div>
-						<div class="trailing">
-							<div class="previous"><i class="fa-solid fa-circle-arrow-left"></i></div>
-							<div class="next"><i class="fa-solid fa-circle-arrow-right"></i></div>
-						</div>
-					</div>
-					<div class="headerContainer" style="display: none">
-						<div class="button closeButton" onclick="UIManager.buttonHandlers.verseDisplayScreenCloseButton()">
-							<i class="fa-solid fa-circle-xmark"></i>
-							<p class="label">Close</p>
-						</div>
-						<div class="button backButton" disabled onclick="UIManager.buttonHandlers.verseDisplayScreenBackButton()">
-							<i class="fa-solid fa-arrow-left"></i>
-							<p class="label">Back</p>
-						</div>
-						<div class="verseTitleContainer">
-							<div class="verseButton previousVerseButton">
-								<i class="fa-solid fa-chevron-left"></i>
-							</div>
-							<div class="infoContainer">
-								<h1 class="title"></h1>
-								<h3 class="subtitle">
-									<span class="tag">Mem.</span>
-									<span class="text"></span>
-								</h3>
-							</div>
-							<div class="verseButton nextVerseButton">
-								<i class="fa-solid fa-chevron-right"></i>
-							</div>
-						</div>
-					</div>
-					<div class="verseDisplay">
-						<div class="textContainer"></div>
-					</div>
-					<div class="key">
-						<p class="keyItem prejump">Prejump</p>
-						<p class="keyItem rareWord unique">Unique</p>
-						<p class="keyItem rareWord double">Double</p>
-						<p class="keyItem rareWord triple">Triple</p>
-					</div>
-					<div class="toolbarContainer">
-						<div class="toolbar left">
-							<div class="toolbarItem highlightPrejumpButton" onclick="UIManager.buttonHandlers.highlightPrejumpButton()">
-								<i class="fa-solid fa-star"></i>
-								<p class="label">Prejump</p>
-							</div>
-							<div class="toolbarItem highlightRareWordsButton" onclick="UIManager.buttonHandlers.highlightRareWordsButton()">
-								<i class="fa-solid fa-highlighter"></i>
-								<!-- <i class="fa-solid fa-diagram-project"></i> -->
-								<p class="label">Rare Words</p>
-							</div>
-							<div class="divider"></div>
-						</div>
-						<div class="toolbar right">
-							<div class="toolbarItem pronounClarificationButton multiLine" onclick="UIManager.buttonHandlers.pronounClarificationButton()">
-								<i class="fa-solid fa-people-arrows"></i>
-								<!-- <i class="fa-solid fa-person-circle-question"></i> -->
-								<p class="label">Pronoun Clarification</p>
-							</div>
-							<div class="toolbarItem footnotesButton" onclick="UIManager.buttonHandlers.footnotesButton()">
-								<i class="fa-solid fa-square-poll-horizontal"></i>
-								<p class="label">Footnotes</p>
-							</div>
-						</div>
-					</div>
-					<div class="slidePanel hidden">
-						<div class="singleWordInformation slidePanelScreen hidden">
-							<div class="titleContainer">
-								<h1 class="title"></h1>
-								<div class="pronounClarification">
-									<picture class="arrow right">
-										<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-										<img alt="Antecedent is:" src="images/icons/Arrow.svg" width="auto" height="30px" />
-									</picture>
-									<p class="antecedent"></p>
-								</div>
-							</div>
-							<h2 class="subtitle"></h2>
-							<div class="content"></div>
-						</div>
-						<div class="possibleQuestions slidePanelScreen hidden">
-							<h1 class="title">Possible Questions</h1>
-							<h2 class="subtitle"></h2>
-							<div class="content"></div>
-						</div>
-						<div class="pronounClarification slidePanelScreen hidden">
-							<h1 class="title">Pronoun Clarification</h1>
-							<div class="content"></div>
-						</div>
-						<div class="footnotes slidePanelScreen hidden">
-							<h1 class="title">Footnotes</h1>
-							<div class="content"></div>
-						</div>
-						<div class="closeButton" onclick="UIManager.buttonHandlers.closeSlidePanel()">
-							<picture class="arrow left">
-								<source srcset="images/icons/BackArrow-White.svg" media="(prefers-color-scheme: dark)" />
-								<img alt="Close panel" src="images/icons/BackArrow.svg" width="auto" height="30px" />
-							</picture>
-							<picture>
-								<source srcset="images/icons/Close-White.svg" media="(prefers-color-scheme: dark)" />
-								<img alt="Close panel" src="images/icons/Close.svg" width="auto" height="22px" />
-							</picture>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 

@@ -1,6 +1,7 @@
 class ReferenceSelector {
-	constructor({ anchored = false, reference, callback } = {}) {
+	constructor({ anchored = false, disposable = false, reference, callback } = {}) {
 		this.anchored = anchored;
+		this.disposable = disposable;
 		this.callback = callback;
 
 		this.currentSearchObject = {
@@ -23,6 +24,7 @@ class ReferenceSelector {
 		this.containerElement.classList.add("referenceSelector");
 		this.containerElement.classList.add("floating");
 		this.containerElement.classList.add("hidden");
+		this.containerElement.style.display = "none";
 
 		var headerContainer = document.createElement("div");
 		headerContainer.classList.add("header");
@@ -104,6 +106,7 @@ class ReferenceSelector {
 		document.addEventListener("keydown", this.keyboardListener.bind(this));
 
 		this.overlay.show();
+		this.containerElement.style.display = "";
 		requestAnimationFrame(() => {
 			this.containerElement.classList.remove("hidden");
 		});
@@ -114,6 +117,14 @@ class ReferenceSelector {
 		this.versesContainer.classList.add("hidden");
 		this.containerElement.classList.add("hidden");
 		this.overlay.hide();
+		setTimeout(() => {
+			this.containerElement.style.display = "none";
+			if (!this.anchored && this.disposable) {
+				this.containerElement.remove();
+				this.containerElement = null;
+				this.overlay.destroy();
+			}
+		}, 200);
 	}
 
 	showBookSelection() {

@@ -15,7 +15,7 @@
 	transition: all 0.2s ease-out;
 }
 
-.screen:not(.floating)::before {
+.screen::before {
 	content: "";
 	display: block;
 	position: absolute;
@@ -44,45 +44,7 @@
 .screen.hidden {
 	transform: translate(100px, 0);
 	opacity: 0;
-	display: block;
 	overflow: hidden;
-}
-
-@media only screen and (min-width: 700px) {
-	.screen.floating {
-		top: 50%;
-		left: 50%;
-		width: 75%;
-		height: 75%;
-		max-width: 1000px;
-		max-height: 1000px;
-		border-radius: 20px;
-		z-index: 1;
-		transform: translate(-50%, -50%);
-		transition: all 0.5s ease;
-	}
-
-	.screen.floating.hidden {
-		transform: translate(-50%, 100vh);
-		opacity: 0.5;
-	}
-
-	.overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		opacity: 0;
-		background: var(--overlay-color);
-		transition: all 0.3s ease;
-	}
-
-	.screen.floating:not(.hidden) ~ .overlay,
-	.screen.sheet:not(.hidden) ~ .overlay {
-		pointer-events: auto;
-		opacity: 0.2;
-	}
 }
 
 .screen > .titleContainer {
@@ -468,7 +430,6 @@
 
 	div.listWrapper > .item {
 		background: var(--overlay-foreground-color);
-		backdrop-filter: blur(5px);
 		box-shadow: var(--page-background-color) 0 0 5px inset;
 		opacity: 0;
 		animation: listItemIn 0.2s ease forwards;
@@ -628,7 +589,6 @@
 	font-size: 18px;
 	font-weight: 400;
 	margin: 10px 0;
-	transform: translate3d(0, 0, 0);
 	/* transition: font-size 0.2s ease, font-weight 0.2s ease, line-height 0.2s ease; */
 }
 
@@ -636,6 +596,7 @@
 	font-size: 20px;
 	font-weight: 600;
 	line-height: 1.5;
+	transform: translate3d(0, 0, 0);
 }
 
 .verseDisplay .word:not(:last-child)::after {

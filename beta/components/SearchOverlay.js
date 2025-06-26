@@ -167,6 +167,7 @@ class SearchOverlay {
 		this.overlay.hide();
 		this.element.classList.add("hidden");
 		setTimeout(() => {
+			this.overlay.destroy();
 			this.element.remove();
 		}, 200);
 	}

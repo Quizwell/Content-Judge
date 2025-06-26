@@ -1,21 +1,25 @@
 const CONTENT_JUDGE_VERSION = "2.0 Beta 4";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
-		title: "New Features",
+		title: "Technical Improvements",
 		items: [
 			{
-				icon: "magnifying-glass",
-				text: "Search by content from the new home screen.",
+				icon: "bolt-lightning",
+				text: "Vastly improved rendering optimization for lists and unloaded screens, especially on mobile devices.",
 			},
 			{
-				icon: "highlighter",
-				text: "Tap and drag across multiple words in a verse to see all other uses of that phrase in the material.",
+				icon: "code",
+				text: "Restructured style rules and removed several thousand lines of legacy code for load time and memory improvements.",
 			},
 		],
 	},
 	{
 		title: "Bug Fixes",
 		items: [
+			// {
+			// 	icon: "magnifying-glass",
+			// 	text: "Fixed crashes and unresponsive UI when searching on mobile.",
+			// },
 			{
 				icon: "image",
 				text: "Fixed broken changelog image and removed unused icons.",
