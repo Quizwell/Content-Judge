@@ -11,7 +11,7 @@
 	border: none;
 	opacity: 100%;
 	overflow: auto;
-	padding: 20px;
+	padding: calc(env(safe-area-inset-top) + 20px) 20px 20px 20px;
 	transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
@@ -740,10 +740,10 @@
 
 .chapterDisplay .header {
 	position: fixed;
-	top: 0;
+	top: max(env(safe-area-inset-top), 20px);
 	left: 0;
 	width: 100%;
-	padding: 20px 20px 0 20px;
+	padding: 0 20px 0 20px;
 	box-sizing: border-box;
 	display: flex;
 	justify-content: space-between;
@@ -803,23 +803,33 @@
 
 .chapterDisplay .verses {
 	height: 100%;
-	padding: 90px 20px 20px 20px;
+	padding: calc(max(env(safe-area-inset-top), 20px) + 70px) 20px 20px 20px;
 	box-sizing: border-box;
 	overflow-y: auto;
-	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 60px), transparent calc(100% - 40px), transparent 100%);
-	mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 60px), transparent calc(100% - 40px), transparent 100%);
+	/* mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 20px), transparent 100%); */
+	mask-image: linear-gradient(
+		to bottom,
+		transparent 0%,
+		transparent calc(55px + max(env(safe-area-inset-top), 20px)),
+		black calc(80px + max(env(safe-area-inset-top), 20px)),
+		black calc(100% - 60px),
+		transparent calc(100% - 40px),
+		transparent 100%
+	);
 	padding-bottom: 50vh;
 }
 
 .chapterDisplay .verses:not(:has(~ .panel.hidden)) {
-	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 100px), transparent calc(100% - 80px), transparent 100%);
-	mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 100px), transparent calc(100% - 80px), transparent 100%);
+	mask-image: linear-gradient(
+		to bottom,
+		transparent 0%,
+		transparent calc(55px + max(env(safe-area-inset-top), 20px)),
+		black calc(80px + max(env(safe-area-inset-top), 20px)),
+		black calc(100% - 120px),
+		transparent calc(100% - 100px),
+		transparent 100%
+	);
 	padding-bottom: calc(100vh - 100px);
-}
-
-.chapterDisplay .verses:has(~ .footer.hidden) {
-	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 20px), transparent 100%);
-	mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 20px), transparent 100%);
 }
 
 .chapterDisplay.allowVerseSelection .verses .verseDisplay:not(.selectable) {

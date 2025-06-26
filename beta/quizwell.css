@@ -1,6 +1,8 @@
 :root {
 	color-scheme: light dark;
 
+	--safe-area-top: env(safe-area-inset-top);
+
 	/* Light mode variable definitions */
 	--default-app-accent-color: #000000;
 	--app-accent-color: var(--default-app-accent-color);

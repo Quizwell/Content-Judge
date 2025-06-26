@@ -222,9 +222,10 @@ class ReferenceSelector {
 		}
 
 		var floatingRect = this.chaptersContainer.getBoundingClientRect();
-		if (floatingRect.height > window.innerHeight - 90) {
+		const safeAreaTop = Number(window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top").slice(0, -2));
+		if (floatingRect.height > window.innerHeight - 90 - safeAreaTop) {
 			// If the floating element is taller than the viewport, limit its height
-			this.chaptersContainer.style.maxHeight = window.innerHeight - 90 + "px";
+			this.chaptersContainer.style.maxHeight = window.innerHeight - 90 - safeAreaTop + "px";
 			floatingRect = this.chaptersContainer.getBoundingClientRect();
 		}
 		if (floatingRect.bottom + 50 > window.innerHeight) {
@@ -275,9 +276,10 @@ class ReferenceSelector {
 		this.versesContainer.classList.remove("hidden");
 
 		var floatingRect = this.versesContainer.getBoundingClientRect();
-		if (floatingRect.height > window.innerHeight - 90) {
+		const safeAreaTop = Number(window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top").slice(0, -2));
+		if (floatingRect.height > window.innerHeight - 90 - safeAreaTop) {
 			// If the floating element is taller than the viewport, limit its height
-			this.versesContainer.style.maxHeight = window.innerHeight - 90 + "px";
+			this.versesContainer.style.maxHeight = window.innerHeight - 90 - safeAreaTop + "px";
 			floatingRect = this.versesContainer.getBoundingClientRect();
 		}
 		if (floatingRect.bottom + 50 > window.innerHeight) {
