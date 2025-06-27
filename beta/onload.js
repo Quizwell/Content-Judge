@@ -1,6 +1,6 @@
 //REGULAR ONLOAD CODE
 
-new ListsScreen().present();
+// new ListsScreen().present();
 
 // var LIST = new List({
 // 	items: [

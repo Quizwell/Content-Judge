@@ -51,6 +51,7 @@ class ListsScreen extends Screen {
 		this.contentElement.appendChild(linkList);
 
 		for (const link of listLinks) {
+			link.disabled = true;
 			listWrapper.appendChild(new NavigationLink(link));
 		}
 	}
