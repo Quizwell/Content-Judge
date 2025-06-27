@@ -6,7 +6,7 @@ const UIReferences = {
 	homeScreen: document.querySelector(".homeScreen"),
 
 	changelogScreen: document.querySelector(".changelogScreen"),
-	changelogScreenVersion: document.querySelector(".changelogScreen .header .version"),
+	changelogScreenVersion: document.querySelector(".changelogScreen .versionInfo .version"),
 	changelogScreenChangesContainer: document.querySelector(".changelogScreen .changes"),
 
 	settingsScreen: document.querySelector(".settingsScreen"),

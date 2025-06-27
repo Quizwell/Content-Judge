@@ -40,9 +40,8 @@
 
 	<body ontouchstart="">
 		<div class="mainScreen">
-			<div class="testScreen screen hidden"></div>
 			<div class="homeScreen screen">
-				<div class="header">
+				<div class="logoContainer">
 					<img alt="Content Judge Logo" src="images/logos/logo.png" width="auto" height="100px" />
 					<h1>Content Judge</h1>
 				</div>
@@ -85,11 +84,8 @@
 				</div>
 			</div>
 			<div class="settingsScreen screen floating hidden" style="display: none">
-				<div class="titleContainer" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
-					<picture class="arrow left">
-						<source srcset="images/icons/Arrow-White.svg" media="(prefers-color-scheme: dark)" />
-						<img alt="Back" src="images/icons/Arrow.svg" width="auto" height="30px" class="backArrow" />
-					</picture>
+				<div class="header" onclick="UIManager.buttonHandlers.closeSettingsScreen()">
+					<i class="fa-solid fa-chevron-left"></i>
 					<h1 class="title">Settings</h1>
 				</div>
 				<div class="content">
@@ -102,14 +98,14 @@
 						<p class="title">Search by Content</p>
 						<div class="toggle">
 							<div class="checkbox checked" data-setting-name="useInstantSearch">
-								<div class="check"></div>
+								<i class="fa-solid fa-check"></i>
 							</div>
 							<p class="label">Instant Results</p>
 						</div>
 						<p class="label">Instant Results updates search results immediately as you type. Enabling Instant Results may result in impacted performance on slower devices.</p>
 						<div class="toggle">
 							<div class="checkbox" data-setting-name="useAdvancedSearch">
-								<div class="check"></div>
+								<i class="fa-solid fa-check"></i>
 							</div>
 							<p class="label">Advanced Search</p>
 						</div>
@@ -118,7 +114,7 @@
 						</p>
 						<div class="toggle">
 							<div class="checkbox checked" data-setting-name="useSmartSearch">
-								<div class="check"></div>
+								<i class="fa-solid fa-check"></i>
 							</div>
 							<p class="label">Smart Search</p>
 						</div>
@@ -168,7 +164,7 @@
 				</div>
 			</div>
 			<div class="changelogScreen screen floating hidden" style="display: none">
-				<div class="header">
+				<div class="versionInfo">
 					<img alt="Content Judge" src="images/apps/content-judge.png" class="logo" width="auto" height="75px" />
 					<h1 class="version"></h1>
 				</div>
@@ -185,6 +181,7 @@
 		<script src="database/Luke.js"></script>
 		<script src="scriptureEngine.js"></script>
 
+		<script src="components/Screen.js"></script>
 		<script src="components/Icon.js"></script>
 		<script src="components/List.js"></script>
 		<script src="components/ListOptions.js"></script>

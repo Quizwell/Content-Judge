@@ -10,8 +10,12 @@ const CONTENT_JUDGE_CHANGELOG = [
 		],
 	},
 	{
-		title: "Bug Fixes",
+		title: "Bug Fixes and Improvements",
 		items: [
+			{
+				icon: "gear",
+				text: "Refreshed Settings UI implementing the new Screen component styling.",
+			},
 			{
 				icon: "mobile-screen",
 				text: "Fixed iOS web app safe areas for search and verse recentering.",

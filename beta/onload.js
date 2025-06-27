@@ -1,5 +1,8 @@
 //REGULAR ONLOAD CODE
 
+// const SCREENTEST = new Screen("Test Screen");
+// SCREENTEST.present();
+
 // var LIST = new List({
 // 	items: [
 // 		{
