@@ -25,7 +25,6 @@ class VerseDisplay {
 		this.dragData = {};
 
 		const prejumpLength = this.verse.memory.prejump?.split(" ").length;
-
 		const splitWords = this.verse.text.split(" ");
 		for (var w = 0; w < splitWords.length; w++) {
 			const word = splitWords[w];

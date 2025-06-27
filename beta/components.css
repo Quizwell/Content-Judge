@@ -802,8 +802,9 @@
 }
 
 .chapterDisplay .verses {
+	counter-reset: verseNumber;
 	height: 100%;
-	padding: calc(max(env(safe-area-inset-top), 20px) + 70px) 20px 20px 20px;
+	padding: calc(max(env(safe-area-inset-top), 20px) + 70px) 20px 20px 40px;
 	box-sizing: border-box;
 	overflow-y: auto;
 	/* mask-image: linear-gradient(to bottom, transparent 0%, transparent 75px, black 100px, black calc(100% - 20px), transparent 100%); */
@@ -841,6 +842,24 @@
 	font-size: 18px;
 	font-weight: 800;
 	transition: opacity 0.2s ease;
+}
+
+.chapterDisplay .verses .verseDisplay {
+	position: relative;
+}
+
+.chapterDisplay .verses .verseDisplay::before {
+	content: counter(verseNumber);
+	counter-increment: verseNumber;
+	position: absolute;
+	transform: translateX(calc(-100%));
+	width: 35px;
+	padding-right: 5px;
+	text-align: right;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	opacity: 0.5;
+	pointer-events: none;
 }
 
 .chapterDisplay.allowVerseSelection .verses:has(> .selectable) .verseDisplay:not(.selectable),

@@ -1,18 +1,14 @@
 const CONTENT_JUDGE_VERSION = "2.0 Beta 5";
 const CONTENT_JUDGE_CHANGELOG = [
-	// {
-	// 	title: "Technical Improvements",
-	// 	items: [
-	// 		{
-	// 			icon: "bolt-lightning",
-	// 			text: "Vastly improved rendering optimization for lists and unloaded screens, especially on mobile devices.",
-	// 		},
-	// 		{
-	// 			icon: "code",
-	// 			text: "Restructured style rules and removed several thousand lines of legacy code for load time and memory improvements.",
-	// 		},
-	// 	],
-	// },
+	{
+		title: "New Features",
+		items: [
+			{
+				icon: "list-ol",
+				text: "Added verse numbers to chapter display.",
+			},
+		],
+	},
 	{
 		title: "Bug Fixes",
 		items: [
