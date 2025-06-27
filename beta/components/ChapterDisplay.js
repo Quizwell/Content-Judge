@@ -166,14 +166,14 @@ class ChapterDisplay {
 		this.verseDisplays.forEach((verseDisplay) => {
 			verseDisplay.selectable = false;
 		});
-		this.hidePanel();
+		this.activeVerseDisplay = null;
 		if (clearSelection) {
 			this.reference = this.reference.split(":")[0];
 			this.titleElement.textContent = scriptureEngine.unabbreviateBookNamesInString(this.reference);
 			this.memoryWrapper.classList.add("hidden");
 			this.footer.classList.add("hidden");
-			this.hidePanel();
 		}
+		this.hidePanel();
 	}
 
 	showConcordancePanel(word) {
@@ -354,7 +354,12 @@ class ChapterDisplay {
 				var sectionTitleElement = document.createElement("h3");
 				sectionTitleElement.classList.add("sectionTitle");
 				sectionTitleElement.textContent = this.chapter.sections[s].title;
-				sectionTitleElement.addEventListener("click", this.deselectVerses.bind(this));
+				sectionTitleElement.addEventListener(
+					"click",
+					function () {
+						this.deselectVerses(true);
+					}.bind(this)
+				);
 				this.versesContainer.appendChild(sectionTitleElement);
 
 				for (var v = 0; v < this.chapter.sections[s].verses.length; v++) {

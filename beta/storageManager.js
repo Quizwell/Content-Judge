@@ -14,7 +14,11 @@ const CONTENT_JUDGE_CHANGELOG = [
 		items: [
 			{
 				icon: "mobile-screen",
-				text: "Fixed top edge safe area for iOS web app.",
+				text: "Fixed iOS web app safe areas for search and verse recentering.",
+			},
+			{
+				icon: "computer-mouse",
+				text: "Fixed unintentional recentering when deselecting a verse.",
 			},
 		],
 	},
