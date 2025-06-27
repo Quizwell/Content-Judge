@@ -23,6 +23,8 @@
 	border-radius: 16px;
 	box-shadow: 0 0 10px var(--dark-shadow-color);
 	margin-bottom: 10px;
+	user-select: none;
+	-webkit-user-drag: none;
 }
 
 .homeScreen .header h1 {
