@@ -10,11 +10,15 @@ const CONTENT_JUDGE_CHANGELOG = [
 	// 	],
 	// },
 	{
-		title: "Bug Fixes",
+		title: "Bug Fixes and Improvements",
 		items: [
 			{
 				icon: "square-check",
 				text: "Fixed checkbox colors in dark mode.",
+			},
+			{
+				icon: "scroll",
+				text: "Removed bottom edge scroll fading on screens for better readability.",
 			},
 		],
 	},
