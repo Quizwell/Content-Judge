@@ -276,11 +276,12 @@ class ChapterDisplay {
 	}
 
 	redrawPanelSize() {
+		const safeAreaTop = Number(window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top").slice(0, -2));
 		var verseRect = this.activeVerseDisplay.element.getBoundingClientRect();
 		const headerHeight = this.element.querySelector(".header").getBoundingClientRect().height;
 		const footerHeight = this.footer.getBoundingClientRect().height;
 
-		const maxPanelHeight = window.innerHeight - headerHeight - footerHeight - verseRect.height - 80;
+		const maxPanelHeight = window.innerHeight - headerHeight - safeAreaTop - footerHeight - verseRect.height - 80;
 		this.panel.style.maxHeight = maxPanelHeight + "px";
 
 		requestAnimationFrame(this.recenterActiveVerse.bind(this));
@@ -299,12 +300,13 @@ class ChapterDisplay {
 				behavior: "smooth",
 			});
 		} else {
+			const safeAreaTop = Number(window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top").slice(0, -2));
 			const headerHeight = this.element.querySelector(".header").getBoundingClientRect().height;
 			var panelRect = this.panel.getBoundingClientRect();
 			var activeVerseRect = this.activeVerseDisplay.element.getBoundingClientRect();
-			const availableVerseSpace = panelRect.top - headerHeight;
+			const availableVerseSpace = panelRect.top - headerHeight - safeAreaTop;
 			this.versesContainer.scrollTo({
-				top: this.versesContainer.scrollTop + activeVerseRect.top - headerHeight - (availableVerseSpace - activeVerseRect.height) / 2,
+				top: this.versesContainer.scrollTop + activeVerseRect.top - headerHeight - safeAreaTop - (availableVerseSpace - activeVerseRect.height) / 2,
 				behavior: "smooth",
 			});
 		}
