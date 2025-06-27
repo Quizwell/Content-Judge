@@ -168,6 +168,7 @@
 	border-radius: 8px;
 	margin-right: 10px;
 	background: var(--page-background-color);
+	color: var(--accent-color-text-color);
 	cursor: pointer;
 
 	display: flex;
@@ -182,7 +183,6 @@
 }
 
 .settingsScreen .toggle .checkbox svg {
-	color: white;
 	opacity: 0;
 	transition: opacity 0.1s ease;
 }

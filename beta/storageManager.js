@@ -1,28 +1,20 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 5";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 6";
 const CONTENT_JUDGE_CHANGELOG = [
+	// {
+	// 	title: "New Features",
+	// 	items: [
+	// 		{
+	// 			icon: "list-ol",
+	// 			text: "Added verse numbers to chapter display.",
+	// 		},
+	// 	],
+	// },
 	{
-		title: "New Features",
+		title: "Bug Fixes",
 		items: [
 			{
-				icon: "list-ol",
-				text: "Added verse numbers to chapter display.",
-			},
-		],
-	},
-	{
-		title: "Bug Fixes and Improvements",
-		items: [
-			{
-				icon: "paintbrush",
-				text: "Several interface layout and interaction refinements.",
-			},
-			{
-				icon: "mobile-screen",
-				text: "Fixed iOS web app safe areas for search and verse recentering.",
-			},
-			{
-				icon: "computer-mouse",
-				text: "Fixed unintentional recentering when deselecting a verse.",
+				icon: "square-check",
+				text: "Fixed checkbox colors in dark mode.",
 			},
 		],
 	},
