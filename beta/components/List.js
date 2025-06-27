@@ -1,6 +1,9 @@
-function List({ items, itemConstructor, filterOptions, sortOptions } = {}) {
+function List({ items, itemConstructor, filterOptions, sortOptions, scrollable = true } = {}) {
 	const listElement = document.createElement("div");
 	listElement.classList.add("list");
+	if (scrollable) {
+		listElement.classList.add("scrollable");
+	}
 
 	if (filterOptions) {
 		filterOptions.onchange = () => {

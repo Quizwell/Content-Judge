@@ -10,7 +10,7 @@ class SearchOverlay {
 		// Close Button
 		const closeButton = document.createElement("div");
 		closeButton.classList.add("closeButton");
-		closeButton.appendChild(new Icon("chevron-left"));
+		closeButton.appendChild(new Icon("circle-chevron-left"));
 		closeButton.onclick = () => {
 			this.dismiss();
 		};
@@ -52,6 +52,7 @@ class SearchOverlay {
 		// List
 		this.list = document.createElement("div");
 		this.list.classList.add("list");
+		this.list.classList.add("scrollable");
 		this.element.appendChild(this.list);
 
 		this.overlay = new Overlay();

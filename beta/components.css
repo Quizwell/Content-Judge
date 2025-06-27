@@ -140,11 +140,13 @@
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	overflow-y: auto;
-	scrollbar-width: none;
-	padding: 15px 0;
-	-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
-	mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+	&.scrollable {
+		overflow-y: auto;
+		scrollbar-width: none;
+		padding: 15px 0;
+		-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+		mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+	}
 }
 
 .list .sectionTitle {
@@ -264,20 +266,32 @@
 .navigationLink {
 	background: var(--link-color, var(--content-background-color));
 	color: var(--link-text-color, var(--primary-text-color));
-	height: 30px;
+	height: 35px;
 	font-size: 18px;
-	border-radius: 10px;
+	border-radius: 15px;
 	padding: 8px 15px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 12px;
 	cursor: pointer;
-	transition: all 0.1s ease;
+	transition: opacity 0.2s ease;
+
+	&.prominent {
+		background-image: var(--gradient-url);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 100% auto;
+		color: white;
+	}
+	&.memory {
+		background: var(--memory-element-gradient);
+		color: white;
+	}
 }
 
 .navigationLink:not([disabled]):active {
-	background: var(--page-background-color);
+	opacity: 0.5;
 }
 
 .navigationLink svg {
@@ -290,11 +304,12 @@
 }
 
 .navigationLink .leading .title {
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .navigationLink .leading .subtitle {
-	color: var(--ternary-text-color);
+	font-weight: 500;
+	opacity: 0.7;
 	font-size: 14px;
 }
 
@@ -331,7 +346,7 @@
 	transition: opacity 0.2s ease, transform 0.2s ease;
 
 	&.hidden {
-		transform: translateX(100px);
+		transform: translateY(-100px);
 	}
 }
 
@@ -344,14 +359,19 @@
 
 .searchOverlay .closeButton {
 	height: 100%;
-	width: 30px;
+	width: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	cursor: pointer;
+	transition: opacity 0.1s ease;
+
+	&:active {
+		opacity: 0.5;
+	}
 
 	svg {
-		font-size: 30px;
+		font-size: 25px;
 		color: var(--primary-text-color);
 	}
 }
@@ -503,6 +523,11 @@
 	justify-content: center;
 	cursor: pointer;
 	font-size: 25px;
+	transition: opacity 0.1s ease;
+
+	&:active {
+		opacity: 0.5;
+	}
 }
 
 .referenceSelector.floating .book,
@@ -528,10 +553,10 @@
 	background-position: center;
 	background-size: 100vw 100vh;
 	color: white;
-	border-radius: 10px;
+	border-radius: 15px;
 	padding: 8px 12px 10px 12px;
 	cursor: pointer;
-	transition: all 0.1s ease;
+	transition: opacity 0.2s ease;
 }
 
 .referenceSelector .book .item:first-child:last-child {
@@ -539,7 +564,7 @@
 }
 
 .referenceSelector .book .item:active {
-	opacity: 0.8;
+	opacity: 0.5;
 }
 
 .referenceSelector .book .item .abbreviation {
@@ -576,7 +601,7 @@
 	grid-template-rows: auto;
 	justify-content: center;
 	gap: 10px;
-	border-radius: 10px;
+	border-radius: 15px;
 	padding: 10px 12px 12px 12px;
 	transition: opacity 0.2s ease;
 	overflow-y: auto;

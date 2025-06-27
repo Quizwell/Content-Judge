@@ -36,11 +36,15 @@
 	display: flex;
 	align-items: center;
 	height: 30px;
-	border-radius: 10px;
+	border-radius: 15px;
 	font-size: 18px;
 	padding: 8px 15px;
 	cursor: pointer;
-	transition: all 0.1s ease;
+	transition: opacity 0.2s ease;
+
+	&:active {
+		opacity: 0.5;
+	}
 }
 
 .homeScreen .searchButton svg {

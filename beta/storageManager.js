@@ -13,8 +13,8 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "Bug Fixes and Improvements",
 		items: [
 			{
-				icon: "gear",
-				text: "Refreshed Settings UI implementing the new Screen component styling.",
+				icon: "paintbrush",
+				text: "Several interface layout and interaction refinements.",
 			},
 			{
 				icon: "mobile-screen",
