@@ -2357,19 +2357,19 @@ var Luke = {
 		},
 		{
 			noun: "I",
-			type: "Noun",
+			type: "Proper Noun",
 		},
 		{
 			noun: "I'll",
-			type: "Noun",
+			type: "Proper Noun",
 		},
 		{
 			noun: "I'm",
-			type: "Noun",
+			type: "Proper Noun",
 		},
 		{
 			noun: "I've",
-			type: "Noun",
+			type: "Proper Noun",
 		},
 		{
 			noun: "Isaac",

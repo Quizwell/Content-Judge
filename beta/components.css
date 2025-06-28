@@ -67,6 +67,9 @@
 	h1 {
 		font-size: 30px;
 		font-weight: 800;
+		text-wrap: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 }
 
@@ -193,6 +196,13 @@
 	gap: 5px;
 	overflow-x: auto;
 	margin-right: -20px;
+	padding-right: 20px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .list .options .itemsWrapper .item,

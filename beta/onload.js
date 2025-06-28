@@ -1,5 +1,7 @@
 //REGULAR ONLOAD CODE
 
+new NounsListScreen().present();
+
 //VERSION AND UPDATE HANDLING
 
 if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion") != CONTENT_JUDGE_VERSION) {

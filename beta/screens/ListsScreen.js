@@ -12,10 +12,11 @@ class ListsScreen extends Screen {
 				callback: () => {},
 			},
 			{
-				disabled: true,
 				icon: "user",
 				title: "Names, Groups, and Places",
-				callback: () => {},
+				callback: () => {
+					new NounsListScreen().present();
+				},
 			},
 			{
 				icon: "hashtag",
@@ -25,10 +26,11 @@ class ListsScreen extends Screen {
 				},
 			},
 			{
-				disabled: true,
 				icon: "book-bible",
 				title: "Old/New Testament References",
-				callback: () => {},
+				callback: () => {
+					new BiblicalReferencesListScreen().present();
+				},
 			},
 			{
 				disabled: true,

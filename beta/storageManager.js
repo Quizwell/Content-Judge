@@ -4,6 +4,10 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "New Features",
 		items: [
 			{
+				icon: "user-group",
+				text: "New Names, Groups, and Places list with category filters and Alphabetical and Verse Order sorting.",
+			},
+			{
 				icon: "hashtag",
 				text: "New Numbers list with Alphabetical and Numerical sorting.",
 			},
