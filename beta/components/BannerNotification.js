@@ -94,11 +94,11 @@ class BannerNotification {
 			clearTimeout(this.timeout);
 		}
 
-		this.notificationElement.addEventListener("transitionend", () => {
+		this.notificationElement.classList.add("hidden");
+		setTimeout(() => {
 			this.notificationElement.remove();
 			this.notificationElement = null;
-		});
-		this.notificationElement.classList.add("hidden");
+		}, 200);
 
 		if (bannerNotificationQueue[0] === this) {
 			bannerNotificationQueue.shift();

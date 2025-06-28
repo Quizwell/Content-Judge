@@ -1,7 +1,5 @@
 //REGULAR ONLOAD CODE
 
-new NumbersListScreen().present();
-
 //VERSION AND UPDATE HANDLING
 
 if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion") != CONTENT_JUDGE_VERSION) {
@@ -19,7 +17,6 @@ if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion
 storageManager.set("lastUsedVersion", CONTENT_JUDGE_VERSION);
 
 window.addEventListener("error", function (e) {
-	console.log(e);
 	new BannerNotification({
 		icon: "spaghetti-monster-flying",
 		title: "Error",
