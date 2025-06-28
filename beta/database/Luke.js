@@ -1934,104 +1934,104 @@ var Luke = {
 	concordance: null,
 	biblicalReferences: [
 		{
+			reference: "L 20:37",
+			source: "Exodus 3:6",
+		},
+		{
 			reference: "L 2:23",
 			source: "Exodus 13:2, 12",
-		},
-		{
-			reference: "L 2:24",
-			source: "Leviticus 12:8",
-		},
-		{
-			reference: "L 3:6",
-			source: "Isaiah 40:3-5",
-		},
-		{
-			reference: "L 4:4",
-			source: "Deuteronomy 8:3",
-		},
-		{
-			reference: "L 4:8",
-			source: "Deuteronomy 6:13",
-		},
-		{
-			reference: "L 4:11",
-			source: "Psalm 91:11-12",
-		},
-		{
-			reference: "L 4:12",
-			source: "Deuteronomy 6:16",
-		},
-		{
-			reference: "L 4:19",
-			source: "Isaiah 61:1-2",
-		},
-		{
-			reference: "L 4:19",
-			source: "Isaiah 58:6",
-		},
-		{
-			reference: "L 7:27",
-			source: "Malachi 3:1",
-		},
-		{
-			reference: "L 8:10",
-			source: "Isaiah 6:9",
-		},
-		{
-			reference: "L 10:27",
-			source: "Deuteronomy 6:5",
-		},
-		{
-			reference: "L 10:27",
-			source: "Leviticus 19:18",
-		},
-		{
-			reference: "L 13:35",
-			source: "Psalm 118:26",
 		},
 		{
 			reference: "L 18:20",
 			source: "Exodus 20:12-16",
 		},
 		{
+			reference: "L 2:24",
+			source: "Leviticus 12:8",
+		},
+		{
+			reference: "L 10:27",
+			source: "Leviticus 19:18",
+		},
+		{
 			reference: "L 18:20",
 			source: "Deuteronomy 5:16-20",
 		},
 		{
-			reference: "L 19:38",
-			source: "Psalm 118:26",
+			reference: "L 10:27",
+			source: "Deuteronomy 6:5",
 		},
 		{
-			reference: "L 19:46",
-			source: "Isaiah 56:7",
+			reference: "L 4:8",
+			source: "Deuteronomy 6:13",
 		},
 		{
-			reference: "L 19:46",
-			source: "Jeremiah 7:11",
+			reference: "L 4:12",
+			source: "Deuteronomy 6:16",
 		},
 		{
-			reference: "L 20:17",
-			source: "Psalm 118:22",
+			reference: "L 4:4",
+			source: "Deuteronomy 8:3",
 		},
 		{
-			reference: "L 20:37",
-			source: "Exodus 3:6",
+			reference: "L 23:46",
+			source: "Psalm 31:5",
+		},
+		{
+			reference: "L 4:11",
+			source: "Psalm 91:11-12",
 		},
 		{
 			reference: "L 20:43",
 			source: "Psalm 110:1",
 		},
 		{
+			reference: "L 20:17",
+			source: "Psalm 118:22",
+		},
+		{
+			reference: "L 13:35",
+			source: "Psalm 118:26",
+		},
+		{
+			reference: "L 19:38",
+			source: "Psalm 118:26",
+		},
+		{
+			reference: "L 8:10",
+			source: "Isaiah 6:9",
+		},
+		{
+			reference: "L 3:6",
+			source: "Isaiah 40:3-5",
+		},
+		{
 			reference: "L 22:37",
 			source: "Isaiah 53:12",
+		},
+		{
+			reference: "L 19:46",
+			source: "Isaiah 56:7",
+		},
+		{
+			reference: "L 4:19",
+			source: "Isaiah 58:6",
+		},
+		{
+			reference: "L 4:19",
+			source: "Isaiah 61:1-2",
+		},
+		{
+			reference: "L 19:46",
+			source: "Jeremiah 7:11",
 		},
 		{
 			reference: "L 23:30",
 			source: "Hosea 10:8",
 		},
 		{
-			reference: "L 23:46",
-			source: "Psalm 31:5",
+			reference: "L 7:27",
+			source: "Malachi 3:1",
 		},
 	],
 	properNouns: [

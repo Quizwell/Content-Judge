@@ -215,3 +215,8 @@
 .settingsScreen .section > p:last-child {
 	margin-bottom: 0;
 }
+
+.memoryListScreen::before {
+	transform: translate3d(0, 0, 0) rotateY(180deg);
+	mask-image: linear-gradient(to bottom, black 0%, transparent 100%), linear-gradient(to left, transparent 0%, black 100%);
+}

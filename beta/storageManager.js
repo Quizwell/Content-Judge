@@ -11,6 +11,14 @@ const CONTENT_JUDGE_CHANGELOG = [
 				icon: "hashtag",
 				text: "New Numbers list with Alphabetical and Numerical sorting.",
 			},
+			{
+				icon: "book-bible",
+				text: "New Old/New Testament References list with Verse Order and Source Order sorting.",
+			},
+			{
+				icon: "star",
+				text: "New Memory verses list with Single and Multiple filters and sorting by Verse Order or Alphabetically.",
+			},
 		],
 	},
 	{

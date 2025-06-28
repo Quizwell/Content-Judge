@@ -33,20 +33,22 @@ class ListsScreen extends Screen {
 				},
 			},
 			{
-				disabled: true,
 				style: "memory",
 				icon: "star",
 				title: "Memory Verses",
 				subtitle: "in Memory",
-				callback: () => {},
+				callback: () => {
+					new MemoryListScreen().present();
+				},
 			},
 			{
-				disabled: true,
 				style: "memory",
 				icon: "stopwatch",
 				title: "Prejump List",
 				subtitle: "in Memory",
-				callback: () => {},
+				callback: () => {
+					new MemoryListScreen().present();
+				},
 			},
 		];
 

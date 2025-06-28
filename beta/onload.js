@@ -1,6 +1,6 @@
 //REGULAR ONLOAD CODE
 
-new NounsListScreen().present();
+// new MemoryListScreen().present();
 
 //VERSION AND UPDATE HANDLING
 

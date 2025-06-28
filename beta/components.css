@@ -34,7 +34,6 @@
 	background-image: var(--gradient-url);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	-webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%), linear-gradient(to right, transparent 0%, black 100%);
 	mask-image: linear-gradient(to bottom, black 0%, transparent 100%), linear-gradient(to right, transparent 0%, black 100%);
 	-webkit-mask-composite: intersect;
 	mask-composite: intersect;
