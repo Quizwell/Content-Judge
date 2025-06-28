@@ -4,6 +4,10 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "New Features",
 		items: [
 			{
+				icon: "list-ol",
+				text: "New concordance browser with filters for unique, double, and triple words.",
+			},
+			{
 				icon: "user-group",
 				text: "New Names, Groups, and Places list with category filters and Alphabetical and Verse Order sorting.",
 			},

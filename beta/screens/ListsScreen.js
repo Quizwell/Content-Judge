@@ -4,12 +4,13 @@ class ListsScreen extends Screen {
 
 		const listLinks = [
 			{
-				disabled: true,
 				style: "prominent",
 				icon: "list-ol",
 				title: "Unique/Double/Triple Words",
 				subtitle: "in Concordance",
-				callback: () => {},
+				callback: () => {
+					new ConcordanceListScreen().present();
+				},
 			},
 			{
 				icon: "user",

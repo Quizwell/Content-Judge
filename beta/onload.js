@@ -1,6 +1,6 @@
 //REGULAR ONLOAD CODE
 
-// new MemoryListScreen().present();
+new ConcordanceListScreen().present();
 
 //VERSION AND UPDATE HANDLING
 

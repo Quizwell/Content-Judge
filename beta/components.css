@@ -234,6 +234,7 @@
 .list .listWrapper > .item {
 	background: var(--content-background-color);
 	min-height: 50px;
+	flex-shrink: 0;
 	border-radius: 25px;
 	padding: 8px 20px;
 	box-sizing: border-box;
