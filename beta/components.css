@@ -141,11 +141,8 @@
 	flex-direction: column;
 	gap: 5px;
 
-	&.scrollable {
-		overflow-y: auto;
-		scrollbar-width: none;
-		padding: 15px 0;
-		mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+	&.fullScreen {
+		height: 100%;
 	}
 }
 
@@ -162,6 +159,13 @@
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+}
+
+.list.scrollable .listWrapper {
+	overflow-y: auto;
+	scrollbar-width: none;
+	padding: 15px 0;
+	mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
 }
 
 /* ListOptions */
@@ -201,6 +205,10 @@
 	color: var(--item-color, inherit);
 	cursor: pointer;
 	transition: all 0.1s ease;
+
+	&:active {
+		opacity: 0.5;
+	}
 }
 
 .list .options .itemsWrapper .item.enabled {
@@ -230,9 +238,9 @@
 	}
 	&.callback {
 		cursor: pointer;
-		transition: all 0.1s ease;
+		transition: opacity 0.1s ease;
 		&:not([disabled]):active {
-			background: var(--page-background-color);
+			opacity: 0.5;
 		}
 	}
 

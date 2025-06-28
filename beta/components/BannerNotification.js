@@ -10,6 +10,8 @@ class BannerNotification {
 		callback = null,
 		duration = 5000, //5 sec
 	} = {}) {
+		this.duration = duration;
+
 		var notificationElement = document.createElement("div");
 		notificationElement.classList.add("bannerNotification");
 		if (callback) {
@@ -71,12 +73,12 @@ class BannerNotification {
 
 	present() {
 		requestAnimationFrame(() => {
-			this.otificationElement.classList.remove("hidden");
+			this.notificationElement.classList.remove("hidden");
 		});
-		if (duration > 0) {
+		if (this.duration > 0) {
 			this.timeout = setTimeout(() => {
 				this.dismiss();
-			}, duration);
+			}, this.duration);
 		}
 	}
 

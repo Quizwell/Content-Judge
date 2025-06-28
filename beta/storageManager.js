@@ -1,14 +1,14 @@
 const CONTENT_JUDGE_VERSION = "2.0 Beta 6";
 const CONTENT_JUDGE_CHANGELOG = [
-	// {
-	// 	title: "New Features",
-	// 	items: [
-	// 		{
-	// 			icon: "list-ol",
-	// 			text: "Added verse numbers to chapter display.",
-	// 		},
-	// 	],
-	// },
+	{
+		title: "New Features",
+		items: [
+			{
+				icon: "hashtag",
+				text: "New Numbers list with Alphabetical and Numerical sorting.",
+			},
+		],
+	},
 	{
 		title: "Bug Fixes and Improvements",
 		items: [
@@ -34,13 +34,13 @@ const CONTENT_JUDGE_CHANGELOG = [
 				text: "Concordance entries in the verse viewer cannot be filtered and may take up too much UI space displaying each verse.",
 			},
 			{
-				icon: "bugs",
+				icon: "mosquito",
 				text: "Pronoun Clarifications and Footnotes buttons do not yet work in the verse viewer. To view footnotes, tap a footnote letter in the scripture.",
 			},
-			{
-				icon: "mosquito",
-				text: "Lists are not yet available.",
-			},
+			// {
+			// 	icon: "bugs",
+			// 	text: "Lists are not yet available.",
+			// },
 		],
 	},
 	{

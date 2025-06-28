@@ -1,37 +1,24 @@
 class List {
-	constructor({ items, itemConstructor, filterOptions, sortOptions, scrollable = true } = {}) {
-		this.items = items;
+	constructor({ items, itemConstructor, filterOptions, sortOptions, fullScreen = false, scrollable = true } = {}) {
 		this.itemConstructor = itemConstructor;
 		this.filterOptions = filterOptions;
 		this.sortOptions = sortOptions;
 
 		const listElement = document.createElement("div");
 		listElement.classList.add("list");
+		if (fullScreen) {
+			listElement.classList.add("fullScreen");
+		}
 		if (scrollable) {
 			listElement.classList.add("scrollable");
 		}
 
 		if (filterOptions) {
-			filterOptions.onchange = () => {
-				// Loop thruogh all item elements and toggle their visibility based on the filter options
-				const updatedOptions = filterOptions.options;
-				items.forEach((item) => {
-					if (!item.section) {
-						if (filterOptions.evaluateItem(item, updatedOptions)) {
-							item.itemElement.classList.remove("hidden");
-						} else {
-							item.itemElement.classList.add("hidden");
-						}
-					}
-				});
-			};
+			filterOptions.parentList = this;
 			listElement.appendChild(filterOptions.optionsElement);
 		}
 		if (sortOptions) {
-			sortOptions.onchange = () => {
-				sortOptions.sort(items, sortOptions.order, sortOptions.options);
-				this.render();
-			};
+			sortOptions.parentList = this;
 			listElement.appendChild(sortOptions.optionsElement);
 		}
 
@@ -39,15 +26,28 @@ class List {
 		this.listWrapper.classList.add("listWrapper");
 		listElement.appendChild(this.listWrapper);
 
-		if (sortOptions) {
-			sortOptions.onchange(items);
-		}
-		this.render();
-
 		this.listElement = listElement;
+
+		if (!this.filterOptions && !this.sortOptions) {
+			this.items = items;
+		} else {
+			this._items = items;
+			if (this.filterOptions) {
+				this.filterOptions.onchange();
+			}
+			if (this.sortOptions) {
+				this.sortOptions.onchange();
+			}
+		}
 	}
 
-	render() {
+	get items() {
+		return this._items;
+	}
+
+	set items(value) {
+		this._items = value;
+
 		while (this.listWrapper.firstChild) {
 			this.listWrapper.removeChild(this.listWrapper.lastChild);
 		}
@@ -63,8 +63,7 @@ class List {
 				this.listWrapper.appendChild(item.itemElement);
 			}
 		});
-		if (this.filterOptions) {
-			this.filterOptions.onchange();
-		}
+
+		this.listWrapper.scrollTop = 0;
 	}
 }

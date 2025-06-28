@@ -4,6 +4,7 @@ class ListsScreen extends Screen {
 
 		const listLinks = [
 			{
+				disabled: true,
 				style: "prominent",
 				icon: "list-ol",
 				title: "Unique/Double/Triple Words",
@@ -11,6 +12,7 @@ class ListsScreen extends Screen {
 				callback: () => {},
 			},
 			{
+				disabled: true,
 				icon: "user",
 				title: "Names, Groups, and Places",
 				callback: () => {},
@@ -18,14 +20,18 @@ class ListsScreen extends Screen {
 			{
 				icon: "hashtag",
 				title: "Numbers",
-				callback: () => {},
+				callback: () => {
+					new NumbersListScreen().present();
+				},
 			},
 			{
+				disabled: true,
 				icon: "book-bible",
 				title: "Old/New Testament References",
 				callback: () => {},
 			},
 			{
+				disabled: true,
 				style: "memory",
 				icon: "star",
 				title: "Memory Verses",
@@ -33,6 +39,7 @@ class ListsScreen extends Screen {
 				callback: () => {},
 			},
 			{
+				disabled: true,
 				style: "memory",
 				icon: "stopwatch",
 				title: "Prejump List",
@@ -51,7 +58,6 @@ class ListsScreen extends Screen {
 		this.contentElement.appendChild(linkList);
 
 		for (const link of listLinks) {
-			link.disabled = true;
 			listWrapper.appendChild(new NavigationLink(link));
 		}
 	}
