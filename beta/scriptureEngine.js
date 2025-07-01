@@ -1,47 +1,7 @@
-storageManager.setDefault("quizCycleYear", "Luke");
+storageManager.setDefault("quizCycleYear", "Corinthians");
 
 var scriptureEngine = {
 	currentYearObject: undefined,
-
-	getVerseByReference: function (reference) {
-		var book;
-
-		//Loop through all the books in this year's object until a match is found for the abbreviation.
-		var bookAbbreviation = reference.split(" ")[0];
-		reference = reference.split(" ")[1].split(":");
-		for (var i = 0; i < scriptureEngine.currentYearObject.books.length; i++) {
-			var currentBook = scriptureEngine.currentYearObject.books[i];
-			if (currentBook.abbreviation == bookAbbreviation) {
-				book = currentBook;
-				break;
-			}
-		}
-
-		//Get the correct chapter (subtract 1 from the chapter number to find the index)
-		var chapter = book.chapters[reference[0] - 1];
-
-		var verseNumber = reference[1];
-		var cumulativeVerseCount = 0;
-		var verseCountsBySection = [];
-
-		for (var i = 0; i < chapter.sections.length; i++) {
-			var currentSection = chapter.sections[i];
-			cumulativeVerseCount += currentSection.verses.length;
-
-			// If the cumulative verse count is greater than our verse number, the verse must be in this section.
-			if (verseNumber <= cumulativeVerseCount) {
-				//The verse we need can be found by taking the verse number and subtracting the numbers of verses in the previous sections.
-				for (var ii = 0; ii < verseCountsBySection.length; ii++) {
-					verseNumber -= verseCountsBySection[ii];
-				}
-
-				//Subtract 1 from the verse number to get the index
-				return currentSection.verses[verseNumber - 1];
-			}
-
-			verseCountsBySection.push(currentSection.verses.length);
-		}
-	},
 
 	getFootnotesByContent: function (query, useAdvancedSearch) {
 		//Define advanced search functions now for possible use later
@@ -445,57 +405,21 @@ var scriptureEngine = {
 		return referencesInString;
 	},
 
-	getNeighboringVerse: function (reference, type) {
-		var book;
-
-		//Loop through all the books in this year's object until a match is found for the abbreviation.
-		var bookAbbreviation = reference.split(" ")[0];
-		for (var i = 0; i < scriptureEngine.currentYearObject.books.length; i++) {
-			var currentBook = scriptureEngine.currentYearObject.books[i];
-			if (currentBook.abbreviation == bookAbbreviation) {
-				book = currentBook;
-				break;
-			}
-		}
-
-		//Get the correct chapter (subtract 1 from the chapter number to find the index)
-		var chapter = book.chapters[reference.split(" ")[1].split(":")[0] - 1];
-
-		var chapterVerseCount = scriptureEngine.getVerseCountFromChapter(chapter);
-		var verseNumber = Number(reference.split(":")[1]);
-
-		switch (type) {
-			case "previous":
-				if (verseNumber <= 1) {
-					return false;
-				} else {
-					return reference.split(":")[0] + ":" + (verseNumber - 1);
-				}
-
-				break;
-			case "next":
-				if (verseNumber >= chapterVerseCount) {
-					return false;
-				} else {
-					return reference.split(":")[0] + ":" + (verseNumber + 1);
-				}
-
-				break;
-		}
-	}, //TODO
-
 	returnEarliestReference: function (reference1, reference2) {
+		const splitReference1 = reference1.split(" ");
+		const splitReference2 = reference2.split(" ");
+
 		reference1 = {
 			referenceString: reference1,
-			bookAbbreviation: reference1.split(" ")[0],
-			chapterNumber: Number(reference1.split(" ")[1].split(":")[0]),
+			bookAbbreviation: reference1.slice(0, reference1.lastIndexOf(" ")),
+			chapterNumber: Number(splitReference1[splitReference1.length - 1].split(":")[0]),
 			verseNumber: Number(reference1.split(":")[1]),
 		};
 
 		reference2 = {
 			referenceString: reference2,
-			bookAbbreviation: reference2.split(" ")[0],
-			chapterNumber: Number(reference2.split(" ")[1].split(":")[0]),
+			bookAbbreviation: reference2.slice(0, reference2.lastIndexOf(" ")),
+			chapterNumber: Number(splitReference2[splitReference2.length - 1].split(":")[0]),
 			verseNumber: Number(reference2.split(":")[1]),
 		};
 
@@ -560,125 +484,6 @@ var scriptureEngine = {
 			}
 		}
 	}, //TODO
-
-	getPronounClarificationsByReference: function (reference) {
-		var book;
-
-		//Loop through all the books in this year's object until a match is found for the abbreviation.
-		var bookAbbreviation = reference.split(" ")[0];
-		reference = reference.split(" ")[1].split(":");
-		for (var i = 0; i < scriptureEngine.currentYearObject.books.length; i++) {
-			var currentBook = scriptureEngine.currentYearObject.books[i];
-			if (currentBook.abbreviation == bookAbbreviation) {
-				book = currentBook;
-				break;
-			}
-		}
-
-		//Get the correct chapter (subtract 1 from the chapter number to find the index)
-		var chapter = book.chapters[reference[0] - 1];
-
-		var verseNumber = reference[1];
-		var cumulativeVerseCount = 0;
-		var verseCountsBySection = [];
-
-		for (var i = 0; i < chapter.sections.length; i++) {
-			var currentSection = chapter.sections[i];
-			cumulativeVerseCount += currentSection.verses.length;
-
-			// If the cumulative verse count is greater than our verse number, the verse must be in this section.
-			if (verseNumber <= cumulativeVerseCount) {
-				//If there are no pronoun clarifications for this section, return false
-				if (!currentSection.pronounClarification) {
-					return false;
-				}
-
-				//The verse we need can be found by taking the verse number and subtracting the numbers of verses in the previous sections.
-				for (var ii = 0; ii < verseCountsBySection.length; ii++) {
-					verseNumber -= verseCountsBySection[ii];
-				}
-
-				//Subtract 1 from the verse number to get the index
-				var pronounClarificationsForVerse = currentSection.pronounClarification[verseNumber - 1];
-				break;
-			}
-
-			verseCountsBySection.push(currentSection.verses.length);
-		}
-
-		return pronounClarificationsForVerse;
-	}, //TODO
-
-	getFootnotesByReference: function (reference) {
-		var book;
-
-		//Loop through all the books in this year's object until a match is found for the abbreviation.
-		var bookAbbreviation = reference.split(" ")[0];
-		reference = reference.split(" ")[1].split(":");
-		for (var i = 0; i < scriptureEngine.currentYearObject.books.length; i++) {
-			var currentBook = scriptureEngine.currentYearObject.books[i];
-			if (currentBook.abbreviation == bookAbbreviation) {
-				book = currentBook;
-				break;
-			}
-		}
-
-		//Get the correct chapter (subtract 1 from the chapter number to find the index)
-		var chapter = book.chapters[reference[0] - 1];
-
-		//If there are no footnotes for this chapter, return false
-		if (Object.keys(chapter.footnotes).length == 0) {
-			return false;
-		}
-
-		var verseNumber = reference[1];
-		var cumulativeVerseCount = 0;
-		var verseCountsBySection = [];
-
-		for (var i = 0; i < chapter.sections.length; i++) {
-			var currentSection = chapter.sections[i];
-			cumulativeVerseCount += currentSection.verses.length;
-
-			// If the cumulative verse count is greater than our verse number, the verse must be in this section.
-			if (verseNumber <= cumulativeVerseCount) {
-				//The verse we need can be found by taking the verse number and subtracting the numbers of verses in the previous sections.
-				for (var ii = 0; ii < verseCountsBySection.length; ii++) {
-					verseNumber -= verseCountsBySection[ii];
-				}
-
-				//Subtract 1 from the verse number to get the index
-				var verse = currentSection.verses[verseNumber - 1];
-
-				var footnotesInVerse = [];
-
-				//Search the verse for footnote references
-				var startingIndex = 0;
-				while (startingIndex !== null) {
-					var index = verse.indexOf("[", startingIndex);
-					if (index != -1) {
-						//Set the starting index to be after this footnote reference
-						startingIndex = index + 1;
-
-						var footnoteLetter = verse[index + 1];
-						var footnote = chapter.footnotes[footnoteLetter];
-
-						footnotesInVerse.push({
-							letter: footnoteLetter,
-							footnote: footnote,
-						});
-					} else {
-						startingIndex = null;
-					}
-				}
-
-				return footnotesInVerse;
-
-				break;
-			}
-
-			verseCountsBySection.push(currentSection.verses.length);
-		}
-	},
 
 	getBookByAbbreviation: function (abbreviation) {
 		for (var i = 0; i < scriptureEngine.currentYearObject.books.length; i++) {
@@ -775,74 +580,6 @@ var scriptureEngine = {
 		return verseCount;
 	},
 
-	getSectionNumberFromReference: function (reference) {
-		var book;
-
-		//Loop through all the books in this year's object until a match is found for the abbreviation.
-		var bookAbbreviation = reference.split(" ")[0];
-		reference = reference.split(" ")[1].split(":");
-		for (var i = 0; i < scriptureEngine.currentYearObject.books.length; i++) {
-			var currentBook = scriptureEngine.currentYearObject.books[i];
-			if (currentBook.abbreviation == bookAbbreviation) {
-				book = currentBook;
-				break;
-			}
-		}
-
-		//Get the correct chapter (subtract 1 from the chapter number to find the index)
-		var chapter = book.chapters[reference[0] - 1];
-
-		var verseNumber = reference[1];
-		var cumulativeVerseCount = 0;
-
-		for (var i = 0; i < chapter.sections.length; i++) {
-			var currentSection = chapter.sections[i];
-			cumulativeVerseCount += currentSection.verses.length;
-
-			// If the cumulative verse count is greater than our verse number, the verse must be in this section.
-			if (verseNumber <= cumulativeVerseCount) {
-				return i + 1;
-			}
-		}
-	},
-
-	filterReference: function (reference) {
-		var referenceRegex = /\w+ \d+:\d+/gi;
-		var referenceMatches = reference.match(referenceRegex);
-
-		if (referenceMatches) {
-			var currentReference = referenceMatches[0];
-
-			var splitReference = currentReference.split(" ");
-			var currentReferenceBook = splitReference[0];
-
-			//Capitalize the first letter of the book
-			currentReferenceBook = currentReferenceBook[0].toUpperCase() + currentReferenceBook.slice(1);
-
-			//Loop through every book of the current quiz cycle year.
-			for (var b = 0; b < scriptureEngine.currentYearObject.books.length; b++) {
-				var currentBook = scriptureEngine.currentYearObject.books[b];
-
-				if (currentReferenceBook === currentBook.name) {
-					//The book name in the reference matches the full book name, so we need to use the abbreviation instead and add it to the Array of results
-					var compositeReference = currentBook.abbreviation + " " + splitReference[1];
-				} else if (currentReferenceBook === currentBook.abbreviation) {
-					//The book name in the reference matches the book abbreviation, so we'll add it to the Array of results
-					var compositeReference = currentReferenceBook + " " + splitReference[1];
-				}
-
-				if (compositeReference) {
-					return compositeReference;
-				}
-			}
-		} else {
-			//The string does not contain a reference, so return.
-			return false;
-		}
-
-		return referencesInString;
-	},
-
 	filterVerse: function (verseText, removeFootnotes, preserveAdvancedSearchCharacters) {
 		//This function filters all punctuation and extra spacing out of a verse and converts it to lowercase
 
@@ -934,15 +671,16 @@ class Verse {
 		var book;
 
 		//Loop through all the books in this year's object until a match is found for the abbreviation.
-		var bookAbbreviation = this.reference.split(" ")[0];
-		var splitReferenceNumbers = this.reference.split(" ")[1].split(":");
 		for (var b = 0; b < scriptureEngine.currentYearObject.books.length; b++) {
 			var currentBook = scriptureEngine.currentYearObject.books[b];
-			if (currentBook.abbreviation == bookAbbreviation) {
+			if (reference.indexOf(currentBook.abbreviation) !== -1) {
 				book = currentBook;
 				break;
 			}
 		}
+
+		var splitReference = this.reference.split(" ");
+		var splitReferenceNumbers = splitReference[splitReference.length - 1].split(":");
 
 		//Get the correct chapter (subtract 1 from the chapter number to find the index)
 		var chapterNumber = splitReferenceNumbers[0];
@@ -1090,4 +828,4 @@ class Verse {
 }
 
 var quizCycleYear = storageManager.get("quizCycleYear");
-scriptureEngine.currentYearObject = window[quizCycleYear];
+scriptureEngine.currentYearObject = window["Corinthians"];

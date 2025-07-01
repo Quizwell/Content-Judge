@@ -11,9 +11,9 @@ class ReferenceSelector {
 		};
 
 		if (reference) {
+			this.currentSearchObject.bookAbbreviation = reference.slice(0, reference.lastIndexOf(" "));
 			reference = reference.split(" ");
-			this.currentSearchObject.bookAbbreviation = reference[0];
-			reference = reference[1].split(":");
+			reference = reference[reference.length - 1].split(":");
 			this.currentSearchObject.chapter = parseInt(reference[0]);
 			if (reference[1]) {
 				this.currentSearchObject.verse = parseInt(reference[1]);

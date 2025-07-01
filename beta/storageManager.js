@@ -1,43 +1,23 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 6";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 7";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
 		title: "New Features",
 		items: [
 			{
-				icon: "list-ol",
-				text: "New concordance browser with filters for unique, double, and triple words.",
-			},
-			{
-				icon: "user-group",
-				text: "New Names, Groups, and Places list with category filters and Alphabetical and Verse Order sorting.",
-			},
-			{
-				icon: "hashtag",
-				text: "New Numbers list with Alphabetical and Numerical sorting.",
-			},
-			{
-				icon: "book-bible",
-				text: "New Old/New Testament References list with Verse Order and Source Order sorting.",
-			},
-			{
-				icon: "star",
-				text: "New Memory verses list with Single and Multiple filters and sorting by Verse Order or Alphabetically.",
+				icon: "book",
+				text: "Added content for 1 and 2 Corinthians, including lists.",
 			},
 		],
 	},
-	{
-		title: "Bug Fixes and Improvements",
-		items: [
-			{
-				icon: "square-check",
-				text: "Fixed checkbox colors in dark mode.",
-			},
-			{
-				icon: "scroll",
-				text: "Removed bottom edge scroll fading on screens for better readability.",
-			},
-		],
-	},
+	// {
+	// 	title: "Bug Fixes and Improvements",
+	// 	items: [
+	// 		{
+	// 			icon: "square-check",
+	// 			text: "Fixed checkbox colors in dark mode.",
+	// 		},
+	// 	],
+	// },
 	{
 		title: "Known Issues",
 		items: [
