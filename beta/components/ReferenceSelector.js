@@ -306,8 +306,6 @@ class ReferenceSelector {
 		} else {
 			new ChapterDisplay(referenceString, {
 				allowVerseSelection: true,
-				showRareWords: true,
-				showPrejump: true,
 			}).present();
 		}
 	}

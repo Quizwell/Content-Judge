@@ -18,8 +18,6 @@ class NumbersListScreen extends Screen {
 				currentNumberItem.callback = () => {
 					new ChapterDisplay(currentNumberConcordanceInfo.references[0], {
 						allowVerseSelection: true,
-						showRareWords: true,
-						showPrejump: true,
 					}).present();
 				};
 			} else {

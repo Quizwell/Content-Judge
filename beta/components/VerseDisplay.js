@@ -1,5 +1,5 @@
 class VerseDisplay {
-	constructor(verse, { selectable = false, showRareWords = false, showPrejump = true, selectionCallback } = {}) {
+	constructor(verse, { selectable = false, showRareWords = true, showPrejump = true, selectionCallback } = {}) {
 		if (typeof verse === "string") {
 			this.verse = new Verse(verse);
 			this.reference = verse;
@@ -33,7 +33,7 @@ class VerseDisplay {
 			wordWrapper.className = "word";
 			this.element.appendChild(wordWrapper);
 
-			if (this.verse.memory.status && w < prejumpLength) {
+			if (this.verse.memory.status && this.verse.memory.start.reference === this.verse.reference && w < prejumpLength) {
 				wordWrapper.classList.add("prejump");
 			}
 

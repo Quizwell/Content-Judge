@@ -302,7 +302,7 @@
 		background: var(--memory-element-gradient);
 		color: white;
 	}
-	&:not([disabled]):active {
+	&:active {
 		opacity: 0.5;
 	}
 
@@ -661,11 +661,17 @@
 }
 
 .verseDisplay.showPrejump .prejump {
-	text-decoration: underline 2px solid var(--memory-element-color);
+	text-decoration-line: underline;
+	text-decoration-thickness: 2px;
+	text-decoration-style: solid;
+	text-decoration-color: var(--memory-element-color);
 }
 
 .verseDisplay .prejump::after {
-	text-decoration: inherit;
+	text-decoration-line: inherit;
+	text-decoration-thickness: inherit;
+	text-decoration-style: inherit;
+	text-decoration-color: inherit;
 }
 
 /* I ain't commenting allat */

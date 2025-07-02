@@ -22,8 +22,6 @@ class MemoryListScreen extends Screen {
 			currentMemoryItem.callback = () => {
 				new ChapterDisplay(currentStartVerse.reference, {
 					allowVerseSelection: true,
-					showRareWords: true,
-					showPrejump: true,
 				}).present();
 			};
 			memoryItems.push(currentMemoryItem);

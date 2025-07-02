@@ -15,8 +15,6 @@ class BiblicalReferencesListScreen extends Screen {
 			currentReferenceItem.callback = () => {
 				new ChapterDisplay(currentReference.reference, {
 					allowVerseSelection: true,
-					showRareWords: true,
-					showPrejump: true,
 				}).present();
 			};
 			referenceItems.push(currentReferenceItem);

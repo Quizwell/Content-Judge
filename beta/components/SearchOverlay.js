@@ -141,8 +141,6 @@ class SearchOverlay {
 						callback: () => {
 							new ChapterDisplay(currentSearchResult.reference, {
 								allowVerseSelection: true,
-								showRareWords: true,
-								showPrejump: true,
 							}).present();
 						},
 					}).itemElement;

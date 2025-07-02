@@ -19,8 +19,6 @@ class ConcordanceListScreen extends Screen {
 				currentWordItem.callback = () => {
 					new ChapterDisplay(currentWordConcordanceInfo.references[0], {
 						allowVerseSelection: true,
-						showRareWords: true,
-						showPrejump: true,
 					}).present();
 				};
 			} else {

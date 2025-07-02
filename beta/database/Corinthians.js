@@ -1952,7 +1952,7 @@ var Corinthians = {
 			"Now",
 			"Therefore we",
 			"For Christ's",
-			"For through",
+			"For though",
 			"And",
 			"Examine",
 		],

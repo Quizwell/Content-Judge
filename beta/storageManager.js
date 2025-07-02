@@ -1,23 +1,23 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 7";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 8";
 const CONTENT_JUDGE_CHANGELOG = [
-	{
-		title: "New Features",
-		items: [
-			{
-				icon: "book",
-				text: "Added content for 1 and 2 Corinthians, including lists.",
-			},
-		],
-	},
 	// {
-	// 	title: "Bug Fixes and Improvements",
+	// 	title: "New Features",
 	// 	items: [
 	// 		{
-	// 			icon: "square-check",
-	// 			text: "Fixed checkbox colors in dark mode.",
+	// 			icon: "book",
+	// 			text: "Added content for 1 and 2 Corinthians, including lists.",
 	// 		},
 	// 	],
 	// },
+	{
+		title: "Bug Fixes",
+		items: [
+			{
+				icon: "underline",
+				text: "Fixed issue where a prejump underline might incorrectly appear on the non-starting verse in memory passages.",
+			},
+		],
+	},
 	{
 		title: "Known Issues",
 		items: [

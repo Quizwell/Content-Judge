@@ -29,8 +29,6 @@ class NounsListScreen extends Screen {
 				currentNounItem.callback = () => {
 					new ChapterDisplay(currentNounConcordanceInfo.references[0], {
 						allowVerseSelection: true,
-						showRareWords: true,
-						showPrejump: true,
 					}).present();
 				};
 			} else {

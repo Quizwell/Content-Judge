@@ -12,8 +12,6 @@ class UsesListScreen extends Screen {
 				callback: () => {
 					new ChapterDisplay(reference, {
 						allowVerseSelection: true,
-						showRareWords: true,
-						showPrejump: true,
 					}).present();
 				},
 			});
