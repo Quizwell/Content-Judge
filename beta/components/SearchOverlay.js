@@ -50,10 +50,31 @@ class SearchOverlay {
 		this.element.appendChild(headerContainer);
 
 		// List
-		this.list = document.createElement("div");
-		this.list.classList.add("list");
-		this.list.classList.add("scrollable");
-		this.element.appendChild(this.list);
+		this.list = new List({
+			items: [],
+			itemConstructor: (listItem) => {
+				var listItemElement;
+				var currentVerse = new Verse(listItem.reference);
+				listItemElement = new ListItem({
+					leading: {
+						title: listItem.footnote ? listItem.reference + " [" + listItem.footnote.letter + "]" : listItem.reference,
+						subtitle: listItem.footnote ? listItem.footnote.text : currentVerse.text,
+					},
+					trailing: {
+						icon: "chevron-right",
+					},
+					callback: () => {
+						new ChapterDisplay(listItem.reference, {
+							allowVerseSelection: true,
+						}).present();
+					},
+				});
+				return listItemElement;
+			},
+			fullScreen: true,
+			scrollable: true,
+		});
+		this.element.appendChild(this.list.listElement);
 
 		this.overlay = new Overlay();
 
@@ -78,7 +99,7 @@ class SearchOverlay {
 	}
 	oninput() {
 		this.element.classList.add("loading");
-		this.list.classList.add("hidden");
+		this.list.listElement.classList.add("hidden");
 		if (this.inputTimeout) {
 			clearTimeout(this.inputTimeout);
 		}
@@ -102,21 +123,18 @@ class SearchOverlay {
 
 	set query(query) {
 		if (this._query === query) {
+			this.element.classList.remove("loading");
 			return;
 		}
 
 		this._query = query;
-
-		this.list.classList.add("hidden");
-
 		if (query.length === 0) {
+			this.element.classList.remove("loading");
 			return;
 		}
 
 		//Remove all current search results
-		while (this.list.firstChild) {
-			this.list.removeChild(this.list.lastChild);
-		}
+		this.list.items = [];
 
 		var footnoteSearchResults = scriptureEngine.getFootnotesByContent(query, storageManager.get("useAdvancedSearch"));
 		var contentSearchResults = scriptureEngine.getVersesByContent(query, storageManager.get("useAdvancedSearch"));
@@ -124,37 +142,7 @@ class SearchOverlay {
 		contentSearchResults = footnoteSearchResults.concat(contentSearchResults);
 
 		if (contentSearchResults.length > 0) {
-			const listWrapper = document.createElement("div");
-			listWrapper.classList.add("listWrapper");
-			this.list.appendChild(listWrapper);
-
-			//Loop through every search result and create an element for each
-			for (var i = 0; i < contentSearchResults.length; i++) {
-				var currentSearchResult = contentSearchResults[i];
-				var listItemElement;
-
-				(function (currentSearchResult) {
-					var currentVerse = new Verse(currentSearchResult.reference);
-					listItemElement = new ListItem({
-						leading: {
-							title: currentSearchResult.footnote ? currentSearchResult.reference + " [" + currentSearchResult.footnote.letter + "]" : currentSearchResult.reference,
-							subtitle: currentSearchResult.footnote ? currentSearchResult.footnote.text : currentVerse.text,
-						},
-						trailing: {
-							icon: "chevron-right",
-						},
-						callback: () => {
-							new ChapterDisplay(currentSearchResult.reference, {
-								allowVerseSelection: true,
-							}).present();
-						},
-					}).itemElement;
-				})(currentSearchResult);
-
-				listItemElement.style.animationDelay = i * 50 + "ms";
-
-				listWrapper.appendChild(listItemElement);
-			}
+			this.list.items = contentSearchResults;
 		} else {
 			//There are no search results, so show a message indicating so.
 			var messageElement = document.createElement("p");
@@ -164,7 +152,7 @@ class SearchOverlay {
 		}
 
 		this.element.classList.remove("loading");
-		this.list.classList.remove("hidden");
+		this.list.listElement.classList.remove("hidden");
 	}
 
 	dismiss() {
