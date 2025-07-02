@@ -55,7 +55,7 @@ class SortOptions {
 		this.items = items;
 
 		this.onchange = () => {
-			this.parentList.items = onchange(this.parentList.items, this.options, this.order);
+			this.parentList.sortedItems = onchange(this.parentList._filteredItems, this.options, this.order);
 		};
 		this._order = order;
 	}

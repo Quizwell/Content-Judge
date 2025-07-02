@@ -90,6 +90,17 @@ class ConcordanceListScreen extends Screen {
 					}
 				},
 			}),
+			searchOptions: new SearchOptions({
+				onchange: (listItems, value) => {
+					if (value.length === 0) {
+						return listItems;
+					} else {
+						return listItems.filter((item) => {
+							return item.leading.title.toLowerCase().includes(value.toLowerCase());
+						});
+					}
+				},
+			}),
 			fullScreen: true,
 			scrollable: true,
 		});

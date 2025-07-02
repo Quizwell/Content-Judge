@@ -21,9 +21,7 @@ class SearchOverlay {
 		searchBarWrapper.classList.add("searchBarWrapper");
 
 		// Icon
-		const searchIcon = document.createElement("i");
-		searchIcon.classList.add("fa-solid", "fa-magnifying-glass");
-		searchBarWrapper.appendChild(searchIcon);
+		searchBarWrapper.appendChild(new Icon("magnifying-glass"));
 
 		// Input
 		const searchInput = document.createElement("input");

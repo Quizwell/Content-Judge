@@ -1,19 +1,19 @@
 const CONTENT_JUDGE_VERSION = "2.0 Beta 8";
 const CONTENT_JUDGE_CHANGELOG = [
-	// {
-	// 	title: "New Features",
-	// 	items: [
-	// 		{
-	// 			icon: "book",
-	// 			text: "Added content for 1 and 2 Corinthians, including lists.",
-	// 		},
-	// 	],
-	// },
+	{
+		title: "New Features",
+		items: [
+			{
+				icon: "magnifying-glass",
+				text: "Added text search to lists.",
+			},
+		],
+	},
 	{
 		title: "Bug Fixes and Improvements",
 		items: [
 			{
-				icon: "magnifying-glass",
+				icon: "magnifying-glass-arrow-right",
 				text: "Search overlay now automatically dismisses when the search field is deselected when empty.",
 			},
 			{

@@ -206,7 +206,8 @@
 }
 
 .list .options .itemsWrapper .item,
-.list .options .iconContainer {
+.list .options .iconContainer,
+.list .options .searchBarWrapper {
 	display: flex;
 	white-space: nowrap;
 	background: var(--content-background-color);
@@ -216,7 +217,7 @@
 	cursor: pointer;
 	transition: all 0.1s ease;
 
-	&:active {
+	&:not(.searchBarWrapper):active {
 		opacity: 0.5;
 	}
 }
@@ -229,6 +230,66 @@
 .list .options .itemsWrapper .item svg {
 	font-size: 20px;
 	margin-right: 5px;
+}
+
+/* SearchOptions */
+.list .options .searchBarWrapper {
+	flex-grow: 1;
+	background-color: var(--content-background-color);
+	color: var(--primary-text-color);
+	position: relative;
+	display: flex;
+	align-items: center;
+	height: 20px;
+	overflow: hidden;
+	transition: all 0.1s ease;
+
+	input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: none;
+		background: transparent;
+		font: inherit;
+		color: inherit;
+		padding: 0 46px 0 15px;
+
+		&::placeholder {
+			color: var(--secondary-text-color);
+			opacity: 0.5;
+		}
+
+		&:placeholder-shown ~ .clearButton {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.clearButton {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 36px;
+		height: 36px;
+		height: 36px;
+		font-size: 22px;
+		border-radius: 0 10px 10px 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.1s ease;
+
+		&:active {
+			opacity: 0.5;
+		}
+	}
 }
 
 /* ListItem */

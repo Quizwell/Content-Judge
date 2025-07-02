@@ -57,7 +57,7 @@ class NumbersListScreen extends Screen {
 				],
 				multiple: false,
 				onchange: (listItems, options) => {
-					return numberItems.filter((item) => {
+					return listItems.filter((item) => {
 						if (options.unique && item.color === "var(--unique-word-highlight-color)") {
 							return true;
 						} else if (options.double && item.color === "var(--double-word-highlight-color)") {
@@ -95,6 +95,17 @@ class NumbersListScreen extends Screen {
 					} else if (option === "alphabetical") {
 						return listItems.toSorted((a, b) => {
 							return order === "ascending" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+						});
+					}
+				},
+			}),
+			searchOptions: new SearchOptions({
+				onchange: (listItems, value) => {
+					if (value.length === 0) {
+						return listItems;
+					} else {
+						return listItems.filter((item) => {
+							return item.title.toLowerCase().includes(value.toLowerCase()) || item.value.toString().includes(value);
 						});
 					}
 				},

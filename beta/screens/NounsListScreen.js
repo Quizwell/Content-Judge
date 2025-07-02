@@ -73,7 +73,7 @@ class NounsListScreen extends Screen {
 				],
 				multiple: true,
 				onchange: (listItems, options) => {
-					return nounItems.filter((item) => {
+					return listItems.filter((item) => {
 						const selectedTypes = [];
 						if (options.names) selectedTypes.push("Name");
 						if (options.groups) selectedTypes.push("Group");
@@ -100,6 +100,17 @@ class NounsListScreen extends Screen {
 					if (option === "alphabetical") {
 						return listItems.toSorted((a, b) => {
 							return order === "ascending" ? a.leading.title.localeCompare(b.leading.title) : b.leading.title.localeCompare(a.leading.title);
+						});
+					}
+				},
+			}),
+			searchOptions: new SearchOptions({
+				onchange: (listItems, value) => {
+					if (value.length === 0) {
+						return listItems;
+					} else {
+						return listItems.filter((item) => {
+							return item.leading.title.toLowerCase().includes(value.toLowerCase());
 						});
 					}
 				},

@@ -47,13 +47,7 @@ class FilterOptions {
 		});
 
 		this.onchange = () => {
-			if (this.parentList.sortOptions) {
-				// Make sure to resort the filtered items
-				this.parentList._items = onchange(this.parentList._items, this.options);
-				this.parentList.sortOptions.onchange();
-			} else {
-				this.parentList.items = onchange(this.parentList.items, this.options);
-			}
+			this.parentList.filteredItems = onchange(this.parentList._items, this.options);
 		};
 	}
 
