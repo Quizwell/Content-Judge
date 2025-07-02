@@ -20,6 +20,10 @@ const CONTENT_JUDGE_CHANGELOG = [
 				icon: "underline",
 				text: "Fixed issue where a prejump underline might incorrectly appear on the non-starting verse in memory passages.",
 			},
+			{
+				icon: "hand-pointer",
+				text: "Fixed cursor on banner notifications.",
+			},
 		],
 	},
 	{

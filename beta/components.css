@@ -101,6 +101,10 @@
 	box-shadow: 0 0 10px var(--light-shadow-color);
 	transition: all 0.2s ease;
 
+	&.callback {
+		cursor: pointer;
+	}
+
 	&.hidden {
 		display: block !important;
 		transform: translate(-50%, -100px);

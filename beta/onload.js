@@ -1,7 +1,5 @@
 //REGULAR ONLOAD CODE
 
-new ConcordanceListScreen().present();
-
 //VERSION AND UPDATE HANDLING
 
 if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion") != CONTENT_JUDGE_VERSION) {

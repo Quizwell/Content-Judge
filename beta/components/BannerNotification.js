@@ -15,6 +15,7 @@ class BannerNotification {
 		var notificationElement = document.createElement("div");
 		notificationElement.classList.add("bannerNotification");
 		if (callback) {
+			notificationElement.classList.add("callback");
 			notificationElement.addEventListener(
 				"click",
 				function () {
@@ -23,6 +24,7 @@ class BannerNotification {
 				}.bind(this)
 			);
 		} else if (dismissable) {
+			notificationElement.classList.add("callback");
 			notificationElement.addEventListener(
 				"click",
 				function () {
