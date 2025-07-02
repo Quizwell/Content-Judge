@@ -71,7 +71,11 @@ class SearchOverlay {
 	}
 
 	onfocus() {}
-	onblur() {}
+	onblur() {
+		if (this.input.value.trim().length === 0) {
+			this.dismiss();
+		}
+	}
 	oninput() {
 		this.element.classList.add("loading");
 		this.list.classList.add("hidden");
@@ -89,6 +93,7 @@ class SearchOverlay {
 	clear() {
 		this.input.value = "";
 		this.oninput();
+		this.input.focus();
 	}
 
 	get query() {

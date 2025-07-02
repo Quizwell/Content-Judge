@@ -10,8 +10,12 @@ const CONTENT_JUDGE_CHANGELOG = [
 	// 	],
 	// },
 	{
-		title: "Bug Fixes",
+		title: "Bug Fixes and Improvements",
 		items: [
+			{
+				icon: "magnifying-glass",
+				text: "Search overlay now automatically dismisses when the search field is deselected when empty.",
+			},
 			{
 				icon: "underline",
 				text: "Fixed issue where a prejump underline might incorrectly appear on the non-starting verse in memory passages.",
