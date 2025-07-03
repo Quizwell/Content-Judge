@@ -56,7 +56,7 @@ class SearchOverlay {
 				listItemElement = new ListItem({
 					leading: {
 						title: listItem.footnote ? listItem.reference + " [" + listItem.footnote.letter + "]" : listItem.reference,
-						subtitle: listItem.footnote ? listItem.footnote.text : currentVerse.text,
+						subtitle: listItem.footnote ? new FormattedText(listItem.footnote.text) : currentVerse.text,
 					},
 					trailing: {
 						icon: "chevron-right",

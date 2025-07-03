@@ -33,7 +33,11 @@ class ListItem {
 		if (leading && leading.subtitle) {
 			const subtitleElement = document.createElement("p");
 			subtitleElement.classList.add("subtitle");
-			subtitleElement.textContent = leading.subtitle;
+			if (typeof leading.subtitle === "string") {
+				subtitleElement.textContent = leading.subtitle;
+			} else if (leading.subtitle instanceof HTMLElement) {
+				subtitleElement.appendChild(leading.subtitle);
+			}
 			leadingWrapper.appendChild(subtitleElement);
 		}
 

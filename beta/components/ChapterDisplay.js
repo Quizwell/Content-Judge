@@ -246,7 +246,7 @@ class ChapterDisplay {
 		var footnotesKeys = Object.keys(this.chapter.footnotes);
 		for (var i = 0; i < footnotesKeys.length; i++) {
 			chapterFootnotes.push({
-				leading: { title: footnotesKeys[i], subtitle: this.chapter.footnotes[footnotesKeys[i]] },
+				leading: { title: footnotesKeys[i], subtitle: new FormattedText(this.chapter.footnotes[footnotesKeys[i]]) },
 			});
 		}
 		var footnotesList = new List({

@@ -1,31 +1,23 @@
-const CONTENT_JUDGE_VERSION = "2.0 Beta 8";
+const CONTENT_JUDGE_VERSION = "2.0 Beta 9";
 const CONTENT_JUDGE_CHANGELOG = [
 	{
 		title: "New Features",
 		items: [
 			{
-				icon: "magnifying-glass",
-				text: "Added text search to lists.",
+				icon: "italic",
+				text: "Footnotes now display with proper italicization and bolding.",
 			},
 		],
 	},
-	{
-		title: "Bug Fixes and Improvements",
-		items: [
-			{
-				icon: "magnifying-glass-arrow-right",
-				text: "Search overlay now automatically dismisses when the search field is deselected when empty.",
-			},
-			{
-				icon: "underline",
-				text: "Fixed issue where a prejump underline might incorrectly appear on the non-starting verse in memory passages.",
-			},
-			{
-				icon: "hand-pointer",
-				text: "Fixed cursor on banner notifications.",
-			},
-		],
-	},
+	// {
+	// 	title: "Bug Fixes and Improvements",
+	// 	items: [
+	// 		{
+	// 			icon: "magnifying-glass-arrow-right",
+	// 			text: "Search overlay now automatically dismisses when the search field is deselected when empty.",
+	// 		},
+	// 	],
+	// },
 	{
 		title: "Known Issues",
 		items: [
