@@ -75,6 +75,27 @@ class SearchOverlay {
 				});
 				return listItemElement;
 			},
+			filterOptions: new FilterOptions({
+				items: [
+					{
+						label: "Memory",
+						value: "memory",
+						icon: "star",
+						color: "var(--memory-element-color)",
+					},
+				],
+				onchange: (listItems, options) => {
+					return listItems.filter((item) => {
+						if (options.memory) {
+							if (item?.memory?.status) {
+								return true;
+							}
+						} else {
+							return true; // If no filters are selected, return all items
+						}
+					});
+				},
+			}),
 			counter: function (items) {
 				if (items.length > 0) {
 					return items.length.toLocaleString() + " results";
