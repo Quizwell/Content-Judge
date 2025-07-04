@@ -158,7 +158,7 @@ class VerseDisplay {
 		}
 
 		this.dragData.hasMovedSignificantly = true;
-		this.deselect(false);
+		this.deselect({ clearSelection: false, clearMultiword: false });
 		this.dragData.startPosition = {};
 		event.preventDefault();
 
@@ -180,9 +180,7 @@ class VerseDisplay {
 		if (this.dragData.startIndex === this.dragData.currentIndex) {
 			// Make sure the click wasn't on a footnote
 			if (event.target.classList.contains("footnote")) {
-				this.deselect(false);
-				this.dragData.isDragging = false;
-				this.updateDragHighlight();
+				this.deselect({ clearSelection: false });
 				this.select("footnote", event.target.textContent.slice(1, -1));
 				return;
 			}
@@ -191,13 +189,9 @@ class VerseDisplay {
 			const wordElement = this.element.children[this.dragData.startIndex];
 			if (wordElement.classList.contains("selected") || (wordElement.classList.contains("multiselected") && !this.dragData.hasMovedSignificantly)) {
 				this.deselect();
-				this.dragData.isDragging = false;
-				this.updateDragHighlight();
 			} else {
 				// Otherwise, select the word
-				this.deselect(false);
-				this.dragData.isDragging = false;
-				this.updateDragHighlight();
+				this.deselect({ clearSelection: false });
 				const wordText = wordElement.querySelector(".selectable").textContent;
 				this.select("word", wordText);
 				wordElement.classList.add("selected");
@@ -246,10 +240,14 @@ class VerseDisplay {
 		}
 	}
 
-	deselect(clearSelection = true) {
+	deselect({ clearSelection = true, clearMultiword = true } = {}) {
 		this.element.querySelectorAll(".word.selected").forEach((selectedWord) => {
 			selectedWord.classList.remove("selected");
 		});
+		if (clearMultiword) {
+			this.dragData.isDragging = false;
+			this.updateDragHighlight();
+		}
 		if (clearSelection) {
 			this.select(null);
 		}
@@ -269,7 +267,7 @@ class VerseDisplay {
 				selectedWord.classList.remove("end");
 			});
 			this.dragData = {};
-			this.deselect(false);
+			this.deselect({ clearSelection: false });
 			this.element.classList.remove("selectable");
 		}
 	}

@@ -941,7 +941,7 @@
 		transparent calc(100% - 40px),
 		transparent 100% */ black 100%
 	);
-	padding-bottom: 50vh;
+	padding-bottom: calc(100vh - 160px);
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 
@@ -960,7 +960,6 @@
 		transparent calc(100% - 120px),
 		transparent 100%
 	);
-	padding-bottom: calc(100vh - 100px);
 }
 
 .chapterDisplay.allowVerseSelection .verses .verseDisplay:not(.selectable) {

@@ -81,11 +81,9 @@ class ChapterDisplay {
 			let pronounClarificationText = document.createElement("p");
 			pronounClarificationText.textContent = "Pronoun Clarifications";
 			pronounClarificationButton.appendChild(pronounClarificationText);
-			pronounClarificationButton.addEventListener("click", () => {
-				console.log("Pronoun Clarifications clicked");
-				pronounClarificationButton.classList.toggle("active");
-			});
+			pronounClarificationButton.addEventListener("click", this.togglePronounClarificationPanel.bind(this));
 			footerElement.appendChild(pronounClarificationButton);
+			this.pronounClarificationButton = pronounClarificationButton;
 
 			let footnotesButton = document.createElement("div");
 			footnotesButton.classList.add("footnotes");
@@ -93,11 +91,9 @@ class ChapterDisplay {
 			let footnotesText = document.createElement("p");
 			footnotesText.textContent = "Footnotes";
 			footnotesButton.appendChild(footnotesText);
-			footnotesButton.addEventListener("click", () => {
-				console.log("Footnotes clicked");
-				footnotesButton.classList.toggle("active");
-			});
+			footnotesButton.addEventListener("click", this.toggleFootnotesPanel.bind(this));
 			footerElement.appendChild(footnotesButton);
+			this.footnotesButton = footnotesButton;
 
 			this.element.appendChild(footerElement);
 			this.footer = footerElement;
@@ -177,19 +173,10 @@ class ChapterDisplay {
 	}
 
 	showConcordancePanel(word) {
+		this.pronounClarificationButton.classList.remove("active");
+		this.footnotesButton.classList.remove("active");
+
 		const concordanceUses = scriptureEngine.currentYearObject.concordance[word.toLowerCase()].references;
-
-		this.panelTitle.textContent = word;
-		if (concordanceUses.length === 1) {
-			this.panelTitle.style.color = "var(--unique-word-highlight-color)";
-		} else if (concordanceUses.length === 2) {
-			this.panelTitle.style.color = "var(--double-word-highlight-color)";
-		} else if (concordanceUses.length === 3) {
-			this.panelTitle.style.color = "var(--triple-word-highlight-color)";
-		} else {
-			this.panelTitle.style.color = "";
-		}
-
 		const concordanceListItems = [];
 		concordanceUses.forEach((use) => {
 			concordanceListItems.push({
@@ -205,17 +192,24 @@ class ChapterDisplay {
 			items: concordanceListItems,
 			itemConstructor: (item) => new ListItem(item),
 		});
-		this.panelContent.replaceChildren(usesList.listElement);
 
-		this.redrawPanelSize();
-		this.panel.classList.remove("hidden");
+		var color = null;
+		if (concordanceUses.length === 1) {
+			color = "var(--unique-word-highlight-color)";
+		} else if (concordanceUses.length === 2) {
+			color = "var(--double-word-highlight-color)";
+		} else if (concordanceUses.length === 3) {
+			color = "var(--triple-word-highlight-color)";
+		}
+
+		this.showPanel(word, color, usesList.listElement);
 	}
 
 	showMultiwordPanel(value) {
-		const multiwordUses = scriptureEngine.getVersesByContent(value);
+		this.pronounClarificationButton.classList.remove("active");
+		this.footnotesButton.classList.remove("active");
 
-		this.panelTitle.textContent = value;
-		this.panelTitle.style.color = "";
+		const multiwordUses = scriptureEngine.getVersesByContent(value);
 
 		const concordanceListItems = [];
 		multiwordUses.forEach((use) => {
@@ -232,45 +226,70 @@ class ChapterDisplay {
 			items: concordanceListItems,
 			itemConstructor: (item) => new ListItem(item),
 		});
-		this.panelContent.replaceChildren(usesList.listElement);
 
-		this.redrawPanelSize();
-		this.panel.classList.remove("hidden");
+		this.showPanel(value, null, usesList.listElement);
 	}
 
-	showFootnotesPanel(footnoteLetter) {
-		this.panelTitle.textContent = "Footnotes";
-		this.panelTitle.style.color = "";
+	togglePronounClarificationPanel() {
+		if (this.pronounClarificationButton.classList.contains("active")) {
+			this.hidePanel();
+			return;
+		}
+
+		this.activeVerseDisplay.deselect({ clearSelection: false }); // Deselect highlighted words in the active verse.
+		this.footnotesButton.classList.remove("active");
+		this.pronounClarificationButton.classList.add("active");
+
+		this.showPanel("Pronoun Clarifications", null, new FormattedText("Pronoun clarifications coming soon."));
+	}
+
+	toggleFootnotesPanel(footnoteLetter) {
+		if (this.footnotesButton.classList.contains("active")) {
+			this.hidePanel();
+			return;
+		}
+
+		this.activeVerseDisplay.deselect({ clearSelection: false }); // Deselect highlighted words in the active verse.
+		this.pronounClarificationButton.classList.remove("active");
+		this.footnotesButton.classList.add("active");
 
 		var chapterFootnotes = [];
 		var footnotesKeys = Object.keys(this.chapter.footnotes);
 		for (var i = 0; i < footnotesKeys.length; i++) {
 			chapterFootnotes.push({
-				leading: { title: footnotesKeys[i], subtitle: new FormattedText(this.chapter.footnotes[footnotesKeys[i]]) },
+				leading: { title: "[" + footnotesKeys[i] + "]", subtitle: new FormattedText(this.chapter.footnotes[footnotesKeys[i]]) },
 			});
 		}
 		var footnotesList = new List({
 			items: chapterFootnotes,
 			itemConstructor: (item) => new ListItem(item),
 		});
-		this.panelContent.replaceChildren(footnotesList.listElement);
 
-		this.redrawPanelSize();
-		this.panel.classList.remove("hidden");
+		this.showPanel("Footnotes", null, footnotesList.listElement);
 	}
 
-	showPanel(title) {
-		this.panelTitle.textContent = title;
-
-		while (this.panelContent.firstChild) {
-			this.panelContent.removeChild(this.panelContent.lastChild);
+	showPanel(title, color, content) {
+		var timeoutLength = 0;
+		if (!this.panel.classList.contains("hidden")) {
+			this.panel.classList.add("hidden");
+			timeoutLength = 200;
 		}
 
-		this.redrawPanelSize();
-		this.panel.classList.remove("hidden");
+		setTimeout(() => {
+			this.panelTitle.textContent = title;
+			this.panelTitle.style.color = color || "";
+
+			this.panelContent.replaceChildren(content);
+			this.panelContent.scrollTop = 0;
+
+			this.redrawPanelSize();
+			this.panel.classList.remove("hidden");
+		}, timeoutLength);
 	}
 
 	hidePanel() {
+		this.pronounClarificationButton.classList.remove("active");
+		this.footnotesButton.classList.remove("active");
 		this.panel.classList.add("hidden");
 		this.recenterActiveVerse();
 	}
@@ -341,6 +360,7 @@ class ChapterDisplay {
 		var oldReference = this.reference || "";
 		this._reference = value;
 		if (this.reference.split(":")[0] !== oldReference.split(":")[0]) {
+			this.hidePanel();
 			this.chapter = new Verse(this.reference).chapter;
 
 			while (this.versesContainer.firstChild) {
@@ -372,7 +392,7 @@ class ChapterDisplay {
 							selectionCallback: (type, value) => {
 								switch (type) {
 									case "footnote":
-										this.showFootnotesPanel(value);
+										this.toggleFootnotesPanel(value);
 										break;
 									case "word":
 										this.showConcordancePanel(value);

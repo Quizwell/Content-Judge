@@ -9,34 +9,13 @@ const CONTENT_JUDGE_CHANGELOG = [
 			},
 		],
 	},
-	// {
-	// 	title: "Bug Fixes and Improvements",
-	// 	items: [
-	// 		{
-	// 			icon: "magnifying-glass-arrow-right",
-	// 			text: "Search overlay now automatically dismisses when the search field is deselected when empty.",
-	// 		},
-	// 	],
-	// },
 	{
-		title: "Known Issues",
+		title: "Bug Fixes and Improvements",
 		items: [
 			{
-				icon: "bug",
-				text: "Search by Content is missing filter options.",
+				icon: "rectangle-list",
+				text: "Chapter display now features smoother transitions between selections and functioning panel buttons.",
 			},
-			{
-				icon: "spider",
-				text: "Concordance entries in the verse viewer cannot be filtered and may take up too much UI space displaying each verse.",
-			},
-			{
-				icon: "mosquito",
-				text: "Pronoun Clarifications and Footnotes buttons do not yet work in the verse viewer. To view footnotes, tap a footnote letter in the scripture.",
-			},
-			// {
-			// 	icon: "bugs",
-			// 	text: "Lists are not yet available.",
-			// },
 		],
 	},
 	{
