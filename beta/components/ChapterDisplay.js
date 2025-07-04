@@ -265,6 +265,7 @@ class ChapterDisplay {
 		var footnotesList = new List({
 			items: chapterFootnotes,
 			itemConstructor: (item) => new ListItem(item),
+			counter: false,
 		});
 
 		this.showPanel("Footnotes", null, footnotesList.listElement);
