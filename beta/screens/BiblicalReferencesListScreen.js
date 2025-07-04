@@ -70,6 +70,9 @@ class BiblicalReferencesListScreen extends Screen {
 					}
 				},
 			}),
+			counter: (listItems) => {
+				return listItems.length.toLocaleString() + " references";
+			},
 			fullScreen: true,
 			scrollable: true,
 		});

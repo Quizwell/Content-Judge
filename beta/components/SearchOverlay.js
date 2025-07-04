@@ -69,6 +69,13 @@ class SearchOverlay {
 				});
 				return listItemElement;
 			},
+			counter: function (items) {
+				if (items.length > 0) {
+					return items.length.toLocaleString() + " results";
+				} else if (this.query.length > 0) {
+					return "No results found";
+				}
+			}.bind(this),
 			fullScreen: true,
 			scrollable: true,
 		});
@@ -116,7 +123,7 @@ class SearchOverlay {
 	}
 
 	get query() {
-		return this._query;
+		return this._query || "";
 	}
 
 	set query(query) {
@@ -139,15 +146,7 @@ class SearchOverlay {
 
 		contentSearchResults = footnoteSearchResults.concat(contentSearchResults);
 
-		if (contentSearchResults.length > 0) {
-			this.list.items = contentSearchResults;
-		} else {
-			//There are no search results, so show a message indicating so.
-			var messageElement = document.createElement("p");
-			messageElement.classList.add("message");
-			messageElement.textContent = "There are no matches for your search.";
-			this.list.appendChild(messageElement);
-		}
+		this.list.items = contentSearchResults;
 
 		this.element.classList.remove("loading");
 		this.list.listElement.classList.remove("hidden");

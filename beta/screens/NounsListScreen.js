@@ -115,6 +115,21 @@ class NounsListScreen extends Screen {
 					}
 				},
 			}),
+			counter: function (items) {
+				const filterOptions = this.filterOptions.options;
+				const selectedFilterCount = Object.keys(filterOptions).filter((key) => filterOptions[key] === true);
+				if (selectedFilterCount.length === 0 || selectedFilterCount.length > 1) {
+					return items.length.toLocaleString() + " terms";
+				} else if (filterOptions.names) {
+					return items.length.toLocaleString() + " names";
+				} else if (filterOptions.groups) {
+					return items.length.toLocaleString() + " groups";
+				} else if (filterOptions.places) {
+					return items.length.toLocaleString() + " places";
+				} else if (filterOptions.properNouns) {
+					return items.length.toLocaleString() + " proper nouns";
+				}
+			},
 			fullScreen: true,
 			scrollable: true,
 		});

@@ -17,7 +17,13 @@ class UsesListScreen extends Screen {
 			});
 		}
 
-		this.list = new List({ items: listItems, itemConstructor: (item) => new ListItem(item), fullScreen: true, scrollable: true });
+		this.list = new List({
+			items: listItems,
+			itemConstructor: (item) => new ListItem(item),
+			counter: (items) => items.length.toLocaleString() + " uses",
+			fullScreen: true,
+			scrollable: true,
+		});
 
 		this.contentElement.appendChild(this.list.listElement);
 	}

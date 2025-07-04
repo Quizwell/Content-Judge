@@ -101,6 +101,9 @@ class ConcordanceListScreen extends Screen {
 					}
 				},
 			}),
+			counter: (items) => {
+				return items.length.toLocaleString() + " words";
+			},
 			fullScreen: true,
 			scrollable: true,
 		});

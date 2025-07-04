@@ -110,6 +110,7 @@ class NumbersListScreen extends Screen {
 					}
 				},
 			}),
+			counter: (items) => items.length.toLocaleString() + " numbers",
 			fullScreen: true,
 			scrollable: true,
 		});

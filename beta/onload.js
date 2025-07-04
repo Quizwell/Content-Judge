@@ -1,7 +1,5 @@
 //REGULAR ONLOAD CODE
 
-new ChapterDisplay("1 Cor 13:13", { allowVerseSelection: true }).present();
-
 //VERSION AND UPDATE HANDLING
 
 if (storageManager.get("lastUsedVersion") && storageManager.get("lastUsedVersion") != CONTENT_JUDGE_VERSION) {

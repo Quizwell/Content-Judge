@@ -1,5 +1,5 @@
 class List {
-	constructor({ items, itemConstructor, filterOptions, sortOptions, searchOptions, fullScreen = false, scrollable = true } = {}) {
+	constructor({ items, itemConstructor, filterOptions, sortOptions, searchOptions, counter = true, fullScreen = false, scrollable = true } = {}) {
 		this.batchSize = 50;
 		this.renderedCount = 0;
 
@@ -7,6 +7,7 @@ class List {
 		this.filterOptions = filterOptions;
 		this.sortOptions = sortOptions;
 		this.searchOptions = searchOptions;
+		this.counter = counter;
 
 		const listElement = document.createElement("div");
 		listElement.classList.add("list");
@@ -29,6 +30,10 @@ class List {
 			searchOptions.parentList = this;
 			listElement.appendChild(searchOptions.optionsElement);
 		}
+
+		this.resultOverview = document.createElement("div");
+		this.resultOverview.classList.add("overview");
+		listElement.appendChild(this.resultOverview);
 
 		this.listWrapper = document.createElement("div");
 		this.listWrapper.classList.add("listWrapper");
@@ -88,6 +93,13 @@ class List {
 		this.renderedCount = 0;
 		while (this.listWrapper.firstChild) {
 			this.listWrapper.removeChild(this.listWrapper.lastChild);
+		}
+
+		// Display result count
+		if (this.counter && typeof this.counter === "function") {
+			this.resultOverview.textContent = this.counter(this.searchedItems);
+		} else if (this.counter) {
+			this.resultOverview.textContent = this.searchedItems.length.toLocaleString() + " results";
 		}
 
 		this._renderNextBatch();

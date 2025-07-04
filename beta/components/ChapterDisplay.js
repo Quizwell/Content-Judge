@@ -191,6 +191,7 @@ class ChapterDisplay {
 		var usesList = new List({
 			items: concordanceListItems,
 			itemConstructor: (item) => new ListItem(item),
+			counter: false,
 		});
 
 		var color = null;
@@ -225,6 +226,7 @@ class ChapterDisplay {
 		var usesList = new List({
 			items: concordanceListItems,
 			itemConstructor: (item) => new ListItem(item),
+			counter: false,
 		});
 
 		this.showPanel(value, null, usesList.listElement);

@@ -4,6 +4,10 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "New Features",
 		items: [
 			{
+				icon: "magnifying-glass-chart",
+				text: "Lists and searches now display a count of results.",
+			},
+			{
 				icon: "italic",
 				text: "Footnotes now display with proper italicization and bolding.",
 			},

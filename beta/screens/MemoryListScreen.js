@@ -106,6 +106,7 @@ class MemoryListScreen extends Screen {
 					}
 				},
 			}),
+			counter: (items) => items.length.toLocaleString() + " memory verses",
 			fullScreen: true,
 			scrollable: true,
 		});
