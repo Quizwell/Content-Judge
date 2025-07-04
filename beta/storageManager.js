@@ -8,6 +8,10 @@ const CONTENT_JUDGE_CHANGELOG = [
 				text: "Lists and searches now display a count of results.",
 			},
 			{
+				icon: "filter-circle-xmark",
+				text: "Added support for multiple filter types per list and one-click reset of all filters.",
+			},
+			{
 				icon: "italic",
 				text: "Footnotes now display with proper italicization and bolding.",
 			},

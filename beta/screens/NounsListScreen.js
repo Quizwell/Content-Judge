@@ -51,38 +51,81 @@ class NounsListScreen extends Screen {
 			filterOptions: new FilterOptions({
 				items: [
 					{
-						label: "Names",
-						value: "names",
-						icon: "user",
+						label: "Type",
+						value: "type",
+						// multiple: true,
+						options: [
+							{
+								label: "Names",
+								value: "names",
+								icon: "user",
+							},
+							{
+								label: "Groups",
+								value: "groups",
+								icon: "users",
+							},
+							{
+								label: "Places",
+								value: "places",
+								icon: "map-location-dot",
+							},
+							{
+								label: "Proper Nouns",
+								value: "properNouns",
+								icon: "book-open",
+							},
+						],
 					},
 					{
-						label: "Groups",
-						value: "groups",
-						icon: "users",
-					},
-					{
-						label: "Places",
-						value: "places",
-						icon: "map-location-dot",
-					},
-					{
-						label: "Proper Nouns",
-						value: "properNouns",
-						icon: "book-open",
+						label: "Rarity",
+						value: "rarity",
+						options: [
+							{
+								label: "Unique",
+								value: "unique",
+								color: "var(--unique-word-highlight-color)",
+							},
+							{
+								label: "Double",
+								value: "double",
+								color: "var(--double-word-highlight-color)",
+							},
+							{
+								label: "Triple",
+								value: "triple",
+								color: "var(--triple-word-highlight-color)",
+							},
+						],
 					},
 				],
-				multiple: true,
 				onchange: (listItems, options) => {
 					return listItems.filter((item) => {
+						var matchesType = false;
+						var matchesRarity = false;
+
 						const selectedTypes = [];
-						if (options.names) selectedTypes.push("Name");
-						if (options.groups) selectedTypes.push("Group");
-						if (options.places) selectedTypes.push("Place");
-						if (options.properNouns) selectedTypes.push("Proper Noun");
+						if (options.type.names) selectedTypes.push("Name");
+						if (options.type.groups) selectedTypes.push("Group");
+						if (options.type.places) selectedTypes.push("Place");
+						if (options.type.properNouns) selectedTypes.push("Proper Noun");
+						if (selectedTypes.length === 0 || selectedTypes.every((option) => item.leading.subtitle.indexOf(option) !== -1)) {
+							matchesType = true;
+						}
 
-						if (selectedTypes.length === 0) return true;
+						var selectedRarity = null;
+						if (options.rarity.unique) {
+							selectedRarity = "var(--unique-word-highlight-color)";
+						} else if (options.rarity.double) {
+							selectedRarity = "var(--double-word-highlight-color)";
+						} else if (options.rarity.triple) {
+							selectedRarity = "var(--triple-word-highlight-color)";
+						}
+						if (selectedRarity === null || item.color === selectedRarity) {
+							matchesRarity = true;
+						}
 
-						return selectedTypes.every((option) => item.leading.subtitle.indexOf(option) !== -1);
+						return matchesType && matchesRarity;
 					});
 				},
 			}),
@@ -117,17 +160,16 @@ class NounsListScreen extends Screen {
 			}),
 			counter: function (items) {
 				const filterOptions = this.filterOptions.options;
-				const selectedFilterCount = Object.keys(filterOptions).filter((key) => filterOptions[key] === true);
-				if (selectedFilterCount.length === 0 || selectedFilterCount.length > 1) {
-					return items.length.toLocaleString() + " terms";
-				} else if (filterOptions.names) {
+				if (filterOptions.type.names) {
 					return items.length.toLocaleString() + " names";
-				} else if (filterOptions.groups) {
+				} else if (filterOptions.type.groups) {
 					return items.length.toLocaleString() + " groups";
-				} else if (filterOptions.places) {
+				} else if (filterOptions.type.places) {
 					return items.length.toLocaleString() + " places";
-				} else if (filterOptions.properNouns) {
+				} else if (filterOptions.type.properNouns) {
 					return items.length.toLocaleString() + " proper nouns";
+				} else {
+					return items.length.toLocaleString() + " terms";
 				}
 			},
 			fullScreen: true,
