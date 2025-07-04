@@ -4,8 +4,12 @@ const CONTENT_JUDGE_CHANGELOG = [
 		title: "New Features",
 		items: [
 			{
-				icon: "magnifying-glass-chart",
-				text: "Lists and searches now display a count of results.",
+				icon: "magnifying-glass",
+				text: "Redesigned content search with memory highlighting and result counts.",
+			},
+			{
+				icon: "square-poll-vertical",
+				text: "Lists now display a count of results.",
 			},
 			{
 				icon: "filter-circle-xmark",

@@ -28,7 +28,7 @@
 	--light-shadow-color: #dddddd;
 
 	--overlay-background-color: rgba(255, 255, 255, 0.2);
-	--overlay-foreground-color: rgba(238, 238, 238, 0.6);
+	--overlay-foreground-color: rgba(238, 238, 238, 0.75);
 
 	--gradient-url: url("images/gradient-light.png");
 
@@ -79,7 +79,7 @@
 		--light-shadow-color: #222222;
 
 		--overlay-background-color: rgba(0, 0, 0, 0.3);
-		--overlay-foreground-color: rgba(34, 34, 34, 0.5);
+		--overlay-foreground-color: rgba(34, 34, 34, 0.6);
 
 		--gradient-url: url("images/gradient-dark.png");
 

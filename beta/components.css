@@ -771,7 +771,6 @@
 	flex-wrap: wrap;
 	font-size: 18px;
 	font-weight: 400;
-	margin: 10px 0;
 	/* transition: font-size 0.2s ease, font-weight 0.2s ease, line-height 0.2s ease; */
 }
 
@@ -1037,6 +1036,7 @@
 
 .chapterDisplay .verses .verseDisplay {
 	position: relative;
+	margin: 10px 0;
 }
 
 .chapterDisplay .verses .verseDisplay::before {

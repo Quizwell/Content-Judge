@@ -45,15 +45,15 @@ class VerseDisplay {
 
 			var filteredWord = word.slice(startCharacters ? startCharacters[0].length : 0, word.length - (endCharacters ? endCharacters[0].length : 0));
 
-			if (filteredWord === "") {
-				// If the filtered word is empty, skip this iteration
-				continue;
-			}
-
 			if (startCharacters) {
 				const startElement = document.createElement("span");
 				startElement.textContent = startCharacters[0];
 				wordWrapper.appendChild(startElement);
+			}
+
+			if (filteredWord === "") {
+				// If the filtered word is empty, skip to the next iteration
+				continue;
 			}
 
 			const wordElement = document.createElement("span");
@@ -178,6 +178,12 @@ class VerseDisplay {
 
 		// If the mousedown and mouseup events occured on the same word
 		if (this.dragData.startIndex === this.dragData.currentIndex) {
+			// If this word doesn't contain a selectable span, do nothhing
+			if (!this.element.children[this.dragData.startIndex].querySelector(".selectable")) {
+				this.deselect({ clearSelection: false });
+				return;
+			}
+
 			// Make sure the click wasn't on a footnote
 			if (event.target.classList.contains("footnote")) {
 				this.deselect({ clearSelection: false });

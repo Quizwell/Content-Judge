@@ -56,11 +56,17 @@ class SearchOverlay {
 				listItemElement = new ListItem({
 					leading: {
 						title: listItem.footnote ? listItem.reference + " [" + listItem.footnote.letter + "]" : listItem.reference,
-						subtitle: listItem.footnote ? new FormattedText(listItem.footnote.text) : currentVerse.text,
+						subtitle: listItem.footnote
+							? new FormattedText(listItem.footnote.text)
+							: new VerseDisplay(currentVerse.reference, {
+									showPrejump: true,
+									showRareWords: false,
+							  }).element,
 					},
 					trailing: {
 						icon: "chevron-right",
 					},
+					color: listItem?.memory?.status ? "var(--memory-element-color)" : undefined,
 					callback: () => {
 						new ChapterDisplay(listItem.reference, {
 							allowVerseSelection: true,
@@ -98,13 +104,12 @@ class SearchOverlay {
 
 	onfocus() {}
 	onblur() {
-		if (this.input.value.trim().length === 0) {
-			this.dismiss();
-		}
+		// if (this.input.value.trim().length === 0) {
+		// 	this.dismiss();
+		// }
 	}
 	oninput() {
 		this.element.classList.add("loading");
-		this.list.listElement.classList.add("hidden");
 		if (this.inputTimeout) {
 			clearTimeout(this.inputTimeout);
 		}
@@ -133,10 +138,6 @@ class SearchOverlay {
 		}
 
 		this._query = query;
-		if (query.length === 0) {
-			this.element.classList.remove("loading");
-			return;
-		}
 
 		//Remove all current search results
 		this.list.items = [];
@@ -149,7 +150,6 @@ class SearchOverlay {
 		this.list.items = contentSearchResults;
 
 		this.element.classList.remove("loading");
-		this.list.listElement.classList.remove("hidden");
 	}
 
 	dismiss() {
