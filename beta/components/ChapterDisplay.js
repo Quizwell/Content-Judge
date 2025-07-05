@@ -68,6 +68,7 @@ class ChapterDisplay {
 			headerElement.appendChild(trailing);
 
 			this.element.appendChild(headerElement);
+			this.header = headerElement;
 		}
 
 		// Footer
@@ -176,12 +177,20 @@ class ChapterDisplay {
 		this.pronounClarificationButton.classList.remove("active");
 		this.footnotesButton.classList.remove("active");
 
-		const concordanceUses = scriptureEngine.currentYearObject.concordance[word.toLowerCase()].references;
+		var concordanceUses = scriptureEngine.currentYearObject.concordance[word.toLowerCase()].references;
+		concordanceUses = [...new Set(concordanceUses)];
 		const concordanceListItems = [];
 		concordanceUses.forEach((use) => {
 			concordanceListItems.push({
-				leading: { title: use, subtitle: new Verse(use).text },
+				leading: {
+					title: use,
+					subtitle: new VerseDisplay(use, {
+						showPrejump: true,
+						showRareWords: false,
+					}).element,
+				},
 				trailing: { icon: "chevron-right" },
+				color: new Verse(use).memory.status ? "var(--memory-element-color)" : undefined,
 				callback: () => {
 					this.hidePanel();
 					this.reference = use;
@@ -191,7 +200,30 @@ class ChapterDisplay {
 		var usesList = new List({
 			items: concordanceListItems,
 			itemConstructor: (item) => new ListItem(item),
-			counter: false,
+			filterOptions: new FilterOptions({
+				items: [
+					{
+						label: "Memory",
+						value: "memory",
+						icon: "star",
+						color: "var(--memory-element-color)",
+					},
+				],
+				onchange: (listItems, options) => {
+					return listItems.filter((item) => {
+						if (options.memory) {
+							return item.color === "var(--memory-element-color)";
+						} else {
+							return true;
+						}
+					});
+				},
+			}),
+			counter: (listItems) => {
+				return listItems.length.toLocaleString() + (listItems.length === 1 ? " verse" : " verses");
+			},
+			fullScreen: true,
+			scrollable: true,
 		});
 
 		var color = null;
@@ -226,7 +258,11 @@ class ChapterDisplay {
 		var usesList = new List({
 			items: concordanceListItems,
 			itemConstructor: (item) => new ListItem(item),
-			counter: false,
+			counter: (listItems) => {
+				return listItems.length.toLocaleString() + (listItems.length === 1 ? " verse" : " verses");
+			},
+			fullScreen: true,
+			scrollable: true,
 		});
 
 		this.showPanel(value, null, usesList.listElement);
@@ -298,15 +334,21 @@ class ChapterDisplay {
 	}
 
 	redrawPanelSize() {
+		this.panel.style.minHeight = "";
+
 		const safeAreaTop = Number(window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top").slice(0, -2));
 		var verseRect = this.activeVerseDisplay.element.getBoundingClientRect();
-		const headerHeight = this.element.querySelector(".header").getBoundingClientRect().height;
+		const headerHeight = this.header.getBoundingClientRect().height;
 		const footerHeight = this.footer.getBoundingClientRect().height;
 
 		const maxPanelHeight = window.innerHeight - headerHeight - safeAreaTop - footerHeight - verseRect.height - 80;
 		this.panel.style.maxHeight = maxPanelHeight + "px";
 
-		requestAnimationFrame(this.recenterActiveVerse.bind(this));
+		requestAnimationFrame(() => {
+			this.recenterActiveVerse();
+			const panelRect = this.panel.getBoundingClientRect();
+			this.panel.style.minHeight = panelRect.height + "px";
+		});
 	}
 
 	recenterActiveVerse() {
