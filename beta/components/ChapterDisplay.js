@@ -71,35 +71,6 @@ class ChapterDisplay {
 			this.header = headerElement;
 		}
 
-		// Footer
-		{
-			let footerElement = document.createElement("div");
-			footerElement.classList.add("footer");
-
-			let pronounClarificationButton = document.createElement("div");
-			pronounClarificationButton.classList.add("pronounClarification");
-			pronounClarificationButton.appendChild(new Icon("people-arrows"));
-			let pronounClarificationText = document.createElement("p");
-			pronounClarificationText.textContent = "Pronoun Clarifications";
-			pronounClarificationButton.appendChild(pronounClarificationText);
-			pronounClarificationButton.addEventListener("click", this.togglePronounClarificationPanel.bind(this));
-			footerElement.appendChild(pronounClarificationButton);
-			this.pronounClarificationButton = pronounClarificationButton;
-
-			let footnotesButton = document.createElement("div");
-			footnotesButton.classList.add("footnotes");
-			footnotesButton.appendChild(new Icon("square-poll-horizontal"));
-			let footnotesText = document.createElement("p");
-			footnotesText.textContent = "Footnotes";
-			footnotesButton.appendChild(footnotesText);
-			footnotesButton.addEventListener("click", this.toggleFootnotesPanel.bind(this));
-			footerElement.appendChild(footnotesButton);
-			this.footnotesButton = footnotesButton;
-
-			this.element.appendChild(footerElement);
-			this.footer = footerElement;
-		}
-
 		// Panel
 		{
 			this.panel = document.createElement("div");
@@ -150,7 +121,6 @@ class ChapterDisplay {
 
 			// Select the chosen verse.
 			verseDisplay.selectable = true;
-			this.footer.classList.remove("hidden");
 
 			this.activeVerseDisplay = verseDisplay;
 			this.reference = verseDisplay.verse.reference;
@@ -168,15 +138,11 @@ class ChapterDisplay {
 			this.reference = this.reference.split(":")[0];
 			this.titleElement.textContent = scriptureEngine.unabbreviateBookNamesInString(this.reference);
 			this.memoryWrapper.classList.add("hidden");
-			this.footer.classList.add("hidden");
 		}
 		this.hidePanel();
 	}
 
 	showConcordancePanel(word) {
-		this.pronounClarificationButton.classList.remove("active");
-		this.footnotesButton.classList.remove("active");
-
 		var concordanceUses = scriptureEngine.currentYearObject.concordance[word.toLowerCase()].references;
 		concordanceUses = [...new Set(concordanceUses)];
 		const concordanceListItems = [];
@@ -239,9 +205,6 @@ class ChapterDisplay {
 	}
 
 	showMultiwordPanel(value) {
-		this.pronounClarificationButton.classList.remove("active");
-		this.footnotesButton.classList.remove("active");
-
 		const multiwordUses = scriptureEngine.getVersesByContent(value);
 
 		const concordanceListItems = [];
@@ -268,28 +231,8 @@ class ChapterDisplay {
 		this.showPanel(value, null, usesList.listElement);
 	}
 
-	togglePronounClarificationPanel() {
-		if (this.pronounClarificationButton.classList.contains("active")) {
-			this.hidePanel();
-			return;
-		}
-
-		this.activeVerseDisplay.deselect({ clearSelection: false }); // Deselect highlighted words in the active verse.
-		this.footnotesButton.classList.remove("active");
-		this.pronounClarificationButton.classList.add("active");
-
-		this.showPanel("Pronoun Clarifications", null, new FormattedText("Pronoun clarifications coming soon."));
-	}
-
 	toggleFootnotesPanel(footnoteLetter) {
-		if (this.footnotesButton.classList.contains("active")) {
-			this.hidePanel();
-			return;
-		}
-
-		this.activeVerseDisplay.deselect({ clearSelection: false }); // Deselect highlighted words in the active verse.
-		this.pronounClarificationButton.classList.remove("active");
-		this.footnotesButton.classList.add("active");
+		this.activeVerseDisplay?.deselect({ clearSelection: false }); // Deselect highlighted words in the active verse.
 
 		var chapterFootnotes = [];
 		var footnotesKeys = Object.keys(this.chapter.footnotes);
@@ -327,8 +270,6 @@ class ChapterDisplay {
 	}
 
 	hidePanel() {
-		this.pronounClarificationButton.classList.remove("active");
-		this.footnotesButton.classList.remove("active");
 		this.panel.classList.add("hidden");
 		this.recenterActiveVerse();
 	}
@@ -336,19 +277,20 @@ class ChapterDisplay {
 	redrawPanelSize() {
 		this.panel.style.minHeight = "";
 
-		const safeAreaTop = Number(window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top").slice(0, -2));
-		var verseRect = this.activeVerseDisplay.element.getBoundingClientRect();
-		const headerHeight = this.header.getBoundingClientRect().height;
-		const footerHeight = this.footer.getBoundingClientRect().height;
+		if (this.activeVerseDisplay) {
+			const safeAreaTop = Number(window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-top").slice(0, -2));
+			var verseRect = this.activeVerseDisplay.element.getBoundingClientRect();
+			const headerHeight = this.header.getBoundingClientRect().height;
 
-		const maxPanelHeight = window.innerHeight - headerHeight - safeAreaTop - footerHeight - verseRect.height - 80;
-		this.panel.style.maxHeight = maxPanelHeight + "px";
+			const maxPanelHeight = window.innerHeight - headerHeight - safeAreaTop - verseRect.height - 80;
+			this.panel.style.maxHeight = maxPanelHeight + "px";
 
-		requestAnimationFrame(() => {
-			this.recenterActiveVerse();
-			const panelRect = this.panel.getBoundingClientRect();
-			this.panel.style.minHeight = panelRect.height + "px";
-		});
+			requestAnimationFrame(() => {
+				this.recenterActiveVerse();
+				const panelRect = this.panel.getBoundingClientRect();
+				this.panel.style.minHeight = panelRect.height + "px";
+			});
+		}
 	}
 
 	recenterActiveVerse() {
@@ -405,6 +347,7 @@ class ChapterDisplay {
 		var oldReference = this.reference || "";
 		this._reference = value;
 		if (this.reference.split(":")[0] !== oldReference.split(":")[0]) {
+			// Load new chapter
 			this.hidePanel();
 			this.chapter = new Verse(this.reference).chapter;
 
@@ -414,6 +357,7 @@ class ChapterDisplay {
 			this.verseDisplays = [];
 			this.activeVerseDisplay = null;
 
+			// Add verses
 			var verseCount = 0;
 			for (var s = 0; s < this.chapter.sections.length; s++) {
 				var sectionTitleElement = document.createElement("h3");
@@ -454,6 +398,24 @@ class ChapterDisplay {
 					);
 					this.versesContainer.appendChild(this.verseDisplays[this.verseDisplays.length - 1].element);
 				}
+			}
+
+			// Add footnotes
+			for (var f in this.chapter.footnotes) {
+				var footnoteElement = document.createElement("div");
+				footnoteElement.classList.add("footnote");
+
+				var footnoteLetter = document.createElement("div");
+				footnoteLetter.classList.add("letter");
+				footnoteLetter.textContent = f;
+				footnoteElement.appendChild(footnoteLetter);
+
+				var footnoteText = document.createElement("p");
+				footnoteText.classList.add("text");
+				footnoteText.appendChild(new FormattedText(this.chapter.footnotes[f]));
+				footnoteElement.appendChild(footnoteText);
+
+				this.versesContainer.appendChild(footnoteElement);
 			}
 
 			this.versesContainer.scrollTop = 0;

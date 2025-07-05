@@ -1041,8 +1041,21 @@
 }
 
 .chapterDisplay.allowVerseSelection .verses:has(> .selectable) .verseDisplay:not(.selectable),
-.chapterDisplay.allowVerseSelection .verses:has(> .selectable) .sectionTitle {
+.chapterDisplay.allowVerseSelection .verses:has(> .selectable) .sectionTitle,
+.chapterDisplay.allowVerseSelection .verses:has(> .selectable) > .footnote {
 	opacity: 0.25;
+}
+
+.chapterDisplay .verses > .footnote {
+	margin-bottom: 10px;
+	display: grid;
+	grid-template-columns: 20px 1fr;
+	gap: 10px;
+	.letter {
+		height: 100%;
+		font-weight: 800;
+		text-align: center;
+	}
 }
 
 .chapterDisplay .footer {
@@ -1085,7 +1098,7 @@
 
 .chapterDisplay .panel {
 	position: fixed;
-	bottom: 80px;
+	bottom: 0;
 	width: 100%;
 	display: flex;
 	flex-direction: column;

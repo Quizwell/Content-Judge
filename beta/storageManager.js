@@ -17,19 +17,23 @@ const CONTENT_JUDGE_CHANGELOG = [
 			},
 			{
 				icon: "italic",
-				text: "Footnotes now display with proper italicization and bolding.",
+				text: "Footnotes now appear at the bottom of chapters, and display everywhere with proper italicization and bolding.",
 			},
-		],
-	},
-	{
-		title: "Bug Fixes and Improvements",
-		items: [
 			{
 				icon: "rectangle-list",
-				text: "Chapter display now features smoother transitions between selections and functioning panel buttons.",
+				text: "Chapter display now features filters and smoother transitions between selections.",
 			},
 		],
 	},
+	// {
+	// 	title: "Bug Fixes and Improvements",
+	// 	items: [
+	// 		{
+	// 			icon: "rectangle-list",
+	// 			text: "Chapter display now features filters and smoother transitions between selections.",
+	// 		},
+	// 	],
+	// },
 	{
 		title: "Feedback",
 		items: [
